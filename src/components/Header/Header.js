@@ -1,10 +1,9 @@
 //components/Header.jsx
 /* --------------------------------- imports -------------------------------- */
 
-import logo from "../../images/My project-crop.png";
+import logo from "../../images/logo.png";
 /* --------------------------------- Header --------------------------------- */
-
-export const Header = () => {
+export default function Header() {
   return (
     <>
       <div className="header">

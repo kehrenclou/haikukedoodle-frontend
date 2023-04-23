@@ -2,7 +2,7 @@
 /* --------------------------------- imports -------------------------------- */
 
 
-import { Header } from "../header/Header";
+import Header from "../header/Header";
 
 /* ---------------------------------- Main ---------------------------------- */
 export default function Main(){

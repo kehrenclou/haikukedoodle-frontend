@@ -3,3 +3,6 @@
 @import url("./vendor/fonts/poppins.css");
 @import url("./components/main/main.css");
 @import url("./components/header/header.css");
+@import url("./components/nav/nav.css");
+
+/* //refactor to put closer to component */

@@ -4,7 +4,9 @@
   max-width: 1200px;
   padding: 30px 100px;
   border-bottom: 1px solid #fda6e5;
+  margin:0 auto;
 }
+
 .header__logo {
   max-width: 200px;
 

@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  padding: 30px 100px;
+  border-bottom: 1px solid #fda6e5;
+}
+.header__logo {
+  max-width: 200px;
+
+}
+
+.header__logo_flower {
+  max-width: 34px;
+  max-height: 31px;
+  margin: 0 8px;
+}
+.header__logo_text {
+  font-family: Merienda;
+  font-size: 48px;
+  font-weight: 700;
+}

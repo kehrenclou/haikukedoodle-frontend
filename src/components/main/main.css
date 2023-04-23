@@ -2,22 +2,8 @@
   height: 100vh;
   background-color: #2b2d42;
   color: white;
-}
-.main__logo {
-  max-width: 400px;
-  max-height: 65px;
-  display: flex;
-  align-items: center;
+  margin:0 auto;
+  
 }
 
-.main__flower {
-  max-width: 34px;
-  max-height: 31px;
-  margin: 0 8px;
-}
-.main__text_logo{
-    font-family:Merienda;
-    font-size:48px;
-    font-weight: 700;
-}
 

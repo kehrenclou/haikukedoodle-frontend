@@ -1,6 +1,6 @@
 // import logo from "../../logo.svg";
 
-import  {Main}  from "./main";
+import  Main from "./main/Main";
 
 //implemnet routes here
 

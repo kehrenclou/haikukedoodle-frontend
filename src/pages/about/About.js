@@ -6,7 +6,7 @@ import "./about.css"
 export default function About(){
     return(
         <>
-        <div></div>
+        <div>this is the about page</div>
         </>
     )
 }

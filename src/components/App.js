@@ -1,13 +1,13 @@
 // import logo from "../../logo.svg";
 
-import  Main from "./main/Main";
+import Main from "../pages/main/Main";
 
-//implemnet routes here
+//implement routes here
 
 function App() {
   return (
-    <div >
-  <Main></Main>
+    <div className="page">
+      <Main></Main>
     </div>
   );
 }

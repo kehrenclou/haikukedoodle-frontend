@@ -2,11 +2,16 @@
   display: flex;
   justify-content: space-between;
   max-width: 1200px;
-  padding: 30px 100px;
+  padding: 30px 50px;
   border-bottom: 1px solid #fda6e5;
   margin:0 auto;
 }
 
+.header__nav{
+  display:flex;
+  gap:20px;
+
+}
 .header__logo {
   max-width: 200px;
 

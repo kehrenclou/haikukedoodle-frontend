@@ -2,20 +2,19 @@
 /* --------------------------------- imports -------------------------------- */
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./nav.css";
+import "./navbar.css";
 /* ----------------------------------- Nav ---------------------------------- */
-export default function Nav() {
+export default function Navbar() {
   return (
     <>
       <nav className="nav" id="menu">
         <NavLink
-          exact
           to="/"
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
               fontWeight: isActive ? "bold" : "",
-              color: isPending ? "yellow" : "white",
+              color: isActive ? "#fda6e5" : "white",
             };
           }}
         >
@@ -74,7 +73,6 @@ export default function Nav() {
           Contact
         </NavLink>
       </nav>
-      
     </>
   );
 }

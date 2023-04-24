@@ -2,7 +2,7 @@
 /* --------------------------------- imports -------------------------------- */
 
 import logo from "../../images/logo.png";
-import Nav from "../nav/Nav";
+import Navbar from "../navbar";
 // import {Nav} from "../nav/Nav";
 /* --------------------------------- Header --------------------------------- */
 export default function Header() {
@@ -11,7 +11,7 @@ export default function Header() {
       <div className="header">
         <img className="header__logo" src={logo} alt="haikukedoodle logo" />
         <div className="header__nav">
-          <Nav></Nav>
+          <Navbar></Navbar>
           <button className="header__button">Sign Up</button>
         </div>
       </div>

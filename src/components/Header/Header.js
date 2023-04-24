@@ -3,6 +3,7 @@
 
 import logo from "../../images/logo.png";
 import Nav from "../nav/Nav";
+// import {Nav} from "../nav/Nav";
 /* --------------------------------- Header --------------------------------- */
 export default function Header() {
   return (
@@ -11,7 +12,7 @@ export default function Header() {
         <img className="header__logo" src={logo} alt="haikukedoodle logo" />
         <div className="header__nav">
           <Nav></Nav>
-          <button>Sign Up</button>
+          <button className="header__button">Sign Up</button>
         </div>
       </div>
     </>

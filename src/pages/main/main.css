@@ -14,11 +14,15 @@
 }
 
 .main__heading{
+  font-family:'Poppins';
   font-size: 32px;
   font-weight: 400;
+  letter-spacing: 1px;
   margin: 32px 0;
 }
 .main__image {
   width: 500px;
+  height: 500px;
+  border:solid 1px red;
  
 }

@@ -1,4 +1,9 @@
+//components/yinyang/Icon.js
+/* --------------------------------- imports -------------------------------- */
 import React from "react";
+
+
+/* ---------------------------------- Icon ---------------------------------- */
 export default function Icon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680">

@@ -15,14 +15,17 @@
 
 .main__heading {
   font-family: "Montserrat";
+   /* font-family: 'Roboto'; */
   font-size: 36px;
-  font-weight: 400;
+  font-weight: 500;
   /* letter-spacing: 1px; */
 
   margin: 32px 0;
 }
 .main__image {
-  width: 500px;
-  height: 500px;
-  border: solid 1px red;
+  width: 400px;
+  height: 400px;
+  /* outline: solid 5px #f49ada; */
+  outline: solid 5px slategrey;
+  border-radius: 100%;
 }

@@ -13,16 +13,16 @@
   align-items: center;
 }
 
-.main__heading{
-  font-family:'Lato';
-  font-size: 32px;
+.main__heading {
+  font-family: "Montserrat";
+  font-size: 36px;
   font-weight: 400;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
+
   margin: 32px 0;
 }
 .main__image {
   width: 500px;
   height: 500px;
-  border:solid 1px red;
- 
+  border: solid 1px red;
 }

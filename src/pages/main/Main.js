@@ -5,7 +5,7 @@ import "./main.css";
 import Header from "../../components/header/Header";
 import Yinyang from "../../components/yinyang/Yinyang";
 import Icon from "../../components/yinyang/Icon";
-import { IconTwo } from "../../components/yinyang/IconTwo";
+import { IconThree } from "../../components/yinyang/IconThree";
 
 /* ---------------------------------- Main ---------------------------------- */
 export default function Main() {
@@ -16,7 +16,7 @@ export default function Main() {
         <div className="main__body">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
           <div className="main__image">
-            <IconTwo className="main__image" />
+            <IconThree className="main__image" />
           </div>
           {/* <Yinyang /> */}
           {/* <img src={yyang} className="main__image" /> */}

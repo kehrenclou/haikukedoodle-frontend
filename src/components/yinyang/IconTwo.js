@@ -14,16 +14,9 @@ export const IconTwo = (props) => (
       <style>
         {".white-dot{fill:#FFF}"}
         {".dark-dot{ fill:rgb(0,0,0,.4)}"}
-        {"#yy01:target ~path-yy01{fill:#000}"}
       </style>
     </defs>
     <g id="uuid-3cbb6a75-8333-46b2-9c66-2faf2c96fba2" data-name="Layer 1">
-      {/* <circle
-        cx={488.85}
-        cy={254.76}
-        r={35.5}
-        className="white-dot"
-      /> */}
       <a onClick={() => console.log("clicked-dark")}>
         <g id="yy01" data-name="dark">
           <path

@@ -15,7 +15,7 @@
 
 .main__heading {
   font-family: "Montserrat";
-   /* font-family: 'Roboto'; */
+  /* font-family: 'Roboto'; */
   font-size: 36px;
   font-weight: 500;
   /* letter-spacing: 1px; */
@@ -25,7 +25,8 @@
 .main__image {
   width: 400px;
   height: 400px;
-  /* outline: solid 5px #f49ada; */
-  outline: solid 5px slategrey;
+
+  outline: solid 5px lightslategray;
+
   border-radius: 100%;
 }

@@ -16,11 +16,8 @@ export default function Main() {
         <div className="main__body">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
           <div className="main__image">
-            <IconThree className="main__image" />
+            <IconThree width="400px" />
           </div>
-          {/* <Yinyang /> */}
-          {/* <img src={yyang} className="main__image" /> */}
-          {/* <img src={yyang} alt="Ying yang buttons" className="main__image" /> */}
         </div>
       </div>
     </>

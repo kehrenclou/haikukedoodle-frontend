@@ -28,22 +28,24 @@ export default function SubjectForm() {
   //state
   const { state, actions } = useStateMachine({ updateSubjectDetails });
 
-
   /* -------------------------------- functions ------------------------------- */
   //set chat gpt statement with input
-  function createStatement(input) {
-    const statement = `Write a "Haiku" about ${input}`;
-    console.log({ statement });
+  function generatePrompt(input) {
+    const capitalizedSubject =
+      input[0].toUpperCase() + input.slice(1).toLowerCase();
+
+    const prompt = `Write a "Haiku" about subject ${capitalizedSubject} with the first line has 5 syllables, the second line has 7 syllables, the third line has 5 syllables.
+    next, write three lines of guitar chords to accompany the haiku.`;
   }
 
   //submit handler - set state with form data
   //data set with input name as key (subject:data)
   const onSubmit = (data) => {
-    actions.updateSubjectDetails( data );
+    actions.updateSubjectDetails(data);
     console.log("data", data.subject); //subject:dog
-    console.log("store", state.subjectDetails);//still null
+    console.log("store", state.subjectDetails); //still null
     //variable passed from where it is called?
-    createStatement(data.subject)
+    generatePrompt(data.subject);
   };
 
   /* --------------------------------- return --------------------------------- */

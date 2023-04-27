@@ -20,9 +20,9 @@ export default function Main() {
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
           <div>
             {/* <div className="main__image"> */}
-            <IconThree width="400px" />
+            {/* <IconThree width="400px" /> */}
             {/* <SubjectForm /> */}
-            {/* <Step1/> */}
+            <Step1/>
           </div>
         </div>
       </div>

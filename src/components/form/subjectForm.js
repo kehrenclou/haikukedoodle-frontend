@@ -1,3 +1,4 @@
+/* --------------------------------- imports -------------------------------- */
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -6,8 +7,9 @@ import { updateSubjectDetails } from "../../actions/subjectDetails";
 import { useStateMachine } from "little-state-machine";
 import "./form.css";
 
+/* ------------------------------- SubjectForm ------------------------------ */
 export default function SubjectForm() {
-  //form
+  //form- Yup schema
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
       .required("Please enter a one word subject.")
@@ -18,6 +20,7 @@ export default function SubjectForm() {
         "Subject must be a single word using only letters"
       ),
   });
+  //form - config
   const formOptions = { resolver: yupResolver(validationSchema) };
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
@@ -25,20 +28,22 @@ export default function SubjectForm() {
   //state
   const { state, actions } = useStateMachine({ updateSubjectDetails });
 
-  //   function onSubmit(data) {
-  //     console.log(JSON.stringify(data, null, 4));
-  //     return false;
-  //   }
 
   /* -------------------------------- functions ------------------------------- */
-  //set subject value
-  
-  //submit - set state
+  //set chat gpt statement with input
+  function createStatement(input) {
+    const statement = `Write a "Haiku" about ${input}`;
+    console.log({ statement });
+  }
+
+  //submit handler - set state with form data
+  //data set with input name as key (subject:data)
   const onSubmit = (data) => {
-  actions.updateSubjectDetails({subject:data});
-    console.log("data",data)
-    console.log("store",state.subjectDetails.subject.subject)
+    actions.updateSubjectDetails( data );
+    console.log("data", data.subject); //subject:dog
+    console.log("store", state.subjectDetails);//still null
     //variable passed from where it is called?
+    createStatement(data.subject)
   };
 
   /* --------------------------------- return --------------------------------- */
@@ -50,7 +55,6 @@ export default function SubjectForm() {
           name="subject"
           type="text"
           placeholder="Subject"
-       
           className={`form-control ${errors.subject ? "is-invalid" : ""}`}
           {...register("subject", {
             required: true,

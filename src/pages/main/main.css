@@ -4,13 +4,17 @@
   color: white;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  max-width: 100%;
+  /* border: 2px solid red; */
+  padding:32px;
+  flex-grow: 1;
 }
 .main__body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid blue;
 }
 
 .main__heading {
@@ -20,7 +24,8 @@
   font-weight: 500;
   /* letter-spacing: 1px; */
 
-  margin: 32px 0;
+  margin: 0;
+  border: 2px solid green;
 }
 .main__image {
   width: 400px;
@@ -30,4 +35,3 @@
 
   border-radius: 100%;
 }
-

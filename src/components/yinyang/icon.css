@@ -5,19 +5,7 @@
   filter: contrast(100%);
   /* transform: scale(1.25); */
 }
-.lobe__light:hover {
-  fill: violet;
-  fill-opacity: 0.8;
-  cursor: pointer;
-  filter: contrast(200%);
-  /* transform: translateX(10px) rotate(10deg) translateY(5px); */
-  /* transform: rotate(-1turn); */
-}
-.lobe__light {
-  transition: all 0.15s;
-  /* transform-origin: bottom right 60px; */
-  transform-origin: center;
-}
+
 .colorC {
   transition: all 0.25s;
   transform-origin: center;

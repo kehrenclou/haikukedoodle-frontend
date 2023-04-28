@@ -8,7 +8,9 @@ import { StateMachineProvider, createStore } from "little-state-machine";
 import subjectDetails from "../states/subjectDetails";
 
 import Header from "./header/Header";
-import Main from "../pages/main/Main";
+import Main from "../pages/main";
+import Footer from "./footer/Footer";
+import About from "../pages/about";
 import Step1 from "../pages/haikuWizard/Step1";
 
 //implement routes here
@@ -26,11 +28,12 @@ function App() {
       <StateMachineProvider>
         <Header />
         <Routes>
-
-        <Route path="/"element={<Main/>}/>
-        <Route path="/create" element={<Step1/>}/>
-        {/* <Main></Main> */}
+          <Route path="/" element={<Main />} />
+          <Route path="/create" element={<Step1 />} />
+          <Route path="/about" element={<About />} />
+          {/* <Main></Main> */}
         </Routes>
+        <Footer />
       </StateMachineProvider>
     </div>
   );

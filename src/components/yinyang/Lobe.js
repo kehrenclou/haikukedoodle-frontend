@@ -1,12 +1,7 @@
-export default function Lobe({ lobecolor, d,id }) {
+export default function Lobe({ classname, d, id }) {
   return (
     <>
-      <path
-        d={d}
-        className={lobecolor}
-        id={id}
-        // className="cls-3"
-      />
+      <path d={d} className={classname} id={id} />
     </>
   );
 }

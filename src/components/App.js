@@ -28,7 +28,7 @@ function App() {
         <Routes>
 
         <Route path="/"element={<Main/>}/>
-        <Route path="/create" element={Step1}/>
+        <Route path="/create" element={<Step1/>}/>
         {/* <Main></Main> */}
         </Routes>
       </StateMachineProvider>

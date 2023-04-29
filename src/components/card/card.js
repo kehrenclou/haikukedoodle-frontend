@@ -8,7 +8,7 @@ import Cardbg1 from "./backgrounds/Cardbg1";
 export default function Card({ lines, chords }) {
   return (
     <>
-      <li className="card">
+      <li className="card card__color_dark">
         <Cardbg1 className="card__bg" />
         <header className="card__header">
         <h2 className="card__title">Title</h2>

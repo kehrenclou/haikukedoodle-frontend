@@ -1,6 +1,6 @@
 .card {
   /* background-color: #f6dfdfed; */
-  background-color: white;
+  /* background-color: white; */
   height: 250px;
   width: 400px;
   border: 1px solid red;
@@ -9,6 +9,14 @@
   position: relative;
   border-radius: 8px;
   box-sizing: border-box;
+}
+.card__color_light{
+    background-color: white;
+    color:#5b5b5b;
+}
+.card__color_dark{
+    background-color: #101332d2;
+    color:white;
 }
 
 .card__bg {
@@ -28,7 +36,7 @@
   font-weight: 700;
   font-size: 20px;
   z-index: 1;
-  color: #5b5b5b;
+  /* color: #5b5b5b; */
 }
 .card__line {
   display: flex;
@@ -44,7 +52,7 @@
 }
 .card__text {
   font-size: 16px;
-  color: #5b5b5b;
+  /* color: #5b5b5b; */
   font-weight: 500;
   margin: 0;
   z-index: 1;

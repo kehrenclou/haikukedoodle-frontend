@@ -4,7 +4,8 @@ import React from "react";
 
 import "./main.css";
 import Yinyang from "../../components/yinyang/Yinyang";
-import Card from "../../components/card/card";
+import Card1 from "../../components/card/Card1";
+import Card2 from "../../components/card/Card2";
 
 /* --------------------------------- imports -------------------------------- */
 import SubjectForm from "../../components/form/subjectForm";
@@ -20,21 +21,21 @@ export default function Main() {
           <div>
             <Yinyang width="400px" />
           </div>
-        
         </section>
 
-        <section className="main__cards">
-          <h2 className="main__heading">Read the poems</h2>
+        <section className="main__cards ">
+          <div className="main__cards_bg_dark">
+            <h2 className="main__heading main__heading_dark">Read the poems</h2>
             <ul className="main__cards_list">
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
+              <Card2 />
+              <Card2 />
+              <Card2 />
+              <Card2 />
+              <Card2 />
+              <Card2 />
             </ul>
-          
-          </section>
+          </div>
+        </section>
       </main>
     </>
   );

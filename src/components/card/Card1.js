@@ -5,13 +5,13 @@ import "./card.css";
 import Cardbg1 from "./backgrounds/Cardbg1";
 /* ---------------------------------- Card ---------------------------------- */
 
-export default function Card({ lines, chords }) {
+export default function Card1({ lines, chords }) {
   return (
     <>
-      <li className="card card__color_dark">
+      <li className="card card__color_light">
         <Cardbg1 className="card__bg" />
         <header className="card__header">
-        <h2 className="card__title">Title</h2>
+        <h2 className="card__title">Davinci Haiku</h2>
         <div className="card__group">
         <p className="card__text card__text_small">created 4/29/23</p>
         <p className="card__text card__text_small">~guest</p>

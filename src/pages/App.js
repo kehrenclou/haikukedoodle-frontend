@@ -13,7 +13,7 @@ import Footer from "../components/footer/Footer";
 import About from "./about";
 import Step1 from "./haikuWizard/Step1";
 import ModalWithForm from "../components/modal/ModalWithForm";
-import Card from "../components/card/card";
+import Card from "../components/card/Card1";
 
 //implement routes here
 
@@ -35,10 +35,9 @@ function App() {
           <Route path="/about" element={<About />} />
           {/* <Main></Main> */}
         </Routes>
-     
+
         <Footer />
-        <ModalWithForm/>
-        
+        <ModalWithForm />
       </StateMachineProvider>
     </div>
   );

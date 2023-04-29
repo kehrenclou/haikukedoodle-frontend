@@ -1,4 +1,4 @@
-//src/App.js
+//src/components/App.js
 /* --------------------------------- imports -------------------------------- */
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -7,13 +7,13 @@ import { Route, Routes } from "react-router-dom";
 import { StateMachineProvider, createStore } from "little-state-machine";
 import subjectDetails from "../states/subjectDetails";
 
-import Header from "./header";
-import Main from "../pages/main";
-import Footer from "./footer/Footer";
-import About from "../pages/about";
-import Step1 from "../pages/haikuWizard/Step1";
-import ModalWithForm from "./modal/ModalWithForm";
-import Card from "./card/card";
+import Header from "../components/header";
+import Main from "./main";
+import Footer from "../components/footer/Footer";
+import About from "./about";
+import Step1 from "./haikuWizard/Step1";
+import ModalWithForm from "../components/modal/ModalWithForm";
+import Card from "../components/card/card";
 
 //implement routes here
 
@@ -35,7 +35,7 @@ function App() {
           <Route path="/about" element={<About />} />
           {/* <Main></Main> */}
         </Routes>
-        <Card/>
+     
         <Footer />
         <ModalWithForm/>
         

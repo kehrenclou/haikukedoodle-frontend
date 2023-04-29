@@ -1,16 +1,14 @@
 .card {
-  /* background-image: url("../../images/flowerv.svg");
-  background-position: right;
-  background-size: 70%;
-  background-repeat: no-repeat; */
-  background-color: #f6dfdfed;
-
+  /* background-color: #f6dfdfed; */
+  background-color: white;
   height: 250px;
   width: 400px;
   border: 1px solid red;
   list-style: none;
   padding: 20px 0 20px 40px;
   position: relative;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .card__bg {
@@ -41,8 +39,8 @@
 .card__line_column {
   flex-direction: column;
 }
-.card__group{
-    text-align: right;
+.card__group {
+  text-align: right;
 }
 .card__text {
   font-size: 16px;

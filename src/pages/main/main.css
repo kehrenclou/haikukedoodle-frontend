@@ -6,27 +6,43 @@
   flex-direction: column;
   max-width: 100%;
   /* border: 2px solid red; */
-  padding:32px;
+  padding: 32px 0;
   flex-grow: 1;
 }
-.main__body {
+.main__hero {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px solid blue;
-  height:70vh;
+  height: 70vh;
+  padding:0 32px;
 }
-
 .main__heading {
   font-family: "Montserrat";
   /* font-family: 'Roboto'; */
   font-size: 36px;
   font-weight: 500;
   /* letter-spacing: 1px; */
-
+text-align: center;
   margin: 0 0 32px 0;
   /* border: 2px solid green; */
+}
+.main__cards {
+  margin: 0;
+  background-color: rgb(94, 139, 203);
+  padding: 32px;
+}
+
+
+.main__cards_list {
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 400px));
+  gap: 20px;
 }
 .main__image {
   width: 400px;

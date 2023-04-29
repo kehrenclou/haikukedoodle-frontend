@@ -3,9 +3,8 @@
 import React from "react";
 
 import "./main.css";
-import Header from "../../components/header/Header";
-
 import Yinyang from "../../components/yinyang/Yinyang";
+import Card from "../../components/card/card";
 
 /* --------------------------------- imports -------------------------------- */
 import SubjectForm from "../../components/form/subjectForm";
@@ -16,14 +15,26 @@ export default function Main() {
     <>
       <main className="main">
         {/* <Header /> */}
-        <div className="main__body">
+        <section className="main__hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
           <div>
             <Yinyang width="400px" />
-            {/* <SubjectForm /> */}
-            {/* <Step1/> */}
           </div>
-        </div>
+        
+        </section>
+
+        <section className="main__cards">
+          <h2 className="main__heading">Read the poems</h2>
+            <ul className="main__cards_list">
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            </ul>
+          
+          </section>
       </main>
     </>
   );

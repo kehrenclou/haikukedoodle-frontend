@@ -15,6 +15,7 @@
   flex-direction: column;
   align-items: center;
   border: 2px solid blue;
+  height:70vh;
 }
 
 .main__heading {
@@ -24,8 +25,8 @@
   font-weight: 500;
   /* letter-spacing: 1px; */
 
-  margin: 0;
-  border: 2px solid green;
+  margin: 0 0 32px 0;
+  /* border: 2px solid green; */
 }
 .main__image {
   width: 400px;

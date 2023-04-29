@@ -46,6 +46,8 @@ export default function SubjectForm() {
     console.log("store", state.subjectDetails); //still null
     //variable passed from where it is called?
     generatePrompt(data.subject);
+    //visibility prop
+    //where its at in the flow
   };
 
   /* --------------------------------- return --------------------------------- */

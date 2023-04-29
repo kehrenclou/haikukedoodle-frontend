@@ -14,7 +14,7 @@ import Step1 from "../haikuWizard/Step1";
 export default function Main() {
   return (
     <>
-      <div className="main">
+      <main className="main">
         {/* <Header /> */}
         <div className="main__body">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
@@ -24,7 +24,7 @@ export default function Main() {
             {/* <Step1/> */}
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

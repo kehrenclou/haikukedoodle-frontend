@@ -1,0 +1,61 @@
+.card {
+  /* background-image: url("../../images/flowerv.svg");
+  background-position: right;
+  background-size: 70%;
+  background-repeat: no-repeat; */
+  background-color: #f6dfdfed;
+
+  height: 250px;
+  width: 400px;
+  border: 1px solid red;
+  list-style: none;
+  padding: 20px 0 20px 40px;
+  position: relative;
+}
+
+.card__bg {
+  position: absolute;
+  bottom: 10px;
+  right: 5px;
+  z-index: 0;
+  width: 154px;
+  padding: 0;
+}
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card__title {
+  font-weight: 700;
+  font-size: 20px;
+  z-index: 1;
+  color: #5b5b5b;
+}
+.card__line {
+  display: flex;
+
+  padding-bottom: 10px;
+  z-index: 1;
+}
+.card__line_column {
+  flex-direction: column;
+}
+.card__group{
+    text-align: right;
+}
+.card__text {
+  font-size: 16px;
+  color: #5b5b5b;
+  font-weight: 500;
+  margin: 0;
+  z-index: 1;
+}
+.card__text_small {
+  font-size: 12px;
+  font-weight: 500;
+  padding-right: 20px;
+}
+.card__text_indent {
+  padding-left: 20px;
+}

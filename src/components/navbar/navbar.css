@@ -5,9 +5,5 @@
 .nav__link {
   font-size: 16px;
   text-decoration: none;
-  /* font-family: 'Roboto'; */
-  font-family:'Montserrat';
+  font-family: "Montserrat";
 }
-/* #menu a.active{
-    color: yellow;
-} */

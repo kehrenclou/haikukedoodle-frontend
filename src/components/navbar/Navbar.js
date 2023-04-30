@@ -11,10 +11,9 @@ export default function Navbar() {
         <NavLink
           to="/"
           className="nav__link"
-          style={({ isActive, isPending }) => {
+          style={({ isActive}) => {
             return {
-              fontWeight: isActive ? "bold" : "",
-              color: isActive ? "#fda6e5" : "white",
+              color: isActive ? "#fdc9ef" : "white",
             };
           }}
         >
@@ -24,10 +23,10 @@ export default function Navbar() {
         <NavLink
           to="/about"
           className="nav__link"
-          style={({ isActive, isPending }) => {
+          style={({ isActive }) => {
             return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "white",
+             
             };
           }}
         >
@@ -39,8 +38,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "white",
+              // color: isPending ? "yellow" : "white",
             };
           }}
         >
@@ -52,8 +51,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "white",
+              // color: isPending ? "yellow" : "white",
             };
           }}
         >
@@ -65,8 +64,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "white",
+              // color: isPending ? "yellow" : "white",
             };
           }}
         >

@@ -4,18 +4,18 @@ import React from "react";
 import "./card.css";
 
 import Cardbg1 from "./backgrounds/Cardbg1";
+import DownloadSvg from "../icons/DownloadIcon";
 /* ---------------------------------- Card ---------------------------------- */
 
 export default function Card2({ lines, chords }) {
   return (
     <>
       <li className="card">
-     
         <Cardbg1 className="card__bg" />
         <section className="card__section card__header card__header_light">
           <div className="card__group">
             <h2 className="card__title">Davinci Haiku</h2>
-            <button className="card__button_type_delete"></button>
+            <button className="card__button card__button_type_trash"></button>
           </div>
         </section>
 
@@ -46,9 +46,19 @@ export default function Card2({ lines, chords }) {
           </p>
         </section>
         <section className="card__section_dark">
-          <button className="card__button_type_download"></button>
-          <button className="card__button_type_download"></button>
-          <button className="card__button_type_download"></button>
+          <button type="button" className="card__button">
+            <DownloadSvg
+              height="30"
+              width="30"
+              fill="none"
+              // stroke="#434343"
+              aria-label="download button"
+              class="card__button_type_svg"
+            />
+          </button>
+          {/* <button className="card__button card__button_type_download"></button> */}
+          <button className="card__button card__button_type_download"></button>
+          <button className="card__button card__button_type_bookmark"></button>
         </section>
       </li>
     </>

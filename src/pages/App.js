@@ -13,7 +13,7 @@ import Footer from "../components/footer/Footer";
 import About from "./about";
 import Step1 from "./haikuWizard/Step1";
 import ModalWithForm from "../components/modal/ModalWithForm";
-import Card from "../components/card/Card1";
+
 
 //implement routes here
 

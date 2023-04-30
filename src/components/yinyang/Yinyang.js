@@ -11,7 +11,7 @@ import TextRight from "./TextRight";
 import IconLink from "./IconLink";
 /* --------------------------------- Yinyang -------------------------------- */
 export default function Yinyang({ ...props }) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   /* -------------------------------- functions ------------------------------- */
   function createClickHandler() {
     navigate("/create");

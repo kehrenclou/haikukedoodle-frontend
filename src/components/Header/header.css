@@ -10,9 +10,10 @@
 
 .header__button{
   padding:12px 32px;
-  background-color: #fda6e5;
+  background-color: #fdc9ef;
   border-radius: 100px;
   font-size:18px;
+  font-weight: 500;
   font-family:'Montserrat';
 
 }

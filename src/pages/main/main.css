@@ -14,8 +14,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 2px solid blue; */
-  height: 75 vh;
+  border: 2px solid blue;
+  height: 65vh;
   padding: 0 32px 50px;
 }
 .main__heading {
@@ -25,13 +25,14 @@
   font-weight: 500;
   /* letter-spacing: 1px; */
   text-align: center;
-  margin: 0 0 32px 0;
+  margin: 0 0 74px 0;
   /* border: 2px solid green; */
 }
 .main__heading_dark {
   /* color:#353535; */
   color: rgba(236, 236, 240);
 }
+
 .main__cards {
   margin: 0 auto;
 
@@ -64,7 +65,8 @@
   width: 400px;
   height: 400px;
 
-  outline: solid 5px lightslategray;
+  outline: solid 1px rgb(64, 63, 63);
 
   border-radius: 100%;
+  box-shadow: rgba(245, 217, 217, 0.55) 0px 5px 55px 20px;
 }

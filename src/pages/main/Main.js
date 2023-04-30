@@ -18,7 +18,7 @@ export default function Main() {
         {/* <Header /> */}
         <section className="main__hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
-          <div>
+          <div className="main__image">
             <Yinyang width="400px" />
           </div>
         </section>

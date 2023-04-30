@@ -30,8 +30,8 @@ export default function Yinyang({ ...props }) {
       >
         <defs>
           <style>
-            {".colorA{fill:#000}"}
-            {".colorB{fill:#FFF}"}
+            {".colorA{fill:#2b2d42}"}
+            {".colorB{fill:rgba(256,256,256,.975)}"}
             {".colorC{fill-opacity:0; fill:#000}"}
             {".text{font-family:Montserrat,Arial;font-size:48px}"}
           </style>

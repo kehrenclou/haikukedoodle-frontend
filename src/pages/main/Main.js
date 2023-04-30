@@ -4,7 +4,7 @@ import React from "react";
 
 import "./main.css";
 import Yinyang from "../../components/yinyang/Yinyang";
-import Card1 from "../../components/card/Card1";
+
 import Card2 from "../../components/card/Card2";
 
 /* --------------------------------- imports -------------------------------- */

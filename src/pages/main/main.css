@@ -1,44 +1,35 @@
 .main {
-  /* height: 100vh; */
   background-color: #2b2d42;
-  color: white;
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  /* border: 2px solid red; */
   padding: 32px 0;
   flex-grow: 1;
+    /* border: 2px solid red; */
 }
 .main__hero {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 2px solid blue; */
+
   height: 65vh;
   padding: 0 32px 50px;
 }
 .main__heading {
   font-family: "Montserrat";
-  /* font-family: 'Roboto'; */
   font-size: 36px;
   font-weight: 500;
-  /* letter-spacing: 1px; */
   text-align: center;
   margin: 0 0 74px 0;
   /* border: 2px solid green; */
 }
 .main__heading_dark {
-  /* color:#353535; */
   color: rgba(236, 236, 240);
 }
 
 .main__cards {
   margin: 0 auto;
-
-  /* background-color: rgb(94, 139, 203); */
-  /* background-color: white;
-  padding: 5px; */
   border-radius: 8px;
 }
 .main__cards_bg_light {

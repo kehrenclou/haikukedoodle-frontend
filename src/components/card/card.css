@@ -177,6 +177,5 @@
 }
 .card__button_type_svg:hover{
   stroke:rgb(235, 35, 238);
-
   cursor: pointer;
 }

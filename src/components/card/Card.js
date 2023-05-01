@@ -14,8 +14,6 @@ import {
 } from "@mui/icons-material";
 import Flower from "../Flower/Flower";
 
-import DownloadIcon from "../icons/DownloadIcon";
-
 /* ---------------------------------- Card ---------------------------------- */
 
 export default function Card({ lines, chords }) {
@@ -122,7 +120,7 @@ export default function Card({ lines, chords }) {
                   sx={{
                     borderRadius: "50%",
                     padding: "5px",
-                    fontSize: "32px",
+                    fontSize: "28px",
                     color: "#2b2d42",
                     "&:hover": { opacity: 0.5 },
                   }}
@@ -132,14 +130,14 @@ export default function Card({ lines, chords }) {
                   sx={{
                     borderRadius: "50%",
                     padding: "5px",
-                    fontSize: "32px",
+                    fontSize: "28px",
                     "&:hover": { color: "#2b2d42" },
                   }}
                 />
               )}
             </IconButton>
           </Tooltip>
-          <div>
+          <div className="card__button-group">
             <Tooltip
               title="Download Haiku"
               placement="top"
@@ -148,6 +146,7 @@ export default function Card({ lines, chords }) {
               }}
             >
               <IconButton
+                size="small"
                 aria-label="download"
                 sx={{ "&:hover": { color: "#2b2d42" } }}
                 onClick={() => {
@@ -160,9 +159,7 @@ export default function Card({ lines, chords }) {
                     padding: "5px",
                     backgroundColor: "white",
                     boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
-                    fontSize: "28px",
-                    // color: "#2b2d42",
-                    // "&:hover": { color: "#2b2d42" },
+                    fontSize: "24px",
                   }}
                 />
               </IconButton>
@@ -197,7 +194,7 @@ export default function Card({ lines, chords }) {
                       padding: "5px",
                       backgroundColor: "white",
                       boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
-                      fontSize: "28px",
+                      fontSize: "24px",
                       color: "#2b2d42",
                       "&:hover": { color: "red" },
                     }}
@@ -209,7 +206,7 @@ export default function Card({ lines, chords }) {
                       padding: "5px",
                       backgroundColor: "white",
                       boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
-                      fontSize: "28px",
+                      fontSize: "24px",
                     }}
                   />
                 )}

@@ -24,7 +24,7 @@
 .card__section_footer {
   background-color: rgba(43, 45, 66, 0.15);
   box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 5px;
-  padding: 5px 20px 5px 16px;
+  padding: 0px 20px 4px 16px;
 
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -32,9 +32,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }
-
+.card__button-group {
+  display: flex;
+  gap: 8px;
+}
 .card__header {
   display: flex;
   justify-content: space-between;
@@ -89,58 +91,7 @@
   width: 100%;
   padding-bottom: 30px;
 }
-.card__text_light {
-  color: white;
-  font-weight: 400;
-}
+
 .card__text_indent {
   padding-left: 20px;
-}
-
-.card__button {
-  border-radius: 100%;
-  transition: all 0.25s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border: none;
-
-  height: 30px;
-  width: 30px;
-  padding: 0;
-  fill: none;
-  /* background-color: transparent; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-}
-.card__button:hover {
-  box-shadow: rgba(213, 157, 169) 0px 0px 15px;
-  cursor: pointer;
-}
-
-.card__button_type_svg {
-  stroke: rgba(140, 139, 139, 0.7);
-}
-.card_-button_type_bookmark {
-  fill: #434343;
-}
-.card__button_type_bookmark:hover {
-  fill: rgba(140, 139, 139, 0.6);
-}
-
-.card__button_type_trash {
-  background-image: url("../../images/trash-med.svg");
-  height: 30px;
-  width: 30px;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 20px; */
-}
-
-.card__button_type_svg:hover {
-  /* stroke: rgb(235, 35, 238); */
-  /* stroke:white; */
-  stroke: #434343;
-  cursor: pointer;
 }

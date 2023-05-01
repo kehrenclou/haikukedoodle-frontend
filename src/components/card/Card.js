@@ -11,7 +11,6 @@ import {
   DeleteOutline,
   FavoriteBorder,
   Favorite,
-  FavoriteOutlined,
 } from "@mui/icons-material";
 import Flower from "../Flower/Flower";
 
@@ -22,6 +21,7 @@ import DownloadIcon from "../icons/DownloadIcon";
 export default function Card({ lines, chords }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+
   return (
     <>
       <li className="card">
@@ -38,7 +38,12 @@ export default function Card({ lines, chords }) {
           <div className="card__header_content">
             <h2 className="card__title">Davinci Haiku</h2>
 
-            <Tooltip title="Delete">
+            <Tooltip
+              title="Delete"
+              PopperProps={{
+                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
+              }}
+            >
               <IconButton
                 aria-label="delete"
                 sx={{ "&:hover": { color: "red" } }}
@@ -79,15 +84,24 @@ export default function Card({ lines, chords }) {
               D F# Em
             </p>
           </div>
-        </section>
-
-        <section className="card__section">
           <p className="card__text card__text_small">
             ~ by anonymous April 2, 2023
           </p>
         </section>
+
+        {/* <section className="card__section">
+          <p className="card__text card__text_small">
+            ~ by anonymous April 2, 2023
+          </p>
+        </section> */}
         <section className="card__section_footer">
-          <Tooltip title={isLiked ? "Unlike" : "Like"}>
+          <Tooltip
+            title={isLiked ? "Unlike" : "Like"}
+            placement="top"
+            PopperProps={{
+              modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
+            }}
+          >
             <IconButton
               aria-label="like"
               sx={
@@ -126,7 +140,13 @@ export default function Card({ lines, chords }) {
             </IconButton>
           </Tooltip>
           <div>
-            <Tooltip title="Download Haiku">
+            <Tooltip
+              title="Download Haiku"
+              placement="top"
+              PopperProps={{
+                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
+              }}
+            >
               <IconButton
                 aria-label="download"
                 sx={{ "&:hover": { color: "#2b2d42" } }}
@@ -151,6 +171,9 @@ export default function Card({ lines, chords }) {
             <Tooltip
               title={isFavorite ? "Remove from Favorites" : "Save to Favorites"}
               placement="top"
+              PopperProps={{
+                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
+              }}
             >
               <IconButton
                 aria-label="favorited"

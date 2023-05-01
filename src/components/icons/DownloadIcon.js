@@ -1,6 +1,6 @@
 import React from "react";
 
-const DownloadSvg = ({stroke="",width="",height="",fill="",...props}) => (
+const DownloadIcon = ({stroke="",width="",height="",fill="",...props}) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={width}//24
@@ -18,4 +18,4 @@ const DownloadSvg = ({stroke="",width="",height="",fill="",...props}) => (
       />
     </svg>
   )
-  export default DownloadSvg
+  export default DownloadIcon

@@ -6,4 +6,9 @@
   font-size: 16px;
   text-decoration: none;
   font-family: "Montserrat";
+  color:white;
+}
+
+.nav__link:hover {
+  color: #fdc9ef;
 }

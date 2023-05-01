@@ -5,7 +5,7 @@ import React from "react";
 import "./main.css";
 import Yinyang from "../../components/yinyang/Yinyang";
 
-import Card2 from "../../components/card/Card2";
+import Card from "../../components/card/Card";
 
 /* --------------------------------- imports -------------------------------- */
 import SubjectForm from "../../components/form/subjectForm";
@@ -27,12 +27,12 @@ export default function Main() {
           <div className="main__cards_bg_dark">
             <h2 className="main__heading main__heading_dark">Read the poems</h2>
             <ul className="main__cards_list">
-              <Card2 />
-              <Card2 />
-              <Card2 />
-              <Card2 />
-              <Card2 />
-              <Card2 />
+              <Card/>
+              <Card/>
+              <Card/>
+              <Card/>
+              <Card/>
+              <Card/>
             </ul>
           </div>
         </section>

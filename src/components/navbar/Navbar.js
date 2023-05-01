@@ -11,9 +11,10 @@ export default function Navbar() {
         <NavLink
           to="/"
           className="nav__link"
-          style={({ isActive}) => {
+          style={({ isActive }) => {
             return {
-              color: isActive ? "#fdc9ef" : "white",
+              color: isActive ? "#fdc9ef" : "",
+              fontWeight: isActive ? "700" : "400",
             };
           }}
         >
@@ -25,8 +26,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive }) => {
             return {
-              color: isActive ? "#fdc9ef" : "white",
-             
+              color: isActive ? "#fdc9ef" : "",
+              fontWeight: isActive ? "700" : "400",
             };
           }}
         >
@@ -38,8 +39,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
-              color: isActive ? "#fdc9ef" : "white",
-              // color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "",
+              fontWeight: isActive ? "700" : "400",
             };
           }}
         >
@@ -51,8 +52,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
-              color: isActive ? "#fdc9ef" : "white",
-              // color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "",
+              fontWeight: isActive ? "700" : "400",
             };
           }}
         >
@@ -64,8 +65,8 @@ export default function Navbar() {
           className="nav__link"
           style={({ isActive, isPending }) => {
             return {
-              color: isActive ? "#fdc9ef" : "white",
-              // color: isPending ? "yellow" : "white",
+              color: isActive ? "#fdc9ef" : "",
+              fontWeight: isActive ? "700" : "400",
             };
           }}
         >

@@ -3,6 +3,7 @@
 import React from "react";
 
 import "./main.css";
+
 import Yinyang from "../../components/yinyang/Yinyang";
 
 import Card from "../../components/card/Card";
@@ -18,7 +19,7 @@ export default function Main() {
         <section className="main__hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
           <div className="main__image">
-            <Yinyang width="400px" />
+            <Yinyang className="main__image_size"  />
           </div>
         </section>
 

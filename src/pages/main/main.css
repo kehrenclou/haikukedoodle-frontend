@@ -30,6 +30,9 @@
   border-radius: 100%;
   box-shadow: rgba(245, 217, 217, 0.55) 0px 5px 55px 20px;
 }
+.main__image_size {
+  width: 400px;
+}
 .main__cards {
   margin: 0 auto;
   background-color: rgba(43, 45, 66);
@@ -49,5 +52,36 @@
 @media screen and (max-width: 920px) {
   .main__cards_list {
     grid-template-columns: repeat(1, minmax(auto, 400px));
+  }
+}
+@media screen and (max-width: 600px) {
+  .main__image {
+    width: 300px;
+    height: 300px;
+  }
+  .main__image_size {
+    width: 300px;
+  }
+  .main__heading {
+    font-size: 28px;
+  }
+  .main__hero {
+    padding: 20px 20px 50px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .main__image {
+    width: 250px;
+    height: 250px;
+    box-shadow: rgba(245, 217, 217, 0.55) 0px 5px 55px 10px;
+  }
+  .main__image_size {
+    width: 250px;
+  }
+  .main__heading {
+    font-size: 24px;
+  }
+  .main__hero{
+    padding:20px 10px 50px;
   }
 }

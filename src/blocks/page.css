@@ -13,3 +13,9 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width:400px){
+  .page{
+    padding: 0 10px;
+  }
+}

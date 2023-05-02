@@ -5,7 +5,6 @@
   max-width: 100%;
   padding: 32px 0;
   flex-grow: 1;
-    /* border: 2px solid red; */
 }
 .main__hero {
   margin: 0 auto;
@@ -17,30 +16,24 @@
   padding: 0 32px 50px;
 }
 .main__heading {
-  font-family: "Montserrat";
   font-size: 36px;
   font-weight: 500;
   text-align: center;
   margin: 0 0 74px 0;
-  /* border: 2px solid green; */
 }
-.main__heading_dark {
-  color: rgba(236, 236, 240);
-}
+.main__image {
+  width: 400px;
+  height: 400px;
 
+  outline: solid 1px rgb(64, 63, 63);
+
+  border-radius: 100%;
+  box-shadow: rgba(245, 217, 217, 0.55) 0px 5px 55px 20px;
+}
 .main__cards {
   margin: 0 auto;
-  border-radius: 8px;
-}
-.main__cards_bg_light {
-  background-color: white;
-}
-.main__cards_bg_dark {
   background-color: rgba(43, 45, 66);
-  /*#474c5e = 71,76,94*/
-  /* background-color:rgba(140,139,139,.6); */
-  /* background-color:rgba(71,76,94,.2); */
-  padding: 32px 60px 50px;
+  padding: 32px 20px 50px;
 }
 
 .main__cards_list {
@@ -52,12 +45,9 @@
   grid-template-columns: repeat(2, minmax(auto, 400px));
   gap: 40px;
 }
-.main__image {
-  width: 400px;
-  height: 400px;
 
-  outline: solid 1px rgb(64, 63, 63);
-
-  border-radius: 100%;
-  box-shadow: rgba(245, 217, 217, 0.55) 0px 5px 55px 20px;
+@media screen and (max-width: 920px) {
+  .main__cards_list {
+    grid-template-columns: repeat(1, minmax(auto, 400px));
+  }
 }

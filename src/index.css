@@ -4,10 +4,4 @@
 @import url("./vendor/fonts/barlow-condensed/barlow-cond.css");
 @import url("./vendor/fonts/montserrat/montserrat.css");
 
-
 @import url("./blocks/page.css");
-/* @import url("./components/main/main.css"); */
-@import url("./components/header/header.css");
-/* @import url("./components/navbar/navbar.css"); */
-
-/* //refactor to put closer to component */

@@ -4,11 +4,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 /* ----------------------------------- Nav ---------------------------------- */
-export default function Navbar() {
+export default function Navbar({ isLessThan600, onLinkClick }) {
   return (
     <>
       <nav>
-        <ul className="nav" id="menu">
+        <ul className={isLessThan600 ? "nav nav_mobile" : "nav"} id="menu">
           <li className="nav__item">
             <NavLink
               to="/"
@@ -19,6 +19,7 @@ export default function Navbar() {
                   fontWeight: isActive ? "700" : "400",
                 };
               }}
+              onClick={onLinkClick}
             >
               Home
             </NavLink>
@@ -34,6 +35,7 @@ export default function Navbar() {
                   fontWeight: isActive ? "700" : "400",
                 };
               }}
+              onClick={onLinkClick}
             >
               About
             </NavLink>
@@ -49,6 +51,7 @@ export default function Navbar() {
                   fontWeight: isActive ? "700" : "400",
                 };
               }}
+              onClick={onLinkClick}
             >
               Inspiration
             </NavLink>
@@ -63,6 +66,7 @@ export default function Navbar() {
                   fontWeight: isActive ? "700" : "400",
                 };
               }}
+              onClick={onLinkClick}
             >
               FAQ
             </NavLink>
@@ -77,6 +81,7 @@ export default function Navbar() {
                   fontWeight: isActive ? "700" : "400",
                 };
               }}
+              onClick={onLinkClick}
             >
               Contact
             </NavLink>

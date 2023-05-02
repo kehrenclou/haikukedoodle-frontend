@@ -7,12 +7,38 @@
   margin: 0 auto;
   width: 100%;
 }
+.header_mobile {
+  flex-direction: column;
+  padding-bottom:10px;
 
+  /* justify-content: center;
+  align-items: center; */
+}
 .header__nav {
   display: flex;
   gap: 30px;
   align-items: center;
+  position: relative;
 }
+
 .header__logo {
   max-width: 250px;
+}
+
+.header__button_mobile {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  
+}
+.header__button_mobile_open {
+  background: url("../../images/closebutton.svg") no-repeat center;
+}
+.header__button_mobile_closed {
+  background: url("../../images/mobileMenu.png") no-repeat center;
 }

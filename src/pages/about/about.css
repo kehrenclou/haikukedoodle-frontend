@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 1200px;
-  margin: 110px auto auto;
+  margin: 130px auto 16px;
   padding: 32px 40px;
   flex-grow: 1;
   min-height: 65vh;
@@ -50,5 +50,11 @@
 @media screen and (max-width: 920px) {
   .about {
     margin-top: 140px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .about {
+    margin-top: 100px;
+    padding: 28px 20px;
   }
 }

@@ -49,7 +49,10 @@ export default function About() {
             was my final project for Practicum's Software Engineering Bootcamp.
             Hope you enjoy!
           </p>
-          <p className="about__text_me">Krista Ehrenclou - Full Stack Developer (React, Node.js,Express, MongoDB)</p>
+          <p className="about__text_me">
+            Krista Ehrenclou - Full Stack Developer (React, Node.js, Express,
+            MongoDB)
+          </p>
         </div>
       </section>
     </>

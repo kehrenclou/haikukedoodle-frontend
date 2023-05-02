@@ -4,15 +4,15 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
-  font-family: Roboto, Arial, sans-serif;
+
   width: 100%;
   max-width: 1200px;
 }
 .footer__logo {
   width: 200px;
-  align-self:flex-end;
+  /* align-self:flex-end; */
 }
 .footer__text {
   margin: 0;
@@ -30,7 +30,7 @@
 .footer__link {
   text-decoration: none;
   color: rgba(256, 256, 256, 0.6);
-  font-size: 12px;
+  font-size: 16px;
 }
 .footer__link:hover {
   color: #fda6e5;

@@ -40,12 +40,15 @@ export default function Header() {
   return (
     <>
       <div className={isLessThan920 ? "header header_mobile" : "header"}>
-        <img
-          className="header__logo"
-          src={logo}
-          alt="haikukedoodle logo"
-          onClick={handleLogoClick}
-        />
+        <a href="#main">
+          <img
+            className="header__logo"
+            src={logo}
+            alt="haikukedoodle logo"
+            onClick={handleLogoClick}
+          />
+        </a>
+
         <div
           className={
             isLessThan920 ? "header__nav header__nav_mobile" : "header__nav"

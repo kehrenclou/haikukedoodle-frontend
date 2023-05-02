@@ -16,6 +16,7 @@
   z-index: 0;
   width: 154px;
   padding: 0;
+  opacity: 0.9;
 }
 .card__section {
   padding: 0 20px;
@@ -94,4 +95,10 @@
 
 .card__text_indent {
   padding-left: 20px;
+}
+
+@media screen and (max-width: 500px){
+  .card__bg{
+  opacity: .5;
+  }
 }

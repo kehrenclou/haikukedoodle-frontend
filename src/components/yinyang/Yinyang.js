@@ -10,7 +10,7 @@ import TextLeft from "./TextLeft";
 import TextRight from "./TextRight";
 import IconLink from "./IconLink";
 /* --------------------------------- Yinyang -------------------------------- */
-export default function Yinyang({ ...props }) {
+export default function Yinyang({ onReadClick,href,...props }) {
   const navigate = useNavigate();
   /* -------------------------------- functions ------------------------------- */
   function createClickHandler() {
@@ -62,7 +62,7 @@ export default function Yinyang({ ...props }) {
           </g>
         </IconLink>
 
-        <IconLink onClick={readClickHandler}>
+        <IconLink onClick={onReadClick}href={href}>
           <g id="yy-left">
             <Lobe
               classname="colorA"

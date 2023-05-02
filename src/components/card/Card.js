@@ -26,7 +26,7 @@ export default function Card({ lines, chords }) {
         <Flower
           width="154"
           height="133"
-          petalcolor="rgba(213,157,169,.6)"
+          petalcolor="rgba(213,157,169,.3)"
           colorb="#47535c"
           colorc="#171e26"
           className="card__bg"

@@ -3,8 +3,11 @@
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  padding: 32px 0;
+  margin-top: 110px;
+  padding: 32px 0 32px;
   flex-grow: 1;
+  z-index: 4;
+  scroll-margin-top: 110px;
 }
 .main__hero {
   margin: 0 auto;
@@ -20,6 +23,9 @@
   font-weight: 500;
   text-align: center;
   margin: 0 0 74px 0;
+}
+.main__heading_sub {
+  margin: 0 0 50px 0;
 }
 .main__image {
   width: 400px;
@@ -53,8 +59,14 @@
   .main__cards_list {
     grid-template-columns: repeat(1, minmax(auto, 400px));
   }
+  .main {
+    margin-top: 140px;
+  }
 }
 @media screen and (max-width: 600px) {
+  .main {
+    margin-top: 70px;
+  }
   .main__image {
     width: 300px;
     height: 300px;
@@ -81,7 +93,11 @@
   .main__heading {
     font-size: 24px;
   }
-  .main__hero{
-    padding:20px 10px 50px;
+  .main__heading_sub {
+    margin: 0 0 32px 0;
+  }
+  .main__hero {
+    padding: 20px 10px 30px;
+    height: 50vh;
   }
 }

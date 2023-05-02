@@ -1,16 +1,11 @@
 //components/main.jsx
 /* --------------------------------- imports -------------------------------- */
 import React from "react";
-
 import "./main.css";
 
 import Yinyang from "../../components/yinyang/Yinyang";
-
 import Card from "../../components/card/Card";
 
-/* --------------------------------- imports -------------------------------- */
-import SubjectForm from "../../components/form/subjectForm";
-import Step1 from "../haikuWizard/Step1";
 /* ---------------------------------- Main ---------------------------------- */
 export default function Main() {
   return (

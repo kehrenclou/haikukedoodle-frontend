@@ -1,17 +1,12 @@
 //components/yinyang/LinkCreate.js
 /* --------------------------------- imports -------------------------------- */
 
-import { useNavigate } from "react-router-dom";
 /* ---------------------------------- Home ---------------------------------- */
 
 export default function IconLink({ children, onClick, href }) {
-  let navigate = useNavigate();
-  function clickHandler() {
-    navigate("/create");
-  }
   return (
     <>
-      <a className="icon-link" onClick={onClick}href={href}>
+      <a className="icon-link" onClick={onClick} href={href}>
         {children}
       </a>
     </>

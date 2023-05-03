@@ -1,6 +1,4 @@
-
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import "./yinyang.css";
 import Lobe from "./Lobe";
@@ -9,17 +7,7 @@ import TextLeft from "./TextLeft";
 import TextRight from "./TextRight";
 import IconLink from "./IconLink";
 
-export default function Yinyang({ onReadClick,href,...props }) {
-  const navigate = useNavigate();
-
-  function createClickHandler() {
-    navigate("/create");
-  }
-  function readClickHandler() {
-    console.log("clicked");
-  }
-
-
+export default function Yinyang({ onCreateClick, href, ...props }) {
   return (
     <>
       <svg
@@ -36,7 +24,7 @@ export default function Yinyang({ onReadClick,href,...props }) {
           </style>
         </defs>
 
-        <IconLink onClick={createClickHandler}>
+        <IconLink onClick={onCreateClick}>
           <g id="yy-right">
             <Lobe
               id="lobe-right"
@@ -61,7 +49,7 @@ export default function Yinyang({ onReadClick,href,...props }) {
           </g>
         </IconLink>
 
-        <IconLink onClick={onReadClick}href={href}>
+        <IconLink href={href}>
           <g id="yy-left">
             <Lobe
               classname="colorA"

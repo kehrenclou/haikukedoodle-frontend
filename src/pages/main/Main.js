@@ -1,30 +1,53 @@
-import React from "react";
+import _ from "lodash";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./main.css";
+
+import { songs } from "../../utils/backupData";
+import { transformData } from "../../utils/transformData";
 
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
 
-
 export default function Main() {
+  const navigate = useNavigate();
+  const [songObjects, setSongObjects] = useState([]);
+
+  useEffect(() => {
+    setSongObjects(transformData(songs));
+  }, []); //set backupsong data
+
+  function createClickHandler() {
+    const test = transformData(songs);
+    console.log(test);
+    // navigate("/create");
+  }
+
   return (
     <>
       <main className="main" id="main">
         <section className="main__hero" id="hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
           <div className="main__image">
-            <Yinyang className="main__image_size" href="#cards" />
+            <Yinyang
+              className="main__image_size"
+              href="#cards"
+              onCreateClick={createClickHandler}
+            />
           </div>
         </section>
 
         <section className="main__cards" id="cards">
           <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
           <ul className="main__cards_list">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {songObjects.map((song) => (
+              <Card
+                key={_.uniqueId("card-")}
+                subject={song.subject}
+                haikuLines={song.haikuLines}
+                chordLines={song.chordLines}
+              />
+            ))}
           </ul>
         </section>
       </main>

@@ -23,7 +23,7 @@ export default function Header() {
     size.width < 920 ? setIsLessThan920(true) : setIsLessThan920(false);
     size.width < 600 ? setisLessThan600(true) : setisLessThan600(false);
   }, [size]);
-  console.log(isLessThan920);
+
   /* -------------------------------- handlers -------------------------------- */
   function handleMenuClick() {
     setIsMenuOpen(!isMenuOpen);

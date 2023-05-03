@@ -1,0 +1,35 @@
+.faq {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 130px auto 16px;
+  padding: 32px 20px;
+
+  min-height: 65vh;
+  z-index: 4;
+  scroll-margin-top: 110px;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  background-color: rgba(255, 255, 255, 0.97);
+  color: #2b2d42;
+  font-family: "Roboto";
+}
+
+.faq__heading {
+  margin: 0;
+  min-width: 0;
+}
+
+.faq__questions {
+  width: 100%;
+  text-align: center;
+}
+.faq__questions_link {
+  text-decoration: none;
+  color: #105057;
+}
+.faq__questions_link:hover {
+  cursor: pointer;
+  color: #78125d;
+}

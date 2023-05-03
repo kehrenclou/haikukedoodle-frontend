@@ -13,7 +13,8 @@
 
   background-color: rgba(255, 255, 255, 0.97);
   color: #2b2d42;
-  font-family: "Roboto";
+  font-family: "Poppins";
+  box-sizing: border-box;
 }
 
 .faq__heading {
@@ -32,4 +33,17 @@
 .faq__questions_link:hover {
   cursor: pointer;
   color: #78125d;
+}
+
+@media screen and (max-width: 1020) {
+  faq {
+    margin-top: 140px;
+    max-width: 800px;
+  }
+}
+@media screen and (max-width: 600) {
+  faq {
+    margin-top: 100px;
+    padding: 28px 20px;
+  }
 }

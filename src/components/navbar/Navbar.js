@@ -1,9 +1,7 @@
-//components/nav/Nav.js
-/* --------------------------------- imports -------------------------------- */
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
-/* ----------------------------------- Nav ---------------------------------- */
+
 export default function Navbar({ isLessThan600, onLinkClick }) {
   return (
     <>

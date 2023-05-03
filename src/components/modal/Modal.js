@@ -1,19 +1,19 @@
-/* --------------------------------- imports -------------------------------- */
+
 import React, { useRef } from "react";
 import "./modal.css";
 
-/* ------------------------- function Modal ------------------------- */
+
 function Modal({ isOpen, onClose, name, children }) {
   const popupRef = useRef();
 
-  /* -------------------------------- handlers -------------------------------- */
+
   function handleModalClick(event) {
     if (isOpen && popupRef.current === event.target) {
       onClose();
     }
   }
 
-  /* --------------------------------- return --------------------------------- */
+
   return (
     <div
       className={`modal ${isOpen ? "modal_open" : ""}`}
@@ -35,5 +35,5 @@ function Modal({ isOpen, onClose, name, children }) {
   );
 }
 
-/* --------------------------------- exports -------------------------------- */
+
 export default Modal;

@@ -1,10 +1,8 @@
-//pages/faq/FAq.js
-/* --------------------------------- imports -------------------------------- */
 import React, { useState, useRef, useEffect } from "react";
 import "./faq.css";
 
 import Accordion from "../../components/accordian/Accordian";
-/* ----------------------------------- FAQ ---------------------------------- */
+
 export default function FAQ() {
   const email = "kedoodledev@gmail.com";
   const subject = "Greetings from haikukedoodle!";

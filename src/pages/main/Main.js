@@ -1,12 +1,10 @@
-//components/main.jsx
-/* --------------------------------- imports -------------------------------- */
 import React from "react";
 import "./main.css";
 
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
 
-/* ---------------------------------- Main ---------------------------------- */
+
 export default function Main() {
   return (
     <>

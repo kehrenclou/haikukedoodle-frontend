@@ -1,5 +1,4 @@
-//components/Header.js
-/* --------------------------------- imports -------------------------------- */
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowSize } from "../../hooks/useWindowSize";
@@ -7,24 +6,24 @@ import "./header.css";
 import logo from "../../images/logo.png";
 import Navbar from "../navbar";
 
-/* --------------------------------- Header --------------------------------- */
+
 export default function Header() {
-  /* ---------------------------------- hooks --------------------------------- */
+
   const navigate = useNavigate();
   const size = useWindowSize();
 
-  /* -------------------------------- useState -------------------------------- */
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLessThan920, setIsLessThan920] = useState(false);
   const [isLessThan600, setisLessThan600] = useState(false);
 
-  /* -------------------------------- useEffect ------------------------------- */
+
   useEffect(() => {
     size.width < 920 ? setIsLessThan920(true) : setIsLessThan920(false);
     size.width < 600 ? setisLessThan600(true) : setisLessThan600(false);
   }, [size]);
 
-  /* -------------------------------- handlers -------------------------------- */
+
   function handleMenuClick() {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -36,7 +35,7 @@ export default function Header() {
     navigate("/");
   }
 
-  /* --------------------------------- return --------------------------------- */
+
   return (
     <>
       <div className={isLessThan920 ? "header header_mobile" : "header"}>

@@ -1,5 +1,5 @@
-//components/card/card.js
-/* --------------------------------- imports -------------------------------- */
+
+
 import React, { useState } from "react";
 import "./card.css";
 import { IconButton, Tooltip } from "@mui/material";
@@ -14,7 +14,6 @@ import {
 } from "@mui/icons-material";
 import Flower from "../Flower/Flower";
 
-/* ---------------------------------- Card ---------------------------------- */
 
 export default function Card({ lines, chords }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -87,11 +86,8 @@ export default function Card({ lines, chords }) {
           </p>
         </section>
 
-        {/* <section className="card__section">
-          <p className="card__text card__text_small">
-            ~ by anonymous April 2, 2023
-          </p>
-        </section> */}
+
+
         <section className="card__section_footer">
           <Tooltip
             title={isLiked ? "Unlike" : "Like"}

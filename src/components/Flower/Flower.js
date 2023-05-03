@@ -1,7 +1,6 @@
-//components/card/backgrounds/cardbg1.js
-/* --------------------------------- imports -------------------------------- */
+
 import * as React from "react";
-/* --------------------------------- Cardbg1 -------------------------------- */
+
 
 const Flower = ({width="",height="",petalcolor="",colorb="",colorc="",...props}) => (
   <svg

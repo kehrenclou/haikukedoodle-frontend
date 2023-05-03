@@ -1,7 +1,4 @@
-//components/yinyang/LinkCreate.js
-/* --------------------------------- imports -------------------------------- */
 
-/* ---------------------------------- Home ---------------------------------- */
 
 export default function IconLink({ children, onClick, href }) {
   return (

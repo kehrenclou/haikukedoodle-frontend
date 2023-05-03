@@ -1,5 +1,4 @@
-//components/yinyang/Yinyang.js
-/* --------------------------------- imports -------------------------------- */
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,10 +8,10 @@ import Circle from "./Circle";
 import TextLeft from "./TextLeft";
 import TextRight from "./TextRight";
 import IconLink from "./IconLink";
-/* --------------------------------- Yinyang -------------------------------- */
+
 export default function Yinyang({ onReadClick,href,...props }) {
   const navigate = useNavigate();
-  /* -------------------------------- functions ------------------------------- */
+
   function createClickHandler() {
     navigate("/create");
   }
@@ -20,7 +19,7 @@ export default function Yinyang({ onReadClick,href,...props }) {
     console.log("clicked");
   }
 
-  /* --------------------------------- return --------------------------------- */
+
   return (
     <>
       <svg

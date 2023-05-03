@@ -1,8 +1,8 @@
-//components/accordian/AccordianItem.js
-/* --------------------------------- imports -------------------------------- */
+
 import "./accordion.css";
 import React, {useRef} from "react";
-/* ------------------------------ AccordianItem ----------------------------- */
+
+
 const AccordionItem = ({ faq, onToggle, active }) => {
   const { question, answer } = faq;
   const content=useRef();
@@ -26,4 +26,5 @@ const AccordionItem = ({ faq, onToggle, active }) => {
     </>
   );
 };
+
 export default AccordionItem;

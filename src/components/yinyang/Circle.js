@@ -1,4 +1,4 @@
-//circle component for yinyang
+
 export default function Circle({id,cx,cy,r,classname}) {
     return (
     <circle

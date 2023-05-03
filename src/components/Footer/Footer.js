@@ -1,10 +1,9 @@
-//components/footer/footer.js
-/* --------------------------------- imports -------------------------------- */
+
 import "./footer.css";
 import React from "react";
 import logo from "../../images/logo.png";
 
-/* --------------------------------- Footer --------------------------------- */
+
 export default function Footer() {
   const currYear = new Date().getFullYear();
   const email = "kedoodledev@gmail.com";

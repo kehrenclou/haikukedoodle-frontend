@@ -1,4 +1,4 @@
-/* --------------------------------- imports -------------------------------- */
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -7,7 +7,7 @@ import { updateSubjectDetails } from "../../actions/subjectDetails";
 import { useStateMachine } from "little-state-machine";
 import "./form.css";
 
-/* ------------------------------- SubjectForm ------------------------------ */
+
 export default function SubjectForm() {
   //form- Yup schema
   const validationSchema = Yup.object().shape({
@@ -25,10 +25,10 @@ export default function SubjectForm() {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  //state
+
   const { state, actions } = useStateMachine({ updateSubjectDetails });
 
-  /* -------------------------------- functions ------------------------------- */
+
   //set chat gpt statement with input
   function generatePrompt(input) {
     const capitalizedSubject =
@@ -50,7 +50,7 @@ export default function SubjectForm() {
     //where its at in the flow
   };
 
-  /* --------------------------------- return --------------------------------- */
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <div className="form__body">

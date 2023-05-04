@@ -13,30 +13,29 @@ import {
 } from "@mui/icons-material";
 import Flower from "../Flower/Flower";
 
-export default function Card({ subject, haikuLines, chordLines }) {
+export default function Card({
+  subject,
+  haikuLines,
+  chordLines,
+  likeCount,
+  onDownloadClick,
+  onLikeClick,
+  song,
+}) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  function handleDownloadClick(pdf) {
-    console.log(pdf);
-
-    fetch(pdf).then((response) => {
-      response.blob().then((blob) => {
-        // Creating new object of PDF file
-        const fileURL = window.URL.createObjectURL(blob);
-        // Setting various property values
-        let alink = document.createElement("a");
-        alink.href = fileURL;
-        alink.download = pdf;
-        alink.click();
-      });
-    });
-  }
-  //create zip arry
   const zipPairs = [];
   for (let i = 0; i < 3; i++) {
-    //push pair of items to zip pairs
     zipPairs.push([haikuLines[i], chordLines[i]]);
+  }
+
+  function handleLikeClick() {
+    setIsLiked(!isLiked);
+    // onLikeClick(card);
+  }
+  function handleDownloadClick(){
+    onDownloadClick(song)
   }
 
   return (
@@ -79,6 +78,8 @@ export default function Card({ subject, haikuLines, chordLines }) {
                 />
               </IconButton>
             </Tooltip>
+
+
           </div>
         </section>
 
@@ -98,50 +99,52 @@ export default function Card({ subject, haikuLines, chordLines }) {
         </section>
 
         <section className="card__section_footer">
-          <Tooltip
-            title={isLiked ? "Unlike" : "Like"}
-            placement="top"
-            PopperProps={{
-              modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
-            }}
-          >
-            <IconButton
-              aria-label="like"
-              sx={
-                isLiked
-                  ? {
-                      "&:hover": { color: "white" },
-                    }
-                  : {
-                      "&:hover": { color: "#2b2d42" },
-                    }
-              }
-              onClick={() => {
-                setIsLiked(!isLiked);
+          <div className="card__like-container">
+            <Tooltip
+              title={isLiked ? "Unlike" : "Like"}
+              placement="top"
+              PopperProps={{
+                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
               }}
             >
-              {isLiked ? (
-                <Favorite
-                  sx={{
-                    borderRadius: "50%",
-                    padding: "5px",
-                    fontSize: "28px",
-                    color: "#2b2d42",
-                    "&:hover": { opacity: 0.5 },
-                  }}
-                />
-              ) : (
-                <FavoriteBorder
-                  sx={{
-                    borderRadius: "50%",
-                    padding: "5px",
-                    fontSize: "28px",
-                    "&:hover": { color: "#2b2d42" },
-                  }}
-                />
-              )}
-            </IconButton>
-          </Tooltip>
+              <IconButton
+                aria-label="like"
+                sx={
+                  isLiked
+                    ? {
+                        "&:hover": { color: "white" },
+                      }
+                    : {
+                        "&:hover": { color: "#2b2d42" },
+                      }
+                }
+                onClick={handleLikeClick}
+              >
+                {isLiked ? (
+                  <Favorite
+                    sx={{
+                      borderRadius: "50%",
+                      padding: "5px",
+                      fontSize: "28px",
+                      color: "#2b2d42",
+                      "&:hover": { opacity: 0.5 },
+                    }}
+                  />
+                ) : (
+                  <FavoriteBorder
+                    sx={{
+                      borderRadius: "50%",
+                      padding: "5px",
+                      fontSize: "28px",
+                      "&:hover": { color: "#2b2d42" },
+                    }}
+                  />
+                )}
+              </IconButton>
+            </Tooltip>
+            <p className="card__like-count">{likeCount}</p>
+          </div>
+
           <div className="card__button-group">
             <Tooltip
               title="Download Haiku"
@@ -154,9 +157,7 @@ export default function Card({ subject, haikuLines, chordLines }) {
                 size="small"
                 aria-label="download"
                 sx={{ "&:hover": { color: "#2b2d42" } }}
-                onClick={() => {
-                  console.log("clicked");
-                }}
+                onClick={handleDownloadClick}
               >
                 <FileDownloadOutlined
                   sx={{

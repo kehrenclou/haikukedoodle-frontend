@@ -13,14 +13,40 @@ export default function Main() {
   const navigate = useNavigate();
   const [songObjects, setSongObjects] = useState([]);
 
+
   useEffect(() => {
     setSongObjects(transformData(songs));
   }, []); //set backupsong data
 
   function createClickHandler() {
-    const test = transformData(songs);
-    console.log(test);
-    // navigate("/create");
+    console.log(songs);
+    navigate("/create");
+  }
+
+  function formatSongForDownload(song) {
+    let zipPairs = [];
+
+    for (let i = 0; i < 3; i++) {
+      zipPairs.push([song.haikuLines[i], song.chordLines[i]]);
+    }
+
+    zipPairs.forEach((innerArr, index) => {
+      zipPairs[index] = innerArr.join(" ");
+    });
+
+    zipPairs.unshift(song.subject);
+    const data = new Blob([zipPairs.join("\r\n")], { type: "text/plain" });
+    return data;
+  }
+  function handleDownloadClick(song) {
+    const title = song.subject;
+    const data = formatSongForDownload(song);
+    const url = URL.createObjectURL(data);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = song.subject;
+    link.click();
+    URL.revokeObjectURL(url);
   }
 
   return (
@@ -46,6 +72,9 @@ export default function Main() {
                 subject={song.subject}
                 haikuLines={song.haikuLines}
                 chordLines={song.chordLines}
+                likeCount="11"
+                onDownloadClick={handleDownloadClick}
+                song={song}
               />
             ))}
           </ul>

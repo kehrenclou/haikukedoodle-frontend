@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { StateMachineProvider, createStore } from "little-state-machine";
@@ -21,6 +21,7 @@ createStore({
 });
 
 function App() {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <div className="page">
       <StateMachineProvider>
@@ -33,7 +34,7 @@ function App() {
         </Routes>
 
         <Footer />
-        <ModalWithForm />
+        <ModalWithForm isOpen={isOpen}/>
       </StateMachineProvider>
     </div>
   );

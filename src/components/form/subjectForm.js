@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -6,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { updateSubjectDetails } from "../../actions/subjectDetails";
 import { useStateMachine } from "little-state-machine";
 import "./form.css";
-
 
 export default function SubjectForm() {
   //form- Yup schema
@@ -25,9 +23,7 @@ export default function SubjectForm() {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-
   const { state, actions } = useStateMachine({ updateSubjectDetails });
-
 
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -36,6 +32,7 @@ export default function SubjectForm() {
 
     const prompt = `Write a "Haiku" about subject ${capitalizedSubject} with the first line has 5 syllables, the second line has 7 syllables, the third line has 5 syllables.
     next, write three lines of guitar chords to accompany the haiku.`;
+    console.log(prompt);
   }
 
   //submit handler - set state with form data
@@ -50,16 +47,18 @@ export default function SubjectForm() {
     //where its at in the flow
   };
 
-
+  console.log(errors.subject);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
-      <div className="form__body">
-        <label>Enter Subject to write about</label>
+      <section className="form__body">
+        <label className="form__label">Subject</label>
         <input
           name="subject"
           type="text"
-          placeholder="Subject"
-          className={`form-control ${errors.subject ? "is-invalid" : ""}`}
+          placeholder="Enter subject"
+          className={`form-control ${
+            errors.subject ? "is-invalid" : ""
+          } form__input`}
           {...register("subject", {
             required: true,
             max: 15,
@@ -69,8 +68,8 @@ export default function SubjectForm() {
           })}
         />
 
-        <div className="invalid-feedback">{errors.subject?.message}</div>
-      </div>
+        <div className="form__invalid-feedback">{errors.subject?.message}</div>
+      </section>
       <input type="submit" />
       <button onClick={() => reset()}>Reset</button>
     </form>

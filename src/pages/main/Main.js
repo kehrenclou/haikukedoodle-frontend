@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./main.css";
 
 import { songs } from "../../utils/backupData";
-import { transformData } from "../../utils/transformData";
+import { transformData, formatSongForDownload } from "../../utils/transformData";
 
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
@@ -23,21 +23,7 @@ export default function Main() {
     navigate("/create");
   }
 
-  function formatSongForDownload(song) {
-    let zipPairs = [];
 
-    for (let i = 0; i < 3; i++) {
-      zipPairs.push([song.haikuLines[i], song.chordLines[i]]);
-    }
-
-    zipPairs.forEach((innerArr, index) => {
-      zipPairs[index] = innerArr.join(" ");
-    });
-
-    zipPairs.unshift(song.subject);
-    const data = new Blob([zipPairs.join("\r\n")], { type: "text/plain" });
-    return data;
-  }
   function handleDownloadClick(song) {
     const title = song.subject;
     const data = formatSongForDownload(song);

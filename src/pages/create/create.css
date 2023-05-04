@@ -1,0 +1,18 @@
+.create {
+  margin: 150px auto;
+  max-width: 75vw;
+  display:flex;
+
+}
+
+@media screen and (max-width: 920px) {
+  .create {
+    margin-top: 170px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .create {
+    margin-top: 120px;
+  }
+}

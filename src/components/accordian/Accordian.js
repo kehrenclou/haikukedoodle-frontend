@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import "./accordion.css";
-import { faqs } from "../../utils/faqData";
+import { faqs } from "../../utils/data/faqData";
 import AccordionItem from "./AccordianItem";
 
 

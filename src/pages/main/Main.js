@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./main.css";
 import { motion, useAnimation, AnimatePresence, usePresence, } from "framer-motion";
 
-import { songs } from "../../utils/backupData";
+import { songs } from "../../utils/data/backupData";
 import {
   transformData,
   formatSongForDownload,

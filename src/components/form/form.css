@@ -36,7 +36,6 @@
   width: 24px;
   height: 24px;
   border: 1px rgba(128, 128, 128, 0.7) solid;
- 
 }
 .form__button_type_checkbox:hover {
   cursor: pointer;
@@ -76,4 +75,5 @@
 }
 .form__invalid-feedback {
   color: red;
+  align-self: flex--start;
 }

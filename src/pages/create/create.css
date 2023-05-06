@@ -14,23 +14,22 @@
   margin: 0 0 74px 0;
 }
 .create__container {
-  background-color: white;
+  background-color: rgba(219, 230, 253);
+
   padding: 50px;
   border-radius: 100%;
   border: 1px solid #2b2d428d;
   width: 350px;
   height: 350px;
-  box-shadow: #2f72e583 0px 5px 55px 8px,
-    rgba(255, 192, 203, 0.725) 0px 5px 25px 6px;
+  box-shadow: #2f72e583 5px 5px 55px 5px,
+    rgba(255, 192, 203, 0.725) 5px 5px 15px 3px, #2f72e583 -5px -5px 55px 5px,
+    rgba(255, 192, 203, 0.725) -5px -5px 15px 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.create__img{
-  width:54px;
-  opacity: 0.5;
-}
+
 @media screen and (max-width: 920px) {
   .create {
     margin-top: 170px;

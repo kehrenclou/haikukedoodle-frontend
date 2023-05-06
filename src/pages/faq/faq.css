@@ -18,7 +18,7 @@
 }
 
 .faq__heading {
-  margin: 0;
+  margin: 0 0 16px 0;
   min-width: 0;
 }
 
@@ -28,7 +28,8 @@
 }
 .faq__questions_link {
   text-decoration: none;
-  color: #105057;
+  color: #2f71e5;
+  font-weight: 700;
 }
 .faq__questions_link:hover {
   cursor: pointer;

@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./main.css";
-import { motion, useAnimation, AnimatePresence, usePresence, } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { songs } from "../../utils/backupData";
 import {
@@ -15,51 +15,8 @@ import Card from "../../components/card/Card";
 
 export default function Main() {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(true);
-  const[isPresent,safeToRemove]=usePresence();
-  
-
   const [songObjects, setSongObjects] = useState([]);
 
-  useEffect(()=>{
-    !isPresent && setTimeout(safeToRemove,900)
-
-  },[isPresent])
-  // const handleExit = async () => {
-  //   await animation.start({
-  //     rotate: 180,
-  //     scale: 0.5,
-  //     transition: {
-  //       duration: 2,
-  //       ease: "easeInOut",
-  //     },
-  //   });
-  //   cycleExit();
-  // };
-
-  const containerVariants = {
-    hidden: {
-      opacity: 0,
-      x: "100vw",
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        mass: 0.4,
-        damping: 8,
-        when: "beforeChildren",
-        staggerChildren: 0.4,
-      },
-    },
-    exit: {
-      x: "-100vw",
-      transition: {
-        ease: "easeInOut",
-      },
-    },
-  };
   const imgVariants = {
     initial: {
       y: "-100vh",
@@ -80,8 +37,6 @@ export default function Main() {
 
   function createClickHandler() {
     console.log(songs);
-    setIsVisible(false);
-
     navigate("/create");
   }
 
@@ -101,29 +56,21 @@ export default function Main() {
       <main className="main" id="main">
         <section className="main__hero" id="hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
-          {/* <motion.div variants={containerVariants}> */}
-          <AnimatePresence mode="wait">
-            {isVisible && (
-              <motion.div
-                className="main__image"
-                animate={{ opacity: 1, rotate: 360, scale: 1 }}
-                // animate={{  rotate: 360, scale: 1.2 }}
-                transition={{ ease: "anticipate", duration: 1 }}
-                initial={{ opacity: 0, scale: 0.75 }}
-                exit={{ opacity: 0, rotate: 360, scale: 0 }}//1.2
-                key="container"
-                
-              >
-                <Yinyang
-                  className="main__image_size"
-                  href="#cards"
-                  onCreateClick={createClickHandler}
-                  key="yinyang"
-                  
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <motion.div
+            className="main__image"
+            // whileHover={{ scale: 1.2, transition: { yoyo: Infinity } }}
+            // animate={{ scale: 1.2 }}
+            // transition={{ delay: 1, yoyo: 2 }}
+            variants={imgVariants}
+            initial="initial"
+            animate="animate"
+          >
+            <Yinyang
+              className="main__image_size"
+              href="#cards"
+              onCreateClick={createClickHandler}
+            />
+          </motion.div>
         </section>
 
         <section className="main__cards" id="cards">

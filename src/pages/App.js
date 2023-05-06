@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import { StateMachineProvider, createStore } from "little-state-machine";
 import subjectDetails from "../states/subjectDetails";
@@ -22,18 +23,22 @@ createStore({
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
   return (
     <div className="page">
       <StateMachineProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<Faq />} />
-        </Routes>
-
-        <Footer />
+      
+          <Header />
+          <AnimatePresence mode="wait">
+          <Routes location={location} key={location.key}>
+            <Route path="/" element={<Main />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<Faq />} />
+          </Routes>
+          </AnimatePresence>
+          <Footer />
+       
         <ModalWithForm isOpen={isOpen} />
       </StateMachineProvider>
     </div>

@@ -1,10 +1,36 @@
 .create {
-  margin: 150px auto;
-  max-width: 75vw;
-  display:flex;
+  margin: 150px auto 35vh;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
-
+.create__heading {
+  font-size: 36px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0 74px 0;
+}
+.create__container {
+  background-color: white;
+  padding: 50px;
+  border-radius: 100%;
+  border: 1px solid #2b2d428d;
+  width: 350px;
+  height: 350px;
+  box-shadow: #2f72e583 0px 5px 55px 8px,
+    rgba(255, 192, 203, 0.725) 0px 5px 25px 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.create__img{
+  width:54px;
+  opacity: 0.5;
+}
 @media screen and (max-width: 920px) {
   .create {
     margin-top: 170px;

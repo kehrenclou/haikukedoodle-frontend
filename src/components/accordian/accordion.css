@@ -9,11 +9,11 @@
   list-style-type: none;
 }
 .accordion__item_active {
-  background-color: #105057;
+  background-color: #2f72e59f;
 }
 .accordion__button {
   font-size: 16px;
-  background-color: #a0dde36d;
+  background-color: #2f72e576;
 
   text-align: left;
   font-weight: 500;
@@ -28,8 +28,8 @@
   border: none;
 
   border-radius: 8px;
-  box-shadow: rgba(116, 119, 120, 0.769) 0px 1px 1px 2px,
-    rgba(227, 231, 234, 0.979) 0px 1px 3px 1px;
+  box-shadow: 
+    rgba(227, 231, 234, 0.979) 0px 1px 3px 4px;
 }
 .accordion__control {
   font-size: 20px;

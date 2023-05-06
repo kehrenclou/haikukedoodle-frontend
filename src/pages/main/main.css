@@ -34,7 +34,8 @@
   outline: solid 1px rgb(64, 63, 63);
 
   border-radius: 100%;
-  box-shadow: rgba(245, 217, 217, 0.55) 0px 5px 55px 20px;
+  box-shadow: pink 0px 5px 35px 8px,
+  #2f71e5 0px 5px 55px 25px;
 }
 .main__image_size {
   width: 400px;

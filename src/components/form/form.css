@@ -3,18 +3,52 @@
   flex-direction: column;
   gap: 20px;
   color: black;
+  padding: 40px 20px 20px;
 }
 
 .form__body {
   display: flex;
   flex-direction: column;
 }
+.form__button {
+  padding: 12px;
+  border-radius: 100px;
+  border: 1px solid grey;
+  font-weight: 500;
+  margin: 10px;
+  width: 120px;
+}
+.form__button_type_submit {
+  background-color: #2f71e5;
+}
+.form__button_type_cancel {
+  background-color: white;
+}
+.form__button_type_checkbox {
+  width: 20px;
+  height: 20px;
+}
+.form__checkbox-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 16px;
+}
 .form__label {
   font-size: 12px;
   color: #2f71e5;
+  align-self: flex-start;
+  text-align: left;
+  font-weight: 500;
+}
+.form__label_type_checkbox {
+  font-size: 14px;
 }
 .form__input {
   padding: 12px;
+  border-radius: 8px;
+  border: 1px grey solid;
 }
 .form__invalid-feedback {
   color: red;

@@ -1,26 +1,23 @@
-
 //functions to extract data from backupData.js
 
 /* ------------------------- transformData function ------------------------- */
 
 export function transformData(songs) {
+  const songObjects = [];
 
-const songObjects = [];
+  for (let i = 0; i < songs.length; i++) {
+    const subject = songs[i].subject;
 
-for (let i = 0; i < songs.length; i++) {
-  const subject = songs[i].subject;
-  const lines = songs[i].result.split("\n").filter(line => line !== "");
-  const haikuLines=lines.slice(0,3);
-  const chordLines=lines.slice(3,6);
-  songObjects.push({subject, haikuLines,chordLines});
-  //slice
-  //lines.slice(0,3)
-  //lines.slice(3,6)
-}
+    const lines = songs[i].result.split("\n").filter((line) => line !== "");
+    const haikuLines = lines.slice(0, 3);
+    const chordLines = lines.slice(3, 6);
+    songObjects.push({ subject, haikuLines, chordLines });
+    //slice
+    //lines.slice(0,3)
+    //lines.slice(3,6)
+  }
 
-
-return songObjects;
-
+  return songObjects;
 }
 //function to transform song format for text download
 

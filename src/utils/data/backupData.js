@@ -23,7 +23,7 @@ export const songs = [
   },
 ];
 
-export const aiResponse = [
+export const backupAiDataArr = [
   {
     id: "cmpl-7DzCJigfD6xreVOE5GrKOoAd2DBMw",
     object: "text_completion",
@@ -38,6 +38,7 @@ export const aiResponse = [
       },
     ],
     usage: { prompt_tokens: 58, completion_tokens: 37, total_tokens: 95 },
+    subject: "dog",
   },
   {
     id: "cmpl-7DzGecCDG9dvUaLjt5uWuODbkiejJ",
@@ -53,6 +54,7 @@ export const aiResponse = [
       },
     ],
     usage: { prompt_tokens: 53, completion_tokens: 47, total_tokens: 100 },
+    subject: "puppy",
   },
   {
     id: "cmpl-7E0HHmXkHWnAqeQnmmH6Mnq9x9AUe",
@@ -68,5 +70,36 @@ export const aiResponse = [
       },
     ],
     usage: { prompt_tokens: 53, completion_tokens: 37, total_tokens: 90 },
+    subject: "hound",
+  },
+  {
+    id: "cmpl-7E1uJR5vQfeYU0NILMAQYq3K9PFqk",
+    object: "text_completion",
+    created: 1683578279,
+    model: "text-davinci-003",
+    choices: [
+      {
+        text: "\nSoft fur so warm,\nPurrs of contentment heard,\nMy loyal cat friend.\n\nC D G D C\nA D E G D\nE D C G A",
+        index: 0,
+        logprobs: null,
+        finish_reason: "stop",
+      },
+    ],
+    usage: { prompt_tokens: 53, completion_tokens: 39, total_tokens: 92 },
+  },
+  {
+    id: "cmpl-7E1yfvZfWNbfQOo9RrZu1c0ZDh9lb",
+    object: "text_completion",
+    created: 1683578549,
+    model: "text-davinci-003",
+    choices: [
+      {
+        text: "\nMonkey jumps so high\nIn the trees, playing so wild\nA joyful sight to see \n\nG Em | Am D | G Em | Am D | \nC G | Am D | G Em | Am D | ",
+        index: 0,
+        logprobs: null,
+        finish_reason: "length",
+      },
+    ],
+    usage: { prompt_tokens: 54, completion_tokens: 50, total_tokens: 104 },
   },
 ];

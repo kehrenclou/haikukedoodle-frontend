@@ -6,7 +6,7 @@ import { updateSubjectDetails } from "../../actions/subjectDetails";
 import { useStateMachine } from "little-state-machine";
 import "./form.css";
 
-export default function SubjectForm({ handleOpenModal }) {
+export default function SubjectForm({ handleSubmitClick }) {
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
@@ -42,13 +42,15 @@ export default function SubjectForm({ handleOpenModal }) {
   //submit handler - set state with form data
   //data set with input name as key (subject:data)
   const onSubmit = (data) => {
+    //1. update SubjectDetails with subject from form
     actions.updateSubjectDetails(data);
-    console.log("data", data.subject); //subject:dog
-    console.log("store", state.subjectDetails); //still null
+
+    console.log("1.data", data.subject); //subject:dog
+    console.log("2.store", state.subjectDetails); //still null
 
     generatePrompt(data.subject); //assembles prompt for openai with subject
     //visibility prop
-    handleOpenModal();
+    handleSubmitClick();
     //where its at in the flow
   };
 

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SubjectForm from "../../components/form/subjectForm";
 import Card from "../../components/card/Card";
 import Result from "./Result";
-import { transformData } from "../../utils/transformData";
+import { transformData, transformAIData } from "../../utils/transformData";
 
 import { SubjectModal } from "../../components/modal/SubjectModal";
 
@@ -18,12 +18,17 @@ export default function Create() {
   const [testSonga, setTestSonga] = useState([]);
   const { state, actions } = useStateMachine({ updateSubjectDetails });
 
-  function handleOpenModal() {
+  function handleSubmitClick() {
     // setIsOpen(true);
-    const testSong = transformData(state.subjectDetails.result);
+    //1. transform test data
+    //?result is hard coded in states/subjectDetails.js
+    // const testSong = transformAIData(state.subjectDetails.result);//works with original subj details
+    const testSong = transformAIData(state.subjectDetails);
+    // setTestSonga (testSong[0].haikuLines);
     setIsLoaded(true);
-    setTestSonga (testSong[0].haikuLines);
-    console.log(testSong[0].haikuLines);
+    updateSubjectDetails({haikuLines:testSong.haikuLines})
+    console.log(testSong);
+    // console.log(testSong[0].haikuLines);
   }
   function handleCloseModal() {
     setIsOpen(false);
@@ -44,7 +49,7 @@ export default function Create() {
                 initial={{ opacity: 1, scale: 0 }}
                 exit={{ opacity: 0, rotate: 360, scale: 1.2 }}
               >
-                <SubjectForm handleOpenModal={handleOpenModal} />
+                <SubjectForm handleSubmitClick={handleSubmitClick} />
               </motion.div>
             </AnimatePresence>
           </>

@@ -1,15 +1,34 @@
 //decalring state object for subject details that is collected in userform and sent to GPT API
 
-//exporting it like this, it is prefixed with the file name
+//exporting it like this, it is prefixed with the file name - works with backupData.js/songs
+// export default {
+//   subject: "",
+//   acceptTerms: false,
+//   result: [
+//     {
+//       result: "",
+//     },
+//   ],
+//   haikuLines: [],
+//   chordLines: [],
+//   usage:{},
+// };
+
 export default {
-  subject: "",
-  acceptTerms: false,
-  result: [
+  subject: "puppy",
+  id: "cmpl-7DzGecCDG9dvUaLjt5uWuODbkiejJ",
+  object: "text_completion",
+  created: 1683568132,
+  model: "text-davinci-003",
+  choices: [
     {
-      result:
-        "Coding puzzles,\nA challenge of the mind;\nRewards of skillful play.\n\nC  G  Am  F\nD  C  G  D\nG  Am  F  C",
+      text: "\nFurry pup so small\nBarks at the birds in the sky\nJoyful pup at play\n\nG, C, D, G\nD, A, Bm, G\nA, D, G, D",
+      index: 0,
+      logprobs: null,
+      finish_reason: "stop",
     },
   ],
-  haikuLines: [],
-  chordLines: [],
+  usage: { prompt_tokens: 53, completion_tokens: 47, total_tokens: 100 },
+  haikuLines:[],
+  chordLines:[],
 };

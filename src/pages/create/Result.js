@@ -6,7 +6,8 @@ export default function Result(){
     const{state}=useStateMachine(updateSubjectDetails);
     return(
         <>
-        <pre className="create__result- text">{JSON.stringify(state,null,2)}</pre>
+        {/* <pre className="create__result- text">{JSON.stringify(state,null,2)}</pre> */}
+       <p></p>
         </>
     )
 }

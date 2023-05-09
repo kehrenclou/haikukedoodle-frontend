@@ -86,6 +86,7 @@ export const backupAiDataArr = [
       },
     ],
     usage: { prompt_tokens: 53, completion_tokens: 39, total_tokens: 92 },
+    subject:"cat",
   },
   {
     id: "cmpl-7E1yfvZfWNbfQOo9RrZu1c0ZDh9lb",
@@ -101,5 +102,6 @@ export const backupAiDataArr = [
       },
     ],
     usage: { prompt_tokens: 54, completion_tokens: 50, total_tokens: 104 },
+    subject:"monkey",
   },
 ];

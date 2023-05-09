@@ -16,18 +16,17 @@ export function transformData(songs) {
 
   return songObjects;
 }
-/* ------------------------- transformData function ------------------------- */
-//extract subject, haikuLines and chordLines from JSON (rawdata)-testingAIData
+/* ----------------------- Transform backup Array Data ---------------------- */
+//extract subject, haikuLines and chordLines from backupdata Array from JSON
 //called useEffect in Main.js on load to populate cards from backupdata
-//called in Create.js on handleSubmitClick to transform json
-//when passing in the state.subject Details it breaks
-//i think because state.subject Details is an object not an array
 export function transformAiDataArr(songs) {
   const songObjects = [];
-debugger;
+
   for (let i = 0; i < songs.length; i++) {
     const subject = songs[i].subject;
-    const lines = songs[i].choices[0].text.split("\n").filter((line) => line !== "");
+    const lines = songs[i].choices[0].text
+      .split("\n")
+      .filter((line) => line !== "");
     const haikuLines = lines.slice(0, 3);
     const chordLines = lines.slice(3, 6);
     songObjects.push({ subject, haikuLines, chordLines });
@@ -36,31 +35,17 @@ debugger;
 }
 
 //trying again without map?
-export function transformAIData(songs) {
-  const songObjects = [];
-debugger;
-//   for (let i = 0; i < songs.length; i++) {
-//     const subject = songs[i].subject;
-//     //need to grab subject some other way ?from state and combine it
-//     // console.log(songs[i].choices[0].text);
-//     const lines = songs[i].choices[0].text.split("\n").filter((line) => line !== "");
-//     const haikuLines = lines.slice(0, 3);
-//     const chordLines = lines.slice(3, 6);
-//     songObjects.push({ subject, haikuLines, chordLines });
-//     console.log(subject);
-//     console.log(lines);
-//   }
+export function transformAiDataObject(songs) {
 
-const subject=songs.subject;
-const lines=songs.choices[0].text.split("\n").filter((line) => line !== "");
-const haikuLines=lines.slice(0,3);
-const chordLines=lines.slice(3,6);
-songObjects.push({subject,haikuLines,chordLines});
+  const songObjects = [];
+  const subject = songs.subject;
+  const lines = songs.choices[0].text.split("\n").filter((line) => line !== "");
+  const haikuLines = lines.slice(0, 3);
+  const chordLines = lines.slice(3, 6);
+  songObjects.push({ subject, haikuLines, chordLines });
 
   return songObjects;
 }
-
-
 
 //function to transform song format for text download
 export function formatSongForDownload(song) {

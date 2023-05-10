@@ -45,9 +45,9 @@ export default function Card({
         <Flower
           width="154"
           height="133"
-          petalcolor="rgba(213,157,169,.3)"
-          colorb="#47535c"
-          colorc="#171e26"
+          petalcolor="rgba(213,157,169,.2)"
+          colorb="#47535c59"
+          colorc="#171e2659"
           className="card__bg"
         />
 

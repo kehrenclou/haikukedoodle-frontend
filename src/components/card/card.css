@@ -11,6 +11,8 @@
 }
 .card__bg {
   position: absolute;
+  /* bottom: 90px;
+  right: 110px; */
   bottom: 90px;
   right: 5px;
   z-index: 0;

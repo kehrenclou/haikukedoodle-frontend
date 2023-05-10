@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CreateHaikuContext } from "../../context";
 
 import SubjectForm from "../../components/form/subjectForm";
-import Flower from "../../components/Flower/Flower";
 import Card from "../../components/card/Card";
 
 import { transformAiDataObject } from "../../utils/transformData";
@@ -81,30 +80,16 @@ export default function Create() {
           </>
         ) : (
           <>
-            <h1 className="create__heading">the Masterpiece.</h1>
-
-            <div className="create__container create__container_card">
-            <Flower
-                width="154"
-                height="133"
-                petalcolor="rgba(213,157,169,.2)"
-                colorb="#47535c59"
-                colorc="#171e2659"
-                className="create__flower"
-              />
-              <h2 className="create__heading create__heading_result">
-                {haikuCtx.state.subject}
-              </h2>
-              {zipPairs.map(([line, chord], i) => (
-                <div className="card__line card__line_column" key={i}>
-                  <p className="card__text">{line}</p>
-                  <p className="card__text card__text_med card__text_indent">
-                    {chord}
-                  </p>
-                </div>
-              ))}{" "}
-              <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
-       
+            <div className="create__card-container">
+              <Card
+                subject={haikuCtx.state.subject}
+                createdOn={haikuCtx.state.createdOn}
+                haikuLines={haikuCtx.state.haikuLines}
+                chordLines={haikuCtx.state.chordLines}
+                onDownloadClick={handleDownloadClick}
+              ></Card>
+              <button>Try Another Haiku</button>
+              <button>Read More</button>
             </div>
           </>
         )}

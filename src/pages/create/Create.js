@@ -22,6 +22,7 @@ export default function Create() {
   console.log(newSong);
 
   const haikuCtx = useContext(CreateHaikuContext);
+  console.log("ctxsub", haikuCtx.state.subject);
 
   useEffect(() => {
     if (newSong.length < 1) {
@@ -53,7 +54,6 @@ export default function Create() {
     setIsLoaded(true);
   };
 
-
   function handleCloseModal() {
     setIsOpen(false);
   }
@@ -73,10 +73,7 @@ export default function Create() {
                 initial={{ opacity: 1, scale: 0 }}
                 exit={{ opacity: 0, rotate: 360, scale: 1.2 }}
               >
-                <SubjectForm
-                  handleSubmitClick={handleSubmitClick}
-             
-                />
+                <SubjectForm handleSubmitClick={handleSubmitClick} />
               </motion.div>
             </AnimatePresence>
           </>
@@ -84,7 +81,7 @@ export default function Create() {
           <>
             <div className="create__container">
               <h2 className="create__heading create__heading_result">
-                {haikuCtx.subject}
+                {haikuCtx.state.subject}
               </h2>
               <p>{`~created by Anonymous on ${newSong[0].createdOn}`}</p>
               {zipPairs.map(([line, chord], i) => (

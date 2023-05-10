@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import env from "react-dotenv";
-import { useStateMachine } from "little-state-machine";
-import { updateSubjectDetails } from "../actions/subjectDetails";
+
 
 /* --------------------- //generates prompt with subject -------------------- */
 function generatePrompt(subject) {
@@ -16,17 +15,14 @@ function generatePrompt(subject) {
 function OpenAiRequest() {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { state, actions } = useStateMachine({ updateSubjectDetails });
 
-  useEffect(() => {
-    console.log("result", result);
-    console.log("state", state);
-  }, [result]);
+
+
 
   const handleClick = async () => {
     setIsLoading(true);
     const subj = "notebook";
-    actions.updateSubjectDetails({ subject: subj });
+
     const prompt = generatePrompt(subj);
     const maxTokens = 50; //200
     const apiKey = env.OPENAI_API_KEY;
@@ -54,12 +50,7 @@ function OpenAiRequest() {
 
       setResult(generatedText);
 
-      actions.updateSubjectDetails({
-        result: generatedText, //returned furry puppy haiku
-        subject: subj, //returned suj
-        usage: data.usage, //returned usage
-        created: data.created, //returned created
-      });
+
       //this updates state result with the data.choices[0].text and usage from openai and subj declared in this.
       //to recreate with backupdata should be the same.
     } catch (error) {

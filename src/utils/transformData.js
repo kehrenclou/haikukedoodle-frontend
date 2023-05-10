@@ -32,12 +32,12 @@ export function transformAiDataArr(songs) {
 export function transformAiDataObject(song) {
   console.log(song);
   const songObjects = [];
-  const subject = song.subject;
+  // const subject = song.subject;
   const createdOn = transformTimeStamp(song.created);
   const lines = song.choices[0].text.split("\n").filter((line) => line !== "");
   const haikuLines = lines.slice(0, 3);
   const chordLines = lines.slice(3, 6);
-  songObjects.push({ subject, createdOn, haikuLines, chordLines });
+  songObjects.push({ createdOn, haikuLines, chordLines });
 
   return songObjects;
 }

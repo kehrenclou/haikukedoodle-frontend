@@ -1,12 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { updateSubjectDetails } from "../../actions/subjectDetails";
-import { useStateMachine } from "little-state-machine";
+
+
+
 import "./form.css";
 
-export default function SubjectForm({ handleSubmitClick,state, actions }) {
+import { CreateHaikuContext } from "../../context";
+
+export default function SubjectForm({ handleSubmitClick }) {
+  //context
+  const haikuCtx=useContext(CreateHaikuContext);
+
+  //useState
+  const [subject,setSubject]=useState("");
+
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
@@ -28,7 +37,7 @@ export default function SubjectForm({ handleSubmitClick,state, actions }) {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  // const { state, actions } = useStateMachine({ updateSubjectDetails });
+
 
 
   const onSubmit = (data) => {
@@ -37,10 +46,10 @@ export default function SubjectForm({ handleSubmitClick,state, actions }) {
       data.subject.charAt(0).toUpperCase() + data.subject.slice(1);
 
     //2. update SubjectDetails state with subject and acceptTerms from form
-    actions.updateSubjectDetails({
-      subject: capitalizedSubject,
-      acceptTerms: data.acceptTerms,
-    });
+    haikuCtx.updateSubjectTerms(capitalizedSubject,data.acceptTerms);
+   
+  
+
     
     handleSubmitClick();
   };

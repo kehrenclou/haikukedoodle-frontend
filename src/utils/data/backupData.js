@@ -106,7 +106,7 @@ export const backupAiDataArr = [
   },
 ];
 //what the response looks like:
-const resp = {
+export const resp = {
   id: "cmpl-7EOPX6pyG65nzZJGquoGrAeshJYhu",
   object: "text_completion",
   created: 1683664783,

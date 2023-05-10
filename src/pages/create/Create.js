@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import "./create.css";
-import { useStateMachine } from "little-state-machine";
-import { updateSubjectDetails } from "../../actions/subjectDetails";
+
 import { motion, AnimatePresence } from "framer-motion";
+
+import { CreateHaikuContext } from "../../context";
 
 import SubjectForm from "../../components/form/subjectForm";
 
 import { transformAiDataObject } from "../../utils/transformData";
+import { resp } from "../../utils/data/backupData";
 
 import { SubjectModal } from "../../components/modal/SubjectModal";
 
@@ -16,9 +18,10 @@ export default function Create() {
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const { state, actions } = useStateMachine({ updateSubjectDetails });
-  console.log(state);
+
   console.log(newSong);
+
+  const haikuCtx = useContext(CreateHaikuContext);
 
   useEffect(() => {
     if (newSong.length < 1) {
@@ -41,18 +44,15 @@ export default function Create() {
     return prompt;
   }
 
-  const handleSubmitClick = useCallback(() => {
-    //todo- change when backend implemented for res data
+  const handleSubmitClick = () => {
+    //todo - update when backend implemented for res data
+    console.log(haikuCtx.state);
+    const tsfResponse = transformAiDataObject(resp);
+    console.log(tsfResponse);
+    setNewSong(tsfResponse);
+    setIsLoaded(true);
+  };
 
-    const reqPrompt = generatePrompt(state.subjectDetails.subject);
-    const transformed = transformAiDataObject(state.subjectDetails);
-    setNewSong(transformed);
-    // setNewSong(transformAiDataObject(state.subjectDetails)); //add haikuLines,chordLines to newSong
-
-    console.log("state subject in create js", state.subjectDetails.subject);
-
-    setIsLoaded(true); //
-  }, [state.subjectDetails, setNewSong, setIsLoaded]);
 
   function handleCloseModal() {
     setIsOpen(false);
@@ -75,8 +75,7 @@ export default function Create() {
               >
                 <SubjectForm
                   handleSubmitClick={handleSubmitClick}
-                  state={state}
-                  actions={actions}
+             
                 />
               </motion.div>
             </AnimatePresence>
@@ -85,7 +84,7 @@ export default function Create() {
           <>
             <div className="create__container">
               <h2 className="create__heading create__heading_result">
-                {state.subjectDetails.subject}
+                {haikuCtx.subject}
               </h2>
               <p>{`~created by Anonymous on ${newSong[0].createdOn}`}</p>
               {zipPairs.map(([line, chord], i) => (

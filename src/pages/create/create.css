@@ -39,24 +39,16 @@
   position: relative;
   justify-content: flex-start;
 }
-.create__card-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 400px;
-  text-align: left;
-  margin-top: 50px;
-}
+
 .create__flower {
   position: absolute;
   bottom: 10px;
   right: 150px;
   padding: 0;
-  /* width: 300x; */
+
   z-index: 0;
 }
-.create__result-text {
-  color: #2b2d42;
-}
+
 @media screen and (max-width: 920px) {
   .create {
     margin-top: 170px;
@@ -71,15 +63,14 @@
     width: 300px;
     height: 300px;
   }
-  .create__flower{
-    right:125px;
+  .create__flower {
+    right: 125px;
   }
-  .create__heading_result{
-    margin-top:10px;
+  .create__heading_result {
+    margin-top: 10px;
   }
 }
 @media screen and (max-width: 500px) {
-
   .create__container {
     border-radius: 8px;
     padding: 20px;

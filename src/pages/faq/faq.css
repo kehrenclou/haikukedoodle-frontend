@@ -1,7 +1,7 @@
 .faq {
   display: flex;
   flex-direction: column;
-  max-width: 900px;
+  max-width: 800px;
   margin: 130px auto 16px;
   padding: 32px 20px;
 
@@ -13,7 +13,6 @@
 
   background-color: rgba(255, 255, 255, 0.97);
   color: #2b2d42;
-  font-family: "Poppins";
   box-sizing: border-box;
 }
 
@@ -36,15 +35,35 @@
   color: #78125d;
 }
 
-@media screen and (max-width: 1020) {
-  faq {
-    margin-top: 140px;
-    max-width: 800px;
+@media screen and (max-width: 920px) {
+  .faq {
+    margin-top: 160px;
+    max-width: 700px;
+  }
+  .faq__heading {
+    margin: 0;
+   
   }
 }
-@media screen and (max-width: 600) {
-  faq {
+@media screen and (max-width: 800px) {
+  .faq {
+    max-width: 600px;
+    
+  }
+}
+@media screen and (max-width: 700px) {
+  .faq {
+    max-width: 500px;
+  }
+  .faq__heading {
+   font-size:28px;
+   
+  }
+}
+@media screen and (max-width: 600px) {
+  .faq {
     margin-top: 100px;
+
     padding: 28px 20px;
   }
 }

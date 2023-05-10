@@ -28,8 +28,7 @@
   border: none;
 
   border-radius: 8px;
-  box-shadow: 
-    rgba(227, 231, 234, 0.979) 0px 1px 3px 4px;
+  box-shadow: rgba(227, 231, 234, 0.979) 0px 1px 3px 4px;
 }
 .accordion__control {
   font-size: 20px;
@@ -42,4 +41,9 @@
 .accordion__answer {
   background-color: #f7f7f7;
   padding: 20px;
+}
+@media screen and (max-width: 800px) {
+  .accordion {
+    padding: 0;
+  }
 }

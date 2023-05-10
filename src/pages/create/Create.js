@@ -104,7 +104,7 @@ export default function Create() {
                 </div>
               ))}{" "}
               <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
-       
+       <button>Save</button>
             </div>
           </>
         )}

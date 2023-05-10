@@ -70,7 +70,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
             </NavLink>
           </li>
           <li className="nav__item">
-            <button className="nav__button" type="button" aria-label="Sign up">
+            <button className="button button_type_nav" type="button" aria-label="Sign up">
               Sign Up
             </button>
           </li>

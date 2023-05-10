@@ -81,7 +81,7 @@ export default function Create() {
           </>
         ) : (
           <>
-            <h1 className="create__heading">the Masterpiece.</h1>
+            <h1 className="create__heading create__heading_result">the Masterpiece.</h1>
 
             <div className="create__container create__container_card">
             <Flower
@@ -92,7 +92,7 @@ export default function Create() {
                 colorc="#171e2659"
                 className="create__flower"
               />
-              <h2 className="create__heading create__heading_result">
+              <h2 className="create__heading create__heading_card_result">
                 {haikuCtx.state.subject}
               </h2>
               {zipPairs.map(([line, chord], i) => (
@@ -104,7 +104,11 @@ export default function Create() {
                 </div>
               ))}{" "}
               <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
-       <button>Save</button>
+            </div>
+            <div className="create__result-btn-container">
+              <button className="button button_type_med">Save to my Profile</button>
+              <button className="button button_type_med">Make Another Haiku</button>
+              <button className="button button_type_med">Read more Haikus</button>
             </div>
           </>
         )}

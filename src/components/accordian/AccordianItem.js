@@ -1,12 +1,10 @@
-
 import "./accordion.css";
-import React, {useRef} from "react";
-
+import React, { useRef } from "react";
 
 const AccordionItem = ({ faq, onToggle, active }) => {
   const { question, answer } = faq;
-  const content=useRef();
-  console.log(active);
+  const content = useRef();
+
   return (
     <>
       <li
@@ -16,9 +14,14 @@ const AccordionItem = ({ faq, onToggle, active }) => {
           {question}
           <span className="accordion__control">{active ? "--" : "+"}</span>
         </button>
-        <div ref={content}
+        <div
+          ref={content}
           className="accordion__answer-wrapper"
-          style={active ?{height:content.current.scrollHeight}:{height:"0px"}}
+          style={
+            active
+              ? { height: content.current.scrollHeight }
+              : { height: "0px" }
+          }
         >
           <div className="accordion__answer">{answer}</div>
         </div>

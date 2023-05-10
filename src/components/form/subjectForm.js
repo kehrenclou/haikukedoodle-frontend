@@ -67,7 +67,7 @@ export default function SubjectForm({ handleSubmitClick }) {
             type="checkbox"
             {...register("acceptTerms", { required: true })}
             id="acceptTerms"
-            className={`form__button_type_checkbox form-control ${
+            className={`button_type_checkbox form-control ${
               errors.acceptTerms ? "is-invalid" : ""
             }`}
           ></input>
@@ -84,12 +84,12 @@ export default function SubjectForm({ handleSubmitClick }) {
       <div>
         <button
           type="button"
-          className="form__button form__button_type_cancel"
+          className="button button_type_cancel"
           onClick={() => reset()}
         >
           Cancel
         </button>
-        <button type="submit" className="form__button form__button_type_submit">
+        <button type="submit" className="button button_type_submit">
           Create
         </button>
       </div>

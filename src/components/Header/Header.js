@@ -65,10 +65,10 @@ export default function Header() {
 
         {isLessThan600 ? (
           <button
-            className={`header__button_mobile ${
+            className={`button_type_mobile ${
               isMenuOpen
-                ? "header__button_mobile_open"
-                : "header__button_mobile_closed"
+                ? "button_type_mobile_open"
+                : "button_type_mobile_closed"
             }`}
             onClick={handleMenuClick}
           ></button>

@@ -13,7 +13,6 @@
 
   background-color: rgba(255, 255, 255, 0.97);
   color: #2b2d42;
-  
 }
 
 .about__container {
@@ -49,7 +48,7 @@
 
 @media screen and (max-width: 920px) {
   .about {
-    margin-top: 140px;
+    margin-top: 160px;
   }
 }
 @media screen and (max-width: 600px) {

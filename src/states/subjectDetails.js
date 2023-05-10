@@ -1,18 +1,5 @@
 //decalring state object for subject details that is collected in userform and sent to GPT API
 
-//exporting it like this, it is prefixed with the file name - works with backupData.js/songs
-// export default {
-//   subject: "",
-//   acceptTerms: false,
-//   result: [
-//     {
-//       result: "",
-//     },
-//   ],
-//   haikuLines: [],
-//   chordLines: [],
-//   usage:{},
-// };
 
 export default {
   subject: "puppy",

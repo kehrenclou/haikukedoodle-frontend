@@ -13,6 +13,11 @@
   text-align: center;
   margin: 0 0 74px 0;
 }
+.create__heading_result{
+  margin:0;
+  font-size: 28px;
+  font-weight: 400px;
+}
 .create__container {
   background-color: rgba(219, 230, 253);
   color: #2b2d42;

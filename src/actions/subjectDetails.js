@@ -3,7 +3,7 @@
 
 export function updateSubjectDetails(state, payload) {
     console.log("payload",payload);
-    console.log("state",state);
+    console.log("state before",state);
   return {
     ...state,
     subjectDetails: {

@@ -15,6 +15,7 @@ import Flower from "../Flower/Flower";
 
 export default function Card({
   subject,
+  createdOn,
   haikuLines,
   chordLines,
   likeCount,
@@ -94,7 +95,7 @@ export default function Card({
           ))}
 
           <p className="card__text card__text_small">
-            ~ by anonymous April 2, 2023
+            {`~ by anonymous ${createdOn}`}
           </p>
         </section>
 

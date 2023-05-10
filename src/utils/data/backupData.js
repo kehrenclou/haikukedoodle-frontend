@@ -38,7 +38,7 @@ export const backupAiDataArr = [
       },
     ],
     usage: { prompt_tokens: 58, completion_tokens: 37, total_tokens: 95 },
-    subject: "dog",
+    subject: "peacock",
   },
   {
     id: "cmpl-7DzGecCDG9dvUaLjt5uWuODbkiejJ",
@@ -86,7 +86,7 @@ export const backupAiDataArr = [
       },
     ],
     usage: { prompt_tokens: 53, completion_tokens: 39, total_tokens: 92 },
-    subject:"cat",
+    subject: "cat",
   },
   {
     id: "cmpl-7E1yfvZfWNbfQOo9RrZu1c0ZDh9lb",
@@ -102,6 +102,22 @@ export const backupAiDataArr = [
       },
     ],
     usage: { prompt_tokens: 54, completion_tokens: 50, total_tokens: 104 },
-    subject:"monkey",
+    subject: "monkey",
   },
 ];
+//what the response looks like:
+const resp = {
+  id: "cmpl-7EOPX6pyG65nzZJGquoGrAeshJYhu",
+  object: "text_completion",
+  created: 1683664783,
+  model: "text-davinci-003",
+  choices: [
+    {
+      text: "\nSoft pages turn\nWaves of feelings surging deep\nLove in the air now\n\nD C G D G B\nA C E G B A\nD C G D A D",
+      index: 0,
+      logprobs: null,
+      finish_reason: "stop",
+    },
+  ],
+  usage: { prompt_tokens: 54, completion_tokens: 39, total_tokens: 93 },
+};

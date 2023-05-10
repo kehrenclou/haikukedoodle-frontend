@@ -6,7 +6,7 @@ import { updateSubjectDetails } from "../../actions/subjectDetails";
 import { useStateMachine } from "little-state-machine";
 import "./form.css";
 
-export default function SubjectForm({ handleSubmitClick }) {
+export default function SubjectForm({ handleSubmitClick,state, actions }) {
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
@@ -28,19 +28,24 @@ export default function SubjectForm({ handleSubmitClick }) {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  const { state, actions } = useStateMachine({ updateSubjectDetails });
+  // const { state, actions } = useStateMachine({ updateSubjectDetails });
 
-  //submit handler - set state with form data
-  //data set with input name as key (subject:data)
+
   const onSubmit = (data) => {
-    //1. update SubjectDetails with subject and acceptTerms from form
-    actions.updateSubjectDetails(data);
+    //1. Format subject
+    const capitalizedSubject =
+      data.subject.charAt(0).toUpperCase() + data.subject.slice(1);
+
+    //2. update SubjectDetails state with subject and acceptTerms from form
+    actions.updateSubjectDetails({
+      subject: capitalizedSubject,
+      acceptTerms: data.acceptTerms,
+    });
+    
     handleSubmitClick();
   };
+  
 
-  useEffect(() => {
-    console.log("store", state.subjectDetails);
-  }, [state.subjectDetails]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">

@@ -10,7 +10,7 @@ import Card from "../../components/card/Card";
 
 //utils
 import OpenAiRequest from "../../utils/testApi";
-import { songs, backupAiDataArr } from "../../utils/data/backupData";
+import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,
   formatSongForDownload,
@@ -22,11 +22,11 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence();
 
   const [songObjects, setSongObjects] = useState([]);
+  const [json, setJson] = useState();
 
   useEffect(() => {
     setSongObjects(transformAiDataArr(backupAiDataArr));
-  }, []); //transform backup data Arr to subject,haikulines,chordlines
-  //SongObjects mapped in rendering cards
+  }, []); //transform backup data Arr to subject,haikulines,chordlines//SongObjects mapped in rendering cards
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -53,7 +53,7 @@ export default function Main() {
       <main className="main" id="main">
         <section className="main__hero" id="hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
-          <OpenAiRequest />
+          {/* <OpenAiRequest /> */}
           <AnimatePresence mode="wait">
             {isVisible && (
               <motion.div
@@ -82,6 +82,7 @@ export default function Main() {
               <Card
                 key={_.uniqueId("card-")}
                 subject={song.subject}
+                createdOn={song.createdOn}
                 haikuLines={song.haikuLines}
                 chordLines={song.chordLines}
                 likeCount="11"

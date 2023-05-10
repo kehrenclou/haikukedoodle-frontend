@@ -25,7 +25,8 @@ function OpenAiRequest() {
 
   const handleClick = async () => {
     setIsLoading(true);
-    const subj = "monkey";
+    const subj = "notebook";
+    actions.updateSubjectDetails({ subject: subj });
     const prompt = generatePrompt(subj);
     const maxTokens = 50; //200
     const apiKey = env.OPENAI_API_KEY;
@@ -49,10 +50,16 @@ function OpenAiRequest() {
         }),
       });
       const data = await response.json();
-      const generatedText = data.choices[0].text;
-      const usage=data.usage;
+      const generatedText = data.choices[0].text; //returns correct part
+
       setResult(generatedText);
-      actions.updateSubjectDetails({ result: generatedText, subject: subj, usage:usage });
+
+      actions.updateSubjectDetails({
+        result: generatedText, //returned furry puppy haiku
+        subject: subj, //returned suj
+        usage: data.usage, //returned usage
+        created: data.created, //returned created
+      });
       //this updates state result with the data.choices[0].text and usage from openai and subj declared in this.
       //to recreate with backupdata should be the same.
     } catch (error) {

@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./create.css";
 import { useStateMachine } from "little-state-machine";
 import { updateSubjectDetails } from "../../actions/subjectDetails";
 import { motion, AnimatePresence } from "framer-motion";
 
 import SubjectForm from "../../components/form/subjectForm";
-import Card from "../../components/card/Card";
-import Result from "./Result";
-import {
-  transformData,
-  transformAiDataObject,
-} from "../../utils/transformData";
+
+import { transformAiDataObject } from "../../utils/transformData";
 
 import { SubjectModal } from "../../components/modal/SubjectModal";
 
 export default function Create() {
   const [isOpen, setIsOpen] = useState(false);
+  const [newSong, setNewSong] = useState([]);
+  const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const { state, actions } = useStateMachine({ updateSubjectDetails });
+  console.log(state);
+  console.log(newSong);
+
+  useEffect(() => {
+    if (newSong.length < 1) {
+      return;
+    }
+    const zipPairs = [];
+    for (let i = 0; i < 3; i++) {
+      zipPairs.push([newSong[0].haikuLines[i], newSong[0].chordLines[i]]);
+    }
+    setZipPairs(zipPairs);
+  }, [newSong]);
 
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -30,37 +41,19 @@ export default function Create() {
     return prompt;
   }
 
-  function generateDate() {
-    const options = { month: "short", day: "numeric", year: "numeric" };
-    const date = new Date();
-    // const [month, day, year] = [
-    //   date.getMonth(),
-    //   date.getDate(),
-    //   date.getFullYear(),
-    // ];
-    // const today = `${month} ${day} ${year}`;
-    const today = date.toLocaleDateString("en-US", options);
-    return today;
-  }
-  
-  function handleSubmitClick() {
+  const handleSubmitClick = useCallback(() => {
     //todo- change when backend implemented for res data
-    //1. create prompt with subject from store
+
     const reqPrompt = generatePrompt(state.subjectDetails.subject);
+    const transformed = transformAiDataObject(state.subjectDetails);
+    setNewSong(transformed);
+    // setNewSong(transformAiDataObject(state.subjectDetails)); //add haikuLines,chordLines to newSong
 
-    //2. transform backup data object (set in SubjectDetails state)- dummy data
-    //add haikuLines,chordLines to state (state updated w/ state in subjectForm)
+    console.log("state subject in create js", state.subjectDetails.subject);
 
-    const testSong = transformAiDataObject(state.subjectDetails);
-    actions.updateSubjectDetails({
-      haikuLines: testSong[0].haikuLines,
-      chordLines: testSong[0].chordLines,
-    });
-
-    const createdOn = generateDate;
-    console.log(createdOn());
     setIsLoaded(true); //
-  }
+  }, [state.subjectDetails, setNewSong, setIsLoaded]);
+
   function handleCloseModal() {
     setIsOpen(false);
   }
@@ -80,15 +73,29 @@ export default function Create() {
                 initial={{ opacity: 1, scale: 0 }}
                 exit={{ opacity: 0, rotate: 360, scale: 1.2 }}
               >
-                <SubjectForm handleSubmitClick={handleSubmitClick} />
+                <SubjectForm
+                  handleSubmitClick={handleSubmitClick}
+                  state={state}
+                  actions={actions}
+                />
               </motion.div>
             </AnimatePresence>
           </>
         ) : (
           <>
             <div className="create__container">
-              <h2>{state.subjectDetails.subject}</h2>
-              <p>{state.subjectDetails.haikuLines[0]}</p>
+              <h2 className="create__heading create__heading_result">
+                {state.subjectDetails.subject}
+              </h2>
+              <p>{`~created by Anonymous on ${newSong[0].createdOn}`}</p>
+              {zipPairs.map(([line, chord], i) => (
+                <div className="card__line card__line_column" key={i}>
+                  <p className="card__text">{line}</p>
+                  <p className="card__text card__text_med card__text_indent">
+                    {chord}
+                  </p>
+                </div>
+              ))}
             </div>
           </>
         )}

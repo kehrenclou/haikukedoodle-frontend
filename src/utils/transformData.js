@@ -30,9 +30,7 @@ export function transformAiDataArr(songs) {
 
 /* ---------------- Transform backup Object Data - from State --------------- */
 export function transformAiDataObject(song) {
-  console.log(song);
   const songObjects = [];
-  // const subject = song.subject;
   const createdOn = transformTimeStamp(song.created);
   const lines = song.choices[0].text.split("\n").filter((line) => line !== "");
   const haikuLines = lines.slice(0, 3);

@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import "./create.css";
 
 import { motion, AnimatePresence } from "framer-motion";
+
 import { CreateHaikuContext } from "../../context";
 
 import SubjectForm from "../../components/form/subjectForm";
-import Card from "../../components/card/Card";
 
 import { transformAiDataObject } from "../../utils/transformData";
 import { resp } from "../../utils/data/backupData";
@@ -14,24 +14,26 @@ import { SubjectModal } from "../../components/modal/SubjectModal";
 
 export default function Create() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [newSong, setNewSong] = useState([]);
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [test, setTest] = useState();
+
+  console.log(newSong);
 
   const haikuCtx = useContext(CreateHaikuContext);
+  console.log("ctxsub", haikuCtx.state.subject);
 
   useEffect(() => {
+    if (newSong.length < 1) {
+      return;
+    }
     const zipPairs = [];
     for (let i = 0; i < 3; i++) {
-      zipPairs.push([
-        haikuCtx.state.haikuLines[i],
-        haikuCtx.state.chordLines[i],
-      ]);
+      zipPairs.push([newSong[0].haikuLines[i], newSong[0].chordLines[i]]);
     }
     setZipPairs(zipPairs);
-  }, [haikuCtx.state]);
+  }, [newSong]);
 
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -43,16 +45,13 @@ export default function Create() {
     return prompt;
   }
 
-  const handleSubmitClick = (subject, terms) => {
+  const handleSubmitClick = () => {
     //todo - update when backend implemented for res data
-
-    const tsfResponse = transformAiDataObject(resp); //extract lines and chords
-    haikuCtx.updateAll(subject, terms, tsfResponse[0]);
+    console.log(haikuCtx.state);
+    const tsfResponse = transformAiDataObject(resp);
+    console.log(tsfResponse);
+    setNewSong(tsfResponse);
     setIsLoaded(true);
-  };
-
-  const handleDownloadClick = () => {
-    console.log("click");
   };
 
   function handleCloseModal() {
@@ -80,14 +79,19 @@ export default function Create() {
           </>
         ) : (
           <>
-            <div className="create__card-container">
-              <Card
-                subject={haikuCtx.state.subject}
-                createdOn={haikuCtx.state.createdOn}
-                haikuLines={haikuCtx.state.haikuLines}
-                chordLines={haikuCtx.state.chordLines}
-                onDownloadClick={handleDownloadClick}
-              ></Card>
+            <div className="create__container">
+              <h2 className="create__heading create__heading_result">
+                {haikuCtx.state.subject}
+              </h2>
+              <p>{`~created by Anonymous on ${newSong[0].createdOn}`}</p>
+              {zipPairs.map(([line, chord], i) => (
+                <div className="card__line card__line_column" key={i}>
+                  <p className="card__text">{line}</p>
+                  <p className="card__text card__text_med card__text_indent">
+                    {chord}
+                  </p>
+                </div>
+              ))}
             </div>
           </>
         )}

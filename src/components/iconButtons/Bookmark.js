@@ -47,10 +47,10 @@ export const Bookmark = ({ isBookmarked, onClick }) => {
                 sx={{
                   borderRadius: "50%",
                   padding: "5px",
-                  backgroundColor: "white",
+                  backgroundColor: "rgb(229, 236, 251)",
                   boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
                   fontSize: "24px",
-                  "&:hover": { color: "#2b2d42" },
+                  "&:hover": { color: "#2b2d42",backgroundColor: "pink" },
                 }}
               />
             )}

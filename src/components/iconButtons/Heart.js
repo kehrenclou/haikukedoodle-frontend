@@ -33,7 +33,7 @@ export const Heart = ({ isLiked, onClick }) => {
                 // boxShadow: "rgba(0, 0, 0, 0.45) 0px 2px 15px",
                 fontSize: "28px",
                 color: "#2b2d42",
-                "&:hover": { opacity: 0.5 },
+                "&:hover": { backgroundColor: "pink" },
               }}
             />
           ) : (
@@ -44,7 +44,7 @@ export const Heart = ({ isLiked, onClick }) => {
                 // backgroundColor: "white",
                 // boxShadow: "rgba(0, 0, 0, 0.45) 0px 2px 15px",
                 fontSize: "28px",
-                "&:hover": { color: "#2b2d42" },
+                "&:hover": { color: "#2b2d42",backgroundColor: "pink"  },
               }}
             />
           )}

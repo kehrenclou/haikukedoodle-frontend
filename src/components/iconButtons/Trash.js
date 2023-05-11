@@ -13,18 +13,18 @@ export const Trash = ({ onClick }) => {
       >
         <IconButton
           aria-label="delete"
-          sx={{ "&:hover": { border: "none" } }}
+          sx={{ "&:hover": { border: "none", backgroundColor:"pink" } }}
           onClick={onClick}
         >
           <DeleteOutline
             sx={{
-               color:"lightgray",
-              // borderRadius: "50%",
-              // padding: "5px",
-              // backgroundColor: "white",
-              // boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 15px",
-              fontSize: "28px",
-              "&:hover": { color: "#2b2d42" },
+              borderRadius: "50%",
+              padding: "5px",
+              // color: "#2b2d42",
+              backgroundColor: "rgb(229, 236, 251)",
+              boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
+              fontSize: "24px",
+              "&:hover": { color: "#2b2d42", backgroundColor: "pink" },
             }}
           />
         </IconButton>

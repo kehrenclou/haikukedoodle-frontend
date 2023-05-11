@@ -55,38 +55,41 @@ export default function Card({
           className="card__bg"
         />
 
-        <section className="card__section card__section_header ">
-          <h2 className="card__title">{subject}</h2>
+        <section className="card__section card__header ">
+          <div className="card__header_content">
+            <h2 className="card__title">{subject}</h2>
+          </div>
         </section>
 
-        <section className="card__section card__section_body">
+        <section className="card__section">
+          <div className=" card__icon-trash">
+            <Trash onClick={handleTrashClick} />
+          </div>
           {zipPairs.map(([line, chord], i) => (
-            <div key={i}>
+            <div className="card__line card__line_column" key={i}>
               <p className="card__text">{line}</p>
-              <p className="card__text card__text_med ">{chord}</p>
+              <p className="card__text card__text_med card__text_indent">
+                {chord}
+              </p>
             </div>
           ))}
 
-          <p className="card__text card__text_author">
+          <p className="card__text card__text_small">
             {`~ by anonymous ${createdOn}`}
           </p>
         </section>
 
-        <section className="card__section card__section_footer">
-          <div className="card__button-group">
-            <Download onClick={handleDownloadClick} />
-            <Trash onClick={handleTrashClick} />
+        <section className="card__section_footer">
+          <div className="card__like-container">
+            <p className="card__like-count">{likeCount}</p>
+            <Heart onClick={handleLikeClick} isLiked={isLiked} />
           </div>
           <div className="card__button-group">
-            <div className="card__like-container">
+            <Download onClick={handleDownloadClick} />
             <Bookmark
               onClick={handleBookmarkClick}
               isBookmarked={isBookmarked}
             />
-              <p className="card__like-count">{likeCount}</p>
-              <Heart onClick={handleLikeClick} isLiked={isLiked} />
-            </div>
-   
           </div>
         </section>
       </li>

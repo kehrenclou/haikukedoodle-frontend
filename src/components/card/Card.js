@@ -4,13 +4,11 @@ import "./card.css";
 import { IconButton, Tooltip } from "@mui/material";
 
 import {
-  BookmarkAddOutlined,
-  BookmarkAddedOutlined,
   FileDownloadOutlined,
-  DeleteOutline,
   FavoriteBorder,
   Favorite,
 } from "@mui/icons-material";
+import { Bookmark, Trash, Heart, Download } from "../iconButtons";
 import Flower from "../Flower/Flower";
 
 export default function Card({
@@ -23,7 +21,7 @@ export default function Card({
   onLikeClick,
   song,
 }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
   const zipPairs = [];
@@ -35,8 +33,14 @@ export default function Card({
     setIsLiked(!isLiked);
     // onLikeClick(card);
   }
-  function handleDownloadClick(){
-    onDownloadClick(song)
+  function handleDownloadClick() {
+    onDownloadClick(song);
+  }
+  function handleTrashClick() {
+    console.log("clicked");
+  }
+  function handleBookmarkClick() {
+    setIsBookmarked(!isBookmarked);
   }
 
   return (
@@ -54,37 +58,17 @@ export default function Card({
         <section className="card__section card__header ">
           <div className="card__header_content">
             <h2 className="card__title">{subject}</h2>
-
-            <Tooltip
-              title="Delete"
-              PopperProps={{
-                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
-              }}
-            >
-              <IconButton
-                aria-label="delete"
-                sx={{ "&:hover": { color: "red" } }}
-                onClick={() => {
-                  console.log("clicked");
-                }}
-              >
-                <DeleteOutline
-                  sx={{
-                    borderRadius: "50%",
-                    padding: "5px",
-                    backgroundColor: "white",
-                    boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 15px",
-                    fontSize: "28px",
-                  }}
-                />
-              </IconButton>
-            </Tooltip>
-
-
+            <Bookmark
+              onClick={handleBookmarkClick}
+              isBookmarked={isBookmarked}
+            />
           </div>
         </section>
 
         <section className="card__section">
+          <div className=" card__icon-trash">
+            <Trash onClick={handleTrashClick} />
+          </div>
           {zipPairs.map(([line, chord], i) => (
             <div className="card__line card__line_column" key={i}>
               <p className="card__text">{line}</p>
@@ -100,125 +84,15 @@ export default function Card({
         </section>
 
         <section className="card__section_footer">
-          <div className="card__like-container">
-            <Tooltip
-              title={isLiked ? "Unlike" : "Like"}
-              placement="top"
-              PopperProps={{
-                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
-              }}
-            >
-              <IconButton
-                aria-label="like"
-                sx={
-                  isLiked
-                    ? {
-                        "&:hover": { color: "white" },
-                      }
-                    : {
-                        "&:hover": { color: "#2b2d42" },
-                      }
-                }
-                onClick={handleLikeClick}
-              >
-                {isLiked ? (
-                  <Favorite
-                    sx={{
-                      borderRadius: "50%",
-                      padding: "5px",
-                      fontSize: "28px",
-                      color: "#2b2d42",
-                      "&:hover": { opacity: 0.5 },
-                    }}
-                  />
-                ) : (
-                  <FavoriteBorder
-                    sx={{
-                      borderRadius: "50%",
-                      padding: "5px",
-                      fontSize: "28px",
-                      "&:hover": { color: "#2b2d42" },
-                    }}
-                  />
-                )}
-              </IconButton>
-            </Tooltip>
-            <p className="card__like-count">{likeCount}</p>
-          </div>
-
           <div className="card__button-group">
-            <Tooltip
-              title="Download Haiku"
-              placement="top"
-              PopperProps={{
-                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
-              }}
-            >
-              <IconButton
-                size="small"
-                aria-label="download"
-                sx={{ "&:hover": { color: "#2b2d42" } }}
-                onClick={handleDownloadClick}
-              >
-                <FileDownloadOutlined
-                  sx={{
-                    borderRadius: "50%",
-                    padding: "5px",
-                    backgroundColor: "white",
-                    boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
-                    fontSize: "24px",
-                  }}
-                />
-              </IconButton>
-            </Tooltip>
+    
+            <Download onClick={handleDownloadClick} />
+          </div>
+          <div className="card__like-container">
+          <p className="card__like-count">{likeCount}</p>
+            <Heart onClick={handleLikeClick} isLiked={isLiked} />
 
-            <Tooltip
-              title={isFavorite ? "Remove from Favorites" : "Save to Favorites"}
-              placement="top"
-              PopperProps={{
-                modifiers: [{ name: "offset", options: { offset: [0, -20] } }],
-              }}
-            >
-              <IconButton
-                aria-label="favorited"
-                sx={
-                  isFavorite
-                    ? {
-                        "&:hover": { color: "red" },
-                      }
-                    : {
-                        "&:hover": { color: "#2b2d42" },
-                      }
-                }
-                onClick={() => {
-                  setIsFavorite(!isFavorite);
-                }}
-              >
-                {isFavorite ? (
-                  <BookmarkAddedOutlined
-                    sx={{
-                      borderRadius: "50%",
-                      padding: "5px",
-                      backgroundColor: "white",
-                      boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
-                      fontSize: "24px",
-                      color: "#2b2d42",
-                      "&:hover": { color: "red" },
-                    }}
-                  />
-                ) : (
-                  <BookmarkAddOutlined
-                    sx={{
-                      borderRadius: "50%",
-                      padding: "5px",
-                      backgroundColor: "white",
-                      boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
-                      fontSize: "24px",
-                    }}
-                  />
-                )}
-              </IconButton>
-            </Tooltip>
+       
           </div>
         </section>
       </li>

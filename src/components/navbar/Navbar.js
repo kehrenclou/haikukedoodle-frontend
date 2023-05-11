@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
+import { SignupModal } from "../modal/SignupModal";
+
 export default function Navbar({ isLessThan600, onLinkClick }) {
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+
+  function handleSignUpOpen() {
+    setIsSignupOpen(true);
+  }
+  function handleCloseModal() {
+    setIsSignupOpen(false);
+  }
   return (
     <>
       <nav>
@@ -70,12 +80,18 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
             </NavLink>
           </li>
           <li className="nav__item">
-            <button className="button button_type_primary" type="button" aria-label="Sign up">
+            <button
+              className="button button_type_primary"
+              type="button"
+              aria-label="Sign up"
+              onClick={handleSignUpOpen}
+            >
               Sign Up
             </button>
           </li>
         </ul>
       </nav>
+      <SignupModal isOpen={isSignupOpen} onClose={handleCloseModal} />
     </>
   );
 }

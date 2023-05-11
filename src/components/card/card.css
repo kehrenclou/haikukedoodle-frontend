@@ -47,7 +47,6 @@
 }
 
 .card__section_footer {
-
   padding: 0px 20px 4px 16px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -79,13 +78,13 @@
   font-size: 14px;
   font-weight: 400;
   width: 100%;
-  padding-top:10px;
+  padding-top: 10px;
   padding-bottom: 20px;
 }
 
-.card__icon-trash {
+.card__icon-bookmark {
   position: absolute;
-  top:20px;
+  top: 20px;
   right: 20px;
   z-index: 10;
 }
@@ -102,7 +101,7 @@
   font-size: 16px;
   font-weight: 500;
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
 @media screen and (max-width: 500px) {

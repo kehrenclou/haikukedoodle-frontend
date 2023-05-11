@@ -81,7 +81,7 @@ export default function SubjectForm({ handleSubmitClick }) {
           {errors.acceptTerms?.message}
         </div>
       </section>
-      <div>
+      <div className="form__button-container">
         <button
           type="button"
           className="button button_type_form button_type_form_cancel"

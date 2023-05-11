@@ -3,12 +3,15 @@
   flex-direction: column;
   gap: 20px;
   color: black;
-  padding: 40px 20px 20px;
+  padding: 0px 20px 20px;
+
+  align-items: center;
 }
 
 .form__body {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .form__checkbox-container {
@@ -34,6 +37,7 @@
   padding: 12px;
   border-radius: 10px;
   border: 1px rgba(128, 128, 128, 0.7) solid;
+  margin-bottom: 12px;
 }
 .form__input:hover {
   background-color: #367bf24b;
@@ -45,7 +49,20 @@
   color: red;
   align-self: flex--start;
 }
-
+.form__button-container {
+  display: flex;
+  flex-wrap: flex;
+  align-items: center;
+}
+.form__text-container {
+  display: flex;
+  flex-direction: column;
+  color: #2b24d2;
+  align-items: center;
+}
+.form__text {
+  
+}
 @media screen and (max-width: 500px) {
   .form {
     padding: 0;
@@ -54,5 +71,10 @@
   }
   .form__input {
     padding: 8px;
+  }
+  .form__button-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  
   }
 }

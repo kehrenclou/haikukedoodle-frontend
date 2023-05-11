@@ -4,7 +4,7 @@ import "./create.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { CreateHaikuContext } from "../../context";
 
-import SubjectForm from "../../components/form/subjectForm";
+import SubjectForm from "../../components/form/SubjectForm";
 import Card from "../../components/card/Card";
 
 import { transformAiDataObject } from "../../helpers/transformData";

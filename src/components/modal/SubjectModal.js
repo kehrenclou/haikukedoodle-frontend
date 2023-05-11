@@ -1,7 +1,7 @@
 import ModalWithForm from "./ModalWithForm";
-import SubjectForm from "../form/subjectForm";
+import SubjectForm from "../form/SubjectForm";
 
-export function SubjectModal({isOpen,onClose}) {
+export function SubjectModal({ isOpen, onClose }) {
   return (
     <>
       <ModalWithForm
@@ -10,7 +10,7 @@ export function SubjectModal({isOpen,onClose}) {
         name="subject"
         title="Enter a one-word subject to use for your Haiku."
       >
-        <SubjectForm/>
+        <SubjectForm />
       </ModalWithForm>
     </>
   );

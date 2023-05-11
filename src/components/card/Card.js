@@ -56,7 +56,15 @@ export default function Card({
         />
 
         <section className="card__section card__section_header ">
+     
           <h2 className="card__title">{subject}</h2>
+          <div className="card__icon-bookmark">
+          <Bookmark
+              onClick={handleBookmarkClick}
+              isBookmarked={isBookmarked}
+            />
+          </div>
+          
         </section>
 
         <section className="card__section card__section_body">
@@ -78,15 +86,12 @@ export default function Card({
             <Trash onClick={handleTrashClick} />
           </div>
           <div className="card__button-group">
+         
             <div className="card__like-container">
-            <Bookmark
-              onClick={handleBookmarkClick}
-              isBookmarked={isBookmarked}
-            />
-              <p className="card__like-count">{likeCount}</p>
+              <p className="card__like-count">{` ${likeCount} `}</p>
               <Heart onClick={handleLikeClick} isLiked={isLiked} />
             </div>
-   
+       
           </div>
         </section>
       </li>

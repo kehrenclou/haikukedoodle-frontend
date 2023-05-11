@@ -5,7 +5,8 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    padding:0 16px;
+    background-color: rgba(0, 0, 0, 0.8);
     z-index:15;
   
     display: flex; /*call display flex when modal is open .modal_open - modifier
@@ -19,6 +20,7 @@
   
     /*transition on close*/
     transition: visibility 0s 0.5s, opacity 0.5s ease-out;
+    
   }
   .modal_type_image {
     background-color: rgba(0, 0, 0, 0.9);

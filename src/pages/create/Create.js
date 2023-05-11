@@ -6,13 +6,15 @@ import "./create.css";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 import { CreateHaikuContext } from "../../context";
 
-import SubjectForm from "../../components/form/subjectForm";
+import SubjectForm from "../../components/form/SubjectForm";
 import Flower from "../../components/Flower/Flower";
+
 
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
 import { SubjectModal } from "../../components/modal/SubjectModal";
+import { SignupModal } from "../../components/modal/SignupModal";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ export default function Create() {
   const [isPresent, safeToRemove] = usePresence();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isSaveOpen, setIsSaveOpen] = useState(false);
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -67,10 +70,12 @@ export default function Create() {
     console.log("click");
   };
   const handleSaveClick = () => {
-    setIsOpen(true);
+    // setIsOpen(true);
+    setIsSaveOpen(true);
   };
   function handleCloseModal() {
     setIsOpen(false);
+    setIsSaveOpen(false);
   }
 
   return (
@@ -116,11 +121,11 @@ export default function Create() {
                     colorc="#171e2659"
                     className="create__flower"
                   />
-                  <h2 className="create__heading create__heading_card_result">
+                  <h2 className="create__heading create__heading_card">
                     {haikuCtx.state.subject}
                   </h2>
                   {zipPairs.map(([line, chord], i) => (
-                    <div className="card__line card__line_column" key={i}>
+                    <div className="create__card-line" key={i}>
                       <p className="card__text">{line}</p>
                       <p className="card__text card__text_med card__text_indent">
                         {chord}
@@ -133,7 +138,7 @@ export default function Create() {
                   <button
                     className="button button_type_secondary"
                     onClick={handleStartOver}
-                    disabled={isOpen}
+                    disabled={isSaveOpen}
                     aria-label="start over button"
                   >
                     Start Over
@@ -142,7 +147,7 @@ export default function Create() {
                   <button
                     className="button button_type_primary"
                     onClick={handleSaveClick}
-                    disabled={isOpen}
+                    disabled={isSaveOpen}
                     aria-label="save haiku button"
                   >
                     Save my Haiku
@@ -153,6 +158,7 @@ export default function Create() {
           </>
         )}
       </section>
+      <SignupModal isOpen={isSaveOpen} onClose={handleCloseModal}/>
       <SubjectModal isOpen={isOpen} onClose={handleCloseModal} />
     </>
   );

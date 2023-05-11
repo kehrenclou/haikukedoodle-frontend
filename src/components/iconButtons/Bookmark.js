@@ -34,7 +34,7 @@ export const Bookmark = ({ isBookmarked, onClick }) => {
                   borderRadius: "50%",
                   padding: "5px",
                   backgroundColor: "pink",
-                  boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
+                  boxShadow: "rgba(0, 0, 0, 0.45) 0px 3px 5px",
                   fontSize: "24px",
                   color: "#2b2d42",
                   border: "none",
@@ -48,9 +48,9 @@ export const Bookmark = ({ isBookmarked, onClick }) => {
                   borderRadius: "50%",
                   padding: "5px",
                   backgroundColor: "rgb(229, 236, 251)",
-                  boxShadow: "rgba(0, 0, 0, 0.45) 0px 5px 15px",
+                  boxShadow: "rgba(0, 0, 0, 0.45) 0px 1px 3px",
                   fontSize: "24px",
-                  "&:hover": { color: "#2b2d42",backgroundColor: "pink" },
+                  "&:hover": { color: "#2b2d42", backgroundColor: "pink" },
                 }}
               />
             )}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import _ from "lodash";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./main.css";
-
+import { ExpandMore } from "@mui/icons-material";
 //components
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
@@ -73,6 +73,9 @@ export default function Main() {
               </motion.div>
             )}
           </AnimatePresence>
+          <a href="#cards" className="main__show-more" aria-label="show more link">
+            <ExpandMore  sx={{backgroundColor:"#2b2d42", fill:"white", fontSize: "48px"}}/>
+          </a>
         </section>
 
         <section className="main__cards" id="cards">

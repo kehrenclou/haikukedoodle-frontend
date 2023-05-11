@@ -1,7 +1,8 @@
 .about {
   display: flex;
+  
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 130px auto 16px;
   padding: 32px 40px;
   flex-grow: 1;
@@ -18,7 +19,7 @@
 .about__container {
   display: flex;
   flex-direction: column;
-  width: 75vw;
+  max-width: 75vw;
   margin: 0 auto;
 }
 .about__heading {

@@ -56,22 +56,7 @@ export const backupAiDataArr = [
     usage: { prompt_tokens: 53, completion_tokens: 47, total_tokens: 100 },
     subject: "puppy",
   },
-  {
-    id: "cmpl-7E0HHmXkHWnAqeQnmmH6Mnq9x9AUe",
-    object: "text_completion",
-    created: 1683572015,
-    model: "text-davinci-003",
-    choices: [
-      {
-        text: "\nFurry friend so sweet\nLoyal companion and joy\nMy loyal pup, love deep \n\nChords: Em, A, D, G, Bm, Em",
-        index: 0,
-        logprobs: null,
-        finish_reason: "stop",
-      },
-    ],
-    usage: { prompt_tokens: 53, completion_tokens: 37, total_tokens: 90 },
-    subject: "hound",
-  },
+
   {
     id: "cmpl-7E1uJR5vQfeYU0NILMAQYq3K9PFqk",
     object: "text_completion",
@@ -95,7 +80,7 @@ export const backupAiDataArr = [
     model: "text-davinci-003",
     choices: [
       {
-        text: "\nMonkey jumps so high\nIn the trees, playing so wild\nA joyful sight to see \n\nG Em | Am D | G Em | Am D | \nC G | Am D | G Em | Am D | ",
+        text: "\nMonkey jumps so high\nIn the trees, playing so wild\nA joyful sight to see \n\nG Em | Am D | G Em | Am D | \nC G | Am D | G Em | Am D |\nG Em | Am D | G Em | Am D | ",
         index: 0,
         logprobs: null,
         finish_reason: "length",

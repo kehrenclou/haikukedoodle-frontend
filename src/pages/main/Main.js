@@ -9,12 +9,12 @@ import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
 
 //utils
-import OpenAiRequest from "../../utils/testApi";
+import OpenAiRequest from "../../utils/apis/testApi";
 import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,
   formatSongForDownload,
-} from "../../utils/transformData";
+} from "../../helpers/transformData";
 
 export default function Main() {
   const navigate = useNavigate();
@@ -73,14 +73,24 @@ export default function Main() {
               </motion.div>
             )}
           </AnimatePresence>
-          <a href="#cards" className="main__show-more" aria-label="show more link">
-            <ExpandMore  sx={{backgroundColor:"#2b2d42", fill:"white", fontSize: "48px"}}/>
+          <a
+            href="#cards"
+            className="main__show-more"
+            aria-label="show more link"
+          >
+            <ExpandMore
+              sx={{
+                backgroundColor: "#2b2d42",
+                fill: "white",
+                fontSize: "48px",
+              }}
+            />
           </a>
         </section>
 
         <section className="main__cards" id="cards">
           <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
-          <ul className="main__cards_list">
+          <ul className="main__cards_list" id="cards-list">
             {songObjects.map((song) => (
               <Card
                 key={_.uniqueId("card-")}

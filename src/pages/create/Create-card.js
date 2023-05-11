@@ -7,7 +7,7 @@ import { CreateHaikuContext } from "../../context";
 import SubjectForm from "../../components/form/subjectForm";
 import Card from "../../components/card/Card";
 
-import { transformAiDataObject } from "../../utils/transformData";
+import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
 import { SubjectModal } from "../../components/modal/SubjectModal";

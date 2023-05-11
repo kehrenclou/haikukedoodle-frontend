@@ -37,9 +37,9 @@ button:hover {
 }
 .button_type_primary {
   background-color: #fdc9ef;
-  border: 2px solid #2b2d42;
   margin: 0;
-  width: 150px;
+
+  padding: 16px 0;
 }
 .button_type_primary:hover {
   background-color: #fdc9ef;
@@ -49,7 +49,9 @@ button:hover {
 .button_type_secondary {
   background-color: #2b2d42;
   border: 1px solid white;
-  color:white;
+  color: white;
+  padding: 16px 0;
+  box-sizing: border-box;
 }
 .button_type_mobile {
   position: absolute;
@@ -76,13 +78,8 @@ button:hover {
     top: 35px;
     right: 5px;
   }
- 
 }
-@media screen and (max-width: 500px) {
-  .button {
-    padding: 8px;
-  }
-}
+
 @media screen and (max-width: 400px) {
   .button_type_mobile {
     top: 38px;

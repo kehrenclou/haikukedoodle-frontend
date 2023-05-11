@@ -48,7 +48,7 @@
 .create__result-btn-container {
   margin-top: 40px;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -93,24 +93,20 @@
   }
 }
 @media screen and (max-width: 500px) {
-  .create{
-    margin-top:100px;
-  }
   .create__container {
     border-radius: 8px;
     padding: 20px;
     max-width: 250px;
     max-height: 600px;
   }
- 
+
   .create__container_card {
     padding-bottom: 50px;
   }
-
 }
-@media screen and (max-width:400px){
+@media screen and (max-width: 400px) {
   .create__heading {
-    margin-bottom:20px;
+    margin-bottom: 20px;
     font-size: 24px;
   }
   .create__result-btn-container {

@@ -5,7 +5,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index:15;
   
     display: flex; /*call display flex when modal is open .modal_open - modifier
@@ -165,7 +165,7 @@
   
   @media screen and (max-width: 625px) {
     .modal__content {
-      max-width: 282px;
+      max-width: 350px;
   
       padding: 25px 22px;
     }

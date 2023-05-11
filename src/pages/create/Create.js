@@ -59,7 +59,7 @@ export default function Create() {
     setIsLoaded(true);
   };
 
-  const handleMakeAnotherClick = () => {
+  const handleStartOver = () => {
     navigate("/");
   };
 
@@ -132,8 +132,9 @@ export default function Create() {
                 <div className="create__result-btn-container">
                   <button
                     className="button button_type_secondary"
-                    onClick={handleMakeAnotherClick}
-                    aria-label="open create form"
+                    onClick={handleStartOver}
+                    disabled={isOpen}
+                    aria-label="start over button"
                   >
                     Start Over
                   </button>
@@ -141,6 +142,8 @@ export default function Create() {
                   <button
                     className="button button_type_primary"
                     onClick={handleSaveClick}
+                    disabled={isOpen}
+                    aria-label="save haiku button"
                   >
                     Save my Haiku
                   </button>

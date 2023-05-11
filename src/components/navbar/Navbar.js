@@ -43,7 +43,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
             <NavLink
               to="/faq"
               className="nav__link"
-              style={({ isActive, isPending }) => {
+              style={({ isActive }) => {
                 return {
                   color: isActive ? "#fdc9ef" : "",
                   fontWeight: isActive ? "700" : "400",
@@ -58,7 +58,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
             <NavLink
               to="/contact"
               className="nav__link"
-              style={({ isActive, isPending }) => {
+              style={({ isActive }) => {
                 return {
                   color: isActive ? "#fdc9ef" : "",
                   fontWeight: isActive ? "700" : "400",
@@ -70,7 +70,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
             </NavLink>
           </li>
           <li className="nav__item">
-            <button className="button button_type_nav" type="button" aria-label="Sign up">
+            <button className="button button_type_primary" type="button" aria-label="Sign up">
               Sign Up
             </button>
           </li>

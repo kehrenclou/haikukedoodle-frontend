@@ -47,7 +47,7 @@ export default function SubjectForm({ handleSubmitClick }) {
           name="subject"
           type="text"
           placeholder="Enter a one-word subject"
-          className={`form-control ${
+          className={` ${
             errors.subject ? "is-invalid" : ""
           } form__input`}
           {...register("subject", {
@@ -67,7 +67,7 @@ export default function SubjectForm({ handleSubmitClick }) {
             type="checkbox"
             {...register("acceptTerms", { required: true })}
             id="acceptTerms"
-            className={`button_type_checkbox form-control ${
+            className={`button_type_form-checkbox form-control ${
               errors.acceptTerms ? "is-invalid" : ""
             }`}
           ></input>
@@ -84,12 +84,12 @@ export default function SubjectForm({ handleSubmitClick }) {
       <div>
         <button
           type="button"
-          className="button button_type_cancel"
+          className="button button_type_form button_type_form_cancel"
           onClick={() => reset()}
         >
           Cancel
         </button>
-        <button type="submit" className="button button_type_submit">
+        <button type="submit" className="button button_type_form button_type_form_submit">
           Create
         </button>
       </div>

@@ -15,11 +15,10 @@ import { SubjectModal } from "../../components/modal/SubjectModal";
 
 export default function Create() {
   const [isOpen, setIsOpen] = useState(false);
-
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [test, setTest] = useState();
+
 
   const haikuCtx = useContext(CreateHaikuContext);
 
@@ -34,6 +33,7 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
+  /* ---------------------------------- utils --------------------------------- */
   //set chat gpt statement with input
   function generatePrompt(input) {
     const capitalizedSubject =
@@ -43,7 +43,7 @@ export default function Create() {
       next, write three lines of guitar chords to accompany the haiku.`;
     return prompt;
   }
-
+/* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
     //todo - update when backend implemented for res data
 
@@ -59,6 +59,8 @@ export default function Create() {
   function handleCloseModal() {
     setIsOpen(false);
   }
+
+  
   return (
     <>
       <section className="create" key="create">
@@ -106,9 +108,10 @@ export default function Create() {
               <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
             </div>
             <div className="create__result-btn-container">
-              <button className="button button_type_med">Save to my Profile</button>
-              <button className="button button_type_med">Make Another Haiku</button>
-              <button className="button button_type_med">Read more Haikus</button>
+           
+              <button className="button button_type_secondary">Make Another Haiku</button>
+              <button className="button button_type_secondary">Read more Haikus</button>
+              <button className="button button_type_primary">Save to my Profile</button>
             </div>
           </>
         )}

@@ -11,14 +11,14 @@ import { SignupModal } from "../../components/modal/SignupModal";
 import SubjectForm from "../../components/form/SubjectForm";
 import Loader from "../loader/Loader";
 
-const Result = lazy(() => delayForDemo(import("../result/Result")));
+// const Result = lazy(() => delayForDemo(import("../result/Result")));
 
 /* ---------------------------------- demo ---------------------------------- */
-function delayForDemo(promise) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 9000);
-  }).then(() => promise);
-}
+// function delayForDemo(promise) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, 9000);
+//   }).then(() => promise);
+// }
 
 export default function Create() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Create() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSaveOpen, setIsSaveOpen] = useState(false);
   const [zipPairs, setZipPairs] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -45,6 +45,9 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
+  useEffect(() => {
+    delayForDemo();
+  }, [isLoading]);
   /* ---------------------------------- utils --------------------------------- */
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -56,21 +59,32 @@ export default function Create() {
     return prompt;
   }
 
+  function delayForDemo(promise) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 9000);
+    })
+      .then(() => promise)
+      .then(() => setIsLoading(false))
+      .then(()=>navigate("/result"));
+  }
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
     //todo - update when backend implemented for res data
 
     const tsfResponse = transformAiDataObject(resp); //extract lines and chords
     haikuCtx.updateAll(subject, terms, tsfResponse[0]);
-    setIsLoaded(true);
+    setIsLoading(true);
   };
+
   const handleStartOverClick = () => {
     navigate("/");
   };
+
   const handleSaveClick = () => {
     // setIsOpen(true);
     setIsSaveOpen(true);
   };
+
   function handleCloseModal() {
     setIsOpen(false);
     setIsSaveOpen(false);
@@ -79,7 +93,7 @@ export default function Create() {
   return (
     <>
       <section className="create" key="create">
-        {!isLoaded ? (
+        {!isLoading ? (
           <>
             <h1 className="create__heading">
               Enter a one word subject to create your haiku.
@@ -100,13 +114,14 @@ export default function Create() {
           </>
         ) : (
           <>
-            <Suspense fallback={<Loader />}>
+            <Loader isLoading={isLoading} />
+            {/* <Suspense fallback={<Loader />}>
               <Result
                 onSaveClick={handleSaveClick}
                 onStartOverClick={handleStartOverClick}
                 isSaveOpen={isSaveOpen}
               />
-            </Suspense>
+            </Suspense> */}
           </>
         )}
       </section>

@@ -9,6 +9,7 @@ import Main from "./main";
 import Footer from "../components/footer/Footer";
 import About from "./about";
 import Create from "./create";
+import Result from "./result";
 import Faq from "./faq/Faq";
 import Loader from "./loader/Loader";
 import ModalWithForm from "../components/modal/ModalWithForm";
@@ -27,9 +28,10 @@ function App() {
           <Routes location={location} key={location.key}>
             <Route path="/" element={<Main />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/result" element={<Result />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/loader" element={<Loader/>}/>
+            <Route path="/loader" element={<Loader />} />
           </Routes>
         </AnimatePresence>
         <Footer />

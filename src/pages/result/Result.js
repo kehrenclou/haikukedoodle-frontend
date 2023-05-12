@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
-import "../create/create.css";
+
+import"./result.css";
 
 import { CreateHaikuContext } from "../../context";
 
 import Flower from "../../components/Flower/Flower";
+import Loader from "../loader/Loader";
 
 export default function Result({ isSaveOpen, onSaveClick, onStartOverClick }) {
   const haikuCtx = useContext(CreateHaikuContext);
@@ -24,7 +25,8 @@ export default function Result({ isSaveOpen, onSaveClick, onStartOverClick }) {
 
   return (
     <>
-      <h1 className="create__heading create__heading_result">
+    <section className="result">
+    <h1 className="result__heading">
         the Masterpiece.
       </h1>
       <AnimatePresence mode="wait">
@@ -35,29 +37,29 @@ export default function Result({ isSaveOpen, onSaveClick, onStartOverClick }) {
           exit={{ opacity: 0, rotate: 360, scale: 1.2 }}
           key="card"
         >
-          <div className="create__container create__container_card">
+          <div className="result__container">
             <Flower
               width="154"
               height="133"
               petalcolor="rgba(213,157,169,.2)"
               colorb="#47535c59"
               colorc="#171e2659"
-              className="create__flower"
+              className="result__flower"
             />
-            <h2 className="create__heading create__heading_card">
+            <h2 className="result__heading result__heading_card">
               {haikuCtx.state.subject}
             </h2>
             {zipPairs.map(([line, chord], i) => (
-              <div className="create__card-line" key={i}>
-                <p className="card__text">{line}</p>
-                <p className="card__text card__text_med card__text_indent">
+              <div className="result__line" key={i}>
+                <p className="result__text">{line}</p>
+                <p className="result__text result__text_med">
                   {chord}
                 </p>
               </div>
             ))}{" "}
             <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
           </div>
-          <div className="create__result-btn-container">
+          <div className="result__container_button">
             <button
               className="button button_type_secondary"
               onClick={onStartOverClick}
@@ -78,6 +80,8 @@ export default function Result({ isSaveOpen, onSaveClick, onStartOverClick }) {
           </div>
         </motion.div>
       </AnimatePresence>
+    </section>
+
     </>
   );
 }

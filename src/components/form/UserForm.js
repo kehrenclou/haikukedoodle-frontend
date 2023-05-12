@@ -113,6 +113,7 @@ export default function UserForm({
       </form>
       <div className="form__text-container">
         {text}
+        <button></button>
         <Link to={link} className="form__text">
           {linkText}
         </Link>

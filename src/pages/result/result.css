@@ -1,0 +1,125 @@
+.result {
+  margin: 150px auto 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.result__container {
+  background-color: rgba(219, 230, 253);
+  color: #2b2d42;
+  margin: 0 auto;
+  padding: 50px;
+  border-radius: 100%;
+  border: 1px solid #2b2d428d;
+  width: 350px;
+  height: 350px;
+  box-shadow: #2f72e583 5px 5px 55px 5px,
+    rgba(255, 192, 203, 0.725) 5px 5px 15px 3px, #2f72e583 -5px -5px 55px 5px,
+    rgba(255, 192, 203, 0.725) -5px -5px 15px 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+/* .create__container_card {
+    position: relative;
+    justify-content: flex-start;
+    border-radius: 8px;
+    height: auto;
+    padding-top: 20px;
+  } */
+.result__heading {
+  font-size: 36px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0 54px 0;
+  z-index: 0;
+}
+.result__heading_card {
+  margin: 0px 0 20px;
+  font-size: 28px;
+  font-weight: 400px;
+  font-weight: 700;
+  z-index: 0;
+}
+.result__flower {
+  position: absolute;
+  bottom: 10px;
+  right: 150px;
+  padding: 0;
+
+  z-index: 0;
+}
+.result__line {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  z-index: 0;
+}
+.result__text{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    z-index: 1;
+    text-align: center;
+}
+.result__text_med{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.result__container_button{
+    margin-top: 54px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 920px) {
+  .result {
+    margin-top: 170px;
+  }
+
+  .result__heading {
+    margin: 10px 0 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .result {
+    margin-top: 120px;
+  }
+  .result__container {
+    width: 300px;
+    height: 300px;
+  }
+  .result__flower {
+    right: 125px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .result__container {
+    border-radius: 8px;
+    padding: 40px 20px 60px;
+    max-width: 250px;
+    /* max-height: 600px; */
+  }
+  .result__heading {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .result__heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  .result__container_button {
+    padding: 0 50px;
+    flex-direction: column-reverse;
+  }
+}

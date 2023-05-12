@@ -64,21 +64,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
               FAQ
             </NavLink>
           </li>
-          <li className="nav__item">
-            <NavLink
-              to="/contact"
-              className="nav__link"
-              style={({ isActive }) => {
-                return {
-                  color: isActive ? "#fdc9ef" : "",
-                  fontWeight: isActive ? "700" : "400",
-                };
-              }}
-              onClick={onLinkClick}
-            >
-              Contact
-            </NavLink>
-          </li>
+
           <li className="nav__item">
             <button
               className="button button_type_primary"

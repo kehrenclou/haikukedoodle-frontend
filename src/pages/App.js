@@ -10,6 +10,7 @@ import Footer from "../components/footer/Footer";
 import About from "./about";
 import Create from "./create";
 import Faq from "./faq/Faq";
+import Loader from "./loader/Loader";
 import ModalWithForm from "../components/modal/ModalWithForm";
 
 /* ---------------------------------- store --------------------------------- */
@@ -28,6 +29,7 @@ function App() {
             <Route path="/create" element={<Create />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/loader" element={<Loader/>}/>
           </Routes>
         </AnimatePresence>
         <Footer />

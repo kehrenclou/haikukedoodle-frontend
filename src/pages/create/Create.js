@@ -1,24 +1,21 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Suspense, lazy } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./create.css";
 
-import { motion, AnimatePresence, usePresence } from "framer-motion";
 import { CreateHaikuContext } from "../../context";
-
-import SubjectForm from "../../components/form/SubjectForm";
-import Flower from "../../components/Flower/Flower";
-
-
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
-import { SubjectModal } from "../../components/modal/SubjectModal";
 import { SignupModal } from "../../components/modal/SignupModal";
+import SubjectForm from "../../components/form/SubjectForm";
+import Result from "../result/Result";
+import Flower from "../../components/Flower/Flower";
 
 export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
+
   const [isPresent, safeToRemove] = usePresence();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +39,12 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
+  /* ---------------------------------- demo ---------------------------------- */
+  function delayForDemo(promise) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 3000);
+    }).then(() => promise);
+  }
   /* ---------------------------------- utils --------------------------------- */
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -101,7 +104,8 @@ export default function Create() {
           </>
         ) : (
           <>
-            <h1 className="create__heading create__heading_result">
+          <Result/>
+            {/* <h1 className="create__heading create__heading_result">
               the Masterpiece.
             </h1>
             <AnimatePresence mode="wait">
@@ -154,12 +158,11 @@ export default function Create() {
                   </button>
                 </div>
               </motion.div>
-            </AnimatePresence>
+            </AnimatePresence> */}
           </>
         )}
       </section>
-      <SignupModal isOpen={isSaveOpen} onClose={handleCloseModal}/>
-      <SubjectModal isOpen={isOpen} onClose={handleCloseModal} />
+      <SignupModal isOpen={isSaveOpen} onClose={handleCloseModal} />
     </>
   );
 }

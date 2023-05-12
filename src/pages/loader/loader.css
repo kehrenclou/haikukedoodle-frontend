@@ -1,0 +1,74 @@
+.loader {
+  background-color: #2b2d42;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  height: 100vh;
+  margin-top: 150px;
+  padding: 32px 0 32px;
+}
+.loader__heading {
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  color: hsl(0, 0%, 90%);
+}
+.loader__text {
+  color: hsl(0, 0%, 28%);
+  font-size: 24px !important;
+  font-weight: bold !important;
+  font-family: monospace;
+  letter-spacing: 7px !important;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.loader__animate {
+  background: linear-gradient(
+    to right,
+    hsl(316, 93%, 28%) 0%,
+    hsl(0, 0%, 100%) 10%,
+    hsl(0, 0%, 50%) 20%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 3s infinite linear alternate;
+}
+
+.loader__animate_2 {
+  background: linear-gradient(
+    to right,
+    hsl(316, 93%, 28%) 0%,
+    hsl(0, 0%, 100%) 10%,
+    hsl(0, 0%, 50%) 20%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 5s infinite linear alternate;
+}
+.loader__animate_3 {
+  background: linear-gradient(
+    to right,
+    hsl(316, 93%, 28%) 0%,
+    hsl(0, 0%, 100%) 10%,
+    hsl(0, 0%, 50%) 20%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 4s infinite alternate;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: 300px;
+  }
+  100% {
+    background-position: 600px;
+  }
+}

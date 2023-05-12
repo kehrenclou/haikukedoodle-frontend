@@ -92,17 +92,17 @@ export const backupAiDataArr = [
 ];
 //what the response looks like:
 export const resp = {
-  id: "cmpl-7EOPX6pyG65nzZJGquoGrAeshJYhu",
+  id: "cmpl-7E1uJR5vQfeYU0NILMAQYq3K9PFqk",
   object: "text_completion",
-  created: 1683664783,
+  created: 1683578279,
   model: "text-davinci-003",
   choices: [
     {
-      text: "\nSoft pages turn\nWaves of feelings surging deep\nLove in the air now\n\nD C G D G B\nA C E G B A\nD C G D A D",
+      text: "\nSoft fur so warm,\nPurrs of contentment heard,\nMy loyal cat friend.\n\nC D G D C\nA D E G D\nE D C G A",
       index: 0,
       logprobs: null,
       finish_reason: "stop",
     },
   ],
-  usage: { prompt_tokens: 54, completion_tokens: 39, total_tokens: 93 },
+  usage: { prompt_tokens: 53, completion_tokens: 39, total_tokens: 92 },
 };

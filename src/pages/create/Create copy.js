@@ -9,25 +9,19 @@ import { resp } from "../../utils/data/backupData";
 
 import { SignupModal } from "../../components/modal/SignupModal";
 import SubjectForm from "../../components/form/SubjectForm";
-import Loader from "../loader/Loader";
-
-const Result = lazy(() => delayForDemo(import("../result/Result")));
-
-/* ---------------------------------- demo ---------------------------------- */
-function delayForDemo(promise) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 9000);
-  }).then(() => promise);
-}
+import Result from "../result/Result";
+import Flower from "../../components/Flower/Flower";
 
 export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
 
   const [isPresent, safeToRemove] = usePresence();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isSaveOpen, setIsSaveOpen] = useState(false);
   const [zipPairs, setZipPairs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -45,6 +39,12 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
+  /* ---------------------------------- demo ---------------------------------- */
+  function delayForDemo(promise) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 3000);
+    }).then(() => promise);
+  }
   /* ---------------------------------- utils --------------------------------- */
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -64,8 +64,13 @@ export default function Create() {
     haikuCtx.updateAll(subject, terms, tsfResponse[0]);
     setIsLoaded(true);
   };
-  const handleStartOverClick = () => {
+
+  const handleStartOver = () => {
     navigate("/");
+  };
+
+  const handleDownloadClick = () => {
+    console.log("click");
   };
   const handleSaveClick = () => {
     // setIsOpen(true);
@@ -84,14 +89,13 @@ export default function Create() {
             <h1 className="create__heading">
               Enter a one word subject to create your haiku.
             </h1>
-
             <AnimatePresence mode="wait">
               <motion.div
                 className="create__container"
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ ease: "linear", duration: 0.75 }}
                 initial={{ opacity: 1, scale: 0 }}
-                exit={{ opacity: 0, scale: 1 }} //modify this for the exit0.1
+                exit={{ opacity: 0, rotate: 360, scale: 1.2 }} //modify this for the exit
                 key="form"
               >
                 <SubjectForm handleSubmitClick={handleSubmitClick} />
@@ -100,13 +104,61 @@ export default function Create() {
           </>
         ) : (
           <>
-            <Suspense fallback={<Loader />}>
-              <Result
-                onSaveClick={handleSaveClick}
-                onStartOverClick={handleStartOverClick}
-                isSaveOpen={isSaveOpen}
-              />
-            </Suspense>
+          <Result/>
+            {/* <h1 className="create__heading create__heading_result">
+              the Masterpiece.
+            </h1>
+            <AnimatePresence mode="wait">
+              <motion.div
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ ease: "linear", duration: 0.75 }}
+                initial={{ opacity: 1, scale: 0 }}
+                exit={{ opacity: 0, rotate: 360, scale: 1.2 }}
+                key="card"
+              >
+                <div className="create__container create__container_card">
+                  <Flower
+                    width="154"
+                    height="133"
+                    petalcolor="rgba(213,157,169,.2)"
+                    colorb="#47535c59"
+                    colorc="#171e2659"
+                    className="create__flower"
+                  />
+                  <h2 className="create__heading create__heading_card">
+                    {haikuCtx.state.subject}
+                  </h2>
+                  {zipPairs.map(([line, chord], i) => (
+                    <div className="create__card-line" key={i}>
+                      <p className="card__text">{line}</p>
+                      <p className="card__text card__text_med card__text_indent">
+                        {chord}
+                      </p>
+                    </div>
+                  ))}{" "}
+                  <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
+                </div>
+                <div className="create__result-btn-container">
+                  <button
+                    className="button button_type_secondary"
+                    onClick={handleStartOver}
+                    disabled={isSaveOpen}
+                    aria-label="start over button"
+                  >
+                    Start Over
+                  </button>
+
+                  <button
+                    className="button button_type_primary"
+                    onClick={handleSaveClick}
+                    disabled={isSaveOpen}
+                    aria-label="save haiku button"
+                  >
+                    Save my Haiku
+                  </button>
+                </div>
+              </motion.div>
+            </AnimatePresence> */}
           </>
         )}
       </section>

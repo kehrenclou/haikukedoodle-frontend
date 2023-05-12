@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import _ from "lodash";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
-import "./main.css";
 import { ExpandMore } from "@mui/icons-material";
+import "./main.css";
+
 //components
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
 
 //utils
-import OpenAiRequest from "../../utils/apis/testApi";
+
 import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,
@@ -22,7 +23,6 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence();
 
   const [songObjects, setSongObjects] = useState([]);
-  const [json, setJson] = useState();
 
   useEffect(() => {
     setSongObjects(transformAiDataArr(backupAiDataArr));
@@ -53,7 +53,7 @@ export default function Main() {
       <main className="main" id="main">
         <section className="main__hero" id="hero">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
-          {/* <OpenAiRequest /> */}
+
           <AnimatePresence mode="wait">
             {isVisible && (
               <motion.div

@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useContext, Suspense, lazy } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence, usePresence } from "framer-motion";
+import React, { useState, useEffect, useContext } from "react";
+
+import { motion, AnimatePresence } from "framer-motion";
 import "../create/create.css";
 
 import { CreateHaikuContext } from "../../context";
 
 import Flower from "../../components/Flower/Flower";
 
-export default function Result({}) {
-    const navigate = useNavigate();
+export default function Result({ isSaveOpen, onSaveClick, onStartOverClick }) {
   const haikuCtx = useContext(CreateHaikuContext);
   const [zipPairs, setZipPairs] = useState([]);
-  const [isSaveOpen, setIsSaveOpen] = useState(false);
 
   useEffect(() => {
     const zipPairs = [];
@@ -24,15 +22,6 @@ export default function Result({}) {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
-  /* -------------------------------- handlers -------------------------------- */
-  const handleStartOver = () => {
-    navigate("/");
-  };
-  const handleSaveClick = () => {
-    // setIsOpen(true);
-    setIsSaveOpen(true);
-  };
-
   return (
     <>
       <h1 className="create__heading create__heading_result">
@@ -41,7 +30,7 @@ export default function Result({}) {
       <AnimatePresence mode="wait">
         <motion.div
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ ease: "linear", duration: 0.75 }}
+          transition={{ ease: "linear", duration: 0.5 }}
           initial={{ opacity: 1, scale: 0 }}
           exit={{ opacity: 0, rotate: 360, scale: 1.2 }}
           key="card"
@@ -71,7 +60,7 @@ export default function Result({}) {
           <div className="create__result-btn-container">
             <button
               className="button button_type_secondary"
-              onClick={handleStartOver}
+              onClick={onStartOverClick}
               disabled={isSaveOpen}
               aria-label="start over button"
             >
@@ -80,7 +69,7 @@ export default function Result({}) {
 
             <button
               className="button button_type_primary"
-              onClick={handleSaveClick}
+              onClick={onSaveClick}
               disabled={isSaveOpen}
               aria-label="save haiku button"
             >

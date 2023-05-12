@@ -4,9 +4,8 @@
   flex-direction: column;
   align-items: center;
   max-width: 100%;
-  height: 100vh;
-  margin-top: 150px;
-  padding: 32px 0 32px;
+  max-height: 20vh;
+  margin-top: 90px;
 }
 .loader__heading {
   letter-spacing: 3px;
@@ -70,5 +69,17 @@
   }
   100% {
     background-position: 600px;
+  }
+}
+@media screen and (max-width: 920px) {
+  .loader {
+    margin-top: 50px;
+    min-height: 40vh;
+  }
+}
+@media screen and (max-width: 600px) {
+  .loader {
+    margin-top: 20px;
+    max-height: 50vh;
   }
 }

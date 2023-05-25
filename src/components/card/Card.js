@@ -9,7 +9,7 @@ import {
   Favorite,
 } from "@mui/icons-material";
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
-import Flower from "../Flower/Flower";
+import Flower from "../flower/Flower";
 
 export default function Card({
   subject,
@@ -49,22 +49,20 @@ export default function Card({
         <Flower
           width="154"
           height="133"
-          petalcolor="rgba(213,157,169,.2)"
-          colorb="#47535c59"
-          colorc="#171e2659"
+          colora="rgba(213,157,169,.2)"
+          colorb="rgba(213,157,169,.3)"
+          colorc="rgba(213,157,169,.5)"
           className="card__bg"
         />
 
         <section className="card__section card__section_header ">
-     
           <h2 className="card__title">{subject}</h2>
           <div className="card__icon-bookmark">
-          <Bookmark
+            <Bookmark
               onClick={handleBookmarkClick}
               isBookmarked={isBookmarked}
             />
           </div>
-          
         </section>
 
         <section className="card__section card__section_body">
@@ -86,12 +84,10 @@ export default function Card({
             <Trash onClick={handleTrashClick} />
           </div>
           <div className="card__button-group">
-         
             <div className="card__like-container">
               <p className="card__like-count">{` ${likeCount} `}</p>
               <Heart onClick={handleLikeClick} isLiked={isLiked} />
             </div>
-       
           </div>
         </section>
       </li>

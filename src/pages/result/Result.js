@@ -5,7 +5,7 @@ import"./result.css";
 
 import { CreateHaikuContext } from "../../context";
 
-import Flower from "../../components/Flower/Flower";
+import Flower from "../../components/flower/Flower";
 import Loader from "../loader/Loader";
 
 export default function Result({ isSaveOpen, onSaveClick, onStartOverClick }) {

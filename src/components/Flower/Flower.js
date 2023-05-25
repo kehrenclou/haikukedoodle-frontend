@@ -2,7 +2,7 @@
 import * as React from "react";
 
 
-const Flower = ({width="",height="",petalcolor="",colorb="",colorc="",...props}) => (
+const Flower = ({width="",height="",colora="",colorb="",colorc="",...props}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}//154 original
@@ -12,7 +12,7 @@ const Flower = ({width="",height="",petalcolor="",colorb="",colorc="",...props})
   >
     <path
       //petal fill
-      fill={petalcolor}//rba(213,157,169,.5)
+      fill={colora}//rba(213,157,169,.5)
       // fill="#d59da9"
       d="M98.742.573c-23.492-5.25-27.29 26.892-26.252 43.62C61.696 30.62 45.22 3.892 21.602 17.535 6.8 28.782 43.403 51.276 63.556 61.117 1.646 51.356-3.625 71.573 1.478 82.903c13.167 22.155 48.459 4.28 64.46-7.426-15.97 17.05-40.451 46.996-12.176 56.954 27.952 5.52 33.983-30.49 33.11-48.637 12.479 14.676 43.593 33.032 59.214 19.785 17.421-19.395-22.24-28.744-44.248-30.995 20.215-.333 55.486-9.431 51.91-25.513-4.473-20.112-45.013-5.937-63.151 3.352 12.504-14.43 31.638-44.6 8.145-49.85Z"
     />
@@ -26,6 +26,7 @@ const Flower = ({width="",height="",petalcolor="",colorb="",colorc="",...props})
     <path
       //circle around center of flower
       fill={colorb}//#47535c
+      // fill={colorb}//#47535c
       d="M88.325 65.925C87 70.05 81.91 72.497 76.953 71.39c-4.955-1.108-7.898-5.35-6.573-9.474 1.325-4.126 6.416-6.572 11.372-5.464 4.955 1.108 7.898 5.35 6.573 9.474Z"
     />
     <path

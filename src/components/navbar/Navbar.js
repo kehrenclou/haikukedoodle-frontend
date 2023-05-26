@@ -15,8 +15,8 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
   }
   return (
     <>
-      <nav>
-        <ul className={isLessThan600 ? "nav nav_mobile" : "nav"} id="menu">
+      <ul className={isLessThan600 ? "nav nav_mobile" : "nav"} id="menu">
+        <div className="nav__container">
           <li className="nav__item">
             <NavLink
               to="/"
@@ -64,19 +64,19 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
               FAQ
             </NavLink>
           </li>
+        </div>
+        <li className="nav__item">
+          <button
+            className="button button_type_primary"
+            type="button"
+            aria-label="Sign up"
+            onClick={handleSignUpOpen}
+          >
+            Sign Up
+          </button>
+        </li>
+      </ul>
 
-          <li className="nav__item">
-            <button
-              className="button button_type_primary"
-              type="button"
-              aria-label="Sign up"
-              onClick={handleSignUpOpen}
-            >
-              Sign Up
-            </button>
-          </li>
-        </ul>
-      </nav>
       <SignupModal isOpen={isSignupOpen} onClose={handleCloseModal} />
     </>
   );

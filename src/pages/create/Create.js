@@ -1,38 +1,28 @@
-import React, { useState, useEffect, useContext, Suspense, lazy } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence, usePresence } from "framer-motion";
+import { motion, AnimatePresence, usePresence, Variants } from "framer-motion";
 import "./create.css";
 
 import { CreateHaikuContext } from "../../context";
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
-import { SignupModal } from "../../components/modal/SignupModal";
 import SubjectForm from "../../components/form/SubjectForm";
 import Loader from "../loader/Loader";
-
-// const Result = lazy(() => delayForDemo(import("../result/Result")));
-
-/* ---------------------------------- demo ---------------------------------- */
-// function delayForDemo(promise) {
-//   return new Promise((resolve) => {
-//     setTimeout(resolve, 9000);
-//   }).then(() => promise);
-// }
 
 export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
 
   const [isPresent, safeToRemove] = usePresence();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSaveOpen, setIsSaveOpen] = useState(false);
   const [zipPairs, setZipPairs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(true);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
-  }, [isPresent]); //for animation component unmount
+  }, [isPresent]);
+  //for animation component unmount
 
   useEffect(() => {
     const zipPairs = [];
@@ -45,9 +35,6 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
-  useEffect(() => {
-    delayForDemo();
-  }, [isLoading]);
   /* ---------------------------------- utils --------------------------------- */
   //set chat gpt statement with input
   function generatePrompt(input) {
@@ -61,11 +48,10 @@ export default function Create() {
 
   function delayForDemo(promise) {
     return new Promise((resolve) => {
-      setTimeout(resolve, 9000);
+      setTimeout(resolve, 4000);
     })
       .then(() => promise)
-      .then(() => setIsLoading(false))
-      .then(()=>navigate("/result"));
+      .then(() => navigate("/result"));
   }
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
@@ -74,58 +60,40 @@ export default function Create() {
     const tsfResponse = transformAiDataObject(resp); //extract lines and chords
     haikuCtx.updateAll(subject, terms, tsfResponse[0]);
     setIsLoading(true);
-  };
 
-  const handleStartOverClick = () => {
-    navigate("/");
+    delayForDemo();
   };
-
-  const handleSaveClick = () => {
-    // setIsOpen(true);
-    setIsSaveOpen(true);
-  };
-
-  function handleCloseModal() {
-    setIsOpen(false);
-    setIsSaveOpen(false);
-  }
 
   return (
     <>
       <section className="create" key="create">
-        {!isLoading ? (
-          <>
-            <h1 className="create__heading">
-              Enter a one word subject to create your haiku.
-            </h1>
+        <AnimatePresence mode="wait">
+          {!isLoading && (
+            <>
+              <h1 className="create__heading">
+                Enter a one word subject to create your haiku.
+              </h1>
 
-            <AnimatePresence mode="wait">
               <motion.div
                 className="create__container"
+                transition={{ ease: "linear", duration: 1 }}
+                initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ ease: "linear", duration: 0.75 }}
-                initial={{ opacity: 1, scale: 0 }}
-                exit={{ opacity: 0, scale: 1 }} //modify this for the exit0.1
+                exit={{ opacity: 0, scale: 0 }}
                 key="form"
               >
                 <SubjectForm handleSubmitClick={handleSubmitClick} />
               </motion.div>
-            </AnimatePresence>
-          </>
-        ) : (
+            </>
+          )}
+        </AnimatePresence>
+
+        {isLoading && (
           <>
-            <Loader isLoading={isLoading} />
-            {/* <Suspense fallback={<Loader />}>
-              <Result
-                onSaveClick={handleSaveClick}
-                onStartOverClick={handleStartOverClick}
-                isSaveOpen={isSaveOpen}
-              />
-            </Suspense> */}
+            <Loader isError={isError} isLoading={isLoading} />
           </>
         )}
       </section>
-      <SignupModal isOpen={isSaveOpen} onClose={handleCloseModal} />
     </>
   );
 }

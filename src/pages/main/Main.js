@@ -19,7 +19,7 @@ import {
 
 export default function Main() {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);//controls visibility of yinyang 
   const [isPresent, safeToRemove] = usePresence();
 
   const [songObjects, setSongObjects] = useState([]);
@@ -32,7 +32,7 @@ export default function Main() {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 
-  function createClickHandler() {
+  function handleCreateClick() {
     setIsVisible(false);
     navigate("/create");
   }
@@ -58,16 +58,17 @@ export default function Main() {
             {isVisible && (
               <motion.div
                 className="main__image"
-                animate={{ opacity: 1, rotate: 360, scale: 1 }}
+              
                 transition={{ ease: "anticipate", duration: 1 }}
                 initial={{ opacity: 0, scale: 0.75 }}
+                animate={{ opacity: 1, rotate: 360, scale: 1 }}
                 exit={{ opacity: 0, rotate: 360, scale: 0 }}
                 key="container"
               >
                 <Yinyang
                   className="main__image_size"
                   href="#cards"
-                  onCreateClick={createClickHandler}
+                  onCreateClick={handleCreateClick}
                   key="yinyang"
                 />
               </motion.div>

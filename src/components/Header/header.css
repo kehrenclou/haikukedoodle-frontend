@@ -21,22 +21,13 @@
   justify-content: flex-start; */
   align-items: flex-start;
 }
-.header__nav {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  position: relative;
-}
-.header__nav_mobile {
-  justify-content: center;
-}
 
 .header__logo {
   max-width: 250px;
 }
 .header__logo:hover {
   cursor: pointer;
-  opacity:0.5;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 600px) {

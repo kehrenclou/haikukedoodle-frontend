@@ -2,13 +2,21 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: space-between;
   text-decoration: none;
   margin: 0;
   padding: 0;
+  /* min-width: 100%;
+  flex-grow: 1; */
+}
+.nav__container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 .nav_mobile {
-  flex-direction: column;
-  justify-content: center;
+  /* /* flex-direction: column; */
+  /* justify-content: center;  */
   width: 200px;
   padding: 20px 0;
   background-color: #2b2d42;
@@ -25,4 +33,20 @@
 
 .nav__link:hover {
   color: #fdc9ef;
+}
+
+@media screen and (max-width: 920px) {
+  .nav {
+    min-width: 100%;
+    flex-grow: 1;
+  }
+}
+@media screen and (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .nav__container {
+    flex-direction: column;
+  }
 }

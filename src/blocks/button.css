@@ -38,8 +38,6 @@ button:hover {
 .button_type_primary {
   background-color: #fdc9ef;
   margin: 0;
-
-  padding: 16px 0;
 }
 .button_type_primary:hover {
   background-color: #fdc9ef;
@@ -52,6 +50,11 @@ button:hover {
   color: white;
   padding: 16px 0;
   box-sizing: border-box;
+}
+.button_type_secondary:hover {
+  border: 1px solid #fdc9ef;
+  color: #fdc9ef;
+  opacity: 0.5;
 }
 .button_type_mobile {
   position: absolute;

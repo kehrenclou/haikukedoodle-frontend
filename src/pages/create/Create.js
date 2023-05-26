@@ -16,8 +16,8 @@ export default function Create() {
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -47,11 +47,16 @@ export default function Create() {
   }
 
   function delayForDemo(promise) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 4000);
+    return new Promise((resolve, reject) => {
+      // setTimeout(()=>reject(new Error("fake error")), 4000);//this will mimic fail
+      setTimeout(() => resolve(), 4000); //this will mimic success
     })
       .then(() => promise)
-      .then(() => navigate("/result"));
+      .then(() => navigate("/result"))
+      .catch(() => {
+        setIsError(true);
+        navigate("/");
+      });
   }
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
@@ -60,7 +65,6 @@ export default function Create() {
     const tsfResponse = transformAiDataObject(resp); //extract lines and chords
     haikuCtx.updateAll(subject, terms, tsfResponse[0]);
     setIsLoading(true);
-
     delayForDemo();
   };
 

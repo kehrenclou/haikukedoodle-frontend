@@ -23,13 +23,24 @@ class Api {
   setHeaders(headers) {
     this._headers = headers;
   }
+
+  signUp(nickname, email, password) {
+    return new Promise((resolve) => {
+      resolve({});
+    });
+  }
+
+  logIn(email, password) {
+    return new promise((resolve) => {
+      resolve({ jwt: "fake-jwt-token", nickname:"nickname" });
+    });
+  }
 }
 
-
 //sets headers with token on all api calls
-export const api=newApi({
-    baseUrl:baseUrl,
-    headers:{
-        "Content-Type":"application/json",
-    }
-})
+export const api = newApi({
+  baseUrl: baseUrl,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});

@@ -2,7 +2,7 @@ import ModalWithForm from "./ModalWithForm";
 import UserForm from "../form/UserForm";
 
 export function LoginModal({ isOpen, onClose }) {
-  function handleSubmitClick(){
+  function handleSubmitClick() {
     console.log("clicked");
   }
   return (
@@ -16,9 +16,8 @@ export function LoginModal({ isOpen, onClose }) {
         <UserForm
           title="Login"
           submitText="Log in"
-          text="No account? Sign up here!"
-          linkText="Log in here!"
-          link="/login"
+          text="No account? "
+          linkText="Sign up here"
           onSubmit={handleSubmitClick}
         />
       </ModalWithForm>

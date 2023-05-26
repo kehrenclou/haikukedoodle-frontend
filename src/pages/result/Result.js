@@ -7,7 +7,6 @@ import { CreateHaikuContext } from "../../context";
 
 import { SignupModal } from "../../components/modal/SignupModal";
 import Flower from "../../components/flower/Flower";
-import Loader from "../loader/Loader";
 
 export default function Result() {
   const navigate = useNavigate();
@@ -15,8 +14,8 @@ export default function Result() {
   const [isPresent, safeToRemove] = usePresence();
 
   const [zipPairs, setZipPairs] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
   const [isSaveOpen, setIsSaveOpen] = useState(false);
+  const [isLoginOpen,setIsLoginOpen]=useState(false);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -37,23 +36,29 @@ export default function Result() {
   };
 
   const handleSaveClick = () => {
-    // setIsOpen(true);
     setIsSaveOpen(true);
   };
+
   const handleCloseModal = () => {
-    setIsOpen(false);
     setIsSaveOpen(false);
   };
 
+  function handleSubmitClick() {
+    console.log("clicked");
+  }
+  function handleLinkClick() {
+    console.log("link clicked");
+    setIsSaveOpen(false);
+    setIsLoginOpen(true);
+  }
   return (
     <>
       <section className="result">
-        <h1 className="result__heading">the Masterpiece.</h1>
         <AnimatePresence mode="wait">
           <motion.div
-            transition={{ ease: "linear", duration: 0.75 }}
+            transition={{ ease: "linear", duration: 0.5 }}
             initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, rotate: 360, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             key="card"
           >
@@ -95,11 +100,16 @@ export default function Result() {
             disabled={isSaveOpen}
             aria-label="save haiku button"
           >
-            Save my Haiku
+            Save Haiku
           </button>
         </div>
       </section>
-      <SignupModal isOpen={isSaveOpen} onClose={handleCloseModal} />
+      <SignupModal
+        isOpen={isSaveOpen}
+        onClose={handleCloseModal}
+        onLinkClick={handleLinkClick}
+        onSubmitClick={handleSubmitClick}
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import ModalWithForm from "./ModalWithForm";
 import UserForm from "../form/UserForm";
 
-export function SignupModal({ isOpen, onClose, onLinkClick, onSubmitClick }) {
+export function UserModal({ isOpen, onClose, onLinkClick, onSubmitClick }) {
   return (
     <>
       <ModalWithForm

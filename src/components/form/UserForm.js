@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,20 +7,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./form.css";
 
 export default function UserForm({
-  title,
   submitText,
   text,
-  link,
   linkText,
   onSubmit,
+  onLinkClick,
 }) {
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email()
       .required("Please enter a valid email.")
-      .min(2, "Add between 2 and 15 characters with no spaces")
-      .max(15, "Add between 2 and 15 characters with no spaces")
+
       .matches(
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         "Please enter a valid email"
@@ -113,10 +111,13 @@ export default function UserForm({
       </form>
       <div className="form__text-container">
         {text}
-        <button></button>
-        <Link to={link} className="form__text">
+        <button
+          className="button button_type_transparent"
+          onClick={onLinkClick}
+        >
+          {" "}
           {linkText}
-        </Link>
+        </button>
       </div>
     </>
   );

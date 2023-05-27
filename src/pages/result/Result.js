@@ -16,7 +16,7 @@ export default function Result() {
   const [isPresent, safeToRemove] = usePresence();
 
   const [zipPairs, setZipPairs] = useState([]);
-  const [isSaveOpen, setIsSaveOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
 
@@ -40,16 +40,18 @@ export default function Result() {
   };
 
   const handleSaveClick = () => {
-    setIsSaveOpen(true);
+    setIsSignUpOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsSaveOpen(false);
+    setIsSignUpOpen(false);
+    setIsLoginOpen(false);
   };
 
   const handleSignUpSubmitClick = (data) => {
     userCtx.updateEmail(data.email); //this works
     setIsSignUp(true);
+    
   };
 
   const handleLoginSubmitClick = (data) => {
@@ -58,12 +60,15 @@ export default function Result() {
 
   const handleLoginClick = () => {
     console.log("link clicked");
-    setIsSaveOpen(false);
+    setIsSignUpOpen(false);
     setIsLoginOpen(true);
     setIsSignUp(false);
   };
-  const handleSignupClick = () => {
+  const handleSignUpClick = () => {
     console.log("clicked");
+    setIsSignUp(true);
+    setIsLoginOpen(false);
+    setIsSignUpOpen(true);
   };
   return (
     <>
@@ -102,7 +107,7 @@ export default function Result() {
           <button
             className="button button_type_secondary"
             onClick={handleStartOverClick}
-            disabled={isSaveOpen}
+            disabled={isSignUpOpen}
             aria-label="start over button"
           >
             Start Over
@@ -111,7 +116,7 @@ export default function Result() {
           <button
             className="button button_type_primary"
             onClick={handleSaveClick}
-            disabled={isSaveOpen}
+            disabled={isSignUpOpen}
             aria-label="save haiku button"
           >
             Save Haiku
@@ -120,7 +125,7 @@ export default function Result() {
       </section>
       <UserModal
         signup={isSignUp}
-        isOpen={isSaveOpen}
+        isOpen={isSignUpOpen}
         onClose={handleCloseModal}
         name="signup"
         title="Sign up to save your Haiku"
@@ -135,8 +140,8 @@ export default function Result() {
         isOpen={isLoginOpen}
         onClose={handleCloseModal}
         name="login"
-        title="Welcome back Please Log in."
-        onLinkClick={handleSignupClick}
+        title="Please Log in."
+        onLinkClick={handleSignUpClick}
         onSubmitClick={handleLoginSubmitClick}
         submitText="Log in"
         text="Don't have an account?"

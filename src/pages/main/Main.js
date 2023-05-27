@@ -9,8 +9,8 @@ import "./main.css";
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
 
-//utils
-
+//utils/helpers
+import {api} from "../../utils/apis"
 import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,

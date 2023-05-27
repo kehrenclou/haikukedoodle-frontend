@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
 import { SignupModal } from "../modal/SignupModal";
+import { UserForm } from "../form";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
   const [isSignupOpen, setIsSignupOpen] = useState(false);

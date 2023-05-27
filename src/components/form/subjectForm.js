@@ -5,11 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import "./form.css";
 
-
-
-export default function SubjectForm({ handleSubmitClick }) {
-
-
+export const SubjectForm = ({ handleSubmitClick }) => {
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
@@ -47,9 +43,7 @@ export default function SubjectForm({ handleSubmitClick }) {
           name="subject"
           type="text"
           placeholder="Enter a one-word subject"
-          className={` ${
-            errors.subject ? "is-invalid" : ""
-          } form__input`}
+          className={` ${errors.subject ? "is-invalid" : ""} form__input`}
           {...register("subject", {
             required: true,
             max: 15,
@@ -89,10 +83,13 @@ export default function SubjectForm({ handleSubmitClick }) {
         >
           Cancel
         </button>
-        <button type="submit" className="button button_type_form button_type_form_submit">
+        <button
+          type="submit"
+          className="button button_type_form button_type_form_submit"
+        >
           Create
         </button>
       </div>
     </form>
   );
-}
+};

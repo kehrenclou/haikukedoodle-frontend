@@ -31,14 +31,14 @@ class Api {
   }
 
   logIn(email, password) {
-    return new promise((resolve) => {
+    return new Promise((resolve) => {
       resolve({ jwt: "fake-jwt-token", nickname:"nickname" });
     });
   }
 }
 
 //sets headers with token on all api calls
-export const api = newApi({
+export const api = new Api({
   baseUrl: baseUrl,
   headers: {
     "Content-Type": "application/json",

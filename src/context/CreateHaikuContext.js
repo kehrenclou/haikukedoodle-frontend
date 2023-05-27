@@ -30,25 +30,25 @@ export const CreateHaikuProvider = ({ children }) => {
     [state]
   );
 
-  const updateHaiku = useCallback((lines) => {
-    updateState({
-      ...state,
-      haikuLines: lines,
-    });
-  });
+  // const updateHaiku = useCallback((lines) => {
+  //   updateState({
+  //     ...state,
+  //     haikuLines: lines,
+  //   });
+  // });
 
-  const updateChords = useCallback((chords) => {
-    updateState({
-      ...state,
-      chordLines: chords,
-    });
-  });
-  const updateCreatedOn = useCallback((created) => {
-    updateState({
-      ...state,
-      createdOn: created,
-    });
-  });
+  // const updateChords = useCallback((chords) => {
+  //   updateState({
+  //     ...state,
+  //     chordLines: chords,
+  //   });
+  // });
+  // const updateCreatedOn = useCallback((created) => {
+  //   updateState({
+  //     ...state,
+  //     createdOn: created,
+  //   });
+  // });
   const updateSong = useCallback((data) => {
     updateState({
       ...state,

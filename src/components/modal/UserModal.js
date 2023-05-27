@@ -1,19 +1,29 @@
 import ModalWithForm from "./ModalWithForm";
-import UserForm from "../form/UserForm";
+import { UserForm } from "../form";
 
-export function UserModal({ isOpen, onClose, onLinkClick, onSubmitClick }) {
+export function UserModal({
+  isOpen,
+  onClose,
+  name,
+  title,
+  submitText,
+  text,
+  linkText,
+  onLinkClick,
+  onSubmitClick,
+}) {
   return (
     <>
       <ModalWithForm
         isOpen={isOpen}
         onClose={onClose}
-        name="signup"
-        title="Sign up to save your Haiku."
+        name={name}
+        title={title}
       >
         <UserForm
-          submitText="Sign Up"
-          text="Already have an account?"
-          linkText="Log in here!"
+          submitText={submitText}
+          text={text}
+          linkText={linkText}
           onLinkClick={onLinkClick}
           onSubmit={onSubmitClick}
         />

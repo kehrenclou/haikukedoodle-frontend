@@ -1,5 +1,5 @@
 import ModalWithForm from "./ModalWithForm";
-import UserForm from "../form/UserForm";
+import { UserForm, LoginForm } from "../form";
 
 export function SignupModal({ isOpen, onClose, onLinkClick, onSubmitClick }) {
   return (
@@ -10,7 +10,7 @@ export function SignupModal({ isOpen, onClose, onLinkClick, onSubmitClick }) {
         name="signup"
         title="Sign up to save your Haiku."
       >
-        <UserForm
+        <LoginForm
           submitText="Sign Up"
           text="Already have an account?"
           linkText="Log in here!"

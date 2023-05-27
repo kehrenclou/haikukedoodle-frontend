@@ -6,7 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import "./form.css";
 
-export const UserForm = ({
+export const LoginForm = ({
+  signup,
   submitText,
   text,
   linkText,
@@ -23,10 +24,10 @@ export const UserForm = ({
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         "Please enter a valid email"
       ),
-    username: Yup.string()
-      .required("Please enter a user name for your account.")
-      .min(2, "Add between 2 and 15 characters with no spaces")
-      .max(15, "Add between 2 and 15 characters with no spaces"),
+    // username: Yup.string()
+    //   .required("Please enter a user name for your account.")
+    //   .min(2, "Add between 2 and 15 characters with no spaces")
+    //   .max(15, "Add between 2 and 15 characters with no spaces"),
 
     password: Yup.string()
       .required("Please enter a password between 4 and 8 characters.")
@@ -43,22 +44,28 @@ export const UserForm = ({
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <section className="form__body">
-          <label className="form__label">User Name</label>
-          <input
-            name="username"
-            type="text"
-            placeholder="Enter a user name"
-            className={` ${errors.username ? "is-invalid" : ""} form__input`}
-            {...register("username", {
-              required: true,
-              max: 15,
-              min: 2,
-              maxLength: 15,
-            })}
-          />
-          <div className="form__invalid-feedback">
-            {errors.username?.message}
-          </div>
+          {signup ? (
+            <>
+              <label className="form__label">User Name</label>
+              <input
+                name="username"
+                type="text"
+                placeholder="Enter a user name"
+                className={` ${
+                  errors.username ? "is-invalid" : ""
+                } form__input`}
+                {...register("username", {
+                  required: true,
+                  max: 15,
+                  min: 2,
+                  maxLength: 15,
+                })}
+              />
+              <div className="form__invalid-feedback">
+                {errors.username?.message}
+              </div>
+            </>
+          ) : null}
 
           <label className="form__label">Email</label>
           <input
@@ -115,6 +122,7 @@ export const UserForm = ({
           className="button button_type_transparent"
           onClick={onLinkClick}
         >
+          {" "}
           {linkText}
         </button>
       </div>

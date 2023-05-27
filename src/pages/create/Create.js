@@ -7,7 +7,7 @@ import { CreateHaikuContext } from "../../context";
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
-import SubjectForm from "../../components/form/SubjectForm";
+import { SubjectForm } from "../../components/form";
 import Loader from "../loader/Loader";
 
 export default function Create() {

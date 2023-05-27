@@ -3,23 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./result.css";
-import { CreateHaikuContext } from "../../context";
+import { CreateHaikuContext, UserContext } from "../../context";
 
-import { SignupModal } from "../../components/modal/SignupModal";
+import { SignupModal, UserModal } from "../../components/modal";
 import Flower from "../../components/flower/Flower";
 
 export default function Result() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
+  const userCtx = useContext(UserContext);
+
   const [isPresent, safeToRemove] = usePresence();
 
   const [zipPairs, setZipPairs] = useState([]);
   const [isSaveOpen, setIsSaveOpen] = useState(false);
-  const [isLoginOpen,setIsLoginOpen]=useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
+
   useEffect(() => {
     const zipPairs = [];
     for (let i = 0; i < 3; i++) {
@@ -43,14 +46,16 @@ export default function Result() {
     setIsSaveOpen(false);
   };
 
-  function handleSubmitClick() {
+  const handleSubmitClick = () => {
     console.log("clicked");
-  }
-  function handleLinkClick() {
+  };
+
+  const handleLinkClick = () => {
     console.log("link clicked");
     setIsSaveOpen(false);
     setIsLoginOpen(true);
-  }
+  };
+
   return (
     <>
       <section className="result">
@@ -104,11 +109,17 @@ export default function Result() {
           </button>
         </div>
       </section>
-      <SignupModal
+      <UserModal
         isOpen={isSaveOpen}
         onClose={handleCloseModal}
         onLinkClick={handleLinkClick}
         onSubmitClick={handleSubmitClick}
+        name="signup"
+        title="Sign up to save your Haiku"
+        submitText="Sign Up"
+        text="Already have an account?"
+        linkText="Log in here!"
+        
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
@@ -12,13 +12,11 @@ import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
 import Loader from "./loader/Loader";
-import ModalWithForm from "../components/modal/ModalWithForm";
 
 /* ---------------------------------- store --------------------------------- */
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+  const location = useLocation();//used with ScrollToTop helper
 
   return (
     <div className="page">
@@ -28,6 +26,7 @@ function App() {
             <Header />
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.key}>
+        
                 <Route path="/" element={<Main />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/result" element={<Result />} />
@@ -37,8 +36,6 @@ function App() {
               </Routes>
             </AnimatePresence>
             <Footer />
-
-            <ModalWithForm isOpen={isOpen} />
           </CreateHaikuProvider>
         </UserProvider>
       </AuthProvider>

@@ -14,7 +14,6 @@ export function LoginModal({ isOpen, onClose }) {
         title="Login"
       >
         <UserForm
-          title="Login"
           submitText="Log in"
           text="No account? "
           linkText="Sign up here"

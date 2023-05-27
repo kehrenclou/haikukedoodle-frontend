@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import "./form.css";
 
-export const SubjectForm = ({ handleSubmitClick }) => {
+export const CreateHaikuForm = ({ handleSubmitClick }) => {
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     subject: Yup.string()

@@ -18,6 +18,7 @@ export default function Result() {
   const [zipPairs, setZipPairs] = useState([]);
   const [isSaveOpen, setIsSaveOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -46,16 +47,24 @@ export default function Result() {
     setIsSaveOpen(false);
   };
 
-  const handleSubmitClick = (data) => {
+  const handleSignUpSubmitClick = (data) => {
     userCtx.updateEmail(data.email); //this works
+    setIsSignUp(true);
   };
 
-  const handleLinkClick = () => {
+  const handleLoginSubmitClick = (data) => {
+    console.log("clicked");
+  };
+
+  const handleLoginClick = () => {
     console.log("link clicked");
     setIsSaveOpen(false);
     setIsLoginOpen(true);
+    setIsSignUp(false);
   };
-
+  const handleSignupClick = () => {
+    console.log("clicked");
+  };
   return (
     <>
       <section className="result">
@@ -110,15 +119,28 @@ export default function Result() {
         </div>
       </section>
       <UserModal
+        signup={isSignUp}
         isOpen={isSaveOpen}
         onClose={handleCloseModal}
-        onLinkClick={handleLinkClick}
-        onSubmitClick={handleSubmitClick}
         name="signup"
         title="Sign up to save your Haiku"
+        onLinkClick={handleLoginClick}
+        onSubmitClick={handleSignUpSubmitClick}
         submitText="Sign Up"
         text="Already have an account?"
         linkText="Log in here!"
+      />
+      <UserModal
+        signup={isSignUp}
+        isOpen={isLoginOpen}
+        onClose={handleCloseModal}
+        name="login"
+        title="Welcome back Please Log in."
+        onLinkClick={handleSignupClick}
+        onSubmitClick={handleLoginSubmitClick}
+        submitText="Log in"
+        text="Don't have an account?"
+        linkText="Sign up Here"
       />
     </>
   );

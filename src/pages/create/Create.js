@@ -7,7 +7,7 @@ import { CreateHaikuContext } from "../../contexts";
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
-import { SubjectForm } from "../../components/form";
+import { CreateHaikuForm } from "../../components/form";
 import Loader from "../loader/Loader";
 
 export default function Create() {
@@ -86,7 +86,7 @@ export default function Create() {
                 exit={{ opacity: 0, scale: 0 }}
                 key="form"
               >
-                <SubjectForm handleSubmitClick={handleSubmitClick} />
+                <CreateHaikuForm handleSubmitClick={handleSubmitClick} />
               </motion.div>
             </>
           )}

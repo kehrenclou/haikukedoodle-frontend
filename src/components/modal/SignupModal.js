@@ -10,7 +10,8 @@ export function SignupModal({ isOpen, onClose, onLinkClick, onSubmitClick }) {
         name="signup"
         title="Sign up to save your Haiku."
       >
-        <LoginForm
+        <UserForm
+    
           submitText="Sign Up"
           text="Already have an account?"
           linkText="Log in here!"

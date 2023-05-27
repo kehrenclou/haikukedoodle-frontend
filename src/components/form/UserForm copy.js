@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./form.css";
 
 export const UserForm = ({
-  signup,
   submitText,
   text,
   linkText,
@@ -42,30 +41,24 @@ export const UserForm = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit((data) => onSubmit(data))} className="form">
+      <form onSubmit={handleSubmit(data=>onSubmit(data))} className="form">
         <section className="form__body">
-          {signup  ? (
-            <>
-              <label className="form__label">User Name</label>
-              <input
-                name="username"
-                type="text"
-                placeholder="Enter a user name"
-                className={` ${
-                  errors.username ? "is-invalid" : ""
-                } form__input`}
-                {...register("username", {
-                  required: true,
-                  max: 15,
-                  min: 2,
-                  maxLength: 15,
-                })}
-              />
-              <div className="form__invalid-feedback">
-                {errors.username?.message}
-              </div>
-            </>
-          ) : null}
+          <label className="form__label">User Name</label>
+          <input
+            name="username"
+            type="text"
+            placeholder="Enter a user name"
+            className={` ${errors.username ? "is-invalid" : ""} form__input`}
+            {...register("username", {
+              required: true,
+              max: 15,
+              min: 2,
+              maxLength: 15,
+            })}
+          />
+          <div className="form__invalid-feedback">
+            {errors.username?.message}
+          </div>
 
           <label className="form__label">Email</label>
           <input

@@ -41,7 +41,7 @@ export const UserForm = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <form onSubmit={handleSubmit(data=>onSubmit(data))} className="form">
         <section className="form__body">
           <label className="form__label">User Name</label>
           <input

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./result.css";
-import { CreateHaikuContext, UserContext } from "../../context";
+import { CreateHaikuContext, UserContext } from "../../contexts";
 
 import { SignupModal, UserModal } from "../../components/modal";
 import Flower from "../../components/flower/Flower";
@@ -46,8 +46,8 @@ export default function Result() {
     setIsSaveOpen(false);
   };
 
-  const handleSubmitClick = () => {
-    console.log("clicked");
+  const handleSubmitClick = (data) => {
+    userCtx.updateEmail(data.email); //this works
   };
 
   const handleLinkClick = () => {
@@ -119,7 +119,6 @@ export default function Result() {
         submitText="Sign Up"
         text="Already have an account?"
         linkText="Log in here!"
-        
       />
     </>
   );

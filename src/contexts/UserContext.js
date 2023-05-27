@@ -18,6 +18,7 @@ export const UserProvider = ({ children }) => {
     },
     [state]
   );
+
   const updateEmail = useCallback(
     (email) => {
       updateState({

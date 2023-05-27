@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence, Variants } from "framer-motion";
 import "./create.css";
 
-import { CreateHaikuContext } from "../../context";
+import { CreateHaikuContext } from "../../contexts";
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 

@@ -6,7 +6,6 @@ import "./result.css";
 import { CreateHaikuContext } from "../../contexts";
 import { useModal } from "../../hooks/useModal";
 
-import { SignUpModal, LoginModal } from "../../components/modal";
 import Flower from "../../components/flower/Flower";
 
 export default function Result() {
@@ -97,8 +96,6 @@ export default function Result() {
           </button>
         </div>
       </section>
-      <SignUpModal />
-      <LoginModal />
     </>
   );
 }

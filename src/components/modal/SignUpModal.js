@@ -1,14 +1,8 @@
 import { UserModal } from "./UserModal";
 import { useModal } from "../../hooks/useModal";
-import * as auth from "../../utils/apis"
+import * as auth from "../../utils/apis";
 
-export function SignUpModal({
-  // isSignUp,
-  // isLoginOpen,
-  // handleCloseModal,
-  // handleSignUpClick,
-  // handleLoginSubmit,
-}) {
+export function SignUpModal({}) {
   const {
     isLoginOpen,
     setIsLoginOpen,
@@ -18,6 +12,9 @@ export function SignUpModal({
     setIsLoading,
     isSignUp,
     setIsSignUp,
+    isStatusModalOpen,
+    setIsStatusModalOpen,
+    setStatus,
   } = useModal();
 
   const handleCloseModal = () => {
@@ -32,23 +29,28 @@ export function SignUpModal({
 
   const handleSignUpSubmit = (data) => {
     //auth stuff
-    console.log(data);
-    auth.signUp(data.nickname,data.email,data.password)
+    setIsSignUpOpen(false);
+    // setStatus("success");
+    // setIsStatusModalOpen(true);
+    setStatus("fail");
+    setIsStatusModalOpen(true);
+
+    // auth.signUp(data.nickname, data.email, data.password);
   };
 
   return (
     <>
       <UserModal
-      signUp={isSignUp}
-      isOpen={isSignUpOpen}
-      onClose={handleCloseModal}
-      name="signup"
-      title="Sign up to save your Haiku"
-      onLinkClick={handleLoginClick}
-      onSubmitClick={handleSignUpSubmit}
-      submitText="Sign Up"
-      text="Already have an account?"
-      linkText="Log in here!"
+        signUp={isSignUp}
+        isOpen={isSignUpOpen}
+        onClose={handleCloseModal}
+        name="signup"
+        title="Sign up to save your Haiku"
+        onLinkClick={handleLoginClick}
+        onSubmitClick={handleSignUpSubmit}
+        submitText="Sign Up"
+        text="Already have an account?"
+        linkText="Log in here!"
       />
     </>
   );

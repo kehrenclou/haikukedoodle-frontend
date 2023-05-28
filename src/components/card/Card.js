@@ -1,13 +1,7 @@
 import _ from "lodash";
 import React, { useState } from "react";
 import "./card.css";
-import { IconButton, Tooltip } from "@mui/material";
 
-import {
-  FileDownloadOutlined,
-  FavoriteBorder,
-  Favorite,
-} from "@mui/icons-material";
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
 import Flower from "../flower/Flower";
 

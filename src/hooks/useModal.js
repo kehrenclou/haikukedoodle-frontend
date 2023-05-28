@@ -6,14 +6,14 @@ export const useModal = () => {
     isLoginOpen,
     isSignUpOpen,
     isConfirmDeleteOpen,
-    isToolTipOpen,
+    isStatusModalOpen,
     isLoading,
     status,
     isSignUp,
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
-    setIsToolTipOpen,
+    setIsStatusModalOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,
@@ -24,21 +24,21 @@ export const useModal = () => {
     setIsSignUpOpen(false);
 
     setIsConfirmDeleteOpen(false);
-    setIsToolTipOpen(false);
+    setIsStatusModalOpen(false);
   }, []);
 
   return {
     isLoginOpen,
     isSignUpOpen,
     isConfirmDeleteOpen,
-    isToolTipOpen,
+    isStatusModalOpen,
     isLoading,
     status,
     isSignUp,
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
-    setIsToolTipOpen,
+    setIsStatusModalOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,

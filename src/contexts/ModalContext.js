@@ -8,7 +8,7 @@ export const useInitializeModalStore = () => {
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isToolTipOpen, setIsToolTipOpen] = useState(false);
+  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
 
   const [isSignUp, setIsSignUp] = useState(false);
@@ -19,13 +19,13 @@ export const useInitializeModalStore = () => {
     isLoginOpen,
     isSignUpOpen,
     isConfirmDeleteOpen,
-    isToolTipOpen,
+    isStatusModalOpen,
     isSignUp,
 
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
-    setIsToolTipOpen,
+    setIsStatusModalOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,

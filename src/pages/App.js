@@ -17,6 +17,7 @@ import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
 import Loader from "./loader/Loader";
+import { SignUpModal,LoginModal,StatusModal } from "../components/modal";
 
 
 
@@ -42,6 +43,9 @@ function App() {
                 </Routes>
               </AnimatePresence>
               <Footer />
+              <SignUpModal/>
+              <LoginModal/>
+              <StatusModal/>
             </CreateHaikuProvider>
           </ModalContext.Provider>
         </UserProvider>

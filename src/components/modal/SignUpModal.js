@@ -29,10 +29,11 @@ export function SignUpModal({}) {
 
   const handleSignUpSubmit = (data) => {
     //auth stuff
+
     setIsSignUpOpen(false);
     // setStatus("success");
     // setIsStatusModalOpen(true);
-    setStatus("fail");
+    setStatus("success");
     setIsStatusModalOpen(true);
 
     // auth.signUp(data.nickname, data.email, data.password);

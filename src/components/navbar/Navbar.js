@@ -6,16 +6,14 @@ import { SignUpModal, LoginModal } from "../modal";
 import { useModal } from "../../hooks/useModal";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
-  const [isSignupOpen, setIsSignupOpen] = useState(false);
+
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
 
   function handleSignUpOpen() {
     setIsSignUpOpen(true);
     setIsSignUp(true);
   }
-  function handleCloseModal() {
-    setIsSignUpOpen(false);
-  }
+
   return (
     <>
       <ul className={isLessThan600 ? "nav nav_mobile" : "nav"} id="menu">
@@ -80,8 +78,8 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
           </button>
         </li>
       </ul>
-      <SignUpModal />
-      <LoginModal />
+      {/* <SignUpModal />
+      <LoginModal /> */}
     </>
   );
 }

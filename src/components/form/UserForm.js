@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -36,15 +36,35 @@ export const UserForm = ({
   });
 
   //form - config
-  const formOptions = { resolver: yupResolver(validationSchema) };
-  const { register, handleSubmit, reset, formState } = useForm(formOptions);
+  const emptyInput = {
+    username: "",
+    email: "",
+    password: "",
+  };
+  const formOptions = {
+    resolver: yupResolver(validationSchema),
+    defaultValues: { ...emptyInput },
+  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState,
+    formState: { isSubmitSuccessful },
+  } = useForm(formOptions);
   const { errors } = formState;
+  const [isSafeToReset, setIsSafeToReset] = useState(true);
+
+  useEffect(() => {
+    reset({...emptyInput});
+  }, [formState.isSubmitSuccessful, reset]);
+  console.log(formState.isSubmitSuccessful);
 
   return (
     <>
       <form onSubmit={handleSubmit((data) => onSubmit(data))} className="form">
         <section className="form__body">
-          {signUp  ? (
+          {signUp ? (
             <>
               <label className="form__label">User Name</label>
               <input

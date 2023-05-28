@@ -28,15 +28,29 @@ export function SignUpModal({}) {
   };
 
   const handleSignUpSubmit = (data) => {
-    //auth stuff
+    //TODO: update with backend logic
+    setIsLoading(true);
 
-    setIsSignUpOpen(false);
-    // setStatus("success");
-    // setIsStatusModalOpen(true);
-    setStatus("success");
-    setIsStatusModalOpen(true);
-
-    // auth.signUp(data.nickname, data.email, data.password);
+    auth
+      .signUp(data.nickname, data.email, data.password)
+      .then((res) => {
+        if (res) {
+          setStatus("success");
+          setIsLoading(false);
+          setIsSignUpOpen(false);
+          setIsStatusModalOpen(true);
+        } else {
+          setStatus("fail");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus("fail");
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsStatusModalOpen(true);
+      });
   };
 
   return (

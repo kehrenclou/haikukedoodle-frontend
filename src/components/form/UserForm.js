@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ThreeDots } from "react-loading-icons";
 
+import { useModal } from "../../hooks/useModal";
 import "./form.css";
 
 export const UserForm = ({
@@ -14,6 +16,8 @@ export const UserForm = ({
   onSubmit,
   onLinkClick,
 }) => {
+  const { isLoading } = useModal();
+
   //form- Yup schema
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -45,20 +49,13 @@ export const UserForm = ({
     resolver: yupResolver(validationSchema),
     defaultValues: { ...emptyInput },
   };
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState,
-    formState: { isSubmitSuccessful },
-  } = useForm(formOptions);
+  const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
   const [isSafeToReset, setIsSafeToReset] = useState(true);
 
   useEffect(() => {
-    reset({...emptyInput});
+    reset({ ...emptyInput });
   }, [formState.isSubmitSuccessful, reset]);
-  console.log(formState.isSubmitSuccessful);
 
   return (
     <>
@@ -128,12 +125,22 @@ export const UserForm = ({
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="button button_type_form button_type_form_submit"
-          >
-            {submitText}
-          </button>
+
+          {isLoading ? (
+            <button
+              type="submit"
+              className="button button_type_form button_type_form_submit"
+            >
+              <ThreeDots height="1em" width="60px" stroke="#2b24d2" />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="button button_type_form button_type_form_submit"
+            >
+              {submitText}
+            </button>
+          )}
         </div>
       </form>
       <div className="form__text-container">

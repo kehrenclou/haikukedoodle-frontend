@@ -9,10 +9,10 @@ export const signUp = (nickname, email, password) => {
 
 export const logIn = (email, password) => {
   return new Promise((resolve, reject) => {
-    if (!user) {
+    if (!resolve) {
       return setTimeout(() => reject(new Error("Email or password not found")), 250);
     }
-    setTimeout(() => resolve(Object.values(user)), 250);
+    setTimeout(() => resolve(Object.values(resolve)), 250);
   });
 };
 /* -------------------- to implement when back end ready -------------------- */

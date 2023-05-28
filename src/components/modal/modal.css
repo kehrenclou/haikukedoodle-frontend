@@ -28,6 +28,7 @@
   opacity: 1;
   transition: visibility 0s, opacity 0.5s ease-in-out;
 }
+
 .modal__content {
   background-color: white;
   max-width: 430px;
@@ -41,6 +42,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .modal__title {
   margin: 0 0 20px 0;
   color: #000;

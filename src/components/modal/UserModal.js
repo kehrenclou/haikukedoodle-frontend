@@ -21,6 +21,7 @@ export function UserModal({
         name={name}
         title={title}
       >
+       
         <UserForm
           signUp={signUp}
           submitText={submitText}

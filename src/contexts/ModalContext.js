@@ -10,7 +10,6 @@ export const useInitializeModalStore = () => {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
-
   const [isSignUp, setIsSignUp] = useState(false);
 
   return {

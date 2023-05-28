@@ -6,7 +6,8 @@ import {
   CreateHaikuProvider,
   AuthProvider,
   UserProvider,
-  ModalContext,useInitializeModalStore,
+  ModalContext,
+  useInitializeModalStore,
 } from "../contexts";
 
 import Header from "../components/header";
@@ -17,14 +18,12 @@ import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
 import Loader from "./loader/Loader";
-import { SignUpModal,LoginModal,StatusModal } from "../components/modal";
-
-
+import { SignUpModal, LoginModal, StatusModal } from "../components/modal";
 
 function App() {
   const location = useLocation(); //used with ScrollToTop helper
-  const modalStore=useInitializeModalStore();
-  
+  const modalStore = useInitializeModalStore();
+
   return (
     <div className="page">
       <AuthProvider>
@@ -43,9 +42,10 @@ function App() {
                 </Routes>
               </AnimatePresence>
               <Footer />
-              <SignUpModal/>
-              <LoginModal/>
-              <StatusModal/>
+
+              <SignUpModal />
+              <LoginModal />
+              <StatusModal />
             </CreateHaikuProvider>
           </ModalContext.Provider>
         </UserProvider>

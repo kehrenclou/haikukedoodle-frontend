@@ -1,18 +1,14 @@
-
 import React, { useRef } from "react";
 import "./modal.css";
 
-
 function Modal({ isOpen, onClose, name, children }) {
   const popupRef = useRef();
-
 
   function handleModalClick(event) {
     if (isOpen && popupRef.current === event.target) {
       onClose();
     }
   }
-
 
   return (
     <div
@@ -34,6 +30,5 @@ function Modal({ isOpen, onClose, name, children }) {
     </div>
   );
 }
-
 
 export default Modal;

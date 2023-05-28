@@ -11,27 +11,23 @@ export const useInitializeModalStore = () => {
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
 
-  function closeAllPopups() {
-    setIsLoginOpen(false);
-    setIsSignUpOpen(false);
-   
-    setIsConfirmDeleteOpen(false);
-    setIsToolTipOpen(false);
-  }
+  const [isSignUp, setIsSignUp] = useState(false);
 
   return {
+    isLoading,
+    status,
     isLoginOpen,
     isSignUpOpen,
     isConfirmDeleteOpen,
     isToolTipOpen,
-    isLoading,
-    status,
+    isSignUp,
+
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
     setIsToolTipOpen,
     setIsLoading,
     setStatus,
-    closeAllPopups,
+    setIsSignUp,
   };
 };

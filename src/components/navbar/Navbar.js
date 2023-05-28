@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
-import { SignupModal } from "../modal/SignupModal";
-import { UserForm } from "../form";
+import { UserModal } from "../modal";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
@@ -78,7 +77,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
         </li>
       </ul>
 
-      <SignupModal isOpen={isSignupOpen} onClose={handleCloseModal} />
+      <UserModal isOpen={isSignupOpen} onClose={handleCloseModal} />
     </>
   );
 }

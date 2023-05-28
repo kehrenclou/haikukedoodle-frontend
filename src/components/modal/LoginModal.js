@@ -1,15 +1,44 @@
 import { UserModal } from "./UserModal";
+import { useModal } from "../../hooks/useModal";
+import * as auth from "../../utils/apis"
 
-export function LoginModal({
-  isSignUp,
-  isLoginOpen,
-  handleCloseModal,
-  handleSignUpClick,
-  handleLoginSubmit,
-}) {
-  function handleSubmitClick() {
+export function LoginModal({}) {
+  const {
+    isLoginOpen,
+    setIsLoginOpen,
+    isSignUpOpen,
+    setIsSignUpOpen,
+    isLoading,
+    setIsLoading,
+    isSignUp,
+    setIsSignUp,
+  } = useModal();
+
+  const handleCloseModal = () => {
+    setIsLoginOpen(false);
+  };
+
+  const handleSignUpClick = () => {
+    setIsSignUp(true);
+    setIsLoginOpen(false);
+    setIsSignUpOpen(true);
+  };
+
+  const handleLoginSubmit = (data) => {
+    //auth stuff
     console.log("clicked");
-  }
+    auth
+      .logIn(data.email, data.password)
+      .then((res) => {
+        console.log(res);
+        if (res) {
+          localStorage.setItem("jwt", res.token);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <UserModal

@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { UserModal } from "./UserModal";
-import { useModal } from "../../hooks/useModal";
+import { useModal, useAuth } from "../../hooks";
 import * as auth from "../../utils/apis";
 
 export function LoginModal({}) {
+  /* ---------------------------------- hooks --------------------------------- */
+  const navigate = useNavigate();
+  const { setToken, setIsLoggedIn } = useAuth();
+
   const {
     isLoginOpen,
     setIsLoginOpen,
@@ -14,12 +19,8 @@ export function LoginModal({}) {
     setStatus,
   } = useModal();
 
-  const handleCloseModal = () => {
-    setIsLoginOpen(false);
-  };
-  const handleLoginCancel = () => {
-    setIsLoginOpen(false);
-  };
+  /* -------------------------------- handlers -------------------------------- */
+
   const handleSignUpClick = () => {
     setIsSignUp(true);
     setIsLoginOpen(false);
@@ -33,14 +34,16 @@ export function LoginModal({}) {
 
     auth
       .logIn(data)
+
       .then((res) => {
         if (res) {
-          console.log(res);
           localStorage.setItem("jwt", res.token);
-          setStatus("success");
+          setToken(res.token);
+
+          // setStatus("success");
           setIsLoading(false);
           setIsLoginOpen(false);
-          setIsStatusModalOpen(true);
+          // setIsStatusModalOpen(true);
         } else {
           setStatus("fail");
         }
@@ -54,6 +57,15 @@ export function LoginModal({}) {
         setIsStatusModalOpen(true);
       });
   };
+
+  const handleCloseModal = () => {
+    setIsLoginOpen(false);
+  };
+
+  const handleLoginCancel = () => {
+    setIsLoginOpen(false);
+  };
+
   return (
     <>
       <UserModal

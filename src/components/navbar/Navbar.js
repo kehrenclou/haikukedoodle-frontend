@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
-import { SignUpModal, LoginModal } from "../modal";
 import { useModal } from "../../hooks/useModal";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
-
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
 
   function handleSignUpOpen() {
@@ -78,8 +76,6 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
           </button>
         </li>
       </ul>
-      {/* <SignUpModal />
-      <LoginModal /> */}
     </>
   );
 }

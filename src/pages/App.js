@@ -18,7 +18,7 @@ import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
 import Loader from "./loader/Loader";
-import { SignUpModal, LoginModal, StatusModal } from "../components/modal";
+import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
 
 function App() {
   const location = useLocation(); //used with ScrollToTop helper

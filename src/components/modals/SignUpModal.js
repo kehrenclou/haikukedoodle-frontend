@@ -39,6 +39,8 @@ export function SignUpModal({}) {
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);
+          //?need to ensure that view updates
+          //need to save haiku to user account
         } else {
           setStatus("fail");
         }

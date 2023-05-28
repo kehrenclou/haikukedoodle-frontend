@@ -19,7 +19,7 @@ export const UserForm = ({
   const { isLoading } = useModal();
 
   //form- Yup schema
-  const validationSchema = Yup.object().shape({
+  const validationSchemaSignUp = Yup.object().shape({
     email: Yup.string()
       .email()
       .required("Please enter a valid email.")
@@ -29,9 +29,25 @@ export const UserForm = ({
         "Please enter a valid email"
       ),
     username: Yup.string()
-      .required("Please enter a user name for your account.")
-      .min(2, "Add between 2 and 15 characters with no spaces")
-      .max(15, "Add between 2 and 15 characters with no spaces"),
+    .required("Please enter a user name for your account.")
+    .min(2, "Add between 2 and 15 characters with no spaces")
+    .max(15, "Add between 2 and 15 characters with no spaces"),
+
+    password: Yup.string()
+      .required("Please enter a password between 4 and 8 characters.")
+      .min(4, "Add between 4 and 8 characters with no spaces")
+      .max(8, "Add between 4 and 8 characters with no spaces"),
+  });
+
+  const validationSchemaLogin = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required("Please enter a valid email.")
+
+      .matches(
+        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+        "Please enter a valid email"
+      ),
 
     password: Yup.string()
       .required("Please enter a password between 4 and 8 characters.")
@@ -46,12 +62,11 @@ export const UserForm = ({
     password: "",
   };
   const formOptions = {
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(signUp ? validationSchemaSignUp:validationSchemaLogin),
     defaultValues: { ...emptyInput },
   };
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
-  const [isSafeToReset, setIsSafeToReset] = useState(true);
 
   useEffect(() => {
     reset({ ...emptyInput });

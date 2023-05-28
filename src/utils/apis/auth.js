@@ -3,14 +3,17 @@ export const BASE_URL = "http://localhost:3000";
 /* --------------------------- use to mock backend -------------------------- */
 export const signUp = (nickname, email, password) => {
   return new Promise((resolve, reject) => {
-    resolve({});
+    setTimeout(() => resolve({}), 250);
   });
 };
 
 export const logIn = (email, password) => {
   return new Promise((resolve, reject) => {
     if (!resolve) {
-      return setTimeout(() => reject(new Error("Email or password not found")), 250);
+      return setTimeout(
+        () => reject(new Error("Email or password not found")),
+        250
+      );
     }
     setTimeout(() => resolve(Object.values(resolve)), 250);
   });

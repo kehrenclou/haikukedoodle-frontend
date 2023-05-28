@@ -4,15 +4,12 @@ import * as auth from "../../utils/apis";
 
 export function SignUpModal({}) {
   const {
-    isLoginOpen,
     setIsLoginOpen,
     isSignUpOpen,
     setIsSignUpOpen,
-    isLoading,
     setIsLoading,
     isSignUp,
     setIsSignUp,
-    isStatusModalOpen,
     setIsStatusModalOpen,
     setStatus,
   } = useModal();
@@ -21,6 +18,9 @@ export function SignUpModal({}) {
     setIsSignUpOpen(false);
   };
 
+  const handleSignUpCancel = () => {
+    setIsSignUpOpen(false);
+  };
   const handleLoginClick = () => {
     setIsSignUp(false);
     setIsLoginOpen(true);
@@ -63,6 +63,7 @@ export function SignUpModal({}) {
         title="Sign up to save your Haiku"
         onLinkClick={handleLoginClick}
         onSubmitClick={handleSignUpSubmit}
+        onCancelClick={handleSignUpCancel}
         submitText="Sign Up"
         text="Already have an account?"
         linkText="Log in here!"

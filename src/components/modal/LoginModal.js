@@ -6,22 +6,20 @@ export function LoginModal({}) {
   const {
     isLoginOpen,
     setIsLoginOpen,
-    isSignUpOpen,
     setIsSignUpOpen,
-    isLoading,
     setIsLoading,
-    isStatusModalOpen,
     setIsStatusModalOpen,
     isSignUp,
     setIsSignUp,
-    status,
     setStatus,
   } = useModal();
 
   const handleCloseModal = () => {
     setIsLoginOpen(false);
   };
-
+  const handleLoginCancel = () => {
+    setIsLoginOpen(false);
+  };
   const handleSignUpClick = () => {
     setIsSignUp(true);
     setIsLoginOpen(false);
@@ -30,12 +28,14 @@ export function LoginModal({}) {
 
   const handleLoginSubmit = (data) => {
     //auth stuff
+
     setIsLoading(true);
+
     auth
-      .logIn(data.email, data.password)
+      .logIn(data)
       .then((res) => {
-        console.log(res);
         if (res) {
+          console.log(res);
           localStorage.setItem("jwt", res.token);
           setStatus("success");
           setIsLoading(false);
@@ -64,6 +64,7 @@ export function LoginModal({}) {
         title="Please Log in."
         onLinkClick={handleSignUpClick}
         onSubmitClick={handleLoginSubmit}
+        onCancelClick={handleLoginCancel}
         submitText="Log in"
         text="Don't have an account?"
         linkText="Sign up Here"

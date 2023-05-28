@@ -1,13 +1,13 @@
 export const BASE_URL = "http://localhost:3000";
 
 /* --------------------------- use to mock backend -------------------------- */
-export const signUp = (nickname, email, password) => {
+export const signUp = (username, email, password) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve({}), 250);
   });
 };
 
-export const logIn = (email, password) => {
+export const logIn = (data) => {
   return new Promise((resolve, reject) => {
     if (!resolve) {
       return setTimeout(
@@ -15,7 +15,8 @@ export const logIn = (email, password) => {
         250
       );
     }
-    setTimeout(() => resolve(Object.values(resolve)), 250);
+
+    setTimeout(() => resolve(data), 250);
   });
 };
 /* -------------------- to implement when back end ready -------------------- */

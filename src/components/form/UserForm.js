@@ -15,6 +15,7 @@ export const UserForm = ({
   linkText,
   onSubmit,
   onLinkClick,
+  onCancel,
 }) => {
   const { isLoading } = useModal();
 
@@ -71,6 +72,11 @@ export const UserForm = ({
   useEffect(() => {
     reset({ ...emptyInput });
   }, [formState.isSubmitSuccessful, reset]);
+
+const handleCancelClick=()=>{
+  reset();
+  onCancel();
+}
 
   return (
     <>
@@ -136,7 +142,7 @@ export const UserForm = ({
           <button
             type="button"
             className="button button_type_form button_type_form_cancel"
-            onClick={() => reset()}
+            onClick={handleCancelClick}
           >
             Cancel
           </button>

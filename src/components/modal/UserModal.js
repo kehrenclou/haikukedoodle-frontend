@@ -12,6 +12,7 @@ export function UserModal({
   linkText,
   onLinkClick,
   onSubmitClick,
+  onCancelClick,
 }) {
   return (
     <>
@@ -29,6 +30,7 @@ export function UserModal({
           linkText={linkText}
           onLinkClick={onLinkClick}
           onSubmit={onSubmitClick}
+          onCancel={onCancelClick}
         />
       </ModalWithForm>
     </>

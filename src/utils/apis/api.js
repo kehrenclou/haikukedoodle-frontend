@@ -24,17 +24,7 @@ class Api {
     this._headers = headers;
   }
 
-  signUp(nickname, email, password) {
-    return new Promise((resolve) => {
-      resolve({});
-    });
-  }
-
-  logIn(email, password) {
-    return new Promise((resolve) => {
-      resolve({ jwt: "fake-jwt-token", nickname:"nickname" });
-    });
-  }
+ get
 }
 
 //sets headers with token on all api calls

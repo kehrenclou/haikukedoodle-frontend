@@ -6,7 +6,7 @@ export function UserModal({
   onClose,
   name,
   title,
-  signup,
+  signUp,
   submitText,
   text,
   linkText,
@@ -22,7 +22,7 @@ export function UserModal({
         title={title}
       >
         <UserForm
-          signup={signup}
+          signUp={signUp}
           submitText={submitText}
           text={text}
           linkText={linkText}

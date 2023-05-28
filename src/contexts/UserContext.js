@@ -28,7 +28,10 @@ export const UserProvider = ({ children }) => {
     },
     [state]
   );
-
+  const updateAll=useCallback(
+    
+  )
+console.log(state);
   const store = useMemo(() => {
     return { state, updateEmail, updateNickname };
   }, [state, updateEmail, updateNickname]);

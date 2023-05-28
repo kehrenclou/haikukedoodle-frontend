@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./form.css";
 
 export const UserForm = ({
-  signup,
+  signUp,
   submitText,
   text,
   linkText,
@@ -44,7 +44,7 @@ export const UserForm = ({
     <>
       <form onSubmit={handleSubmit((data) => onSubmit(data))} className="form">
         <section className="form__body">
-          {signup  ? (
+          {signUp  ? (
             <>
               <label className="form__label">User Name</label>
               <input

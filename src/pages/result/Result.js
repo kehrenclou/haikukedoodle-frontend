@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./result.css";
-import { CreateHaikuContext, UserContext } from "../../contexts";
+import { CreateHaikuContext } from "../../contexts";
+import { api, auth } from "../../utils/apis";
 
-import { SignupModal, UserModal } from "../../components/modal";
+import { UserModal } from "../../components/modal";
 import Flower from "../../components/flower/Flower";
 
 export default function Result() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
-  const userCtx = useContext(UserContext);
 
   const [isPresent, safeToRemove] = usePresence();
 
@@ -20,6 +20,7 @@ export default function Result() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
 
+  /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
@@ -35,6 +36,7 @@ export default function Result() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
+  /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     navigate("/");
   };
@@ -48,28 +50,38 @@ export default function Result() {
     setIsLoginOpen(false);
   };
 
-  const handleSignUpSubmitClick = (data) => {
-    userCtx.updateEmail(data.email); //this works
-    setIsSignUp(true);
-    
+  const handleSignUpSubmit = (data) => {
+
+    auth.signUp(data.nickname,data.email,data.password)
   };
 
-  const handleLoginSubmitClick = (data) => {
-    console.log("clicked");
+  const handleLoginSubmit = (data) => {
+    auth.logIn(data.email,data.password)
+    .then((res)=>{
+      console.log(res);
+      if(res){
+        localStorage.setItem("jwt",res.token);
+      }
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
   };
 
   const handleLoginClick = () => {
-    console.log("link clicked");
     setIsSignUpOpen(false);
     setIsLoginOpen(true);
     setIsSignUp(false);
   };
+
   const handleSignUpClick = () => {
     console.log("clicked");
     setIsSignUp(true);
     setIsLoginOpen(false);
     setIsSignUpOpen(true);
   };
+
+
   return (
     <>
       <section className="result">
@@ -124,29 +136,30 @@ export default function Result() {
         </div>
       </section>
       <UserModal
-        signup={isSignUp}
+        signUp={isSignUp}
         isOpen={isSignUpOpen}
         onClose={handleCloseModal}
         name="signup"
         title="Sign up to save your Haiku"
         onLinkClick={handleLoginClick}
-        onSubmitClick={handleSignUpSubmitClick}
+        onSubmitClick={handleSignUpSubmit}
         submitText="Sign Up"
         text="Already have an account?"
         linkText="Log in here!"
       />
-      <UserModal
-        signup={isSignUp}
-        isOpen={isLoginOpen}
+      {/* <UserModal
+        signUp={isSignUp}
+        isOpen={isSignUpOpen}
         onClose={handleCloseModal}
-        name="login"
-        title="Please Log in."
-        onLinkClick={handleSignUpClick}
-        onSubmitClick={handleLoginSubmitClick}
-        submitText="Log in"
-        text="Don't have an account?"
-        linkText="Sign up Here"
+        name="signup"
+        title="Sign up to save your Haiku"
+        onLinkClick={handleLoginClick}
+        onSubmitClick={handleSignUpSubmit}
+        submitText="Sign Up"
+        text="Already have an account?"
+        linkText="Log in here!"
       />
+  */}
     </>
   );
 }

@@ -1,25 +1,29 @@
-import ModalWithForm from "./ModalWithForm";
-import UserForm from "../form/UserForm";
+import { UserModal } from "./UserModal";
 
-export function LoginModal({ isOpen, onClose }) {
+export function LoginModal({
+  isSignUp,
+  isLoginOpen,
+  handleCloseModal,
+  handleSignUpClick,
+  handleLoginSubmit,
+}) {
   function handleSubmitClick() {
     console.log("clicked");
   }
   return (
     <>
-      <ModalWithForm
-        isOpen={isOpen}
-        onClose={onClose}
+      <UserModal
+        signUp={isSignUp}
+        isOpen={isLoginOpen}
+        onClose={handleCloseModal}
         name="login"
-        title="Login"
-      >
-        <UserForm
-          submitText="Log in"
-          text="No account? "
-          linkText="Sign up here"
-          onSubmit={handleSubmitClick}
-        />
-      </ModalWithForm>
+        title="Please Log in."
+        onLinkClick={handleSignUpClick}
+        onSubmitClick={handleLoginSubmit}
+        submitText="Log in"
+        text="Don't have an account?"
+        linkText="Sign up Here"
+      />
     </>
   );
 }

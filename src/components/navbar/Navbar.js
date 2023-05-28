@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
-import { UserModal } from "../modal";
+import { SignUpModal, LoginModal } from "../modal";
+import { useModal } from "../../hooks/useModal";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
 
   function handleSignUpOpen() {
-    setIsSignupOpen(true);
+    setIsSignUpOpen(true);
+    setIsSignUp(true);
   }
   function handleCloseModal() {
-    setIsSignupOpen(false);
+    setIsSignUpOpen(false);
   }
   return (
     <>
@@ -71,13 +74,14 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
             type="button"
             aria-label="Sign up"
             onClick={handleSignUpOpen}
+            disabled={isSignUpOpen}
           >
             Sign Up
           </button>
         </li>
       </ul>
-
-      <UserModal isOpen={isSignupOpen} onClose={handleCloseModal} />
+      <SignUpModal />
+      <LoginModal />
     </>
   );
 }

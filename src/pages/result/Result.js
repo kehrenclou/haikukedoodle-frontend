@@ -3,30 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./result.css";
-import { CreateHaikuContext, ModalContext, modelContext } from "../../contexts";
+import { CreateHaikuContext } from "../../contexts";
 import { useModal } from "../../hooks/useModal";
-import * as auth from "../../utils/apis";
 
-import { UserModal, SignUpModal, LoginModal } from "../../components/modal";
+import { SignUpModal, LoginModal } from "../../components/modal";
 import Flower from "../../components/flower/Flower";
 
 export default function Result() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
-  const modalCtx = useContext(ModalContext);
 
-  console.log(modalCtx.isSignUpOpen, modalCtx);
   const [isPresent, safeToRemove] = usePresence();
 
   const [zipPairs, setZipPairs] = useState([]);
 
-  const {
-    isSignUpOpen,
-    setIsSignUpOpen,
-    setIsSignUp,
-    isLoginOpen,
-    setIsLoginOpen,
-  } = useModal();
+  const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);

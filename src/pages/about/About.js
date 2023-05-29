@@ -22,7 +22,7 @@ export default function About() {
           <ul className="about__list">
             <li className="about__list-item">
               The frontend: React, React router, react-hook-form, YUP,
-              little-state-machine, mui/icons-material.
+              mui/icons-material, framer-motion,react-loading-icons.
             </li>
             <li className="about__list-item">
               The backend: Express and MongoDB.
@@ -54,5 +54,5 @@ export default function About() {
         </div>
       </section>
     </>
-  ); 
+  );
 }

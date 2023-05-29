@@ -20,6 +20,7 @@ import About from "./about";
 import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
+import NotFound from "./notFound/NotFound";
 
 import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
 
@@ -73,6 +74,7 @@ function App() {
                   <Route path="/result" element={<Result />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/faq" element={<Faq />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </AnimatePresence>
               <Footer />

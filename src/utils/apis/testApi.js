@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import env from "react-dotenv";
 
 /* --------------------- //generates prompt with subject -------------------- */
 function generatePrompt(subject) {
@@ -21,7 +20,7 @@ function OpenAiRequest() {
 
     const prompt = generatePrompt(subj);
     const maxTokens = 50; //200
-    const apiKey = env.OPENAI_API_KEY;
+    // const apiKey = env.OPENAI_API_KEY;//key must be stored on backend
     const apiUrl = "https://api.openai.com/v1/completions";
 
     try {

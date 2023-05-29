@@ -27,4 +27,5 @@ All Users will be able to download and like the haikus.
 
 ## Future 
 - Set up the backend for connection to openai
+- Deploy on Google Cloud
 - Implement tone.js and functionality to play the songs back

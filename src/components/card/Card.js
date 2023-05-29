@@ -10,7 +10,7 @@ import { useUser } from "../../hooks";
 export default function Card({
   onDownloadClick,
   onDeleteClick,
-  onLikeClick,
+  onLikeClick,//this will be implemented when backend connected
   song,
 }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -19,7 +19,7 @@ export default function Card({
   //TODO: implement after backend connected
   const likeCount = song.likes.length;
 
-  const isOwn = song.owner === currentUser.id;
+  const isOwn = song.owner === currentUser.id;//TODO-needs back end
 
   const zipPairs = [];
   for (let i = 0; i < 3; i++) {

@@ -53,6 +53,7 @@ export default function Main() {
     setCardToDelete(card);
   }
 
+  //TODO this will be implemented when backend is connected
   function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser.id);
     api

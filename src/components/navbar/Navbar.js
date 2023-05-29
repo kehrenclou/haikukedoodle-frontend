@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
-import { useModal, useAuth } from "../../hooks";
+import { useModal, useAuth, useUser } from "../../hooks";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
-  const [currentUser, setCurrentUser] = useState({
-    name: "username",
-    email: "",
-  });
+  const { currentUser } = useUser();
 
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
   const { isLoggedIn, onLogOut } = useAuth();

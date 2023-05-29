@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import _ from "lodash";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 import { ExpandMore } from "@mui/icons-material";
 import "./main.css";
 
-//components
-import Yinyang from "../../components/yinyang/Yinyang";
-import Card from "../../components/card/Card";
-
-//utils/helpers
-import {api} from "../../utils/apis"
 import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,
   formatSongForDownload,
 } from "../../helpers/transformData";
+import { api } from "../../utils/apis";
+import { useUser, useAuth, useModal } from "../../hooks";
+
+import Yinyang from "../../components/yinyang/Yinyang";
+import Card from "../../components/card/Card";
 
 export default function Main() {
-  const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(true);//controls visibility of yinyang 
-  const [isPresent, safeToRemove] = usePresence();
-
   const [songObjects, setSongObjects] = useState([]);
+  const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang
+  const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
+
+  const [cards, setCards] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cardToDelete, setCardToDelete] = useState({});
+ 
+  const navigate = useNavigate();
+  const { currentUser } = useUser();
+  const { isLoggedIn, token } = useAuth();
+  const { setIsConfirmDeleteOpen, setIsLoading } = useModal();
+
+
+  /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
     setSongObjects(transformAiDataArr(backupAiDataArr));
@@ -32,10 +42,53 @@ export default function Main() {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 
+  /* -------------------------------- handlers -------------------------------- */
   function handleCreateClick() {
     setIsVisible(false);
     navigate("/create");
   }
+
+  function handleDeleteCardClick(card) {
+    setIsConfirmDeleteOpen(true);
+    setCardToDelete(card);
+  }
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((user) => user === currentUser.id);
+    api
+      .changeLikeCardStatus(card.id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard.id === card.id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+
+  function handleConfirmDelete() {
+    setIsLoading(true);
+    api
+      .deleteCard(cardToDelete.id)
+      .then(() => {
+        setCards(
+          cards.filter(function (item) {
+            return item.id !== cardToDelete.id;
+          })
+        );
+        setIsConfirmDeleteOpen(false);
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
 
   function handleDownloadClick(song) {
     const title = song.subject;
@@ -58,7 +111,6 @@ export default function Main() {
             {isVisible && (
               <motion.div
                 className="main__image"
-              
                 transition={{ ease: "anticipate", duration: 1 }}
                 initial={{ opacity: 0, scale: 0.75 }}
                 animate={{ opacity: 1, rotate: 360, scale: 1 }}

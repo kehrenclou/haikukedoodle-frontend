@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import {
@@ -24,9 +24,8 @@ import Faq from "./faq/Faq";
 import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
 
 function App() {
-
   const location = useLocation(); //used with ScrollToTop helper
-  // const navigate = useNavigation();
+  const navigate = useNavigate();
   /* --------------------------------- stores --------------------------------- */
   const authStore = useInitializeAuthStore();
   const modalStore = useInitializeModalStore();
@@ -45,7 +44,7 @@ function App() {
       authStore.setIsLoggedIn(false);
       return;
     }
-    // navigate("/");
+    navigate("/");
   }, []);
 
   useEffect(() => {

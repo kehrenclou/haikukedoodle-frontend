@@ -7,7 +7,12 @@ import Flower from "../flower/Flower";
 
 import { useUser } from "../../hooks";
 
-export default function Card({ onDownloadClick, onDeleteClick,onLikeClick, song }) {
+export default function Card({
+  onDownloadClick,
+  onDeleteClick,
+  onLikeClick,
+  song,
+}) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const { currentUser } = useUser();

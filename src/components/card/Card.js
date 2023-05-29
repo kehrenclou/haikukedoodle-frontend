@@ -7,7 +7,7 @@ import Flower from "../flower/Flower";
 
 import { useUser } from "../../hooks";
 
-export default function Card({ onDownloadClick, onLikeClick, song }) {
+export default function Card({ onDownloadClick, onDeleteClick,onLikeClick, song }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const { currentUser } = useUser();
@@ -28,9 +28,7 @@ export default function Card({ onDownloadClick, onLikeClick, song }) {
   function handleDownloadClick() {
     onDownloadClick(song);
   }
-  function handleTrashClick() {
-    console.log("clicked");
-  }
+
   function handleBookmarkClick() {
     setIsBookmarked(!isBookmarked);
   }
@@ -73,7 +71,7 @@ export default function Card({ onDownloadClick, onLikeClick, song }) {
         <section className="card__section card__section_footer">
           <div className="card__button-group">
             <Download onClick={handleDownloadClick} />
-            <Trash onClick={handleTrashClick} />
+            <Trash onClick={onDeleteClick} />
           </div>
           <div className="card__button-group">
             <div className="card__like-container">

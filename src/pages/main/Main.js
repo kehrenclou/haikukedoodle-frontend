@@ -16,6 +16,7 @@ import { useUser, useAuth, useModal } from "../../hooks";
 
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
+import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Main() {
   const [songObjects, setSongObjects] = useState([]);
@@ -146,6 +147,7 @@ export default function Main() {
               <Card
                 key={_.uniqueId("card-")}
                 onDownloadClick={handleDownloadClick}
+                onDeleteClick={handleDeleteCardClick}
                 onLikeClick={handleSongLike}
                 song={song}
               />
@@ -153,6 +155,7 @@ export default function Main() {
           </ul>
         </section>
       </main>
+      <ConfirmDeleteModal onClick={handleConfirmDelete} />
     </>
   );
 }

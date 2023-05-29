@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     const handleEscClose = (event) => {
       if (event.key === "Escape") {
-        modalStore.closeAllPopups();
+        modalStore.closeAllModals();
       }
     };
     document.addEventListener("keydown", handleEscClose, false);

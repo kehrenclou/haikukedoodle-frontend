@@ -5,27 +5,25 @@ import "./card.css";
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
 import Flower from "../flower/Flower";
 
-export default function Card({
-  subject,
-  createdOn,
-  haikuLines,
-  chordLines,
-  likeCount,
-  onDownloadClick,
-  onLikeClick,
-  song,
-}) {
+import { useUser } from "../../hooks";
+
+export default function Card({ onDownloadClick, onLikeClick, song }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const { currentUser } = useUser();
+  //TODO: implement after backend connected
+  const likeCount = song.likes.length;
+
+  const isOwn = song.owner === currentUser.id;
 
   const zipPairs = [];
   for (let i = 0; i < 3; i++) {
-    zipPairs.push([haikuLines[i], chordLines[i]]);
+    zipPairs.push([song.haikuLines[i], song.chordLines[i]]);
   }
 
   function handleLikeClick() {
     setIsLiked(!isLiked);
-    // onLikeClick(card);
+    // onLikeClick(song);
   }
   function handleDownloadClick() {
     onDownloadClick(song);
@@ -50,7 +48,7 @@ export default function Card({
         />
 
         <section className="card__section card__section_header ">
-          <h2 className="card__title">{subject}</h2>
+          <h2 className="card__title">{song.subject}</h2>
           <div className="card__icon-bookmark">
             <Bookmark
               onClick={handleBookmarkClick}
@@ -68,7 +66,7 @@ export default function Card({
           ))}
 
           <p className="card__text card__text_author">
-            {`~ by anonymous ${createdOn}`}
+            {`~ by anonymous ${song.createdOn}`}
           </p>
         </section>
 

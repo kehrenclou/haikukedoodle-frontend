@@ -38,16 +38,7 @@ export const backupAiDataArr = [
       },
     ],
     usage: { prompt_tokens: 58, completion_tokens: 37, total_tokens: 95 },
-    subject: "dog",
-    owner: "6429c1ea315c60dbbe0427a5",
-    likes: ["6429c559315c60dbbe0427b3", "642a3ad895d02012f3553cb8"],
-    bookmarks: [
-      "6429c88b315c60dbbe0427c8",
-      "6429e9493e69fc35be402bfa",
-      "642a39f595d02012f3553ca1",
-      "642aff09a7dbb5ddc127c6e9",
-      "6429c559315c60dbbe0427b3",
-    ],
+    subject: "peacock",
   },
   {
     id: "cmpl-7DzGecCDG9dvUaLjt5uWuODbkiejJ",
@@ -64,15 +55,6 @@ export const backupAiDataArr = [
     ],
     usage: { prompt_tokens: 53, completion_tokens: 47, total_tokens: 100 },
     subject: "puppy",
-    owner: "6429c559315c60dbbe0427b3",
-    likes: [
-      "6429c88b315c60dbbe0427c8",
-      "6429e9493e69fc35be402bfa",
-      "642a39f595d02012f3553ca1",
-      "642aff09a7dbb5ddc127c6e9",
-      "6429c559315c60dbbe0427b3",
-    ],
-    bookmarks: ["6429e9493e69fc35be402bfa", "642a39f595d02012f3553ca1"],
   },
 
   {
@@ -90,15 +72,6 @@ export const backupAiDataArr = [
     ],
     usage: { prompt_tokens: 53, completion_tokens: 39, total_tokens: 92 },
     subject: "cat",
-    owner: "6429c559315c60dbbe0427b3",
-    likes: [
-      "6429c88b315c60dbbe0427c8",
-      "6429ced2315c60dbbe0427dd",
-      "642b4e41280a1b78b50b6839",
-      "6429e9493e69fc35be402bfa",
-      "6429c559315c60dbbe0427b3",
-    ],
-    bookmarks: ["6429e9493e69fc35be402bfa", "6429c559315c60dbbe0427b3"],
   },
   {
     id: "cmpl-7E1yfvZfWNbfQOo9RrZu1c0ZDh9lb",
@@ -115,13 +88,6 @@ export const backupAiDataArr = [
     ],
     usage: { prompt_tokens: 54, completion_tokens: 50, total_tokens: 104 },
     subject: "monkey",
-    owner: "6429c559315c60dbbe0427b3",
-    likes: [
-      "6429c559315c60dbbe0427b3",
-      "6429e9493e69fc35be402bfa",
-      "642a39f595d02012f3553ca1",
-    ],
-    bookmarks: [],
   },
 ];
 //what the response looks like:

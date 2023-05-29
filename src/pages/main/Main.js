@@ -25,12 +25,11 @@ export default function Main() {
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState({});
- 
+
   const navigate = useNavigate();
   const { currentUser } = useUser();
   const { isLoggedIn, token } = useAuth();
   const { setIsConfirmDeleteOpen, setIsLoading } = useModal();
-
 
   /* ------------------------------- useEffects ------------------------------- */
 
@@ -53,7 +52,7 @@ export default function Main() {
     setCardToDelete(card);
   }
 
-  function handleCardLike(card) {
+  function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser.id);
     api
       .changeLikeCardStatus(card.id, !isLiked)
@@ -88,7 +87,6 @@ export default function Main() {
         setIsLoading(false);
       });
   }
-
 
   function handleDownloadClick(song) {
     const title = song.subject;
@@ -147,12 +145,8 @@ export default function Main() {
             {songObjects.map((song) => (
               <Card
                 key={_.uniqueId("card-")}
-                subject={song.subject}
-                createdOn={song.createdOn}
-                haikuLines={song.haikuLines}
-                chordLines={song.chordLines}
-                likeCount="11"
                 onDownloadClick={handleDownloadClick}
+                onLikeClick={handleSongLike}
                 song={song}
               />
             ))}

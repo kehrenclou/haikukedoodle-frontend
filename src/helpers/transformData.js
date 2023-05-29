@@ -18,12 +18,24 @@ export function transformAiDataArr(songs) {
   for (let i = 0; i < songs.length; i++) {
     const subject = songs[i].subject;
     const createdOn = transformTimeStamp(songs[i].created);
+    const owner = songs[i].owner;
+    const likes = songs[i].likes;
+    const bookmarks = songs[i].bookmarks;
     const lines = songs[i].choices[0].text
       .split("\n")
       .filter((line) => line !== "");
     const haikuLines = lines.slice(0, 3);
     const chordLines = lines.slice(3, 6);
-    songObjects.push({ subject, createdOn, haikuLines, chordLines });
+
+    songObjects.push({
+      subject,
+      createdOn,
+      haikuLines,
+      chordLines,
+      owner,
+      likes,
+      bookmarks,
+    });
   }
   return songObjects;
 }

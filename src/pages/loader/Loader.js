@@ -1,6 +1,6 @@
-import React from "react";
-import "./loader.css";
 import React, { useEffect } from "react";
+import "./loader.css";
+
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 

@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
+
 import { UserModal } from "./UserModal";
 import { useModal, useAuth } from "../../hooks";
 import * as auth from "../../utils/apis";
 
-export function LoginModal({}) {
+export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
-  const navigate = useNavigate();
+
   const { setToken, setIsLoggedIn } = useAuth();
 
   const {
@@ -39,11 +40,8 @@ export function LoginModal({}) {
         if (res) {
           localStorage.setItem("jwt", res.token);
           setToken(res.token);
-
-          // setStatus("success");
           setIsLoading(false);
           setIsLoginOpen(false);
-          // setIsStatusModalOpen(true);
         } else {
           setStatus("fail");
         }

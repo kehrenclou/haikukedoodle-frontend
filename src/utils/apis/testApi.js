@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import env from "react-dotenv";
-
 
 /* --------------------- //generates prompt with subject -------------------- */
 function generatePrompt(subject) {
@@ -15,9 +14,6 @@ function generatePrompt(subject) {
 function OpenAiRequest() {
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-
-
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -49,7 +45,6 @@ function OpenAiRequest() {
       const generatedText = data.choices[0].text; //returns correct part
 
       setResult(generatedText);
-
 
       //this updates state result with the data.choices[0].text and usage from openai and subj declared in this.
       //to recreate with backupdata should be the same.

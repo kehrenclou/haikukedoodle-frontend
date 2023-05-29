@@ -29,7 +29,8 @@
     "start": "react-dotenv && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint":"eslint src/**/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -53,5 +54,9 @@
     "whitelist": [
       "OPENAI_API_KEY"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-plugin-react": "^7.32.2"
   }
 }

@@ -1,3 +1,4 @@
+import React from "react"
 
 export default function Circle({id,cx,cy,r,classname}) {
     return (

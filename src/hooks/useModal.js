@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { ModalContext } from "../contexts";
 
 export const useModal = () => {
@@ -19,8 +19,6 @@ export const useModal = () => {
     setIsSignUp,
     closeAllModals,
   } = useContext(ModalContext);
-
-
 
   return {
     isLoginOpen,

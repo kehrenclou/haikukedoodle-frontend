@@ -1,3 +1,4 @@
+import React from "react";
 import { IconButton, Tooltip } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 
@@ -44,7 +45,7 @@ export const Heart = ({ isLiked, onClick }) => {
                 // backgroundColor: "white",
                 // boxShadow: "rgba(0, 0, 0, 0.45) 0px 2px 15px",
                 fontSize: "28px",
-                "&:hover": { color: "#2b2d42",backgroundColor: "pink"  },
+                "&:hover": { color: "#2b2d42", backgroundColor: "pink" },
               }}
             />
           )}

@@ -1,8 +1,9 @@
+import React from "react";
 import { UserModal } from "./UserModal";
 import { useModal } from "../../hooks/useModal";
 import * as auth from "../../utils/apis";
 
-export function SignUpModal({}) {
+export function SignUpModal() {
   const {
     setIsLoginOpen,
     isSignUpOpen,

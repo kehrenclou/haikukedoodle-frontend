@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence, usePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./create.css";
 
 import { CreateHaikuContext } from "../../contexts";
@@ -36,7 +36,7 @@ export default function Create() {
   }, [haikuCtx.state]);
 
   /* ---------------------------------- utils --------------------------------- */
-  //set chat gpt statement with input
+  //TODO set chat gpt statement with input when back end avail
   function generatePrompt(input) {
     const capitalizedSubject =
       input[0].toUpperCase() + input.slice(1).toLowerCase();
@@ -47,9 +47,8 @@ export default function Create() {
   }
 
   function delayForDemo(promise) {
-    return new Promise((resolve, reject) => {
-      // setTimeout(()=>reject(new Error("fake error")), 4000);//this will mimic fail
-      setTimeout(() => resolve(), 4000); //this will mimic success
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(), 4000);
     })
       .then(() => promise)
       .then(() => navigate("/result"))

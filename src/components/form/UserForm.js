@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -30,9 +30,9 @@ export const UserForm = ({
         "Please enter a valid email"
       ),
     username: Yup.string()
-    .required("Please enter a user name for your account.")
-    .min(2, "Add between 2 and 15 characters with no spaces")
-    .max(15, "Add between 2 and 15 characters with no spaces"),
+      .required("Please enter a user name for your account.")
+      .min(2, "Add between 2 and 15 characters with no spaces")
+      .max(15, "Add between 2 and 15 characters with no spaces"),
 
     password: Yup.string()
       .required("Please enter a password between 4 and 8 characters.")
@@ -63,7 +63,9 @@ export const UserForm = ({
     password: "",
   };
   const formOptions = {
-    resolver: yupResolver(signUp ? validationSchemaSignUp:validationSchemaLogin),
+    resolver: yupResolver(
+      signUp ? validationSchemaSignUp : validationSchemaLogin
+    ),
     defaultValues: { ...emptyInput },
   };
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
@@ -73,10 +75,10 @@ export const UserForm = ({
     reset({ ...emptyInput });
   }, [formState.isSubmitSuccessful, reset]);
 
-const handleCancelClick=()=>{
-  reset();
-  onCancel();
-}
+  const handleCancelClick = () => {
+    reset();
+    onCancel();
+  };
 
   return (
     <>

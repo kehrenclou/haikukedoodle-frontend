@@ -1,3 +1,4 @@
+import React from "react";
 import "./notFound.css";
 import { SentimentVeryDissatisfied } from "@mui/icons-material";
 

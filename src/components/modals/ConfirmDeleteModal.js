@@ -1,3 +1,4 @@
+import React from "react";
 import "./modal.css";
 import ModalWithForm from "./Modal";
 import { useModal } from "../../hooks/useModal";
@@ -20,7 +21,7 @@ export function ConfirmDeleteModal({ onClick }) {
         <h2 className="modal__title">want to delete this ?</h2>
         <button
           type="buton"
-          arial-label="delete button"
+          aria-label="delete button"
           onClick={onClick}
           className="button  button_type_form_submit"
         >

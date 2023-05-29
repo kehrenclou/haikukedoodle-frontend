@@ -1,11 +1,11 @@
+import React from "react";
 import "./loader.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 
-export default function Loader({ isLoading, setIsLoading, isError }) {
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isError, setIsError] = useState(true);
+export default function Loader({ isError }) {
+
   const [isPresent, safeToRemove] = usePresence();
 
   useEffect(() => {

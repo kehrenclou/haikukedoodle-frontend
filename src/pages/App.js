@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import {
   CreateHaikuProvider,
-  AuthProvider,
-  UserProvider,
+  AuthContext,
+  UserContext,
   ModalContext,
+  useInitializeUserStore,
   useInitializeModalStore,
+  useInitializeAuthStore,
 } from "../contexts";
+import { api } from "../utils/apis";
 
 import Header from "../components/header";
 import Main from "./main";
@@ -17,17 +20,50 @@ import About from "./about";
 import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
-import Loader from "./loader/Loader";
+
 import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
 
 function App() {
+
   const location = useLocation(); //used with ScrollToTop helper
+  // const navigate = useNavigation();
+  /* --------------------------------- stores --------------------------------- */
+  const authStore = useInitializeAuthStore();
   const modalStore = useInitializeModalStore();
+  const userStore = useInitializeUserStore();
+
+  /* ------------------------------- useEffects ------------------------------- */
+  useEffect(() => {
+    api.setHeaders({
+      authorization: `Bearer ${authStore.token}`,
+      "Content-Type": "application/json",
+    });
+  }, [authStore]);
+
+  useEffect(() => {
+    if (!authStore.token) {
+      authStore.setIsLoggedIn(false);
+      return;
+    }
+    // navigate("/");
+  }, []);
+
+  useEffect(() => {
+    const handleEscClose = (event) => {
+      if (event.key === "Escape") {
+        modalStore.closeAllPopups();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose, false);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose, false);
+    };
+  }, []);
 
   return (
     <div className="page">
-      <AuthProvider>
-        <UserProvider>
+      <AuthContext.Provider value={authStore}>
+        <UserContext.Provider value={userStore}>
           <ModalContext.Provider value={modalStore}>
             <CreateHaikuProvider>
               <Header />
@@ -38,7 +74,6 @@ function App() {
                   <Route path="/result" element={<Result />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/faq" element={<Faq />} />
-                  <Route path="/loader" element={<Loader />} />
                 </Routes>
               </AnimatePresence>
               <Footer />
@@ -48,8 +83,8 @@ function App() {
               <StatusModal />
             </CreateHaikuProvider>
           </ModalContext.Provider>
-        </UserProvider>
-      </AuthProvider>
+        </UserContext.Provider>
+      </AuthContext.Provider>
     </div>
   );
 }

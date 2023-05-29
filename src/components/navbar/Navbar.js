@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
-import { useModal } from "../../hooks/useModal";
+import { useModal, useAuth } from "../../hooks";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
+  const [currentUser, setCurrentUser] = useState({
+    name: "username",
+    email: "",
+  });
+
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
+  const { isLoggedIn, onLogOut } = useAuth();
 
   function handleSignUpOpen() {
     setIsSignUpOpen(true);
     setIsSignUp(true);
   }
 
+  function handleLogOut() {
+    onLogOut();
+  }
   return (
     <>
       <ul className={isLessThan600 ? "nav nav_mobile" : "nav"} id="menu">
@@ -63,17 +72,34 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
               FAQ
             </NavLink>
           </li>
+          {isLoggedIn ? (
+            <li className="nav__item">
+              <p className="nav__link nav__link_nolink">{currentUser.name}</p>
+            </li>
+          ) : null}
         </div>
+
         <li className="nav__item">
-          <button
-            className="button button_type_primary"
-            type="button"
-            aria-label="Sign up"
-            onClick={handleSignUpOpen}
-            disabled={isSignUpOpen}
-          >
-            Sign Up
-          </button>
+          {isLoggedIn ? (
+            <button
+              className="button button_type_logout"
+              type="button"
+              aria-label="Log out"
+              onClick={handleLogOut}
+            >
+              Log Out
+            </button>
+          ) : (
+            <button
+              className="button button_type_primary"
+              type="button"
+              aria-label="Sign up"
+              onClick={handleSignUpOpen}
+              disabled={isSignUpOpen}
+            >
+              Sign Up
+            </button>
+          )}
         </li>
       </ul>
     </>

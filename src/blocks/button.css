@@ -39,6 +39,10 @@ button:hover {
   background-color: #fdc9ef;
   margin: 0;
 }
+.button_type_logout {
+  background-color: #719ef1;
+  margin:0
+}
 .button_type_primary:hover {
   background-color: #fdc9ef;
   color: #2b2d42;

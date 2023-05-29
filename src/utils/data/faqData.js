@@ -30,6 +30,12 @@ export const faqs = [
     answer:
       "It is possible that the api is busy, or the number of daily requests to openai has been exceeded.  I put a limit on it since I am paying for every request.",
   },
+  {
+    question:
+      "Why are you asking for my email?",
+    answer:
+      "Your email will not be shared, sold or otherwise. The request for email is to only to ensure some level of accountability to prevent misuse of the site.",
+  },
 
 
 ];

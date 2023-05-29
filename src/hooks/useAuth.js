@@ -7,7 +7,7 @@ export const useAuth = () => {
   const { isLoggedIn, token, setToken, setIsLoggedIn, isLoaded, setIsLoaded } =
     useContext(AuthContext);
 
-  const onSignOut = useCallback(() => {
+  const onLogOut = useCallback(() => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
     setToken(undefined);
@@ -20,6 +20,6 @@ export const useAuth = () => {
     setToken,
     setIsLoggedIn,
     setIsLoaded,
-    onSignOut,
+    onLogOut,
   };
 };

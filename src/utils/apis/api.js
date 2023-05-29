@@ -24,7 +24,7 @@ class Api {
     this._headers = headers;
   }
 
- get
+ 
 }
 
 //sets headers with token on all api calls

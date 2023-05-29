@@ -17,15 +17,10 @@ export const useModal = () => {
     setIsLoading,
     setStatus,
     setIsSignUp,
+    closeAllModals,
   } = useContext(ModalContext);
 
-  const closeAllModals = useCallback(() => {
-    setIsLoginOpen(false);
-    setIsSignUpOpen(false);
 
-    setIsConfirmDeleteOpen(false);
-    setIsStatusModalOpen(false);
-  }, []);
 
   return {
     isLoginOpen,

@@ -30,18 +30,53 @@ export default function Main() {
   const navigate = useNavigate();
   const { currentUser } = useUser();
   const { isLoggedIn, token } = useAuth();
-  const { setIsConfirmDeleteOpen, setIsLoading } = useModal();
+  const {
+    setIsConfirmDeleteOpen,
+    setIsLoading,
+    setStatus,
+    setIsStatusModalOpen,
+  } = useModal();
 
   /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
     setSongObjects(transformAiDataArr(backupAiDataArr));
-  }, []); //transform backup data Arr to subject,haikulines,chordlines//SongObjects mapped in rendering cards
+    setCards(songObjects);
+  }, [isLoggedIn, cards]); //transform backup data Arr to subject,haikulines,chordlines//SongObjects mapped in rendering cards
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 
+  /* ------------------ temp functions before backend set up ------------------ */
+
+  const changeStat = (newCard, statType) => {
+    const cardId = newCard.id; // ID of the card you want to modify
+    const itemIdToRemove = currentUser.id; // ID of the item you want to remove
+    //  const sType=statType;
+
+    const cardIndex = cards.findIndex((card) => card.id === cardId);
+    if (cardIndex !== -1) {
+      const typeIndex = cards[cardIndex][statType].indexOf(itemIdToRemove);
+      if (typeIndex !== -1) {
+        cards[cardIndex][statType].splice(typeIndex, 1);
+        console.log("Item removed from likes array.", cards);
+      } else {
+        cards[cardIndex][statType].push(itemIdToRemove);
+        console.log("Item not found in likes array.");
+      }
+    } else {
+      console.log("Card not found.");
+    }
+  };
+  const deleteCardFromCards = (cardId) => {
+    const cardIndex = cards.findIndex((card) => card.id === cardId);
+    if (cardIndex !== -1) {
+      cards.splice(cardIndex, 1);
+    } else {
+      console.log("Card not found.");
+    }
+  };
   /* -------------------------------- handlers -------------------------------- */
   function handleCreateClick() {
     setIsVisible(false);
@@ -50,15 +85,35 @@ export default function Main() {
 
   function handleDeleteCardClick(card) {
     setIsConfirmDeleteOpen(true);
-    setCardToDelete(card);
+    setCardToDelete(card.id);
   }
 
   //TODO this will be implemented when backend is connected
   function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser.id);
     api
-      .changeLikeCardStatus(card.id, !isLiked)
+      .changeLikeCardStatus(card)
       .then((newCard) => {
+        changeStat(newCard, "likes");
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard.id === card.id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+
+  //TODO this will be implemented when backend is connected
+  function handleBookmarkStatus(card) {
+    // const isBookmarked = card.bookmarks.some((user) => user === currentUser.id);
+    api
+      .changeBookmarkCardStatus(card)
+
+      .then((newCard) => {
+        changeStat(newCard, "bookmarks");
         setCards((state) =>
           state.map((currentCard) =>
             currentCard.id === card.id ? newCard : currentCard
@@ -72,9 +127,11 @@ export default function Main() {
 
   function handleConfirmDelete() {
     setIsLoading(true);
+
     api
-      .deleteCard(cardToDelete.id)
-      .then(() => {
+      .deleteCard(cardToDelete)
+      .then((cardToDelete) => {
+        deleteCardFromCards(cardToDelete);
         setCards(
           cards.filter(function (item) {
             return item.id !== cardToDelete.id;
@@ -84,6 +141,9 @@ export default function Main() {
       })
       .catch((err) => {
         api.handleErrorResponse(err);
+        setStatus("fail");
+        setIsConfirmDeleteOpen(false);
+        setIsStatusModalOpen(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -147,9 +207,11 @@ export default function Main() {
             {songObjects.map((song) => (
               <Card
                 key={_.uniqueId("card-")}
+                id={song.id}
                 onDownloadClick={handleDownloadClick}
                 onDeleteClick={handleDeleteCardClick}
                 onLikeClick={handleSongLike}
+                onBookmarkClick={handleBookmarkStatus}
                 song={song}
               />
             ))}

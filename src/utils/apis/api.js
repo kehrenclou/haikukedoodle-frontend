@@ -42,7 +42,7 @@ class Api {
     // });
   }
 
-  changeLikeCardStatus(cardId, like) {
+  changeLikeCardStatus(card) {
     return new Promise((resolve, reject) => {
       if (!resolve) {
         return setTimeout(
@@ -51,7 +51,25 @@ class Api {
         );
       }
   
-      setTimeout(() => resolve(cardId,like), 250);
+      setTimeout(() => resolve(card), 250);
+    });
+    //TODOD: when Backend done
+    // return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+    //   headers: this._headers,
+    //   method: like ? "PUT" : "DELETE",
+    //   body: JSON.stringify(),
+    // });
+  }
+  changeBookmarkCardStatus(card) {
+    return new Promise((resolve, reject) => {
+      if (!resolve) {
+        return setTimeout(
+          () => reject(new Error("Email or password not found")),
+          250
+        );
+      }
+  
+      setTimeout(() => resolve(card), 250);
     });
     //TODOD: when Backend done
     // return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {

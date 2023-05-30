@@ -1,10 +1,19 @@
 import React from "react";
 import "./about.css";
+import Flower from "../../components/flower/Flower";
 
 export default function About() {
   return (
     <>
       <section className="about">
+        <Flower
+          width="154"
+          height="133"
+          colora="rgba(213,157,169,.2)"
+          colorb="rgba(213,157,169,.3)"
+          colorc="rgba(213,157,169,.5)"
+          className="about__flower"
+        />
         <div className="about__container">
           <h1 className="about__heading">About the Project</h1>
           <p className="about__text">

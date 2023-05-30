@@ -1,25 +1,29 @@
-// import _ from "lodash";
 import React, { useState } from "react";
 import "./card.css";
 
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
 import Flower from "../flower/Flower";
 
-import { useUser } from "../../hooks";
+import { useUser, useAuth } from "../../hooks";
 
 export default function Card({
   onDownloadClick,
   onDeleteClick,
-  onLikeClick,//this will be implemented when backend connected
+  onLikeClick, //this will be implemented when backend connected
+  onBookmarkClick, //this will be implemented when backend connected
   song,
 }) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
+  // const [isBookmarked, setIsBookmarked] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
   const { currentUser } = useUser();
+  const { isLoggedIn } = useAuth();
+
   //TODO: implement after backend connected
   const likeCount = song.likes.length;
 
-  const isOwn = song.owner === currentUser.id;//TODO-needs back end
+  const isOwn = song.owner === currentUser.id; //TODO-needs back end
+  const isLiked = song.likes.some((user) => user === currentUser.id);
+  const isBookmarked = song.bookmarks.some((user) => user === currentUser.id);
 
   const zipPairs = [];
   for (let i = 0; i < 3; i++) {
@@ -27,15 +31,18 @@ export default function Card({
   }
 
   function handleLikeClick() {
-    setIsLiked(!isLiked);
-    // onLikeClick(song);
+    // setIsLiked(!isLiked);
+    onLikeClick(song);
   }
   function handleDownloadClick() {
     onDownloadClick(song);
   }
 
   function handleBookmarkClick() {
-    setIsBookmarked(!isBookmarked);
+    onBookmarkClick(song);
+  }
+  function handleDeleteClick(){
+    onDeleteClick(song)
   }
 
   return (
@@ -52,12 +59,14 @@ export default function Card({
 
         <section className="card__section card__section_header ">
           <h2 className="card__title">{song.subject}</h2>
-          <div className="card__icon-bookmark">
-            <Bookmark
-              onClick={handleBookmarkClick}
-              isBookmarked={isBookmarked}
-            />
-          </div>
+          {isLoggedIn ? (
+            <div className="card__icon-bookmark">
+              <Bookmark
+                onClick={handleBookmarkClick}
+                isBookmarked={isBookmarked}
+              />
+            </div>
+          ) : null}
         </section>
 
         <section className="card__section card__section_body">
@@ -76,12 +85,16 @@ export default function Card({
         <section className="card__section card__section_footer">
           <div className="card__button-group">
             <Download onClick={handleDownloadClick} />
-            <Trash onClick={onDeleteClick} />
+            {isLoggedIn && isOwn ? <Trash onClick={handleDeleteClick} /> : null}
           </div>
           <div className="card__button-group">
             <div className="card__like-container">
               <p className="card__like-count">{` ${likeCount} `}</p>
-              <Heart onClick={handleLikeClick} isLiked={isLiked} />
+              <Heart
+                onClick={handleLikeClick}
+                isLiked={isLiked}
+                isLoggedIn={isLoggedIn}
+              />
             </div>
           </div>
         </section>

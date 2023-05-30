@@ -21,6 +21,7 @@ export function transformAiDataArr(songs) {
     const owner = songs[i].owner;
     const likes = songs[i].likes;
     const bookmarks = songs[i].bookmarks;
+    const id=songs[i].id;
     const lines = songs[i].choices[0].text
       .split("\n")
       .filter((line) => line !== "");
@@ -35,6 +36,7 @@ export function transformAiDataArr(songs) {
       owner,
       likes,
       bookmarks,
+      id
     });
   }
   return songObjects;

@@ -1,6 +1,6 @@
 .about {
   display: flex;
-  
+
   flex-direction: column;
   max-width: 1000px;
   margin: 130px auto 16px;
@@ -14,6 +14,7 @@
 
   background-color: rgba(255, 255, 255, 0.97);
   color: #2b2d42;
+  position: relative;
 }
 
 .about__container {
@@ -28,6 +29,11 @@
   font-size: 24px;
 }
 
+.about__flower {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
 .about__text {
   font-size: 16px;
   line-height: 1.5;

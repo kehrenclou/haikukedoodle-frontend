@@ -18,7 +18,6 @@ const cardData = [
       "6429e9493e69fc35be402bfa",
       "642a39f595d02012f3553ca1",
       "642aff09a7dbb5ddc127c6e9",
-      "6429c559315c60dbbe0427b3",
     ],
     createdAt: "2023-04-02T17:26:40.467Z",
     __v: 0,

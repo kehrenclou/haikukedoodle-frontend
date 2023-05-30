@@ -11,13 +11,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-
     "framer-motion": "^10.12.7",
     "lodash": "^4.17.21",
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-
     "react-hook-form": "^7.43.9",
     "react-loading-icons": "^1.1.0",
     "react-router-dom": "^6.10.0",
@@ -26,13 +24,13 @@
     "yup": "^1.1.1"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start",
+    "start": " react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "predeploy": "npm run build",
-    "deploy":"gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +50,6 @@
       "last 1 safari version"
     ]
   },
-
   "devDependencies": {
     "eslint": "^8.41.0",
     "eslint-plugin-react": "^7.32.2",

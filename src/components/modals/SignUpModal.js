@@ -1,6 +1,6 @@
 import React from "react";
 import { UserModal } from "./UserModal";
-import { useModal } from "../../hooks/useModal";
+import { useModal, useAuth } from "../../hooks";
 import * as auth from "../../utils/apis";
 
 export function SignUpModal() {
@@ -14,6 +14,8 @@ export function SignUpModal() {
     setIsStatusModalOpen,
     setStatus,
   } = useModal();
+
+  const { setIsLoggedIn } = useAuth();
 
   const handleCloseModal = () => {
     setIsSignUpOpen(false);
@@ -40,6 +42,7 @@ export function SignUpModal() {
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);
+          setIsLoggedIn(true);
           //?need to ensure that view updates
           //need to save haiku to user account
         } else {

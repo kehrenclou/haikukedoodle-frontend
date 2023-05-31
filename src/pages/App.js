@@ -17,12 +17,12 @@ import { api } from "../utils/apis";
 
 import Header from "../components/header";
 import Main from "./main";
-import Footer from "../components/footer/Footer";
+import Footer from "../components/footer";
 import About from "./about";
 import Create from "./create";
 import Result from "./result";
 import Faq from "./faq/Faq";
-import NotFound from "./notFound/NotFound";
+import NotFound from "./notFound";
 
 import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
 

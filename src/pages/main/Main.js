@@ -42,10 +42,10 @@ export default function Main() {
 
   // useEffect(() => {
   //   setCards(transformAiDataArr(backupAiDataArr));
-  // }, []); 
+  // }, []);
   //transform backup data Arr to subject,haikulines,chordlines//cards mapped in rendering cards
- //this should only happen where it wont remount - app.js
-  console.log(cards);
+  //this should only happen where it wont remount - app.js
+
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount

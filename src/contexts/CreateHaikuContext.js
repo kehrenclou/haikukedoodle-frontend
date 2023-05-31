@@ -29,7 +29,15 @@ export const CreateHaikuProvider = ({ children }) => {
     },
     [state]
   );
-
+  const resetAll = useCallback(() => {
+    updateState({
+      subject: "",
+      terms: false,
+      haikuLines: [],
+      chordLines: [],
+      createdOn: "",
+    });
+  });
   const updateAll = useCallback((subject, terms, data) => {
     updateState({
       subject: subject,
@@ -42,11 +50,12 @@ export const CreateHaikuProvider = ({ children }) => {
   const store = useMemo(() => {
     return {
       state,
+      resetAll,
       updateSubject,
       updateTerms,
       updateAll,
     };
-  }, [state, updateSubject, updateTerms, updateAll]);
+  }, [state, resetAll, updateSubject, updateTerms, updateAll]);
 
   return (
     <CreateHaikuContext.Provider value={store}>

@@ -12,7 +12,7 @@ import {
   formatSongForDownload,
 } from "../../helpers/transformData";
 import { api } from "../../utils/apis";
-import { useUser, useAuth, useModal } from "../../hooks";
+import { useUser, useAuth, useModal, useCards } from "../../hooks";
 
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
@@ -23,7 +23,8 @@ export default function Main() {
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
-  const [cards, setCards] = useState([]);
+  // const [cards, setCards] = useState([]);
+
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState({});
 
@@ -36,18 +37,18 @@ export default function Main() {
     setStatus,
     setIsStatusModalOpen,
   } = useModal();
-
+  const { cards, setCards } = useCards();
   /* ------------------------------- useEffects ------------------------------- */
 
-  useEffect(() => {
-    setCards(transformAiDataArr(backupAiDataArr));
-    // setCards(songObjects);
-  }, []); //transform backup data Arr to subject,haikulines,chordlines//cards mapped in rendering cards
-
+  // useEffect(() => {
+  //   setCards(transformAiDataArr(backupAiDataArr));
+  // }, []); 
+  //transform backup data Arr to subject,haikulines,chordlines//cards mapped in rendering cards
+ //this should only happen where it wont remount - app.js
+  console.log(cards);
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
-
 
   /* ------------------ temp functions before backend set up ------------------ */
 
@@ -73,14 +74,12 @@ export default function Main() {
 
   const deleteCardFromCards = (cardId) => {
     const cardIndex = cards.findIndex((card) => card.id === cardId);
-    console.log(cards);//before
+    console.log(cards); //before
     if (cardIndex !== -1) {
       cards.splice(cardIndex, 1);
- 
-   
-      console.log("card removed from cards")
-      console.log(cards)//after
-  
+
+      console.log("card removed from cards");
+      console.log(cards); //after
     } else {
       console.log("Card not found.");
     }

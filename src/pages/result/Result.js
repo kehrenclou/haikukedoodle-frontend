@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./result.css";
+import { api } from "../../utils/apis";
 import { CreateHaikuContext } from "../../contexts";
-import { useModal } from "../../hooks/useModal";
+import { useModal, useAuth, useCards } from "../../hooks";
 
 import Flower from "../../components/flower/Flower";
 
@@ -17,6 +18,8 @@ export default function Result() {
   const [zipPairs, setZipPairs] = useState([]);
 
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
+  const { loggedIn, isLoggedIn } = useAuth();
+  const { cards, setCards } = useCards();
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -37,10 +40,25 @@ export default function Result() {
   const handleStartOverClick = () => {
     navigate("/");
   };
-
+  console.log(haikuCtx.state);
   const handleSaveClick = () => {
-    setIsSignUpOpen(true);
-    setIsSignUp(true);
+    if (!isLoggedIn) {
+      setIsSignUpOpen(true);
+      setIsSignUp(true);
+    } else {
+      api
+        .saveCard()
+        //push data to backend
+        //add to cards and navigate to
+        .then(() => {
+          setCards([...cards,{...haikuCtx.state,likes:[],bookmarks:[]}])
+          //array destructiong and destructuring
+          navigate("/"); //need to figure out transition here
+        });
+      // .then(() => {
+      //   // haikuCtx.resetAll(); //use this to reset haikuCtx.
+      // });
+    }
   };
 
   return (

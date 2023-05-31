@@ -7,9 +7,11 @@ import {
   AuthContext,
   UserContext,
   ModalContext,
+  CardContext,
   useInitializeUserStore,
   useInitializeModalStore,
   useInitializeAuthStore,
+  useInitializeCardStore,
 } from "../contexts";
 import { api } from "../utils/apis";
 
@@ -31,6 +33,7 @@ function App() {
   const authStore = useInitializeAuthStore();
   const modalStore = useInitializeModalStore();
   const userStore = useInitializeUserStore();
+  const cardStore = useInitializeCardStore();
 
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
@@ -65,24 +68,26 @@ function App() {
       <AuthContext.Provider value={authStore}>
         <UserContext.Provider value={userStore}>
           <ModalContext.Provider value={modalStore}>
-            <CreateHaikuProvider>
-              <Header />
-              <AnimatePresence mode="wait">
-                <Routes location={location} key={location.key}>
-                  <Route path="/" element={<Main />} />
-                  <Route path="/create" element={<Create />} />
-                  <Route path="/result" element={<Result />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/faq" element={<Faq />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </AnimatePresence>
-              <Footer />
+            <CardContext.Provider value={cardStore}>
+              <CreateHaikuProvider>
+                <Header />
+                <AnimatePresence mode="wait">
+                  <Routes location={location} key={location.key}>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/create" element={<Create />} />
+                    <Route path="/result" element={<Result />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/faq" element={<Faq />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </AnimatePresence>
+                <Footer />
 
-              <SignUpModal />
-              <LoginModal />
-              <StatusModal />
-            </CreateHaikuProvider>
+                <SignUpModal />
+                <LoginModal />
+                <StatusModal />
+              </CreateHaikuProvider>
+            </CardContext.Provider>
           </ModalContext.Provider>
         </UserContext.Provider>
       </AuthContext.Provider>

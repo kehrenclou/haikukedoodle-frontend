@@ -42,6 +42,19 @@ class Api {
     // });
   }
 
+  saveCard() {
+    return new Promise((resolve, reject) => {
+      if (!resolve) {
+        return setTimeout(
+          () => reject(new Error("Email or password not found")),
+          250
+        );
+      }
+
+      setTimeout(() => resolve({}), 250);
+    });
+  }
+
   changeLikeCardStatus(card) {
     return new Promise((resolve, reject) => {
       if (!resolve) {
@@ -50,7 +63,7 @@ class Api {
           250
         );
       }
-  
+
       setTimeout(() => resolve(card), 250);
     });
     //TODOD: when Backend done
@@ -68,7 +81,7 @@ class Api {
           250
         );
       }
-  
+
       setTimeout(() => resolve(card), 250);
     });
     //TODOD: when Backend done
@@ -87,7 +100,7 @@ class Api {
           250
         );
       }
-  
+
       setTimeout(() => resolve(cardId), 250);
     });
     //TODOD: when Backend done

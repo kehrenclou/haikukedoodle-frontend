@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./card.css";
 
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
@@ -13,8 +13,6 @@ export default function Card({
   onBookmarkClick, //this will be implemented when backend connected
   song,
 }) {
-  // const [isBookmarked, setIsBookmarked] = useState(false);
-  // const [isLiked, setIsLiked] = useState(false);
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
 
@@ -41,8 +39,8 @@ export default function Card({
   function handleBookmarkClick() {
     onBookmarkClick(song);
   }
-  function handleDeleteClick(){
-    onDeleteClick(song)
+  function handleDeleteClick() {
+    onDeleteClick(song);
   }
 
   return (

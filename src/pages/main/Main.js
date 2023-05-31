@@ -40,13 +40,14 @@ export default function Main() {
   /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
-    setSongObjects(transformAiDataArr(backupAiDataArr));
-    setCards(songObjects);
-  }, [isLoggedIn, cards]); //transform backup data Arr to subject,haikulines,chordlines//SongObjects mapped in rendering cards
+    setCards(transformAiDataArr(backupAiDataArr));
+    // setCards(songObjects);
+  }, []); //transform backup data Arr to subject,haikulines,chordlines//cards mapped in rendering cards
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
+
 
   /* ------------------ temp functions before backend set up ------------------ */
 
@@ -60,19 +61,26 @@ export default function Main() {
       const typeIndex = cards[cardIndex][statType].indexOf(itemIdToRemove);
       if (typeIndex !== -1) {
         cards[cardIndex][statType].splice(typeIndex, 1);
-        console.log("Item removed from likes array.", cards);
+        console.log(`Item removed from ${statType} array.`, cards);
       } else {
         cards[cardIndex][statType].push(itemIdToRemove);
-        console.log("Item not found in likes array.");
+        console.log(`Item not found in ${statType} array.`);
       }
     } else {
       console.log("Card not found.");
     }
   };
+
   const deleteCardFromCards = (cardId) => {
     const cardIndex = cards.findIndex((card) => card.id === cardId);
+    console.log(cards);//before
     if (cardIndex !== -1) {
       cards.splice(cardIndex, 1);
+ 
+   
+      console.log("card removed from cards")
+      console.log(cards)//after
+  
     } else {
       console.log("Card not found.");
     }
@@ -204,7 +212,7 @@ export default function Main() {
         <section className="main__cards" id="cards">
           <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
           <ul className="main__cards_list" id="cards-list">
-            {songObjects.map((song) => (
+            {cards.map((song) => (
               <Card
                 key={_.uniqueId("card-")}
                 id={song.id}

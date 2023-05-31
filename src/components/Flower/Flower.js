@@ -2,7 +2,7 @@
 import * as React from "react";
 
 
-const Flower = ({width="",height="",colora="",colorb="",colorc="",...props}) => (
+export const Flower = ({width="",height="",colora="",colorb="",colorc="",...props}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}//154 original
@@ -36,4 +36,4 @@ const Flower = ({width="",height="",colora="",colorb="",colorc="",...props}) => 
     />
   </svg>
 );
-export default Flower;
+

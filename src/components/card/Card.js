@@ -2,7 +2,7 @@ import React from "react";
 import "./card.css";
 
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
-import Flower from "../flower/Flower";
+import { Flower } from "../flower/Flower";
 
 import { useUser, useAuth } from "../../hooks";
 

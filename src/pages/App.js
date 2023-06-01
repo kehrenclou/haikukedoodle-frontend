@@ -15,9 +15,9 @@ import {
 } from "../contexts";
 import { api } from "../utils/apis";
 
-import Header from "../components/header";
+import Header from "../components/header1";
 import Main from "./main";
-import Footer from "../components/footer";
+import Footer from "../components/footer1";
 import About from "./about";
 import Create from "./create";
 import Result from "./result";

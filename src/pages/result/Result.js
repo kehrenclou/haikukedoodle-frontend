@@ -7,7 +7,7 @@ import { api } from "../../utils/apis";
 import { CreateHaikuContext } from "../../contexts";
 import { useModal, useAuth, useCards } from "../../hooks";
 
-import {Flower} from "../../components/flower/Flower";
+import { Flower } from "../../components/flower1/Flower";
 
 export default function Result() {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ export default function Result() {
         //push data to backend
         //add to cards and navigate to
         .then(() => {
-          setCards([...cards,{...haikuCtx.state,likes:[],bookmarks:[]}])
+          setCards([...cards, { ...haikuCtx.state, likes: [], bookmarks: [] }]);
           //array destructiong and destructuring
           navigate("/"); //need to figure out transition here
         });

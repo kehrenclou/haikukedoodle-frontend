@@ -21,7 +21,7 @@ import Footer from "../components/footer";
 import About from "./about";
 import Create from "./create";
 import Result from "./result";
-import Faq from "./faq/Faq";
+import Faq from "./faq";
 import NotFound from "./notFound";
 
 import { SignUpModal, LoginModal, StatusModal } from "../components/modals";

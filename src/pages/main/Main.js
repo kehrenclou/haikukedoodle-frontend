@@ -105,18 +105,15 @@ export default function Main() {
     setCardToDelete(card.id);
   }
 
-
   //TODO this will be implemented when backend is connected
   function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser.id);
- 
-  
+
     api
       .changeLikeCardStatus(card.id, currentUser.id, !isLiked)
       .then((newCard) => {
         // changeStat(newCard, "likes");
         const tsfNewCard = transformAiDataObject(newCard);
-        console.log("newcard, tsfNewCard", newCard, tsfNewCard);
 
         setCards((state) =>
           state.map((currentCard) =>
@@ -131,15 +128,16 @@ export default function Main() {
 
   //TODO this will be implemented when backend is connected
   function handleBookmarkStatus(card) {
-    // const isBookmarked = card.bookmarks.some((user) => user === currentUser.id);
+    const isBookmarked = card.bookmarks.some((user) => user === currentUser.id);
     api
-      .changeBookmarkCardStatus(card)
+      .changeBookmarkCardStatus(card.id, currentUser.id, !isBookmarked)
 
       .then((newCard) => {
-        changeStat(newCard, "bookmarks");
+        // changeStat(newCard, "bookmarks");
+        const tsfNewCard = transformAiDataObject(newCard);
         setCards((state) =>
           state.map((currentCard) =>
-            currentCard.id === card.id ? newCard : currentCard
+            currentCard.id === card.id ? tsfNewCard : currentCard
           )
         );
       })

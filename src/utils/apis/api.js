@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3001";
 
 class Api {
   constructor({ baseUrl, headers }) {
@@ -25,21 +25,21 @@ class Api {
   }
 
   getCards() {
-    return new Promise((resolve, reject) => {
-      if (!resolve) {
-        return setTimeout(
-          () => reject(new Error("Email or password not found")),
-          250
-        );
-      }
+    // return new Promise((resolve, reject) => {
+    //   if (!resolve) {
+    //     return setTimeout(
+    //       () => reject(new Error("Email or password not found")),
+    //       250
+    //     );
+    //   }
 
-      setTimeout(() => resolve({}), 250);
-    });
-    //TODOD: when Backend done
-    // return this._request(`${this._baseUrl}/cards`, {
-    //   headers: this._headers,
-    //   method: "GET",
+    //   setTimeout(() => resolve({}), 250);
     // });
+    //TODOD: when Backend done
+    return this._request(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+      method: "GET",
+    });
   }
 
   saveCard() {
@@ -55,24 +55,16 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(card) {
-    return new Promise((resolve, reject) => {
-      if (!resolve) {
-        return setTimeout(
-          () => reject(new Error("Email or password not found")),
-          250
-        );
-      }
-
-      setTimeout(() => resolve(card), 250);
+  changeLikeCardStatus(cardId, userId, like, ) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+      headers: this._headers,
+      method: like ? "PUT" : "DELETE",
+      body: JSON.stringify({
+        userId:userId
+      }),
     });
-    //TODOD: when Backend done
-    // return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-    //   headers: this._headers,
-    //   method: like ? "PUT" : "DELETE",
-    //   body: JSON.stringify(),
-    // });
   }
+
   changeBookmarkCardStatus(card) {
     return new Promise((resolve, reject) => {
       if (!resolve) {

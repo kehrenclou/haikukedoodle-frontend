@@ -9,6 +9,7 @@ import "./main.css";
 import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,
+  transformAiDataObject,
   formatSongForDownload,
 } from "../../helpers/transformData";
 import { api } from "../../utils/apis";
@@ -22,8 +23,6 @@ export default function Main() {
   const [songObjects, setSongObjects] = useState([]);
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
-
-  // const [cards, setCards] = useState([]);
 
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardToDelete, setCardToDelete] = useState({});
@@ -45,6 +44,17 @@ export default function Main() {
   // }, []);
   //transform backup data Arr to subject,haikulines,chordlines//cards mapped in rendering cards
   //this should only happen where it wont remount - app.js
+
+  useEffect(() => {
+    api
+      .getCards()
+      .then((initialCards) => {
+        setCards(transformAiDataArr(initialCards));
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }, []);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -95,16 +105,22 @@ export default function Main() {
     setCardToDelete(card.id);
   }
 
+
   //TODO this will be implemented when backend is connected
   function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser.id);
+ 
+  
     api
-      .changeLikeCardStatus(card)
+      .changeLikeCardStatus(card.id, currentUser.id, !isLiked)
       .then((newCard) => {
-        changeStat(newCard, "likes");
+        // changeStat(newCard, "likes");
+        const tsfNewCard = transformAiDataObject(newCard);
+        console.log("newcard, tsfNewCard", newCard, tsfNewCard);
+
         setCards((state) =>
           state.map((currentCard) =>
-            currentCard.id === card.id ? newCard : currentCard
+            currentCard.id === card.id ? tsfNewCard : currentCard
           )
         );
       })

@@ -21,7 +21,7 @@ export function transformAiDataArr(songs) {
     const owner = songs[i].owner;
     const likes = songs[i].likes;
     const bookmarks = songs[i].bookmarks;
-    const id=songs[i].id;
+    const id=songs[i]._id;
     const lines = songs[i].choices[0].text
       .split("\n")
       .filter((line) => line !== "");
@@ -45,13 +45,19 @@ export function transformAiDataArr(songs) {
 /* ---------------- Transform backup Object Data - from State --------------- */
 export function transformAiDataObject(song) {
   const songObjects = [];
+  const subject=song.subject;
   const createdOn = transformTimeStamp(song.created);
   const lines = song.choices[0].text.split("\n").filter((line) => line !== "");
   const haikuLines = lines.slice(0, 3);
   const chordLines = lines.slice(3, 6);
-  songObjects.push({ createdOn, haikuLines, chordLines });
+  const owner=song.owner;
+  const likes=song.likes;
+  const bookmarks=song.bookmarks;
+  const id=song._id;
+  // songObjects.push({ subject,createdOn, haikuLines, chordLines, owner,likes,bookmarks,id });
 
-  return songObjects;
+  // return songObjects;
+  return({subject,createdOn, haikuLines, chordLines, owner,likes,bookmarks,id})
 }
 
 /* ----------- function to transform song format for text download ---------- */

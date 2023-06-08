@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./card.css";
 
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
@@ -23,7 +23,8 @@ export default function Card({
   const isLiked = song.likes.some((user) => user === currentUser.id);
   const isBookmarked = song.bookmarks.some((user) => user === currentUser.id);
 
-  const zipPairs = [];
+  var zipPairs = [];
+
   for (let i = 0; i < 3; i++) {
     zipPairs.push([song.haikuLines[i], song.chordLines[i]]);
   }
@@ -31,6 +32,7 @@ export default function Card({
   function handleLikeClick() {
     // setIsLiked(!isLiked);
     onLikeClick(song);
+ 
   }
   function handleDownloadClick() {
     onDownloadClick(song);

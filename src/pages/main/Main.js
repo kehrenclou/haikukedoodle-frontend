@@ -112,9 +112,7 @@ export default function Main() {
     api
       .changeLikeCardStatus(card.id, currentUser.id, !isLiked)
       .then((newCard) => {
-        // changeStat(newCard, "likes");
         const tsfNewCard = transformAiDataObject(newCard);
-
         setCards((state) =>
           state.map((currentCard) =>
             currentCard.id === card.id ? tsfNewCard : currentCard
@@ -133,7 +131,6 @@ export default function Main() {
       .changeBookmarkCardStatus(card.id, currentUser.id, !isBookmarked)
 
       .then((newCard) => {
-        // changeStat(newCard, "bookmarks");
         const tsfNewCard = transformAiDataObject(newCard);
         setCards((state) =>
           state.map((currentCard) =>

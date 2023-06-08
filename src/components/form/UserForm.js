@@ -29,7 +29,7 @@ export const UserForm = ({
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
         "Please enter a valid email"
       ),
-    username: Yup.string()
+    name: Yup.string()
       .required("Please enter a user name for your account.")
       .min(2, "Add between 2 and 15 characters with no spaces")
       .max(15, "Add between 2 and 15 characters with no spaces"),
@@ -58,7 +58,7 @@ export const UserForm = ({
 
   //form - config
   const emptyInput = {
-    username: "",
+    name: "",
     email: "",
     password: "",
   };
@@ -88,13 +88,13 @@ export const UserForm = ({
             <>
               <label className="form__label">User Name</label>
               <input
-                name="username"
+                name="name"
                 type="text"
                 placeholder="Enter a user name"
                 className={` ${
-                  errors.username ? "is-invalid" : ""
+                  errors.name ? "is-invalid" : ""
                 } form__input`}
-                {...register("username", {
+                {...register("name", {
                   required: true,
                   max: 15,
                   min: 2,
@@ -102,7 +102,7 @@ export const UserForm = ({
                 })}
               />
               <div className="form__invalid-feedback">
-                {errors.username?.message}
+                {errors.name?.message}
               </div>
             </>
           ) : null}

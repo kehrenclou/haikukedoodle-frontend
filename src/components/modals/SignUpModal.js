@@ -1,6 +1,6 @@
 import React from "react";
 import { UserModal } from "./UserModal";
-import { useModal, useAuth } from "../../hooks";
+import { useModal, useAuth, useUser } from "../../hooks";
 import * as auth from "../../utils/apis";
 
 export function SignUpModal() {
@@ -16,6 +16,7 @@ export function SignUpModal() {
   } = useModal();
 
   const { setIsLoggedIn } = useAuth();
+  const { setCurrentUser } = useUser();
 
   const handleCloseModal = () => {
     setIsSignUpOpen(false);
@@ -35,10 +36,11 @@ export function SignUpModal() {
     setIsLoading(true);
 
     auth
-      .signUp(data.nickname, data.email, data.password)
+      .signup(data.name, data.email, data.password)
       .then((res) => {
         if (res) {
           setStatus("success");
+          setCurrentUser(res)
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);

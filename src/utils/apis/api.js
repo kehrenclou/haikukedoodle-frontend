@@ -25,17 +25,6 @@ class Api {
   }
 
   getCards() {
-    // return new Promise((resolve, reject) => {
-    //   if (!resolve) {
-    //     return setTimeout(
-    //       () => reject(new Error("Email or password not found")),
-    //       250
-    //     );
-    //   }
-
-    //   setTimeout(() => resolve({}), 250);
-    // });
-    //TODOD: when Backend done
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: "GET",
@@ -55,17 +44,27 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(cardId, userId, like, ) {
+  changeLikeCardStatus(cardId, userId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: like ? "PUT" : "DELETE",
       body: JSON.stringify({
-        userId:userId
+        userId: userId,
       }),
     });
   }
 
-  changeBookmarkCardStatus(cardId, userId,bookmark) {
+  changeBookmarkCardStatus(cardId, userId, bookmark) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
+      headers: this._headers,
+      method: bookmark ? "PUT" : "DELETE",
+      body: JSON.stringify({
+        userId: userId,
+      }),
+    });
+  }
+
+  deleteCard(cardId) {
     // return new Promise((resolve, reject) => {
     //   if (!resolve) {
     //     return setTimeout(
@@ -74,34 +73,13 @@ class Api {
     //     );
     //   }
 
-    //   setTimeout(() => resolve(card), 250);
+    //   setTimeout(() => resolve(cardId), 250);
     // });
     //TODOD: when Backend done
-    return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
+    return this._request(`${this._baseUrl}/cards/${cardId}`, {
       headers: this._headers,
-      method: bookmark ? "PUT" : "DELETE",
-      body: JSON.stringify({
-        userId:userId
-      }),
+      method: "DELETE",
     });
-  }
-
-  deleteCard(cardId) {
-    return new Promise((resolve, reject) => {
-      if (!resolve) {
-        return setTimeout(
-          () => reject(new Error("Email or password not found")),
-          250
-        );
-      }
-
-      setTimeout(() => resolve(cardId), 250);
-    });
-    //TODOD: when Backend done
-    // return this._request(`${this._baseUrl}/cards/${cardId}`, {
-    //   headers: this._headers,
-    //   method: "DELETE",
-    // });
   }
 }
 

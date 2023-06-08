@@ -36,12 +36,12 @@ function App() {
   const cardStore = useInitializeCardStore();
 
   /* ------------------------------- useEffects ------------------------------- */
-  useEffect(() => {
-    api.setHeaders({
-      authorization: `Bearer ${authStore.token}`,
-      "Content-Type": "application/json",
-    });
-  }, [authStore]);
+  // useEffect(() => {
+  //   api.setHeaders({
+  //     authorization: `Bearer ${authStore.token}`,
+  //     "Content-Type": "application/json",
+  //   });
+  // }, [authStore]);
 
   useEffect(() => {
     if (!authStore.token) {

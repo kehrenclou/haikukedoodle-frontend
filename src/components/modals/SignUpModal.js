@@ -32,7 +32,6 @@ export function SignUpModal() {
   };
 
   const handleSignUpSubmit = (data) => {
-    //TODO: update with backend logic
     setIsLoading(true);
 
     auth

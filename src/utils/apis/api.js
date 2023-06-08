@@ -1,3 +1,4 @@
+import { useAuth } from "../../hooks/useAuth";
 const baseUrl = "http://localhost:3001";
 
 class Api {
@@ -24,6 +25,13 @@ class Api {
     this._headers = headers;
   }
 
+  getInfo = () => {
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._headers,
+    });
+  };
+  
   getCards() {
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
@@ -88,5 +96,6 @@ export const api = new Api({
   baseUrl: baseUrl,
   headers: {
     "Content-Type": "application/json",
+    authorization: `Bearer ${useAuth.token}`,
   },
 });

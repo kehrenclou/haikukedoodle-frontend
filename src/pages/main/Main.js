@@ -57,6 +57,16 @@ export default function Main() {
   }, []);
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      return;
+    }
+    api.setHeaders({
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 

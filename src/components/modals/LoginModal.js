@@ -39,18 +39,18 @@ export function LoginModal() {
 
       .then((res) => {
         console.log("loginthenres", res); //returns token
-
+        //res = returns token
+        //if token set local storage, set token, set headers
         if (res) {
           localStorage.setItem("jwt", res.token);
           setToken(res.token);
-
-          console.log(res.token); //returns same token
 
           api.setHeaders({
             authorization: `Bearer ${res.token}`,
             "Content-Type": "application/json",
           });
- 
+
+          //  api.saveCard()//save here pass card somehow
 
           api.getInfo().then((res) => {
             console.log("res", res);
@@ -66,13 +66,12 @@ export function LoginModal() {
         }
       })
       .catch((error) => {
-        console.log("loginerror",error);
+        console.log("loginerror", error);
         setStatus("fail");
         setIsStatusModalOpen(true);
       })
       .finally(() => {
         setIsLoading(false);
-      
       });
   };
 

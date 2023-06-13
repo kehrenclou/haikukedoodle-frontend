@@ -4,6 +4,7 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./create.css";
 
 import { CreateHaikuContext } from "../../contexts";
+import { useUser } from "../../hooks";
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
@@ -13,6 +14,7 @@ import Loader from "../loader/Loader";
 export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
+  const { currentUser } = useUser();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -60,13 +62,14 @@ export default function Create() {
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
     //todo - update when backend implemented for res data
-
+    //resp is imported from backupData - temporary to mimic response from openai
     const tsfResponse = transformAiDataObject(resp); //extract lines and chords
-    haikuCtx.updateAll(subject, terms, tsfResponse[0]);
+    haikuCtx.updateAll(subject, terms, tsfResponse, resp, currentUser); //tsfREsponse undefined
     setIsLoading(true);
     delayForDemo();
   };
-
+console.log(haikuCtx.state);
+console.log(currentUser)
   return (
     <>
       <section className="create" key="create">

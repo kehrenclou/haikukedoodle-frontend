@@ -13,7 +13,7 @@ export default function Result() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
 
-  const [isPresent, safeToRemove] = usePresence();
+  const [isPresent, safeToRemove] = usePresence();//used with animation
 
   const [zipPairs, setZipPairs] = useState([]);
 
@@ -40,18 +40,20 @@ export default function Result() {
   const handleStartOverClick = () => {
     navigate("/");
   };
-  console.log(haikuCtx.state);
+
   const handleSaveClick = () => {
+
     if (!isLoggedIn) {
       setIsSignUpOpen(true);
       setIsSignUp(true);
     } else {
       api
-        .saveCard()
+        .saveCard(haikuCtx.state)
         //push data to backend
         //add to cards and navigate to
         .then(() => {
           setCards([...cards, { ...haikuCtx.state, likes: [], bookmarks: [] }]);
+          console.log({cards})
           //array destructiong and destructuring
           navigate("/"); //need to figure out transition here
         });
@@ -60,6 +62,7 @@ export default function Result() {
       // });
     }
   };
+  console.log({cards})
 
   return (
     <>

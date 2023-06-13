@@ -31,7 +31,7 @@ class Api {
       headers: this._headers,
     });
   };
-  
+
   getCards() {
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
@@ -39,16 +39,29 @@ class Api {
     });
   }
 
-  saveCard() {
-    return new Promise((resolve, reject) => {
-      if (!resolve) {
-        return setTimeout(
-          () => reject(new Error("Email or password not found")),
-          250
-        );
-      }
+  saveCard(data) {
+    // return new Promise((resolve, reject) => {
+    //   if (!resolve) {
+    //     return setTimeout(
+    //       () => reject(new Error("Haiku could not be sved")),
+    //       250
+    //     );
+    //   }
 
-      setTimeout(() => resolve({}), 250);
+    //   setTimeout(() => resolve({}), 250);
+    // });
+    return this._request(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+      method: "POST",
+      body: JSON.stringify({
+        aiId: data.aiId,
+        created: data.created,
+        choices: data.choices,
+        usage: data.usage,
+        subject: data.subject,
+        owner: data.owner,
+        terms: data.terms,
+      }),
     });
   }
 

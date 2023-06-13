@@ -9,6 +9,12 @@ export const CreateHaikuProvider = ({ children }) => {
     haikuLines: [],
     chordLines: [],
     createdOn: "",
+    aiId:"",
+    choices:[],
+    usage:{},
+    created:"",
+    owner:"",
+  
   });
 
   const updateSubject = useCallback(
@@ -38,13 +44,18 @@ export const CreateHaikuProvider = ({ children }) => {
       createdOn: "",
     });
   });
-  const updateAll = useCallback((subject, terms, data) => {
+  const updateAll = useCallback((subject, terms, data, response, owner) => {
     updateState({
       subject: subject,
       terms: terms,
       haikuLines: data.haikuLines,
       chordLines: data.chordLines,
       createdOn: data.createdOn,
+      created:response.created,
+      aiId:response.id,
+      choices:response.choices,
+      usage:response.usage,
+      owner:owner._id,
     });
   });
   const store = useMemo(() => {

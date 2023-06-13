@@ -20,7 +20,7 @@ import Card from "../../components/card/Card";
 import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Main() {
-  const [songObjects, setSongObjects] = useState([]);
+
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
@@ -48,13 +48,15 @@ export default function Main() {
   useEffect(() => {
     api
       .getCards()
-      .then((initialCards) => {
-        setCards(transformAiDataArr(initialCards));
+      .then((resCards) => {
+        setCards(transformAiDataArr(resCards));
       })
       .catch((err) => {
         api.handleErrorResponse(err);
       });
   }, []);
+
+console.log({cards})
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -74,7 +76,7 @@ export default function Main() {
 
   const changeStat = (newCard, statType) => {
     const cardId = newCard.id; // ID of the card you want to modify
-    const itemIdToRemove = currentUser.id; // ID of the item you want to remove
+    const itemIdToRemove = currentUser._id; // ID of the item you want to remove
     //  const sType=statType;
 
     const cardIndex = cards.findIndex((card) => card.id === cardId);
@@ -117,15 +119,17 @@ export default function Main() {
 
   //TODO this will be implemented when backend is connected
   function handleSongLike(card) {
-    const isLiked = card.likes.some((user) => user === currentUser.id);
+    const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api
-      .changeLikeCardStatus(card.id, currentUser.id, !isLiked)
+      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
+
         setCards((state) =>
+        
           state.map((currentCard) =>
-            currentCard.id === card.id ? tsfNewCard : currentCard
+            currentCard.id === card.id ? tsfNewCard[0] : currentCard
           )
         );
       })
@@ -136,15 +140,18 @@ export default function Main() {
 
   //TODO this will be implemented when backend is connected
   function handleBookmarkStatus(card) {
-    const isBookmarked = card.bookmarks.some((user) => user === currentUser.id);
+
+    const isBookmarked = card.bookmarks.some(
+      (user) => user === currentUser._id
+    );
     api
-      .changeBookmarkCardStatus(card.id, currentUser.id, !isBookmarked)
+      .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
 
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
         setCards((state) =>
           state.map((currentCard) =>
-            currentCard.id === card.id ? tsfNewCard : currentCard
+            currentCard.id === card.id ? tsfNewCard[0] : currentCard
           )
         );
       })
@@ -232,15 +239,15 @@ export default function Main() {
         <section className="main__cards" id="cards">
           <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
           <ul className="main__cards_list" id="cards-list">
-            {cards.map((song) => (
+            {cards.map((card) => (
               <Card
                 key={_.uniqueId("card-")}
-                id={song.id}
+                id={card.id}
                 onDownloadClick={handleDownloadClick}
                 onDeleteClick={handleDeleteCardClick}
                 onLikeClick={handleSongLike}
                 onBookmarkClick={handleBookmarkStatus}
-                song={song}
+                card={card}
               />
             ))}
           </ul>

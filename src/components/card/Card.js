@@ -11,38 +11,39 @@ export default function Card({
   onDeleteClick,
   onLikeClick, //this will be implemented when backend connected
   onBookmarkClick, //this will be implemented when backend connected
-  song,
+  card,
 }) {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
 
   //TODO: implement after backend connected
-  const likeCount = song.likes.length;
+  const likeCount = card.likes.length;
 
-  const isOwn = song.owner === currentUser.id; //TODO-needs back end
-  const isLiked = song.likes.some((user) => user === currentUser.id);
-  const isBookmarked = song.bookmarks.some((user) => user === currentUser.id);
+  const isOwn = card.owner === currentUser._id; //TODO-needs back end
+  const isLiked = card.likes.some((user) => user === currentUser._id);
+  const isBookmarked = card.bookmarks.some((user) => user === currentUser._id);
 
   var zipPairs = [];
 
   for (let i = 0; i < 3; i++) {
-    zipPairs.push([song.haikuLines[i], song.chordLines[i]]);
+    zipPairs.push([card.haikuLines[i], card.chordLines[i]]);
   }
 
   function handleLikeClick() {
     // setIsLiked(!isLiked);
-    onLikeClick(song);
+ 
+    onLikeClick(card);
  
   }
   function handleDownloadClick() {
-    onDownloadClick(song);
+    onDownloadClick(card);
   }
 
   function handleBookmarkClick() {
-    onBookmarkClick(song);
+    onBookmarkClick(card);
   }
   function handleDeleteClick() {
-    onDeleteClick(song);
+    onDeleteClick(card);
   }
 
   return (
@@ -58,7 +59,7 @@ export default function Card({
         />
 
         <section className="card__section card__section_header ">
-          <h2 className="card__title">{song.subject}</h2>
+          <h2 className="card__title">{card.subject}</h2>
           {isLoggedIn ? (
             <div className="card__icon-bookmark">
               <Bookmark
@@ -78,7 +79,7 @@ export default function Card({
           ))}
 
           <p className="card__text card__text_author">
-            {`~ by anonymous ${song.createdOn}`}
+            {`~ by anonymous ${card.createdOn}`}
           </p>
         </section>
 

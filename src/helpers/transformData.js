@@ -43,20 +43,20 @@ export function transformAiDataArr(songs) {
 }
 
 /* ---------------- Transform backup Object Data - from State --------------- */
-export function transformAiDataObject(song) {
-  const songObjects = [];
-  const subject=song.subject;//no subject in data passed in
-  const createdOn = transformTimeStamp(song.created);
-  const lines = song.choices[0].text.split("\n").filter((line) => line !== "");
+export function transformAiDataObject(card) {
+  const cardObjects = [];
+  const subject=card.subject;//no subject in data passed in
+  const createdOn = transformTimeStamp(card.created);
+  const lines = card.choices[0].text.split("\n").filter((line) => line !== "");
   const haikuLines = lines.slice(0, 3);
   const chordLines = lines.slice(3, 6);
-  const owner=song.owner;//owner is undefined
-  const likes=song.likes;//likes undefined
-  const bookmarks=song.bookmarks;//bookmarks undefined
-  const id=song._id;//_id undefined
-  songObjects.push( {subject,createdOn, haikuLines, chordLines, owner,likes,bookmarks,id} );
+  const owner=card.owner;//owner is undefined
+  const likes=card.likes;//likes undefined
+  const bookmarks=card.bookmarks;//bookmarks undefined
+  const id=card._id;//_id undefined
+  cardObjects.push( {subject,createdOn, haikuLines, chordLines, owner,likes,bookmarks,id} );
 
-  return songObjects;
+  return cardObjects;
   // return({createdOn, haikuLines, chordLines, id})
 }
 

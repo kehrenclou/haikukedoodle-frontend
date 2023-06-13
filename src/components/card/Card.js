@@ -30,8 +30,6 @@ export default function Card({
   }
 
   function handleLikeClick() {
-    // setIsLiked(!isLiked);
- 
     onLikeClick(card);
  
   }

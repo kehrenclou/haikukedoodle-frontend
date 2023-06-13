@@ -20,7 +20,6 @@ import Card from "../../components/card/Card";
 import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Main() {
-
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
@@ -55,8 +54,6 @@ export default function Main() {
         api.handleErrorResponse(err);
       });
   }, []);
-
-console.log({cards})
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -127,7 +124,6 @@ console.log({cards})
         const tsfNewCard = transformAiDataObject(newCard);
 
         setCards((state) =>
-        
           state.map((currentCard) =>
             currentCard.id === card.id ? tsfNewCard[0] : currentCard
           )
@@ -140,7 +136,6 @@ console.log({cards})
 
   //TODO this will be implemented when backend is connected
   function handleBookmarkStatus(card) {
-
     const isBookmarked = card.bookmarks.some(
       (user) => user === currentUser._id
     );

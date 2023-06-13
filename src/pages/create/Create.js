@@ -64,6 +64,7 @@ export default function Create() {
     //todo - update when backend implemented for res data
     //resp is imported from backupData - temporary to mimic response from openai
     const tsfResponse = transformAiDataObject(resp); //extract lines and chords
+    console.log({tsfResponse}) 
     haikuCtx.updateAll(subject, terms, tsfResponse, resp, currentUser); //tsfREsponse undefined
     setIsLoading(true);
     delayForDemo();

@@ -44,6 +44,7 @@ export function transformAiDataArr(songs) {
 
 /* ---------------- Transform backup Object Data - from State --------------- */
 export function transformAiDataObject(card) {
+
   const cardObjects = [];
   const subject=card.subject;//no subject in data passed in
   const createdOn = transformTimeStamp(card.created);

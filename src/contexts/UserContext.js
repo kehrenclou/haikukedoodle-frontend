@@ -6,7 +6,7 @@ export const useInitializeUserStore = () => {
   const [currentUser, setCurrentUser] = useState({
     name: "Jane Doe",
     email: "kedoodle@kedoodledev",
-    id: "6429c559315c60dbbe0427b3",
+    _id: "6429c559315c60dbbe0427b3",
     isAnonymous: "false",
   });
 

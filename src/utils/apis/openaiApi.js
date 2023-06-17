@@ -1,66 +1,4 @@
-
-import { Configuration, OpenAIApi } from "openai";
-
-//set up openai config
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
-/* --------------------------- function to connect -------------------------- */
-export default async function (req, res) {
-  //if no configuration error
-  if (!configuration.apiKey) {
-    res.status(500).json({
-      error: {
-        message:
-          "OpenAI API key not configured, please follow instructions in README.md",
-      },
-    });
-    return;
-  }
-
-//define subject from req body
-  const subject = req.body.subject || "";
-
-//check subject not empty, then connect
-  if (subject.trim().length === 0) {
-    res.status(400).json({
-      error: {
-        message: "Please enter a valid subject",
-      },
-    });
-    return;
-  }
-
-  //try openai.createCompletion
-  try {
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: generatePrompt(subject),
-      temperature: 0.7,
-      max_tokens: 200,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
-    });
- // res.status(200).json({ result: completion.data });
-    res.status(200).json({ result: completion.data.choices[0].text });
-  } catch (error) {
-    // Consider adjusting the error handling logic for your use case
-    if (error.response) {
-      console.error(error.response.status, error.response.data);
-      res.status(error.response.status).json(error.response.data);
-    } else {
-      console.error(`Error with OpenAI API request: ${error.message}`);
-      res.status(500).json({
-        error: {
-          message: "An error occurred during your request.",
-        },
-      });
-    }
-  }
-}
+export const BASE_URL = "http://localhost:3001";
 
 /* --------------------- //generates prompt with subject -------------------- */
 function generatePrompt(subject) {
@@ -74,11 +12,27 @@ next, write three lines of guitar chords to accompany the haiku.
 `;
 }
 
-//the test Api that was called from a button click
-async function testApi() {
+const handleOpenApiResponse = (res) => {
+  if (!res.ok) {
+    return Promise.reject(`Error:${res.status}`);
+  } else {
+    return res.json();
+  }
+};
 
+export const generateHaiku = (subject, user, terms) => {
+  return fetch(`${BASE_URL}/openai/haiku`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ subject, user, terms }),
+  }).then(handleOpenApiResponse);
+};
+/* ------------ the test Api that was called from a button click ------------ */
+async function testApi() {
   try {
-    const response = await fetch('src/utils/openaiApi', {
+    const response = await fetch("src/utils/openaiApi", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,8 +44,7 @@ async function testApi() {
     const data = await response.json();
     if (response.status !== 200) {
       throw (
-        data.error ||
-        new Error(`Request failed with status ${response.status}`)
+        data.error || new Error(`Request failed with status ${response.status}`)
       );
     }
     // setData(data);

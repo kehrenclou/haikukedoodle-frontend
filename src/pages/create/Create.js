@@ -5,6 +5,7 @@ import "./create.css";
 
 import { CreateHaikuContext } from "../../contexts";
 import { useUser } from "../../hooks";
+import * as openAiApi from "../../utils/apis/openaiApi";
 import { transformAiDataObject } from "../../helpers/transformData";
 import { resp } from "../../utils/data/backupData";
 
@@ -63,14 +64,28 @@ export default function Create() {
   const handleSubmitClick = (subject, terms) => {
     //todo - update when backend implemented for res data
     //resp is imported from backupData - temporary to mimic response from openai
-    const tsfResponse = transformAiDataObject(resp); //extract lines and chords
-    console.log({tsfResponse}) 
-    haikuCtx.updateAll(subject, terms, tsfResponse[0], resp, currentUser); //tsfREsponse undefined
+    const sub = subject;
+    const term = terms;
     setIsLoading(true);
-    delayForDemo();
+    openAiApi
+      .generateHaiku(subject, currentUser._id, terms)
+      .then((res) => {
+        console.log(res);
+        if (res) {
+          const tsfResponse = transformAiDataObject(res);
+          haikuCtx.updateAll(sub, term, tsfResponse[0], resp, currentUser); //tsfREsponse undefined
+        } else {
+          console.log("fail");
+        }
+      })
+      .then(() => navigate("/result"))
+      .catch((error) => {
+        console.log("openaierror", error);
+        setIsError(true);
+        navigate("/");
+      });
   };
-console.log(haikuCtx.state);
-console.log(currentUser)
+
   return (
     <>
       <section className="create" key="create">

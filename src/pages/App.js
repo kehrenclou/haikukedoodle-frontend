@@ -45,11 +45,9 @@ function App() {
   // }, [authStore]);
 
   useEffect(() => {
-    console.log(userStore._id);
-    console.log(authStore.isLoggedIn)
     if (!authStore.token) {
       authStore.setIsLoggedIn(false);
-      
+
       return;
     }
     navigate("/");

@@ -63,7 +63,7 @@ export default function Main() {
       authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     });
-    console.log(token)
+    console.log(token);
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -117,11 +117,10 @@ export default function Main() {
 
   //TODO this will be implemented when backend is connected
   function handleSongLike(card) {
-    debugger;
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api
-      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)//id vs._id
+      .changeLikeCardStatus(card.id, currentUser._id, !isLiked) //id vs._id
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
 
@@ -138,7 +137,6 @@ export default function Main() {
 
   //TODO this will be implemented when backend is connected
   function handleBookmarkStatus(card) {
-
     const isBookmarked = card.bookmarks.some(
       (user) => user === currentUser._id
     );

@@ -31,7 +31,6 @@ export default function Card({
 
   function handleLikeClick() {
     onLikeClick(card);
- 
   }
   function handleDownloadClick() {
     onDownloadClick(card);
@@ -89,11 +88,7 @@ export default function Card({
           <div className="card__button-group">
             <div className="card__like-container">
               <p className="card__like-count">{` ${likeCount} `}</p>
-              <Heart
-                onClick={handleLikeClick}
-                isLiked={isLiked}
-                isLoggedIn={isLoggedIn}
-              />
+              <Heart onClick={handleLikeClick} isLiked={isLiked} />
             </div>
           </div>
         </section>

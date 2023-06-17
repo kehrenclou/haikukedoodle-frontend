@@ -2,7 +2,7 @@ import React from "react";
 import { IconButton, Tooltip } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 
-export const Heart = ({ isLiked, onClick, isLoggedIn }) => {
+export const Heart = ({ isLiked, onClick }) => {
   return (
     <>
       <Tooltip
@@ -25,7 +25,7 @@ export const Heart = ({ isLiked, onClick, isLoggedIn }) => {
           }
           onClick={onClick}
         >
-          {isLiked && isLoggedIn ? (
+          {isLiked  ? (
             <Favorite
               sx={{
                 borderRadius: "50%",

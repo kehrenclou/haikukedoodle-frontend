@@ -65,7 +65,7 @@ export default function Create() {
     //resp is imported from backupData - temporary to mimic response from openai
     const tsfResponse = transformAiDataObject(resp); //extract lines and chords
     console.log({tsfResponse}) 
-    haikuCtx.updateAll(subject, terms, tsfResponse, resp, currentUser); //tsfREsponse undefined
+    haikuCtx.updateAll(subject, terms, tsfResponse[0], resp, currentUser); //tsfREsponse undefined
     setIsLoading(true);
     delayForDemo();
   };

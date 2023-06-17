@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { ulid } from "ulid";
 
 import {
   CreateHaikuProvider,
@@ -44,8 +45,11 @@ function App() {
   // }, [authStore]);
 
   useEffect(() => {
+    console.log(userStore._id);
+    console.log(authStore.isLoggedIn)
     if (!authStore.token) {
       authStore.setIsLoggedIn(false);
+      
       return;
     }
     navigate("/");

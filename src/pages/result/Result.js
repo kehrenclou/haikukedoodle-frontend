@@ -5,7 +5,7 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./result.css";
 import { api } from "../../utils/apis";
 import { CreateHaikuContext } from "../../contexts";
-import { useModal, useAuth, useCards } from "../../hooks";
+import { useModal, useAuth, useCards, useUser } from "../../hooks";
 
 import { Flower } from "../../components/flower/Flower";
 
@@ -13,13 +13,14 @@ export default function Result() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
 
-  const [isPresent, safeToRemove] = usePresence();//used with animation
+  const [isPresent, safeToRemove] = usePresence(); //used with animation
 
   const [zipPairs, setZipPairs] = useState([]);
 
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
   const { loggedIn, isLoggedIn } = useAuth();
   const { cards, setCards } = useCards();
+  const { currentUser } = useUser();
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -42,7 +43,6 @@ export default function Result() {
   };
 
   const handleSaveClick = () => {
-
     if (!isLoggedIn) {
       setIsSignUpOpen(true);
       setIsSignUp(true);
@@ -53,7 +53,7 @@ export default function Result() {
         //add to cards and navigate to
         .then(() => {
           setCards([...cards, { ...haikuCtx.state, likes: [], bookmarks: [] }]);
-          console.log({cards})
+          console.log({ cards });
           //array destructiong and destructuring
           navigate("/"); //need to figure out transition here
         });
@@ -62,7 +62,7 @@ export default function Result() {
       // });
     }
   };
-  console.log({cards})
+
 
   return (
     <>
@@ -93,7 +93,7 @@ export default function Result() {
                   <p className="result__text result__text_med">{chord}</p>
                 </div>
               ))}
-              <p>{`~created by Anonymous on ${haikuCtx.state.createdOn}`}</p>
+              <p>{`~created by ${currentUser.name} on ${haikuCtx.state.createdOn}`}</p>
             </div>
           </motion.div>
         </AnimatePresence>

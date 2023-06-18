@@ -7,7 +7,6 @@ import { CreateHaikuContext } from "../../contexts";
 import { useUser } from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
 import { transformAiDataObject } from "../../helpers/transformData";
-import { resp } from "../../utils/data/backupData";
 
 import { CreateHaikuForm } from "../../components/form";
 import Loader from "../loader/Loader";
@@ -38,42 +37,17 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
 
-  /* ---------------------------------- utils --------------------------------- */
-  //TODO set chat gpt statement with input when back end avail
-  function generatePrompt(input) {
-    const capitalizedSubject =
-      input[0].toUpperCase() + input.slice(1).toLowerCase();
-
-    const prompt = `Write a "Haiku" about subject: ${capitalizedSubject} with the first line has 5 syllables, the second line has 7 syllables, the third line has 5 syllables.
-      next, write three lines of guitar chords to accompany the haiku.`;
-    return prompt;
-  }
-
-  function delayForDemo(promise) {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(), 4000);
-    })
-      .then(() => promise)
-      .then(() => navigate("/result"))
-      .catch(() => {
-        setIsError(true);
-        navigate("/");
-      });
-  }
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
-    //todo - update when backend implemented for res data
-    //resp is imported from backupData - temporary to mimic response from openai
     const sub = subject;
     const term = terms;
     setIsLoading(true);
     openAiApi
       .generateHaiku(subject, currentUser, terms)
       .then((res) => {
-        console.log(res);
         if (res) {
           const tsfResponse = transformAiDataObject(res);
-          haikuCtx.updateAll(sub, term, tsfResponse[0], resp, currentUser); //tsfREsponse undefined
+          haikuCtx.updateAll(sub, term, tsfResponse[0], resp, currentUser);
         } else {
           console.log("fail");
         }

@@ -68,7 +68,7 @@ export default function Create() {
     const term = terms;
     setIsLoading(true);
     openAiApi
-      .generateHaiku(subject, currentUser._id, terms)
+      .generateHaiku(subject, currentUser, terms)
       .then((res) => {
         console.log(res);
         if (res) {

@@ -23,6 +23,7 @@ export default function Card({
   const isLiked = card.likes.some((user) => user === currentUser._id);
   const isBookmarked = card.bookmarks.some((user) => user === currentUser._id);
 
+  console.log(currentUser._id);
   var zipPairs = [];
 
   for (let i = 0; i < 3; i++) {
@@ -76,7 +77,9 @@ export default function Card({
           ))}
 
           <p className="card__text card__text_author">
-            {`~ by anonymous ${card.createdOn}`}
+            {`~ by ${card.owner === undefined ? "anonymous" : card.owner} ${
+              card.createdOn
+            }`}
           </p>
         </section>
 

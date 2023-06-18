@@ -11,7 +11,7 @@ function transformTimeStamp(data) {
 /* ----------------------- Transform backup Array Data ---------------------- */
 //extract subject, haikuLines and chordLines from backupAiDataArr JSON
 //called useEffect to setSongObjects in Main.js on load
-//to populate cards from backupdata
+//creates lines - used after api.getCards
 export function transformAiDataArr(songs) {
   const songObjects = [];
 
@@ -19,6 +19,7 @@ export function transformAiDataArr(songs) {
     const subject = songs[i].subject;
     const createdOn = transformTimeStamp(songs[i].created);
     const owner = songs[i].owner;
+    const author=songs[i].author;
     const likes = songs[i].likes;
     const bookmarks = songs[i].bookmarks;
     const id = songs[i]._id;
@@ -34,6 +35,7 @@ export function transformAiDataArr(songs) {
       haikuLines,
       chordLines,
       owner,
+      author,
       likes,
       bookmarks,
       id,
@@ -43,6 +45,7 @@ export function transformAiDataArr(songs) {
 }
 
 /* ---------------- Transform backup Object Data - from State --------------- */
+//used in main with handle bookmark and like status and create- to transform openai.api response
 export function transformAiDataObject(card) {
   const cardObjects = [];
   const subject = card.subject; //no subject in data passed in
@@ -51,6 +54,7 @@ export function transformAiDataObject(card) {
   const haikuLines = lines.slice(0, 3);
   const chordLines = lines.slice(3, 6);
   const owner = card.owner; //owner is undefined
+  const author=card.author
   const likes = card.likes; //likes undefined
   const bookmarks = card.bookmarks; //bookmarks undefined
   const id = card._id; //_id undefined
@@ -60,6 +64,7 @@ export function transformAiDataObject(card) {
     haikuLines,
     chordLines,
     owner,
+    author,
     likes,
     bookmarks,
     id,

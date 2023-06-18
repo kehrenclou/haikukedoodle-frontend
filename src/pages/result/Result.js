@@ -47,22 +47,9 @@ export default function Result() {
       setIsSignUpOpen(true);
       setIsSignUp(true);
     } else {
-      api
-        .saveCard(haikuCtx.state)
-        //push data to backend
-        //add to cards and navigate to
-        .then(() => {
-          setCards([...cards, { ...haikuCtx.state, likes: [], bookmarks: [] }]);
-          console.log({ cards });
-          //array destructiong and destructuring
-          navigate("/"); //need to figure out transition here
-        });
-      // .then(() => {
-      //   // haikuCtx.resetAll(); //use this to reset haikuCtx.
-      // });
+      navigate("/");
     }
   };
-
 
   return (
     <>

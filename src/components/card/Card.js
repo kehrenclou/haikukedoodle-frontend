@@ -19,11 +19,10 @@ export default function Card({
   //TODO: implement after backend connected
   const likeCount = card.likes.length;
 
-  const isOwn = card.owner === currentUser._id; //TODO-needs back end
+  const isOwn = card.owner === currentUser._id; 
   const isLiked = card.likes.some((user) => user === currentUser._id);
   const isBookmarked = card.bookmarks.some((user) => user === currentUser._id);
 
-  console.log(currentUser._id);
   var zipPairs = [];
 
   for (let i = 0; i < 3; i++) {
@@ -77,9 +76,7 @@ export default function Card({
           ))}
 
           <p className="card__text card__text_author">
-            {`~ by ${card.owner === undefined ? "anonymous" : card.owner} ${
-              card.createdOn
-            }`}
+            {`~ by ${card.author} ${card.createdOn}`}
           </p>
         </section>
 

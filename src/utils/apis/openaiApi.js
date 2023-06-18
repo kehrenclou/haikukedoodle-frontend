@@ -29,31 +29,3 @@ export const generateHaiku = (subject, user, terms) => {
     body: JSON.stringify({ subject, user, terms }),
   }).then(handleOpenApiResponse);
 };
-/* ------------ the test Api that was called from a button click ------------ */
-async function testApi() {
-  try {
-    const response = await fetch("src/utils/openaiApi", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ subject: "dog" }),
-      // body: JSON.stringify({ subject: subjectInput }),
-    });
-
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw (
-        data.error || new Error(`Request failed with status ${response.status}`)
-      );
-    }
-    // setData(data);
-    // setResult(data.result);
-    // extract(data.result);
-    // setSubjectInput("");
-  } catch (error) {
-    // Consider implementing your own error handling logic here
-    console.error(error);
-    alert(error.message);
-  }
-}

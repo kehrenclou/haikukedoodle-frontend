@@ -70,27 +70,7 @@ export default function Main() {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 
-  /* ------------------ temp functions before backend set up ------------------ */
 
-  const changeStat = (newCard, statType) => {
-    const cardId = newCard.id; // ID of the card you want to modify
-    const itemIdToRemove = currentUser._id; // ID of the item you want to remove
-    //  const sType=statType;
-
-    const cardIndex = cards.findIndex((card) => card.id === cardId);
-    if (cardIndex !== -1) {
-      const typeIndex = cards[cardIndex][statType].indexOf(itemIdToRemove);
-      if (typeIndex !== -1) {
-        cards[cardIndex][statType].splice(typeIndex, 1);
-        console.log(`Item removed from ${statType} array.`, cards);
-      } else {
-        cards[cardIndex][statType].push(itemIdToRemove);
-        console.log(`Item not found in ${statType} array.`);
-      }
-    } else {
-      console.log("Card not found.");
-    }
-  };
 
   const deleteCardFromCards = (cardId) => {
     const cardIndex = cards.findIndex((card) => card.id === cardId);
@@ -115,7 +95,7 @@ export default function Main() {
     setCardToDelete(card.id);
   }
 
-  //TODO this will be implemented when backend is connected
+
   function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
@@ -135,7 +115,7 @@ export default function Main() {
       });
   }
 
-  //TODO this will be implemented when backend is connected
+
   function handleBookmarkStatus(card) {
     const isBookmarked = card.bookmarks.some(
       (user) => user === currentUser._id

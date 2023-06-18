@@ -47,7 +47,7 @@ export default function Create() {
       .then((res) => {
         if (res) {
           const tsfResponse = transformAiDataObject(res);
-          haikuCtx.updateAll(sub, term, tsfResponse[0], resp, currentUser);
+          haikuCtx.updateAll(sub, term, tsfResponse[0], res, currentUser);
         } else {
           console.log("fail");
         }

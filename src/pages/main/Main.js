@@ -38,16 +38,16 @@ export default function Main() {
   const { cards, setCards } = useCards();
   /* ------------------------------- useEffects ------------------------------- */
 
-  useEffect(() => {
-    api
-      .getCards()
-      .then((resCards) => {
-        setCards(transformAiDataArr(resCards));
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }, [setCards]);
+  // useEffect(() => {
+  //   api
+  //     .getCards()
+  //     .then((resCards) => {
+  //       setCards(transformAiDataArr(resCards));
+  //     })
+  //     .catch((err) => {
+  //       api.handleErrorResponse(err);
+  //     });
+  // }, [setCards]);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -63,18 +63,18 @@ export default function Main() {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 
-  const deleteCardFromCards = (cardId) => {
-    const cardIndex = cards.findIndex((card) => card.id === cardId);
-    console.log(cards); //before
-    if (cardIndex !== -1) {
-      cards.splice(cardIndex, 1);
+  // const deleteCardFromCards = (cardId) => {
+  //   const cardIndex = cards.findIndex((card) => card.id === cardId);
+  //   console.log(cards); //before
+  //   if (cardIndex !== -1) {
+  //     cards.splice(cardIndex, 1);
 
-      console.log("card removed from cards");
-      console.log(cards); //after
-    } else {
-      console.log("Card not found.");
-    }
-  };
+  //     console.log("card removed from cards");
+  //     console.log(cards); //after
+  //   } else {
+  //     console.log("Card not found.");
+  //   }
+  // };
   /* -------------------------------- handlers -------------------------------- */
   function handleCreateClick() {
     setIsVisible(false);
@@ -85,85 +85,85 @@ export default function Main() {
     setIsVisible(false);
     navigate("/read");
   }
-  function handleDeleteCardClick(card) {
-    setIsConfirmDeleteOpen(true);
-    setCardToDelete(card);
-    console.log({ card });
-  }
+  // function handleDeleteCardClick(card) {
+  //   setIsConfirmDeleteOpen(true);
+  //   setCardToDelete(card);
+  //   console.log({ card });
+  // }
 
-  function handleSongLike(card) {
-    const isLiked = card.likes.some((user) => user === currentUser._id);
+  // function handleSongLike(card) {
+  //   const isLiked = card.likes.some((user) => user === currentUser._id);
 
-    api
-      .changeLikeCardStatus(card.id, currentUser._id, !isLiked) //id vs._id
-      .then((newCard) => {
-        const tsfNewCard = transformAiDataObject(newCard);
+  //   api
+  //     .changeLikeCardStatus(card.id, currentUser._id, !isLiked) //id vs._id
+  //     .then((newCard) => {
+  //       const tsfNewCard = transformAiDataObject(newCard);
 
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard.id === card.id ? tsfNewCard[0] : currentCard
-          )
-        );
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }
+  //       setCards((state) =>
+  //         state.map((currentCard) =>
+  //           currentCard.id === card.id ? tsfNewCard[0] : currentCard
+  //         )
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       api.handleErrorResponse(err);
+  //     });
+  // }
 
-  function handleBookmarkStatus(card) {
-    const isBookmarked = card.bookmarks.some(
-      (user) => user === currentUser._id
-    );
-    api
-      .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
+  // function handleBookmarkStatus(card) {
+  //   const isBookmarked = card.bookmarks.some(
+  //     (user) => user === currentUser._id
+  //   );
+  //   api
+  //     .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
 
-      .then((newCard) => {
-        const tsfNewCard = transformAiDataObject(newCard);
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard.id === card.id ? tsfNewCard[0] : currentCard
-          )
-        );
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }
+  //     .then((newCard) => {
+  //       const tsfNewCard = transformAiDataObject(newCard);
+  //       setCards((state) =>
+  //         state.map((currentCard) =>
+  //           currentCard.id === card.id ? tsfNewCard[0] : currentCard
+  //         )
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       api.handleErrorResponse(err);
+  //     });
+  // }
 
-  function handleConfirmDelete() {
-    setIsLoading(true);
+  // function handleConfirmDelete() {
+  //   setIsLoading(true);
 
-    api
-      .deleteCard(cardToDelete.id)
-      .then(() => {
-        setCards(
-          cards.filter(function (item) {
-            return item.id !== cardToDelete.id;
-          })
-        );
-        setIsConfirmDeleteOpen(false);
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-        setStatus("fail");
-        setIsConfirmDeleteOpen(false);
-        setIsStatusModalOpen(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
+  //   api
+  //     .deleteCard(cardToDelete.id)
+  //     .then(() => {
+  //       setCards(
+  //         cards.filter(function (item) {
+  //           return item.id !== cardToDelete.id;
+  //         })
+  //       );
+  //       setIsConfirmDeleteOpen(false);
+  //     })
+  //     .catch((err) => {
+  //       api.handleErrorResponse(err);
+  //       setStatus("fail");
+  //       setIsConfirmDeleteOpen(false);
+  //       setIsStatusModalOpen(true);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }
 
-  function handleDownloadClick(song) {
-    const title = song.subject;
-    const data = formatSongForDownload(song);
-    const url = URL.createObjectURL(data);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = title;
-    link.click();
-    URL.revokeObjectURL(url);
-  }
+  // function handleDownloadClick(song) {
+  //   const title = song.subject;
+  //   const data = formatSongForDownload(song);
+  //   const url = URL.createObjectURL(data);
+  //   const link = document.createElement("a");
+  //   link.href = url;
+  //   link.download = title;
+  //   link.click();
+  //   URL.revokeObjectURL(url);
+  // }
 
   return (
     <>
@@ -192,19 +192,7 @@ export default function Main() {
               </motion.div>
             )}
           </AnimatePresence>
-          {/* <a
-            href="#cards"
-            className="main__show-more"
-            aria-label="show more link"
-          >
-            <ExpandMore
-              sx={{
-                backgroundColor: "#2b2d42",
-                fill: "white",
-                fontSize: "48px",
-              }}
-            />
-          </a> */}
+
         </main>
 {/* 
         <section className="main__cards" id="cards">

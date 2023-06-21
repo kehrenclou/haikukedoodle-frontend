@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,7 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./form.css";
 
 export const CreateHaikuForm = ({ handleSubmitClick }) => {
-  //form- Yup schema
+  const navigate = useNavigate();
+
+  /* ---------------------------- form- Yup schema ---------------------------- */
   const validationSchema = Yup.object().shape({
     subject: Yup.string()
       .required("Please enter a one word subject.")
@@ -22,11 +25,13 @@ export const CreateHaikuForm = ({ handleSubmitClick }) => {
     ),
   });
 
-  //form - config
+  /* ------------------------------ form - config ----------------------------- */
   const formOptions = { resolver: yupResolver(validationSchema) };
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
+
+/* -------------------------------- handlers -------------------------------- */
   const onSubmit = (data) => {
     const capitalizedSubject =
       data.subject.charAt(0).toUpperCase() + data.subject.slice(1);
@@ -34,6 +39,12 @@ export const CreateHaikuForm = ({ handleSubmitClick }) => {
 
     handleSubmitClick(capitalizedSubject, terms);
   };
+
+  const handleCancelClick = () => {
+    reset({ subject: "", acceptTerms: false });
+    navigate("/");
+  };
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -79,7 +90,8 @@ export const CreateHaikuForm = ({ handleSubmitClick }) => {
         <button
           type="button"
           className="button button_type_form button_type_form_cancel"
-          onClick={() => reset()}
+          // onClick={() => reset()}
+          onClick={handleCancelClick}
         >
           Cancel
         </button>

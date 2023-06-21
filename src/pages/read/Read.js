@@ -52,6 +52,7 @@ export default function Read() {
       border: "1px solid white",
     },
   });
+
   /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
@@ -78,7 +79,7 @@ export default function Read() {
     console.log({ card });
   }
 
-  function handleSongLike(card) {
+  function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api
@@ -179,7 +180,7 @@ export default function Read() {
                 id={card.id}
                 onDownloadClick={handleDownloadClick}
                 onDeleteClick={handleDeleteCardClick}
-                onLikeClick={handleSongLike}
+                onLikeClick={handleCardLike}
                 onBookmarkClick={handleBookmarkStatus}
                 card={card}
               />

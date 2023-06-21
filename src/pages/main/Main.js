@@ -14,6 +14,7 @@ import {
 import { api } from "../../utils/apis";
 import { useUser, useAuth, useModal, useCards } from "../../hooks";
 
+import Layout from "../../components/layout/";
 import Yinyang from "../../components/yinyang/Yinyang";
 import Card from "../../components/card/Card";
 import { ConfirmDeleteModal } from "../../components/modals";
@@ -56,7 +57,6 @@ export default function Main() {
       authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     });
-
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -81,12 +81,14 @@ export default function Main() {
     navigate("/create");
   }
 
+  function handleReadClick(){
+    setIsVisible(false);
+    navigate("/read");
+  }
   function handleDeleteCardClick(card) {
-  
     setIsConfirmDeleteOpen(true);
     setCardToDelete(card);
-    console.log({card})
-
+    console.log({ card });
   }
 
   function handleSongLike(card) {
@@ -166,62 +168,67 @@ export default function Main() {
 
   return (
     <>
-      <main className="main" id="main">
-        <section className="main__hero" id="hero">
-          <h1 className="main__heading">Haiku song generator using chat GPT</h1>
+      <Layout>
+        {/* <main id="main"> */}
+          <main className="main" id="main">
+            <h1 className="main__heading">
+              Haiku song generator using chat GPT
+            </h1>
 
-          <AnimatePresence mode="wait">
-            {isVisible && (
-              <motion.div
-                className="main__image"
-                transition={{ ease: "anticipate", duration: 1 }}
-                initial={{ opacity: 0, scale: 0.75 }}
-                animate={{ opacity: 1, rotate: 360, scale: 1 }}
-                exit={{ opacity: 0, rotate: 360, scale: 0 }}
-                key="container"
-              >
-                <Yinyang
-                  className="main__image_size"
-                  href="#cards"
-                  onCreateClick={handleCreateClick}
-                  key="yinyang"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <a
-            href="#cards"
-            className="main__show-more"
-            aria-label="show more link"
-          >
-            <ExpandMore
-              sx={{
-                backgroundColor: "#2b2d42",
-                fill: "white",
-                fontSize: "48px",
-              }}
-            />
-          </a>
-        </section>
-
-        <section className="main__cards" id="cards">
-          <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
-          <ul className="main__cards_list" id="cards-list">
-            {cards.map((card) => (
-              <Card
-                key={_.uniqueId("card-")}
-                id={card.id}
-                onDownloadClick={handleDownloadClick}
-                onDeleteClick={handleDeleteCardClick}
-                onLikeClick={handleSongLike}
-                onBookmarkClick={handleBookmarkStatus}
-                card={card}
+            <AnimatePresence mode="wait">
+              {isVisible && (
+                <motion.div
+                  className="main__image"
+                  transition={{ ease: "anticipate", duration: 1 }}
+                  initial={{ opacity: 0, scale: 0.75 }}
+                  animate={{ opacity: 1, rotate: 360, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 360, scale: 0 }}
+                  key="container"
+                >
+                  <Yinyang
+                    className="main__image_size"
+                    href="#cards"
+                    onRightClick={handleCreateClick}
+                    onLeftClick={handleReadClick}
+                    key="yinyang"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <a
+              href="#cards"
+              className="main__show-more"
+              aria-label="show more link"
+            >
+              <ExpandMore
+                sx={{
+                  backgroundColor: "#2b2d42",
+                  fill: "white",
+                  fontSize: "48px",
+                }}
               />
-            ))}
-          </ul>
-        </section>
-      </main>
-      <ConfirmDeleteModal onClick={handleConfirmDelete} />
+            </a>
+          </main>
+
+          <section className="main__cards" id="cards">
+            <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
+            <ul className="main__cards_list" id="cards-list">
+              {cards.map((card) => (
+                <Card
+                  key={_.uniqueId("card-")}
+                  id={card.id}
+                  onDownloadClick={handleDownloadClick}
+                  onDeleteClick={handleDeleteCardClick}
+                  onLikeClick={handleSongLike}
+                  onBookmarkClick={handleBookmarkStatus}
+                  card={card}
+                />
+              ))}
+            </ul>
+          </section>
+        {/* </main> */}
+        <ConfirmDeleteModal onClick={handleConfirmDelete} />
+      </Layout>
     </>
   );
 }

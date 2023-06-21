@@ -7,7 +7,7 @@ import TextLeft from "./TextLeft";
 import TextRight from "./TextRight";
 import IconLink from "./IconLink";
 
-export default function Yinyang({ onCreateClick, href, ...props }) {
+export default function Yinyang({ onLeftClick,onRightClick, ...props }) {
   return (
     <>
       <svg
@@ -24,7 +24,7 @@ export default function Yinyang({ onCreateClick, href, ...props }) {
           </style>
         </defs>
 
-        <IconLink onClick={onCreateClick}>
+        <IconLink onClick={onRightClick}>
           <g id="yy-right">
             <Lobe
               id="lobe-right"
@@ -49,7 +49,7 @@ export default function Yinyang({ onCreateClick, href, ...props }) {
           </g>
         </IconLink>
 
-        <IconLink href={href}>
+        <IconLink onClick={onLeftClick}>
           <g id="yy-left">
             <Lobe
               classname="colorA"

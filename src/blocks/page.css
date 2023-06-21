@@ -12,6 +12,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  position: relative;
+  min-height: 100vh;
 }
 
 @media screen and (max-width:400px){

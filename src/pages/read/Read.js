@@ -1,4 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import _ from "lodash";
 import "./read.css";
 
@@ -10,10 +13,14 @@ import {
 } from "../../helpers/transformData";
 import { useCards, useModal, useUser, useAuth } from "../../hooks";
 
+import Layout from "../../components/layout";
 import Card from "../../components/card/Card";
 import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Read() {
+  const [cardToDelete, setCardToDelete] = useState({});
+  const [selection, setSelection] = useState("all");
+
   const { cards, setCards } = useCards();
   const { currentUser } = useUser();
   const { isLoggedIn, token } = useAuth();
@@ -23,7 +30,9 @@ export default function Read() {
     setStatus,
     setIsStatusModalOpen,
   } = useModal();
+
   /* ------------------------------- useEffects ------------------------------- */
+
   useEffect(() => {
     api
       .getCards()
@@ -36,6 +45,11 @@ export default function Read() {
   }, [setCards]);
 
   /* -------------------------------- handlers -------------------------------- */
+  function handleToggleChange(event, newSelection) {
+    if (newSelection !== null) {
+      setSelection(newSelection);
+    }
+  }
 
   function handleDeleteCardClick(card) {
     setIsConfirmDeleteOpen(true);
@@ -118,24 +132,55 @@ export default function Read() {
     URL.revokeObjectURL(url);
   }
 
+  const StyledToggleBtn = styled(ToggleButton)({
+    // boxShadow:3,
+    color: "black",
+    border: "1px solid black",
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "black",
+      backgroundColor: "#fdc9ef",
+      border: "1px solid black",
+    },
+    "&:hover": {
+      color: "purple",
+      backgroundColor: "#fee2f6",
+      border: "1px solid black",
+    },
+  });
+
   return (
     <>
-      <section className="main__cards" id="cards">
-        <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
-        <ul className="main__cards_list" id="cards-list">
-          {cards.map((card) => (
-            <Card
-              key={_.uniqueId("card-")}
-              id={card.id}
-              onDownloadClick={handleDownloadClick}
-              onDeleteClick={handleDeleteCardClick}
-              onLikeClick={handleSongLike}
-              onBookmarkClick={handleBookmarkStatus}
-              card={card}
-            />
-          ))}
-        </ul>
-      </section>
+      <Layout>
+        <section className="read" id="cards">
+          <h2 className="read__heading">Hall of Fame</h2>
+          <ToggleButtonGroup
+            className="read__toggle-group"
+            color="secondary"
+            value={selection}
+            size="small"
+            exclusive
+            onChange={handleToggleChange}
+            aria-label="Filter Selection"
+          >
+            <StyledToggleBtn value="all">All</StyledToggleBtn>
+            <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
+            <StyledToggleBtn value="bookmarks">My Bookmarks</StyledToggleBtn>
+          </ToggleButtonGroup>
+          <ul className="read__cards" id="read-cards">
+            {cards.map((card) => (
+              <Card
+                key={_.uniqueId("card-")}
+                id={card.id}
+                onDownloadClick={handleDownloadClick}
+                onDeleteClick={handleDeleteCardClick}
+                onLikeClick={handleSongLike}
+                onBookmarkClick={handleBookmarkStatus}
+                card={card}
+              />
+            ))}
+          </ul>
+        </section>
+      </Layout>
       <ConfirmDeleteModal onClick={handleConfirmDelete} />
     </>
   );

@@ -1,18 +1,32 @@
-.cards {
+.read {
   margin: 0 auto;
   background-color: rgba(43, 45, 66);
-  padding: 32px 20px 0px;
+  padding: 0px 20px 0px;
   scroll-behavior: smooth;
   scroll-margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.cards__heading {
+.read__heading {
   font-size: 36px;
   font-weight: 500;
   text-align: center;
-  margin: 4px 0 30px 0;
+  margin: 0px 0px 10px 0;
+  /* margin: 4px 0 30px 0; */
+}
+.read__toggle-group {
+  margin-bottom: 30px;
+  background-color: white;
+
+  gap: 1px;
 }
 
-.cards__list {
+.read__toggle-button {
+  line-height: 0px;
+}
+
+.read__cards {
   margin: 0 auto;
   padding: 0;
   list-style-type: none;
@@ -20,4 +34,27 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(auto, 400px));
   gap: 40px 60px;
+}
+@media screen and (max-width: 920px) {
+  .read__cards {
+    grid-template-columns: repeat(1, minmax(auto, 400px));
+  }
+  /* .main {
+    margin-top: 140px;
+  } */
+}
+@media screen and (max-width: 600px) {
+  .read__heading {
+    font-size: 28px;
+  }
+
+  .read {
+    padding-top: 0;
+  }
+}
+@media screen and (max-width: 400px) {
+  .read__heading {
+    font-size: 24px;
+    margin: 0 0 32px 0;
+  }
 }

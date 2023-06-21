@@ -1,4 +1,4 @@
-.main {
+/* .main {
   background-color: #2b2d42;
   display: flex;
   flex-direction: column;
@@ -8,8 +8,8 @@
   flex-grow: 1;
   z-index: 4;
   scroll-margin-top: 110px;
-}
-.main__hero {
+} */
+.main {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -69,13 +69,16 @@
   .main__cards_list {
     grid-template-columns: repeat(1, minmax(auto, 400px));
   }
-  .main {
+  /* .main {
     margin-top: 140px;
-  }
+  } */
 }
 @media screen and (max-width: 600px) {
-  .main {
+  /* .main {
     margin-top: 70px;
+  } */
+  .main {
+    padding: 20px 20px 50px;
   }
   .main__image {
     width: 300px;
@@ -87,9 +90,7 @@
   .main__heading {
     font-size: 28px;
   }
-  .main__hero {
-    padding: 20px 20px 50px;
-  }
+
   .main__cards {
     padding-top: 0;
   }
@@ -108,7 +109,7 @@
   .main__heading_sub {
     margin: 0 0 32px 0;
   }
-  .main__hero {
+  .main {
     padding: 20px 10px 30px;
   }
 }

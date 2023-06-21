@@ -15,6 +15,7 @@ import { useCards, useModal, useUser, useAuth } from "../../hooks";
 
 import Layout from "../../components/layout";
 import Card from "../../components/card/Card";
+
 import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Read() {
@@ -30,7 +31,27 @@ export default function Read() {
     setStatus,
     setIsStatusModalOpen,
   } = useModal();
+  /* -------------------------- styled toggle button -------------------------- */
+  const StyledToggleBtn = styled(ToggleButton)({
+    color: "white",
+    minWidth: "70px",
+    border: "1px solid white",
+    borderRadius: "10px",
+    fontFamily: "Montserrat, Arial, sans-serif",
+    fontSize: "12px",
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "black",
+      backgroundColor: "#fdc9ef",
+      border: "1px solid white",
+      opacity: "1",
+      cursor: "default",
+    },
+    "&:hover": {
+      color: "gray",
 
+      border: "1px solid white",
+    },
+  });
   /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
@@ -102,7 +123,6 @@ export default function Read() {
     api
       .deleteCard(cardToDelete.id)
       .then(() => {
-        // deleteCardFromCards(cardToDelete);//temporary
         setCards(
           cards.filter(function (item) {
             return item.id !== cardToDelete.id;
@@ -132,40 +152,26 @@ export default function Read() {
     URL.revokeObjectURL(url);
   }
 
-  const StyledToggleBtn = styled(ToggleButton)({
-    // boxShadow:3,
-    color: "black",
-    border: "1px solid black",
-    "&.Mui-selected, &.Mui-selected:hover": {
-      color: "black",
-      backgroundColor: "#fdc9ef",
-      border: "1px solid black",
-    },
-    "&:hover": {
-      color: "purple",
-      backgroundColor: "#fee2f6",
-      border: "1px solid black",
-    },
-  });
-
   return (
     <>
       <Layout>
         <section className="read" id="cards">
           <h2 className="read__heading">Hall of Fame</h2>
-          <ToggleButtonGroup
-            className="read__toggle-group"
-            color="secondary"
-            value={selection}
-            size="small"
-            exclusive
-            onChange={handleToggleChange}
-            aria-label="Filter Selection"
-          >
-            <StyledToggleBtn value="all">All</StyledToggleBtn>
-            <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
-            <StyledToggleBtn value="bookmarks">My Bookmarks</StyledToggleBtn>
-          </ToggleButtonGroup>
+          {isLoggedIn ? (
+            <ToggleButtonGroup
+              className="read__toggle-group"
+              color="secondary"
+              value={selection}
+              size="small"
+              exclusive
+              onChange={handleToggleChange}
+              aria-label="Filter Selection"
+            >
+              <StyledToggleBtn value="all">All</StyledToggleBtn>
+              <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
+              <StyledToggleBtn value="bookmarks">Bookmarks</StyledToggleBtn>
+            </ToggleButtonGroup>
+          ) : null}
           <ul className="read__cards" id="read-cards">
             {cards.map((card) => (
               <Card

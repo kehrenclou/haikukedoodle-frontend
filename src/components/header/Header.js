@@ -32,14 +32,12 @@ export default function Header() {
   return (
     <>
       <div className={isLessThan920 ? "header header_mobile" : "header"}>
-        <a href="#main">
-          <img
-            className="header__logo"
-            src={logo}
-            alt="haikukedoodle logo"
-            onClick={handleLogoClick}
-          />
-        </a>
+        <img
+          className="header__logo"
+          src={logo}
+          alt="haikukedoodle logo"
+          onClick={handleLogoClick}
+        />
 
         {!isLessThan600 || isMenuOpen ? (
           <Navbar

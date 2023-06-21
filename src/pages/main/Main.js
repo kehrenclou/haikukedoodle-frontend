@@ -81,7 +81,7 @@ export default function Main() {
     navigate("/create");
   }
 
-  function handleReadClick(){
+  function handleReadClick() {
     setIsVisible(false);
     navigate("/read");
   }
@@ -136,7 +136,6 @@ export default function Main() {
     api
       .deleteCard(cardToDelete.id)
       .then(() => {
-        // deleteCardFromCards(cardToDelete);//temporary
         setCards(
           cards.filter(function (item) {
             return item.id !== cardToDelete.id;
@@ -169,65 +168,63 @@ export default function Main() {
   return (
     <>
       <Layout>
-        {/* <main id="main"> */}
-          <main className="main" id="main">
-            <h1 className="main__heading">
-              Haiku song generator using chat GPT
-            </h1>
+     
+        <main className="main" id="main">
+          <h1 className="main__heading">Haiku song generator using chat GPT</h1>
 
-            <AnimatePresence mode="wait">
-              {isVisible && (
-                <motion.div
-                  className="main__image"
-                  transition={{ ease: "anticipate", duration: 1 }}
-                  initial={{ opacity: 0, scale: 0.75 }}
-                  animate={{ opacity: 1, rotate: 360, scale: 1 }}
-                  exit={{ opacity: 0, rotate: 360, scale: 0 }}
-                  key="container"
-                >
-                  <Yinyang
-                    className="main__image_size"
-                    href="#cards"
-                    onRightClick={handleCreateClick}
-                    onLeftClick={handleReadClick}
-                    key="yinyang"
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <a
-              href="#cards"
-              className="main__show-more"
-              aria-label="show more link"
-            >
-              <ExpandMore
-                sx={{
-                  backgroundColor: "#2b2d42",
-                  fill: "white",
-                  fontSize: "48px",
-                }}
-              />
-            </a>
-          </main>
-
-          <section className="main__cards" id="cards">
-            <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
-            <ul className="main__cards_list" id="cards-list">
-              {cards.map((card) => (
-                <Card
-                  key={_.uniqueId("card-")}
-                  id={card.id}
-                  onDownloadClick={handleDownloadClick}
-                  onDeleteClick={handleDeleteCardClick}
-                  onLikeClick={handleSongLike}
-                  onBookmarkClick={handleBookmarkStatus}
-                  card={card}
+          <AnimatePresence mode="wait">
+            {isVisible && (
+              <motion.div
+                className="main__image"
+                transition={{ ease: "anticipate", duration: 1 }}
+                initial={{ opacity: 0, scale: 0.75 }}
+                animate={{ opacity: 1, rotate: 360, scale: 1 }}
+                exit={{ opacity: 0, rotate: 360, scale: 0 }}
+                key="container"
+              >
+                <Yinyang
+                  className="main__image_size"
+                  href="#cards"
+                  onRightClick={handleCreateClick}
+                  onLeftClick={handleReadClick}
+                  key="yinyang"
                 />
-              ))}
-            </ul>
-          </section>
-        {/* </main> */}
-        <ConfirmDeleteModal onClick={handleConfirmDelete} />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          {/* <a
+            href="#cards"
+            className="main__show-more"
+            aria-label="show more link"
+          >
+            <ExpandMore
+              sx={{
+                backgroundColor: "#2b2d42",
+                fill: "white",
+                fontSize: "48px",
+              }}
+            />
+          </a> */}
+        </main>
+{/* 
+        <section className="main__cards" id="cards">
+          <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
+          <ul className="main__cards_list" id="cards-list">
+            {cards.map((card) => (
+              <Card
+                key={_.uniqueId("card-")}
+                id={card.id}
+                onDownloadClick={handleDownloadClick}
+                onDeleteClick={handleDeleteCardClick}
+                onLikeClick={handleSongLike}
+                onBookmarkClick={handleBookmarkStatus}
+                card={card}
+              />
+            ))}
+          </ul>
+        </section>
+   
+        <ConfirmDeleteModal onClick={handleConfirmDelete} /> */}
       </Layout>
     </>
   );

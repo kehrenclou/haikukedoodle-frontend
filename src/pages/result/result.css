@@ -1,12 +1,17 @@
 .result {
-  margin: 150px auto 35vh;
+  margin: 130px auto 35vh;
+  /* margin: 150px auto 35vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
 }
-
+.result__header-container{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 .result__container {
   background-color: rgba(219, 230, 253);
   color: #2b2d42;

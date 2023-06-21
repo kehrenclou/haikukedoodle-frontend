@@ -67,7 +67,7 @@ export function SignUpModal() {
         isOpen={isSignUpOpen}
         onClose={handleCloseModal}
         name="signup"
-        title="Sign up to save your Haiku"
+        title="Sign up to create a pen name!"
         onLinkClick={handleLoginClick}
         onSubmitClick={handleSignUpSubmit}
         onCancelClick={handleSignUpCancel}

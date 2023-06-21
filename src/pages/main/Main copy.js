@@ -6,6 +6,7 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import { ExpandMore } from "@mui/icons-material";
 import "./main.css";
 
+import { backupAiDataArr } from "../../utils/data/backupData";
 import {
   transformAiDataArr,
   transformAiDataObject,
@@ -37,6 +38,12 @@ export default function Main() {
   const { cards, setCards } = useCards();
   /* ------------------------------- useEffects ------------------------------- */
 
+  // useEffect(() => {
+  //   setCards(transformAiDataArr(backupAiDataArr));
+  // }, []);
+  //transform backup data Arr to subject,haikulines,chordlines//cards mapped in rendering cards
+  //this should only happen where it wont remount - app.js
+
   useEffect(() => {
     api
       .getCards()
@@ -56,12 +63,14 @@ export default function Main() {
       authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     });
-
+    console.log(token);
   }, [isLoggedIn]);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
+
+
 
   const deleteCardFromCards = (cardId) => {
     const cardIndex = cards.findIndex((card) => card.id === cardId);
@@ -82,12 +91,10 @@ export default function Main() {
   }
 
   function handleDeleteCardClick(card) {
-  
     setIsConfirmDeleteOpen(true);
-    setCardToDelete(card);
-    console.log({card})
-
+    setCardToDelete(card.id);
   }
+
 
   function handleSongLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser._id);
@@ -107,6 +114,7 @@ export default function Main() {
         api.handleErrorResponse(err);
       });
   }
+
 
   function handleBookmarkStatus(card) {
     const isBookmarked = card.bookmarks.some(
@@ -132,9 +140,9 @@ export default function Main() {
     setIsLoading(true);
 
     api
-      .deleteCard(cardToDelete.id)
-      .then(() => {
-        // deleteCardFromCards(cardToDelete);//temporary
+      .deleteCard(cardToDelete)
+      .then((cardToDelete) => {
+        deleteCardFromCards(cardToDelete);
         setCards(
           cards.filter(function (item) {
             return item.id !== cardToDelete.id;

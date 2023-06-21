@@ -40,16 +40,7 @@ class Api {
   }
 
   saveCard(data) {
-    // return new Promise((resolve, reject) => {
-    //   if (!resolve) {
-    //     return setTimeout(
-    //       () => reject(new Error("Haiku could not be sved")),
-    //       250
-    //     );
-    //   }
 
-    //   setTimeout(() => resolve({}), 250);
-    // });
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: "POST",
@@ -86,20 +77,11 @@ class Api {
   }
 
   deleteCard(cardId) {
-    // return new Promise((resolve, reject) => {
-    //   if (!resolve) {
-    //     return setTimeout(
-    //       () => reject(new Error("Email or password not found")),
-    //       250
-    //     );
-    //   }
 
-    //   setTimeout(() => resolve(cardId), 250);
-    // });
-    //TODOD: when Backend done
-    return this._request(`${this._baseUrl}/cards/${cardId}`, {
+    return this._request(`${this._baseUrl}/cards/${cardId}/delete`, {
       headers: this._headers,
       method: "DELETE",
+   
     });
   }
 }

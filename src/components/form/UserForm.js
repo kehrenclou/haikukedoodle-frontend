@@ -86,11 +86,11 @@ export const UserForm = ({
         <section className="form__body">
           {signUp ? (
             <>
-              <label className="form__label">User Name</label>
+              <label className="form__label">Pen Name</label>
               <input
                 name="name"
                 type="text"
-                placeholder="Enter a user name"
+                placeholder="Enter a pen name"
                 className={` ${
                   errors.name ? "is-invalid" : ""
                 } form__input`}

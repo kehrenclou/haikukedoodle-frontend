@@ -50,10 +50,25 @@ export default function Result() {
       navigate("/");
     }
   };
+  const handleSignUpClick = () => {
+    setIsSignUpOpen(true);
+    setIsSignUp(true);
+  };
 
   return (
     <>
       <section className="result">
+        <div className="result__header-container">
+          <h2>Nice Haiku!</h2>
+          <button
+            className="button button_type_transparent button_type_link"
+            onClick={handleSignUpClick}
+          >
+            Login
+          </button>
+          <h2>to save with your pen name!</h2>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             transition={{ ease: "linear", duration: 0.5 }}
@@ -100,7 +115,7 @@ export default function Result() {
             disabled={isSignUpOpen}
             aria-label="save haiku button"
           >
-            Save Haiku
+            Hall of Fame
           </button>
         </div>
       </section>

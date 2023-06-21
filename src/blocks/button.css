@@ -41,7 +41,7 @@ button:hover {
 }
 .button_type_logout {
   background-color: #719ef1;
-  margin:0
+  margin: 0;
 }
 .button_type_primary:hover {
   background-color: #fdc9ef;
@@ -67,7 +67,11 @@ button:hover {
   color: blue;
   text-decoration: underline;
 }
-
+.button_type_link {
+  color: #fdc9ef;
+  width: auto;
+  font-size: 20px;
+}
 .button_type_mobile {
   position: absolute;
   top: 40px;

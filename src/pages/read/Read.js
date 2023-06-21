@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import _ from "lodash";
+
 import "./read.css";
 
 import { api } from "../../utils/apis";
@@ -19,6 +21,9 @@ import Card from "../../components/card/Card";
 import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Read() {
+  const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
+  const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
+
   const [cardToDelete, setCardToDelete] = useState({});
   const [selection, setSelection] = useState("all");
 
@@ -65,6 +70,10 @@ export default function Read() {
         api.handleErrorResponse(err);
       });
   }, [setCards]);
+
+  useEffect(() => {
+    !isPresent && setTimeout(safeToRemove, 900);
+  }, [isPresent]); //for animation component unmount
 
   /* -------------------------------- handlers -------------------------------- */
   function handleToggleChange(event, newSelection) {
@@ -156,37 +165,51 @@ export default function Read() {
   return (
     <>
       <Layout>
-        <section className="read" id="cards">
-          <h2 className="read__heading">Hall of Fame</h2>
-          {isLoggedIn ? (
-            <ToggleButtonGroup
-              className="read__toggle-group"
-              color="secondary"
-              value={selection}
-              size="small"
-              exclusive
-              onChange={handleToggleChange}
-              aria-label="Filter Selection"
+        <AnimatePresence mode="wait">
+          {isVisible && (
+            <motion.div
+              transition={{ ease: "linear", duration: .5 }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              key="cards"
             >
-              <StyledToggleBtn value="all">All</StyledToggleBtn>
-              <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
-              <StyledToggleBtn value="bookmarks">Bookmarks</StyledToggleBtn>
-            </ToggleButtonGroup>
-          ) : null}
-          <ul className="read__cards" id="read-cards">
-            {cards.map((card) => (
-              <Card
-                key={_.uniqueId("card-")}
-                id={card.id}
-                onDownloadClick={handleDownloadClick}
-                onDeleteClick={handleDeleteCardClick}
-                onLikeClick={handleCardLike}
-                onBookmarkClick={handleBookmarkStatus}
-                card={card}
-              />
-            ))}
-          </ul>
-        </section>
+              <section className="read" id="cards">
+                <h2 className="read__heading">Hall of Fame</h2>
+                {isLoggedIn ? (
+                  <ToggleButtonGroup
+                    className="read__toggle-group"
+                    color="secondary"
+                    value={selection}
+                    size="small"
+                    exclusive
+                    onChange={handleToggleChange}
+                    aria-label="Filter Selection"
+                  >
+                    <StyledToggleBtn value="all">All</StyledToggleBtn>
+                    <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
+                    <StyledToggleBtn value="bookmarks">
+                      Bookmarks
+                    </StyledToggleBtn>
+                  </ToggleButtonGroup>
+                ) : null}
+                <ul className="read__cards" id="read-cards">
+                  {cards.map((card) => (
+                    <Card
+                      key={_.uniqueId("card-")}
+                      id={card.id}
+                      onDownloadClick={handleDownloadClick}
+                      onDeleteClick={handleDeleteCardClick}
+                      onLikeClick={handleCardLike}
+                      onBookmarkClick={handleBookmarkStatus}
+                      card={card}
+                    />
+                  ))}
+                </ul>
+              </section>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Layout>
       <ConfirmDeleteModal onClick={handleConfirmDelete} />
     </>

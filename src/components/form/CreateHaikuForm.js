@@ -30,8 +30,7 @@ export const CreateHaikuForm = ({ handleSubmitClick }) => {
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
   const { errors } = formState;
 
-
-/* -------------------------------- handlers -------------------------------- */
+  /* -------------------------------- handlers -------------------------------- */
   const onSubmit = (data) => {
     const capitalizedSubject =
       data.subject.charAt(0).toUpperCase() + data.subject.slice(1);
@@ -44,7 +43,6 @@ export const CreateHaikuForm = ({ handleSubmitClick }) => {
     reset({ subject: "", acceptTerms: false });
     navigate("/");
   };
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -90,7 +88,6 @@ export const CreateHaikuForm = ({ handleSubmitClick }) => {
         <button
           type="button"
           className="button button_type_form button_type_form_cancel"
-          // onClick={() => reset()}
           onClick={handleCancelClick}
         >
           Cancel

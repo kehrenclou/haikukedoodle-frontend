@@ -3,39 +3,32 @@ import { useNavigate } from "react-router-dom";
 
 import _ from "lodash";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
-import { ExpandMore } from "@mui/icons-material";
+
 import "./main.css";
 
-import {
-  transformAiDataArr,
-  transformAiDataObject,
-  formatSongForDownload,
-} from "../../helpers/transformData";
+// import {
+//   transformAiDataArr,
+//   transformAiDataObject,
+//   formatSongForDownload,
+// } from "../../helpers/transformData";
 import { api } from "../../utils/apis";
 import { useUser, useAuth, useModal, useCards } from "../../hooks";
 
 import Layout from "../../components/layout/";
 import Yinyang from "../../components/yinyang/Yinyang";
-import Card from "../../components/card/Card";
-import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Main() {
-  const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang
+  const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [cardToDelete, setCardToDelete] = useState({});
+  // const [selectedCard, setSelectedCard] = useState(null);
+  // const [cardToDelete, setCardToDelete] = useState({});
 
   const navigate = useNavigate();
-  const { currentUser } = useUser();
+  // const { currentUser } = useUser();
   const { isLoggedIn, token } = useAuth();
-  const {
-    setIsConfirmDeleteOpen,
-    setIsLoading,
-    setStatus,
-    setIsStatusModalOpen,
-  } = useModal();
-  const { cards, setCards } = useCards();
+
+  // const { cards, setCards } = useCards();
   /* ------------------------------- useEffects ------------------------------- */
 
   // useEffect(() => {

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./result.css";
-import { api } from "../../utils/apis";
+// import { api } from "../../utils/apis";
 import { CreateHaikuContext } from "../../contexts";
 import { useModal, useAuth, useCards, useUser } from "../../hooks";
 
@@ -18,8 +18,8 @@ export default function Result() {
   const [zipPairs, setZipPairs] = useState([]);
 
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
-  const { loggedIn, isLoggedIn } = useAuth();
-  const { cards, setCards } = useCards();
+  // const { loggedIn, isLoggedIn } = useAuth();
+  // const { cards, setCards } = useCards();
   const { currentUser } = useUser();
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {

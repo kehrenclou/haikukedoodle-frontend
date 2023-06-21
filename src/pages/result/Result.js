@@ -42,14 +42,20 @@ export default function Result() {
     navigate("/");
   };
 
-  const handleSaveClick = () => {
-    if (!isLoggedIn) {
-      setIsSignUpOpen(true);
-      setIsSignUp(true);
-    } else {
-      navigate("/");
-    }
+  const handleHallOfFameClick = () => {
+  navigate("/read")
   };
+
+
+  // const handleSaveClick = () => {
+  //   if (!isLoggedIn) {
+  //     setIsSignUpOpen(true);
+  //     setIsSignUp(true);
+  //   } else {
+  //     navigate("/");
+  //   }
+  // };
+
   const handleSignUpClick = () => {
     setIsSignUpOpen(true);
     setIsSignUp(true);
@@ -111,7 +117,7 @@ export default function Result() {
 
           <button
             className="button button_type_primary"
-            onClick={handleSaveClick}
+            onClick={handleHallOfFameClick}
             disabled={isSignUpOpen}
             aria-label="save haiku button"
           >

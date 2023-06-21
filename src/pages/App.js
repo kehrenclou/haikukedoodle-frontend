@@ -22,6 +22,7 @@ import Footer from "../components/footer";
 import About from "./about";
 import Create from "./create";
 import Result from "./result";
+import Read from "./read/Read";
 import Faq from "./faq";
 import NotFound from "./notFound";
 
@@ -76,6 +77,7 @@ function App() {
                 <AnimatePresence mode="wait">
                   <Routes location={location} key={location.key}>
                     <Route path="/" element={<Main />} />
+                    <Route path="/read" element={<Read />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/result" element={<Result />} />
                     <Route path="/about" element={<About />} />

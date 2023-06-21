@@ -3,9 +3,15 @@ import _ from "lodash";
 import "./read.css";
 
 import { api } from "../../utils/apis";
-
+import {
+  transformAiDataArr,
+  transformAiDataObject,
+  formatSongForDownload,
+} from "../../helpers/transformData";
 import { useCards, useModal, useUser, useAuth } from "../../hooks";
+
 import Card from "../../components/card/Card";
+import { ConfirmDeleteModal } from "../../components/modals";
 
 export default function Read() {
   const { cards, setCards } = useCards();

@@ -194,7 +194,7 @@ export default function Read() {
                     </ToggleButtonGroup>
                   </div>
                 ) : null}
-                <h2 className="read__heading">Hall of Fame</h2>
+                <h2 className={`read__heading ${isLoggedIn ? "read__heading_logged-in":""}`}>Hall of Fame</h2>
 
                 <ul className="read__cards" id="read-cards">
                   {cards.map((card) => (

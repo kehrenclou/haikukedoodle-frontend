@@ -168,31 +168,34 @@ export default function Read() {
         <AnimatePresence mode="wait">
           {isVisible && (
             <motion.div
-              transition={{ ease: "linear", duration: .5 }}
+              transition={{ ease: "linear", duration: 0.5 }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               key="cards"
             >
               <section className="read" id="cards">
-                <h2 className="read__heading">Hall of Fame</h2>
                 {isLoggedIn ? (
-                  <ToggleButtonGroup
-                    className="read__toggle-group"
-                    color="secondary"
-                    value={selection}
-                    size="small"
-                    exclusive
-                    onChange={handleToggleChange}
-                    aria-label="Filter Selection"
-                  >
-                    <StyledToggleBtn value="all">All</StyledToggleBtn>
-                    <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
-                    <StyledToggleBtn value="bookmarks">
-                      Bookmarks
-                    </StyledToggleBtn>
-                  </ToggleButtonGroup>
+                  <div className="read__fixed-container">
+                    <ToggleButtonGroup
+                      className="read__toggle-group"
+                      color="secondary"
+                      value={selection}
+                      size="small"
+                      exclusive
+                      onChange={handleToggleChange}
+                      aria-label="Filter Selection"
+                    >
+                      <StyledToggleBtn value="all">All</StyledToggleBtn>
+                      <StyledToggleBtn value="mine">My Haikus</StyledToggleBtn>
+                      <StyledToggleBtn value="bookmarks">
+                        Bookmarks
+                      </StyledToggleBtn>
+                    </ToggleButtonGroup>
+                  </div>
                 ) : null}
+                <h2 className="read__heading">Hall of Fame</h2>
+
                 <ul className="read__cards" id="read-cards">
                   {cards.map((card) => (
                     <Card

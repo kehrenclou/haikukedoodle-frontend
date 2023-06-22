@@ -19,6 +19,7 @@ import Layout from "../../components/layout";
 import Card from "../../components/card/Card";
 
 import { ConfirmDeleteModal } from "../../components/modals";
+import shadows from "@mui/material/styles/shadows";
 
 export default function Read() {
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
@@ -40,21 +41,21 @@ export default function Read() {
   const StyledToggleBtn = styled(ToggleButton)({
     color: "silver",
     minWidth: "70px",
-    border: "1px solid silver",
-    borderRadius: "10px",
+    boxShadow: 3,
     fontFamily: "Montserrat, Arial, sans-serif",
     fontSize: "12px",
+    backgroundColor: "#494d70",
+
     "&.Mui-selected, &.Mui-selected:hover": {
       color: "pink",
       fontWeight: "bold",
-      backgroundColor: "transparent",
-
+      backgroundColor: "#212233",
       cursor: "default",
     },
     "&:hover": {
       color: "black",
       backgroundColor: "pink",
-      border: "1px solid silver",
+ 
     },
   });
 

@@ -23,18 +23,14 @@
 .read__fixed-container {
   width: 100%;
   position: fixed;
-
   z-index: 10;
   background: inherit;
   text-align: center;
-  /* top: 130px; */
 }
 .read__toggle-group {
   margin-bottom: 20px;
   margin-top: 25px;
-
-  gap: 1px;
-  border-radius: 10px;
+  gap: 2px;
   flex-wrap: wrap;
 }
 

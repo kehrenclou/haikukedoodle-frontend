@@ -39,8 +39,21 @@ class Api {
     });
   }
 
-  saveCard(data) {
+  getBookmarks(userId) {
+    return this._request(`${this._baseUrl}/cards/${userId}/bookmarks`, {
+      headers: this._headers,
+      method: "GET",
+    });
+  }
 
+  getOwnerCards(userId) {
+    return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
+      headers: this._headers,
+      method: "GET",
+    });
+  }
+  
+  saveCard(data) {
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: "POST",
@@ -77,11 +90,9 @@ class Api {
   }
 
   deleteCard(cardId) {
-
     return this._request(`${this._baseUrl}/cards/${cardId}/delete`, {
       headers: this._headers,
       method: "DELETE",
-   
     });
   }
 }

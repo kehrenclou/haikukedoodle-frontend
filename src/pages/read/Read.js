@@ -23,7 +23,7 @@ import { ConfirmDeleteModal } from "../../components/modals";
 export default function Read() {
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
-
+  const [bookmarkCards, setBookmarkCards] = useState([]);
   const [cardToDelete, setCardToDelete] = useState({});
   const [selection, setSelection] = useState("all");
 
@@ -61,15 +61,26 @@ export default function Read() {
   /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
-    api
-      .getCards()
-      .then((resCards) => {
-        setCards(transformAiDataArr(resCards));
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }, [setCards]);
+    loadCards();
+    // api
+    //   .getCards()
+    //   .then((resCards) => {
+    //     setCards(transformAiDataArr(resCards));
+    //   })
+    //   .catch((err) => {
+    //     api.handleErrorResponse(err);
+    //   });
+  }, []);
+
+  useEffect(() => {
+    if (selection === "bookmarks") {
+      handleBookmarkToggle();
+    } else if (selection === "mine") {
+      handleMineToggle();
+    } else if (selection === "all") {
+      loadCards();
+    }
+  }, [selection]);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -80,6 +91,39 @@ export default function Read() {
     if (newSelection !== null) {
       setSelection(newSelection);
     }
+  }
+
+  function handleBookmarkToggle() {
+    const user = currentUser._id;
+    api
+      .getBookmarks(user)
+      .then((resCards) => {
+        setCards(transformAiDataArr(resCards));
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+  function handleMineToggle() {
+    const user = currentUser._id;
+    api
+      .getOwnerCards(user)
+      .then((resCards) => {
+        setCards(transformAiDataArr(resCards));
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+  function loadCards() {
+    api
+      .getCards()
+      .then((resCards) => {
+        setCards(transformAiDataArr(resCards));
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
   }
 
   function handleDeleteCardClick(card) {
@@ -194,7 +238,13 @@ export default function Read() {
                     </ToggleButtonGroup>
                   </div>
                 ) : null}
-                <h2 className={`read__heading ${isLoggedIn ? "read__heading_logged-in":""}`}>Hall of Fame</h2>
+                <h2
+                  className={`read__heading ${
+                    isLoggedIn ? "read__heading_logged-in" : ""
+                  }`}
+                >
+                  Hall of Fame
+                </h2>
 
                 <ul className="read__cards" id="read-cards">
                   {cards.map((card) => (

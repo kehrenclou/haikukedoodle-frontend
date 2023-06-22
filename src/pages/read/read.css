@@ -16,10 +16,9 @@
   font-weight: 500;
   text-align: center;
   margin: 20px 0px 30px 0;
-
 }
-.read__heading_logged-in{
-   margin: 75px 0px 30px 0;
+.read__heading_logged-in {
+  margin: 75px 0px 30px 0;
 }
 .read__fixed-container {
   width: 100%;
@@ -52,10 +51,10 @@
   .read__cards {
     grid-template-columns: repeat(1, minmax(auto, 400px));
   }
-  .read__toggle-group{
-    margin-top:30px;
+  .read__toggle-group {
+    margin-top: 30px;
   }
-  .read__heading_logged-in{
+  .read__heading_logged-in {
     margin: 85px 0px 30px 0;
   }
 }
@@ -67,10 +66,9 @@
     font-size: 28px;
     margin: 30px 0px 30px 0;
   }
-  .read__heading_logged-in{
+  .read__heading_logged-in {
     margin: 85px 0px 30px 0;
   }
-
 }
 @media screen and (max-width: 400px) {
   .read__heading {

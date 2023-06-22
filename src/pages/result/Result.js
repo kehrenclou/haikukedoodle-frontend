@@ -43,18 +43,8 @@ export default function Result() {
   };
 
   const handleHallOfFameClick = () => {
-  navigate("/read")
+    navigate("/read");
   };
-
-
-  // const handleSaveClick = () => {
-  //   if (!isLoggedIn) {
-  //     setIsSignUpOpen(true);
-  //     setIsSignUp(true);
-  //   } else {
-  //     navigate("/");
-  //   }
-  // };
 
   const handleSignUpClick = () => {
     setIsSignUpOpen(true);
@@ -64,16 +54,7 @@ export default function Result() {
   return (
     <>
       <section className="result">
-        <div className="result__header-container">
-          <h2>Nice Haiku!</h2>
-          <button
-            className="button button_type_transparent button_type_link"
-            onClick={handleSignUpClick}
-          >
-            Login
-          </button>
-          <h2>to save with your pen name!</h2>
-        </div>
+        <h2 className="result__heading">Nice Haiku!</h2>
 
         <AnimatePresence mode="wait">
           <motion.div
@@ -101,10 +82,19 @@ export default function Result() {
                   <p className="result__text result__text_med">{chord}</p>
                 </div>
               ))}
-              <p>{`~created by ${currentUser.name} on ${haikuCtx.state.createdOn}`}</p>
+              <p className="result__author">{`~created by ${currentUser.name} on ${haikuCtx.state.createdOn}`}</p>
             </div>
           </motion.div>
         </AnimatePresence>
+        <div className="result__heading-container">
+          <button
+            className="button button_type_transparent button_type_link"
+            onClick={handleSignUpClick}
+          >
+            Login
+          </button>
+          <h2 className="result__sub-heading">to save with your pen name!</h2>
+        </div>
         <div className="result__container_button">
           <button
             className="button button_type_secondary"

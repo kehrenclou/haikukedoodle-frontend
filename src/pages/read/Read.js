@@ -38,23 +38,23 @@ export default function Read() {
   } = useModal();
   /* -------------------------- styled toggle button -------------------------- */
   const StyledToggleBtn = styled(ToggleButton)({
-    color: "white",
+    color: "silver",
     minWidth: "70px",
-    border: "1px solid white",
+    border: "1px solid silver",
     borderRadius: "10px",
     fontFamily: "Montserrat, Arial, sans-serif",
     fontSize: "12px",
     "&.Mui-selected, &.Mui-selected:hover": {
-      color: "black",
-      backgroundColor: "#fdc9ef",
-      border: "1px solid white",
-      opacity: "1",
+      color: "pink",
+      fontWeight: "bold",
+      backgroundColor: "transparent",
+
       cursor: "default",
     },
     "&:hover": {
-      color: "gray",
-
-      border: "1px solid white",
+      color: "black",
+      backgroundColor: "pink",
+      border: "1px solid silver",
     },
   });
 
@@ -62,14 +62,6 @@ export default function Read() {
 
   useEffect(() => {
     loadCards();
-    // api
-    //   .getCards()
-    //   .then((resCards) => {
-    //     setCards(transformAiDataArr(resCards));
-    //   })
-    //   .catch((err) => {
-    //     api.handleErrorResponse(err);
-    //   });
   }, []);
 
   useEffect(() => {

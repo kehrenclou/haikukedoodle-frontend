@@ -53,22 +53,7 @@ class Api {
     });
   }
 
-  saveCard(data) {
-    return this._request(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-      method: "POST",
-      body: JSON.stringify({
-        aiId: data.aiId,
-        created: data.created,
-        choices: data.choices,
-        usage: data.usage,
-        subject: data.subject,
-        owner: data.owner,
-        terms: data.terms,
-      }),
-    });
-  }
-  updateCardOwner(userId, userName,cardId) {
+  updateCardOwner(userId, userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
       headers: this._headers,
       method: "PATCH",

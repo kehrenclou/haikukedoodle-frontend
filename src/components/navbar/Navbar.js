@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useContext}from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
-import { useModal, useAuth, useUser } from "../../hooks";
+import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
+import { CreateHaikuContext } from "../../contexts";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
   const { currentUser,setAnonUser  } = useUser();
 
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
   const { isLoggedIn, onLogOut } = useAuth();
+  const haikuCtx = useContext(CreateHaikuContext);
 
   function handleSignUpOpen() {
     setIsSignUpOpen(true);
@@ -18,6 +20,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
   function handleLogOut() {
     onLogOut();
     setAnonUser();
+    haikuCtx.resetAll();
    
   }
   return (

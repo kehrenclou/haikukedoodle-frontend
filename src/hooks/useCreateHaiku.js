@@ -1,10 +1,18 @@
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import { CreateHaikuContext } from "../contexts";
 
 export const useCreateHaiku = () => {
-  const { state, updateSubject, updateTerms,updateAll } = useContext(CreateHaikuContext);
+  const { state, resetAll,updateState, updateSubject, updateTerms, updateAll } =
+    useContext(CreateHaikuContext);
 
-  return{
-    state,updateSubject,updateTerms,updateAll
-  }
+
+
+  return {
+    state,
+    updateState,
+    updateSubject,
+    updateTerms,
+    updateAll,
+    resetAll,
+  };
 };

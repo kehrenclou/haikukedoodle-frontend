@@ -2,6 +2,7 @@ import React from "react";
 
 import { UserModal } from "./UserModal";
 import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
+
 import * as auth from "../../utils/apis";
 import { api } from "../../utils/apis";
 
@@ -11,6 +12,7 @@ export function LoginModal() {
   const { setToken, setIsLoggedIn } = useAuth();
   const { currentUser, setCurrentUser } = useUser();
   const { state } = useCreateHaiku();
+
   const {
     isLoginOpen,
     setIsLoginOpen,
@@ -35,7 +37,7 @@ export function LoginModal() {
     setIsLoading(true);
 
     auth
-      .login(data.email, data.password)
+      .login(data.email, data.password) //login
 
       .then((res) => {
         if (res) {
@@ -47,29 +49,24 @@ export function LoginModal() {
             "Content-Type": "application/json",
           });
 
-          //  api.saveCard()//save here pass card somehow
-
           api
-            .getInfo()
+            .getInfo() //get user infor an update current user
             .then((res) => {
-              console.log(res)
+              console.log("login 1st then", res);
               if (res) {
                 setIsLoggedIn(true);
                 setCurrentUser(res);
                 setIsLoginOpen(false);
-              }
-            })
-            .then(() => {
-              console.log(currentUser);
-              if (state.terms === true) {
-                //currently not getting updated user info
-                api
-                  .updateCardOwner(currentUser._id, currentUser.name, state._id)
-                  .then((card) => {
-                    if (card) {
-                      console.log(card);
-                    }
-                  });
+                {
+                  state.terms &&
+                    api
+                      .updateCardOwner(res._id, res.name, state._id)
+                      .then((card) => {
+                        if (card) {
+                          console.log(card);
+                        }
+                      });
+                }
               }
             });
         } else {

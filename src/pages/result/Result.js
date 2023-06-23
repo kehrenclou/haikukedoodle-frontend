@@ -19,9 +19,10 @@ export default function Result() {
 
   const { isSignUpOpen, setIsSignUpOpen, setIsLoginOpen, setIsSignUp } =
     useModal();
-  // const { loggedIn, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   // const { cards, setCards } = useCards();
   const { currentUser } = useUser();
+  console.log({isLoggedIn})
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -87,15 +88,18 @@ export default function Result() {
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="result__heading-container">
-          <button
-            className="button button_type_transparent button_type_link"
-            onClick={handleLoginClick}
-          >
-            Login
-          </button>
-          <h2 className="result__sub-heading">to save with your pen name!</h2>
-        </div>
+        {!isLoggedIn ? (
+          <div className="result__heading-container">
+            <button
+              className="button button_type_transparent button_type_link"
+              onClick={handleLoginClick}
+            >
+              Login
+            </button>
+            <h2 className="result__sub-heading">to save with your pen name!</h2>
+          </div>
+        ) : null}
+
         <div className="result__container_button">
           <button
             className="button button_type_secondary"

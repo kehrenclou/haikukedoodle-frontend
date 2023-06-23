@@ -14,8 +14,8 @@ export const CreateHaikuProvider = ({ children }) => {
     usage: {},
     created: "",
     owner: "",
-    author:"",
-    _id:"",
+    author: "",
+    _id: "",
   });
 
   const updateSubject = useCallback(
@@ -43,8 +43,16 @@ export const CreateHaikuProvider = ({ children }) => {
       haikuLines: [],
       chordLines: [],
       createdOn: "",
+      aiId: "",
+      choices: [],
+      usage: {},
+      created: "",
+      owner: "",
+      author: "",
+      _id: "",
     });
-  });
+  }, [state]);
+
   const updateAll = useCallback((data, response) => {
     updateState({
       subject: response.subject,
@@ -57,11 +65,11 @@ export const CreateHaikuProvider = ({ children }) => {
       choices: response.choices,
       usage: response.usage,
       owner: response.owner,
-      author:response.author,
+      author: response.author,
       _id: response._id,
     });
   });
-  
+
   // const updateAll = useCallback((subject, terms, data, response, owner) => {
   //   updateState({
   //     subject: subject,
@@ -84,7 +92,7 @@ export const CreateHaikuProvider = ({ children }) => {
       updateTerms,
       updateAll,
     };
-  }, [state, resetAll, updateSubject, updateTerms, updateAll]);
+  }, [state, resetAll, updateState, updateSubject, updateTerms, updateAll]);
 
   return (
     <CreateHaikuContext.Provider value={store}>

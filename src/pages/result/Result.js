@@ -17,7 +17,8 @@ export default function Result() {
 
   const [zipPairs, setZipPairs] = useState([]);
 
-  const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
+  const { isSignUpOpen, setIsSignUpOpen, setIsLoginOpen, setIsSignUp } =
+    useModal();
   // const { loggedIn, isLoggedIn } = useAuth();
   // const { cards, setCards } = useCards();
   const { currentUser } = useUser();
@@ -46,9 +47,9 @@ export default function Result() {
     navigate("/read");
   };
 
-  const handleSignUpClick = () => {
-    setIsSignUpOpen(true);
-    setIsSignUp(true);
+  const handleLoginClick = () => {
+    setIsLoginOpen(true);
+    setIsSignUp(false);
   };
 
   return (
@@ -89,7 +90,7 @@ export default function Result() {
         <div className="result__heading-container">
           <button
             className="button button_type_transparent button_type_link"
-            onClick={handleSignUpClick}
+            onClick={handleLoginClick}
           >
             Login
           </button>

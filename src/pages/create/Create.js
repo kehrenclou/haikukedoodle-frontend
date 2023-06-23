@@ -45,9 +45,11 @@ export default function Create() {
     openAiApi
       .generateHaiku(subject, currentUser, terms)
       .then((res) => {
+        console.log(res);
         if (res) {
           const tsfResponse = transformAiDataObject(res);
-          haikuCtx.updateAll(sub, term, tsfResponse[0], res, currentUser);
+          // haikuCtx.updateAll(sub, term, tsfResponse[0], res, currentUser);
+          haikuCtx.updateAll(tsfResponse[0], res);
         } else {
           console.log("fail");
         }

@@ -52,7 +52,7 @@ class Api {
       method: "GET",
     });
   }
-  
+
   saveCard(data) {
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
@@ -66,6 +66,13 @@ class Api {
         owner: data.owner,
         terms: data.terms,
       }),
+    });
+  }
+  updateCardOwner(userId, userName,cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
+      headers: this._headers,
+      method: "PATCH",
+      body: JSON.stringify({ owner: userId, author: userName }),
     });
   }
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { UserModal } from "./UserModal";
-import { useModal, useAuth, useUser } from "../../hooks";
+import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
 import * as auth from "../../utils/apis";
 import { api } from "../../utils/apis";
 
@@ -9,8 +9,8 @@ export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
 
   const { setToken, setIsLoggedIn } = useAuth();
-  const { setCurrentUser } = useUser();
-
+  const { currentUser, setCurrentUser } = useUser();
+  const { state } = useCreateHaiku();
   const {
     isLoginOpen,
     setIsLoginOpen,
@@ -38,11 +38,8 @@ export function LoginModal() {
       .login(data.email, data.password)
 
       .then((res) => {
-        console.log("loginthenres", res); //returns token
-        //res = returns token
-        //if token set local storage, set token, set headers
         if (res) {
-          localStorage.setItem("jwt", res.token);
+          localStorage.setItem("jwt", res.token); //if token set local storage, set token, set headers
           setToken(res.token);
 
           api.setHeaders({
@@ -52,15 +49,29 @@ export function LoginModal() {
 
           //  api.saveCard()//save here pass card somehow
 
-          api.getInfo().then((res) => {
-            console.log("res", res);
-            if (res) {
-              setIsLoggedIn(true);
-              setCurrentUser(res);
-              // setIsLoading(false);
-              setIsLoginOpen(false);
-            }
-          });
+          api
+            .getInfo()
+            .then((res) => {
+              console.log(res)
+              if (res) {
+                setIsLoggedIn(true);
+                setCurrentUser(res);
+                setIsLoginOpen(false);
+              }
+            })
+            .then(() => {
+              console.log(currentUser);
+              if (state.terms === true) {
+                //currently not getting updated user info
+                api
+                  .updateCardOwner(currentUser._id, currentUser.name, state._id)
+                  .then((card) => {
+                    if (card) {
+                      console.log(card);
+                    }
+                  });
+              }
+            });
         } else {
           setStatus("fail");
         }

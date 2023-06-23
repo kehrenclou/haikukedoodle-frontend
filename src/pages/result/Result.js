@@ -20,9 +20,9 @@ export default function Result() {
   const { isSignUpOpen, setIsSignUpOpen, setIsLoginOpen, setIsSignUp } =
     useModal();
   const { isLoggedIn } = useAuth();
-  // const { cards, setCards } = useCards();
+
   const { currentUser } = useUser();
-  console.log({isLoggedIn})
+
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);

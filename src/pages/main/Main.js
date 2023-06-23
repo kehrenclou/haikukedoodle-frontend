@@ -19,7 +19,7 @@ export default function Main() {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useUser();
   const { isLoggedIn, setIsLoggedIn, isLoaded, setIsLoaded, token } = useAuth();
-console.log(token)
+
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     if (!token) {

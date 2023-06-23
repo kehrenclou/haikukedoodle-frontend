@@ -50,22 +50,15 @@ export function LoginModal() {
           });
 
           api
-            .getInfo() //get user infor an update current user
+            .getInfo() 
             .then((res) => {
-              console.log("login 1st then", res);
               if (res) {
                 setIsLoggedIn(true);
                 setCurrentUser(res);
                 setIsLoginOpen(false);
                 {
                   state.terms &&
-                    api
-                      .updateCardOwner(res._id, res.name, state._id)
-                      .then((card) => {
-                        if (card) {
-                          console.log(card);
-                        }
-                      });
+                    api.updateCardOwner(res._id, res.name, state._id);
                 }
               }
             });

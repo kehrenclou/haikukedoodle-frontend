@@ -39,16 +39,13 @@ export default function Create() {
 
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
-    // const sub = subject;
-    // const term = terms;
     setIsLoading(true);
     openAiApi
       .generateHaiku(subject, currentUser, terms)
       .then((res) => {
-        console.log(res);
         if (res) {
           const tsfResponse = transformAiDataObject(res);
-       
+
           haikuCtx.updateAll(tsfResponse[0], res);
         } else {
           console.log("fail");

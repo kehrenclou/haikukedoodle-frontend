@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { ulid } from "ulid";
 
 import {
   CreateHaikuProvider,
@@ -14,7 +13,6 @@ import {
   useInitializeAuthStore,
   useInitializeCardStore,
 } from "../contexts";
-import { api } from "../utils/apis";
 
 import Header from "../components/header";
 import Main from "./main";
@@ -38,17 +36,9 @@ function App() {
   const cardStore = useInitializeCardStore();
 
   /* ------------------------------- useEffects ------------------------------- */
-  // useEffect(() => {
-  //   api.setHeaders({
-  //     authorization: `Bearer ${authStore.token}`,
-  //     "Content-Type": "application/json",
-  //   });
-  // }, [authStore]);
-
   useEffect(() => {
     if (!authStore.token) {
       authStore.setIsLoggedIn(false);
-
       return;
     }
     navigate("/");

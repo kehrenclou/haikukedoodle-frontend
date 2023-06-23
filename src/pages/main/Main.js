@@ -6,11 +6,6 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./main.css";
 
-// import {
-//   transformAiDataArr,
-//   transformAiDataObject,
-//   formatSongForDownload,
-// } from "../../helpers/transformData";
 import { api } from "../../utils/apis";
 import { useUser, useAuth, useModal, useCards } from "../../hooks";
 
@@ -21,27 +16,33 @@ export default function Main() {
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
-  // const [selectedCard, setSelectedCard] = useState(null);
-  // const [cardToDelete, setCardToDelete] = useState({});
-
   const navigate = useNavigate();
-  // const { currentUser } = useUser();
-  const { isLoggedIn, token } = useAuth();
+  const { currentUser, setCurrentUser } = useUser();
+  const { isLoggedIn, setIsLoggedIn, isLoaded, setIsLoaded, token } = useAuth();
 
-  // const { cards, setCards } = useCards();
   /* ------------------------------- useEffects ------------------------------- */
-
-  // useEffect(() => {
-  //   api
-  //     .getCards()
-  //     .then((resCards) => {
-  //       setCards(transformAiDataArr(resCards));
-  //     })
-  //     .catch((err) => {
-  //       api.handleErrorResponse(err);
-  //     });
-  // }, [setCards]);
-
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    api.setHeaders({
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
+    api
+      .getInfo()
+      .then((res) => {
+        if (res) {
+          setIsLoggedIn(true);
+          setIsLoaded(true);
+          setCurrentUser(res);
+        }
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }, []);
+  
   useEffect(() => {
     if (!isLoggedIn) {
       return;
@@ -56,18 +57,6 @@ export default function Main() {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]); //for animation component unmount
 
-  // const deleteCardFromCards = (cardId) => {
-  //   const cardIndex = cards.findIndex((card) => card.id === cardId);
-  //   console.log(cards); //before
-  //   if (cardIndex !== -1) {
-  //     cards.splice(cardIndex, 1);
-
-  //     console.log("card removed from cards");
-  //     console.log(cards); //after
-  //   } else {
-  //     console.log("Card not found.");
-  //   }
-  // };
   /* -------------------------------- handlers -------------------------------- */
   function handleCreateClick() {
     setIsVisible(false);
@@ -78,90 +67,10 @@ export default function Main() {
     setIsVisible(false);
     navigate("/read");
   }
-  // function handleDeleteCardClick(card) {
-  //   setIsConfirmDeleteOpen(true);
-  //   setCardToDelete(card);
-  //   console.log({ card });
-  // }
-
-  // function handleSongLike(card) {
-  //   const isLiked = card.likes.some((user) => user === currentUser._id);
-
-  //   api
-  //     .changeLikeCardStatus(card.id, currentUser._id, !isLiked) //id vs._id
-  //     .then((newCard) => {
-  //       const tsfNewCard = transformAiDataObject(newCard);
-
-  //       setCards((state) =>
-  //         state.map((currentCard) =>
-  //           currentCard.id === card.id ? tsfNewCard[0] : currentCard
-  //         )
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       api.handleErrorResponse(err);
-  //     });
-  // }
-
-  // function handleBookmarkStatus(card) {
-  //   const isBookmarked = card.bookmarks.some(
-  //     (user) => user === currentUser._id
-  //   );
-  //   api
-  //     .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
-
-  //     .then((newCard) => {
-  //       const tsfNewCard = transformAiDataObject(newCard);
-  //       setCards((state) =>
-  //         state.map((currentCard) =>
-  //           currentCard.id === card.id ? tsfNewCard[0] : currentCard
-  //         )
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       api.handleErrorResponse(err);
-  //     });
-  // }
-
-  // function handleConfirmDelete() {
-  //   setIsLoading(true);
-
-  //   api
-  //     .deleteCard(cardToDelete.id)
-  //     .then(() => {
-  //       setCards(
-  //         cards.filter(function (item) {
-  //           return item.id !== cardToDelete.id;
-  //         })
-  //       );
-  //       setIsConfirmDeleteOpen(false);
-  //     })
-  //     .catch((err) => {
-  //       api.handleErrorResponse(err);
-  //       setStatus("fail");
-  //       setIsConfirmDeleteOpen(false);
-  //       setIsStatusModalOpen(true);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // }
-
-  // function handleDownloadClick(song) {
-  //   const title = song.subject;
-  //   const data = formatSongForDownload(song);
-  //   const url = URL.createObjectURL(data);
-  //   const link = document.createElement("a");
-  //   link.href = url;
-  //   link.download = title;
-  //   link.click();
-  //   URL.revokeObjectURL(url);
-  // }
 
   return (
     <>
       <Layout>
-     
         <main className="main" id="main">
           <h1 className="main__heading">Haiku song generator using chat GPT</h1>
 
@@ -185,27 +94,7 @@ export default function Main() {
               </motion.div>
             )}
           </AnimatePresence>
-
         </main>
-{/* 
-        <section className="main__cards" id="cards">
-          <h2 className="main__heading main__heading_sub">The Haiku Songs</h2>
-          <ul className="main__cards_list" id="cards-list">
-            {cards.map((card) => (
-              <Card
-                key={_.uniqueId("card-")}
-                id={card.id}
-                onDownloadClick={handleDownloadClick}
-                onDeleteClick={handleDeleteCardClick}
-                onLikeClick={handleSongLike}
-                onBookmarkClick={handleBookmarkStatus}
-                card={card}
-              />
-            ))}
-          </ul>
-        </section>
-   
-        <ConfirmDeleteModal onClick={handleConfirmDelete} /> */}
       </Layout>
     </>
   );

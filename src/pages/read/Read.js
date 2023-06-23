@@ -19,24 +19,24 @@ import Layout from "../../components/layout";
 import Card from "../../components/card/Card";
 
 import { ConfirmDeleteModal } from "../../components/modals";
-import shadows from "@mui/material/styles/shadows";
 
 export default function Read() {
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
-  const [bookmarkCards, setBookmarkCards] = useState([]);
+
   const [cardToDelete, setCardToDelete] = useState({});
   const [selection, setSelection] = useState("all");
 
   const { cards, setCards } = useCards();
   const { currentUser } = useUser();
-  const { isLoggedIn, token } = useAuth();
+  const { isLoggedIn } = useAuth();
   const {
     setIsConfirmDeleteOpen,
     setIsLoading,
     setStatus,
     setIsStatusModalOpen,
   } = useModal();
+
   /* -------------------------- styled toggle button -------------------------- */
   const StyledToggleBtn = styled(ToggleButton)({
     color: "silver",
@@ -44,18 +44,17 @@ export default function Read() {
     boxShadow: 3,
     fontFamily: "Montserrat, Arial, sans-serif",
     fontSize: "12px",
-    backgroundColor: "#494d70",
+    backgroundColor: "#212233",//212233
 
     "&.Mui-selected, &.Mui-selected:hover": {
-      color: "pink",
-      fontWeight: "bold",
-      backgroundColor: "#212233",
+      color: "black",
+      fontWeight: "700",
+      backgroundColor: "#719ef1",//353851
       cursor: "default",
     },
     "&:hover": {
-      color: "black",
-      backgroundColor: "pink",
- 
+      color: "pink",
+      backgroundColor: "transparent",
     },
   });
 
@@ -129,7 +128,7 @@ export default function Read() {
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api
-      .changeLikeCardStatus(card.id, currentUser._id, !isLiked) //id vs._id
+      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
 

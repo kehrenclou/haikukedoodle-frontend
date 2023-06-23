@@ -7,6 +7,7 @@ export const useInitializeAuthStore = () => {
   const [token, setToken] = useState(localStorage.getItem("jwt"));
   const [isLoaded, setIsLoaded] = useState(false); //tracks if finished loading info
 
+
   return {
     isLoggedIn,
     token,

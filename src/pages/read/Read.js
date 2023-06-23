@@ -86,6 +86,7 @@ export default function Read() {
   }
 
   function handleBookmarkToggle() {
+  
     const user = currentUser._id;
     api
       .getBookmarks(user)
@@ -144,6 +145,7 @@ export default function Read() {
   }
 
   function handleBookmarkStatus(card) {
+
     const isBookmarked = card.bookmarks.some(
       (user) => user === currentUser._id
     );

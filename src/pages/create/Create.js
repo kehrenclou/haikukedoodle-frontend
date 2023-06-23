@@ -39,8 +39,8 @@ export default function Create() {
 
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = (subject, terms) => {
-    const sub = subject;
-    const term = terms;
+    // const sub = subject;
+    // const term = terms;
     setIsLoading(true);
     openAiApi
       .generateHaiku(subject, currentUser, terms)
@@ -48,7 +48,7 @@ export default function Create() {
         console.log(res);
         if (res) {
           const tsfResponse = transformAiDataObject(res);
-          // haikuCtx.updateAll(sub, term, tsfResponse[0], res, currentUser);
+       
           haikuCtx.updateAll(tsfResponse[0], res);
         } else {
           console.log("fail");

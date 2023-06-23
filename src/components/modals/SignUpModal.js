@@ -15,7 +15,7 @@ export function SignUpModal() {
     setStatus,
   } = useModal();
 
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn,setToken } = useAuth();
   const { setCurrentUser } = useUser();
 
   const handleCloseModal = () => {
@@ -38,12 +38,14 @@ export function SignUpModal() {
       .signup(data.name, data.email, data.password)
       .then((res) => {
         if (res) {
+          console.log(res)
           setStatus("success");
           setCurrentUser(res)
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);
           setIsLoggedIn(true);
+          setToken(res.token)
           //?need to ensure that view updates
           //need to save haiku to user account
         } else {

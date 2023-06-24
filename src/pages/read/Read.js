@@ -44,12 +44,12 @@ export default function Read() {
     boxShadow: 3,
     fontFamily: "Montserrat, Arial, sans-serif",
     fontSize: "12px",
-    backgroundColor: "#212233",//212233
+    backgroundColor: "#212233", //212233
 
     "&.Mui-selected, &.Mui-selected:hover": {
       color: "black",
       fontWeight: "700",
-      backgroundColor: "#719ef1",//353851
+      backgroundColor: "#719ef1", //353851
       cursor: "default",
     },
     "&:hover": {
@@ -61,7 +61,7 @@ export default function Read() {
   /* ------------------------------- useEffects ------------------------------- */
 
   useEffect(() => {
-    loadCards();
+    loadInitialCards();
   }, []);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function Read() {
     } else if (selection === "mine") {
       handleMineToggle();
     } else if (selection === "all") {
-      loadCards();
+      loadInitialCards();
     }
   }, [selection]);
 
@@ -86,7 +86,6 @@ export default function Read() {
   }
 
   function handleBookmarkToggle() {
-  
     const user = currentUser._id;
     api
       .getBookmarks(user)
@@ -108,9 +107,9 @@ export default function Read() {
         api.handleErrorResponse(err);
       });
   }
-  function loadCards() {
+  function loadInitialCards() {
     api
-      .getCards()
+      .getCards(5)
       .then((resCards) => {
         setCards(transformAiDataArr(resCards));
       })
@@ -118,7 +117,22 @@ export default function Read() {
         api.handleErrorResponse(err);
       });
   }
-
+  console.log(cards);
+  function loadMoreCards() {
+    api
+      .loadMoreCards(cards.length)
+      .then((resCards) => {
+        setCards((currentCards) => {
+          return [
+            ...currentCards, //current cards
+            ...transformAiDataArr(resCards), //appends new cards to array
+          ];
+        });
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
   function handleDeleteCardClick(card) {
     setIsConfirmDeleteOpen(true);
     setCardToDelete(card);
@@ -145,7 +159,6 @@ export default function Read() {
   }
 
   function handleBookmarkStatus(card) {
-
     const isBookmarked = card.bookmarks.some(
       (user) => user === currentUser._id
     );
@@ -253,6 +266,14 @@ export default function Read() {
                     />
                   ))}
                 </ul>
+                <button
+                  className="button button_type_primary"
+                  type="button"
+                  aria-label="show more"
+                  onClick={loadMoreCards}
+                >
+                  Show More
+                </button>
               </section>
             </motion.div>
           )}

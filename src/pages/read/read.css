@@ -36,7 +36,7 @@
 
 .read__cards {
   margin: 0 auto;
-  padding: 0;
+  padding: 0 0 32px;
   list-style-type: none;
   max-width: 880px;
   display: grid;

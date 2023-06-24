@@ -39,6 +39,15 @@ class Api {
     });
   }
 
+  //test
+  loadMoreCards(cardSkip){
+ 
+    return this._request(`${this._baseUrl}/cards/${cardSkip}`,{
+      headers:this._headers,
+      method:"GET",
+    })
+  }
+
   getBookmarks(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/bookmarks`, {
       headers: this._headers,

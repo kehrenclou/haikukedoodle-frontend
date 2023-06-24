@@ -4,5 +4,6 @@ export const CardContext = createContext();
 
 export const useInitializeCardStore = () => {
   const [cards, setCards] = useState([]); //call to transform data array
-  return { cards, setCards };
+  const [cardCount, setCardCount] = useState(0);
+  return { cards, cardCount, setCards, setCardCount };
 };

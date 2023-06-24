@@ -13,6 +13,7 @@ export default function Result() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
 
+  const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
   const [isPresent, safeToRemove] = usePresence(); //used with animation
 
   const [zipPairs, setZipPairs] = useState([]);
@@ -59,34 +60,36 @@ export default function Result() {
         <h2 className="result__heading">Nice Haiku!</h2>
 
         <AnimatePresence mode="wait">
-          <motion.div
-            transition={{ ease: "linear", duration: 0.5 }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, rotate: 360, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            key="card"
-          >
-            <div className="result__container">
-              <Flower
-                width="154"
-                height="133"
-                colora="rgba(213,157,169,.2)"
-                colorb="rgba(213,157,169,.3)"
-                colorc="rgba(213,157,169,.5)"
-                className="result__flower"
-              />
-              <h2 className="result__heading result__heading_card">
-                {haikuCtx.state.subject}
-              </h2>
-              {zipPairs.map(([line, chord], i) => (
-                <div className="result__line" key={i}>
-                  <p className="result__text">{line}</p>
-                  <p className="result__text result__text_med">{chord}</p>
-                </div>
-              ))}
-              <p className="result__author">{`~created by ${currentUser.name} on ${haikuCtx.state.createdOn}`}</p>
-            </div>
-          </motion.div>
+          {isVisible && (
+            <motion.div
+              transition={{ ease: "linear", duration: 0.5 }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, rotate: 360, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              key="result"
+            >
+              <div className="result__container">
+                <Flower
+                  width="154"
+                  height="133"
+                  colora="rgba(213,157,169,.2)"
+                  colorb="rgba(213,157,169,.3)"
+                  colorc="rgba(213,157,169,.5)"
+                  className="result__flower"
+                />
+                <h2 className="result__heading result__heading_card">
+                  {haikuCtx.state.subject}
+                </h2>
+                {zipPairs.map(([line, chord], i) => (
+                  <div className="result__line" key={i}>
+                    <p className="result__text">{line}</p>
+                    <p className="result__text result__text_med">{chord}</p>
+                  </div>
+                ))}
+                <p className="result__author">{`~created by ${currentUser.name} on ${haikuCtx.state.createdOn}`}</p>
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
         {!isLoggedIn ? (
           <div className="result__heading-container">

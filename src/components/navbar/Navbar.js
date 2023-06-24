@@ -1,17 +1,24 @@
-import React, {useContext}from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./navbar.css";
 
-import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
-import { CreateHaikuContext } from "../../contexts";
+import { useModal, useAuth, useUser } from "../../hooks";
 
 export default function Navbar({ isLessThan600, onLinkClick }) {
-  const { currentUser,setAnonUser  } = useUser();
-
+  const { currentUser } = useUser();
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
   const { isLoggedIn, onLogOut } = useAuth();
-  const haikuCtx = useContext(CreateHaikuContext);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function checkLocation(loc) {
+    const checkLoc = location.pathname === loc;
+    return checkLoc;
+  }
+  function navToHomeIf(loc) {
+    if (checkLocation(loc)) navigate("/");
+  }
   function handleSignUpOpen() {
     setIsSignUpOpen(true);
     setIsSignUp(true);
@@ -19,9 +26,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
 
   function handleLogOut() {
     onLogOut();
-    setAnonUser();
-    haikuCtx.resetAll();
-   
+    navToHomeIf("/result");
   }
   return (
     <>

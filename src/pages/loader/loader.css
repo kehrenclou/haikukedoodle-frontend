@@ -11,7 +11,7 @@
   min-height: 50vh;
   font-size: 24px;
   letter-spacing: 3px;
-  /* margin-bottom: 50px; */
+
   color: white;
   font-weight: 700;
 }
@@ -76,14 +76,6 @@
   }
 }
 
-/* @media screen and (max-width: 920px) {
-  .loader {
-    min-height: 30vh;
-  }
-  .loader__error {
-    min-height: 50vh;
-  }
-} */
 @media screen and (max-width: 600px) {
   .loader {
     min-height: 50vh;

@@ -16,7 +16,9 @@ import {
 import { useCards, useModal, useUser, useAuth } from "../../hooks";
 
 import Layout from "../../components/layout";
-import Card from "../../components/card/Card";
+import Card from "../../components/card";
+import {ScrollTop} from "../../components/iconButtons";
+
 
 import { ConfirmDeleteModal } from "../../components/modals";
 
@@ -223,6 +225,7 @@ export default function Read() {
   return (
     <>
       <Layout>
+   
         <AnimatePresence mode="wait">
           {isVisible && (
             <motion.div
@@ -233,8 +236,9 @@ export default function Read() {
               key="cards"
             >
               <section className="read" id="cards">
+            
                 {isLoggedIn ? (
-                  <div className="read__fixed-container">
+                  <div className="read__fixed-container" >
                     <ToggleButtonGroup
                       className="read__toggle-group"
                       color="secondary"
@@ -255,12 +259,13 @@ export default function Read() {
                 <h2
                   className={`read__heading ${
                     isLoggedIn ? "read__heading_logged-in" : ""
-                  }`}
+                  }`} id="back-to-top-anchor"
                 >
                   Hall of Fame
                 </h2>
 
                 <ul className="read__cards" id="read-cards">
+                <ScrollTop/>
                   {cards.map((card) => (
                     <Card
                       key={_.uniqueId("card-")}

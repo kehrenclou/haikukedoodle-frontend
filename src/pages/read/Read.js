@@ -27,7 +27,7 @@ export default function Read() {
   const [cardToDelete, setCardToDelete] = useState({});
   const [selection, setSelection] = useState("all");
 
-  const { cards, setCards } = useCards();
+  const { cards, setCards, cardCount, setCardCount } = useCards();
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
   const {
@@ -79,6 +79,35 @@ export default function Read() {
   }, [isPresent]); //for animation component unmount
 
   /* -------------------------------- handlers -------------------------------- */
+  //loadcards
+  function loadInitialCards() {
+    api
+      .getCards(5)
+      .then((res) => {
+        setCards(transformAiDataArr(res.cards));
+        setCardCount(res.cardCount);
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+  function loadMoreCards() {
+    api
+      .loadMoreCards(cards.length)
+      .then((resCards) => {
+        setCards((currentCards) => {
+          return [
+            ...currentCards, //current cards
+            ...transformAiDataArr(resCards), //appends new cards to array
+          ];
+        });
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+
+  //toggles
   function handleToggleChange(event, newSelection) {
     if (newSelection !== null) {
       setSelection(newSelection);
@@ -107,75 +136,12 @@ export default function Read() {
         api.handleErrorResponse(err);
       });
   }
-  function loadInitialCards() {
-    api
-      .getCards(5)
-      .then((resCards) => {
-        setCards(transformAiDataArr(resCards));
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }
-  console.log(cards);
-  function loadMoreCards() {
-    api
-      .loadMoreCards(cards.length)
-      .then((resCards) => {
-        setCards((currentCards) => {
-          return [
-            ...currentCards, //current cards
-            ...transformAiDataArr(resCards), //appends new cards to array
-          ];
-        });
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }
+
+  //delete
   function handleDeleteCardClick(card) {
     setIsConfirmDeleteOpen(true);
     setCardToDelete(card);
     console.log({ card });
-  }
-
-  function handleCardLike(card) {
-    const isLiked = card.likes.some((user) => user === currentUser._id);
-
-    api
-      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)
-      .then((newCard) => {
-        const tsfNewCard = transformAiDataObject(newCard);
-
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard.id === card.id ? tsfNewCard[0] : currentCard
-          )
-        );
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
-  }
-
-  function handleBookmarkStatus(card) {
-    const isBookmarked = card.bookmarks.some(
-      (user) => user === currentUser._id
-    );
-    api
-      .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
-
-      .then((newCard) => {
-        const tsfNewCard = transformAiDataObject(newCard);
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard.id === card.id ? tsfNewCard[0] : currentCard
-          )
-        );
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
-      });
   }
 
   function handleConfirmDelete() {
@@ -201,7 +167,48 @@ export default function Read() {
         setIsLoading(false);
       });
   }
+  //likes
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((user) => user === currentUser._id);
 
+    api
+      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)
+      .then((newCard) => {
+        const tsfNewCard = transformAiDataObject(newCard);
+
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard.id === card.id ? tsfNewCard[0] : currentCard
+          )
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+
+  //bookmarks
+  function handleBookmarkStatus(card) {
+    const isBookmarked = card.bookmarks.some(
+      (user) => user === currentUser._id
+    );
+    api
+      .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
+
+      .then((newCard) => {
+        const tsfNewCard = transformAiDataObject(newCard);
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard.id === card.id ? tsfNewCard[0] : currentCard
+          )
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+
+  //download
   function handleDownloadClick(song) {
     const title = song.subject;
     const data = formatSongForDownload(song);
@@ -266,14 +273,16 @@ export default function Read() {
                     />
                   ))}
                 </ul>
-                <button
-                  className="button button_type_primary"
-                  type="button"
-                  aria-label="show more"
-                  onClick={loadMoreCards}
-                >
-                  Show More
-                </button>
+                {cards.length < cardCount && (
+                  <button
+                    className="button button_type_primary"
+                    type="button"
+                    aria-label="show more"
+                    onClick={loadMoreCards}
+                  >
+                    Show More
+                  </button>
+                )}
               </section>
             </motion.div>
           )}

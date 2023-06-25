@@ -15,6 +15,7 @@ export const ScrollTop = () => {
     );
     if (anchor) {
       anchor.scrollIntoView({
+        behavior:"smooth",
         block: "center",
       });
     }

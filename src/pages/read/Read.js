@@ -240,7 +240,7 @@ export default function Read() {
       (user) => user === currentUser._id
     );
     api
-      .changeBookmarkCardStatus(card.id, currentUser._id, !isBookmarked)
+      .changeBookmarkCardStatus(card.id,  !isBookmarked)
 
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);

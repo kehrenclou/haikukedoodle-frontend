@@ -39,7 +39,6 @@ class Api {
     });
   }
 
-
   loadMoreCards(cardSkip) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}`, {
       headers: this._headers,
@@ -53,7 +52,7 @@ class Api {
       method: "GET",
     });
   }
-  
+
   loadMoreBookmarks(cardSkip, userId) {
     return this._request(
       `${this._baseUrl}/cards/${cardSkip}/${userId}/bookmarks`,
@@ -64,13 +63,10 @@ class Api {
     );
   }
   loadMoreOwnerCards(cardSkip, userId) {
-    return this._request(
-      `${this._baseUrl}/cards/${cardSkip}/${userId}/cards`,
-      {
-        headers: this._headers,
-        method: "GET",
-      }
-    );
+    return this._request(`${this._baseUrl}/cards/${cardSkip}/${userId}/cards`, {
+      headers: this._headers,
+      method: "GET",
+    });
   }
   getOwnerCards(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
@@ -87,23 +83,23 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(cardId, userId, like) {
+  changeLikeCardStatus(cardId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: like ? "PUT" : "DELETE",
-      body: JSON.stringify({
-        userId: userId,
-      }),
+      // body: JSON.stringify({
+      //   userId: userId,
+      // }),
     });
   }
 
-  changeBookmarkCardStatus(cardId, userId, bookmark) {
+  changeBookmarkCardStatus(cardId, bookmark) {
     return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
       headers: this._headers,
       method: bookmark ? "PUT" : "DELETE",
-      body: JSON.stringify({
-        userId: userId,
-      }),
+      // body: JSON.stringify({
+      //   userId: userId,
+      // }),
     });
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import "./card.css";
 
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
@@ -9,14 +9,14 @@ import { useUser, useAuth } from "../../hooks";
 export default function Card({
   onDownloadClick,
   onDeleteClick,
-  onLikeClick, //this will be implemented when backend connected
-  onBookmarkClick, //this will be implemented when backend connected
+  onLikeClick, 
+  onBookmarkClick, 
   card,
 }) {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
 
-  //TODO: implement after backend connected
+ 
   const likeCount = card.likes.length;
 
   const isOwn = card.owner === currentUser._id; 

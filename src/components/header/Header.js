@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <>
-      <div className={isLessThan920 ? "header header_mobile" : "header"}>
+      <header className={isLessThan920 ? "header header_mobile" : "header"}>
         <img
           className="header__logo"
           src={logo}
@@ -60,7 +60,7 @@ export default function Header() {
         ) : (
           ""
         )}
-      </div>
+      </header>
     </>
   );
 }

@@ -43,7 +43,7 @@ export default function About() {
           </ul>
         </div>
         <div className="about__container">
-          <h1 className="about__heading">About Me</h1>
+          <h2 className="about__heading">About Me</h2>
           <p className="about__text">
             I like puzzles, I like to laugh, I like music. Put them all together
             and you get haikukedoodle - my final project for Practicum's

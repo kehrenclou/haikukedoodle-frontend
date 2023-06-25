@@ -83,13 +83,13 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(cardId, like) {
+  changeLikeCardStatus(cardId, userId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: like ? "PUT" : "DELETE",
-      // body: JSON.stringify({
-      //   userId: userId,
-      // }),
+      body: JSON.stringify({
+        userId: userId,
+      }),
     });
   }
 
@@ -97,9 +97,6 @@ class Api {
     return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
       headers: this._headers,
       method: bookmark ? "PUT" : "DELETE",
-      // body: JSON.stringify({
-      //   userId: userId,
-      // }),
     });
   }
 

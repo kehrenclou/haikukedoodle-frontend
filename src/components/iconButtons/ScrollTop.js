@@ -1,5 +1,5 @@
-import React, { useCallback, useState, useEffect } from "react";
-import { Box, Zoom, Fab, Fade } from "@mui/material";
+import React from "react";
+import { Box, Fab, Fade } from "@mui/material";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { pink } from "@mui/material/colors";

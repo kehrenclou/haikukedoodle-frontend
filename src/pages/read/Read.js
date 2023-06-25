@@ -222,6 +222,7 @@ export default function Read() {
   }
   /* ------------------------------ Like handler ----------------------------- */
   function handleCardLike(card) {
+    debugger;
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api

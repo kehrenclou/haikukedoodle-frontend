@@ -9,8 +9,8 @@
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 15;
 
-  display: flex; /*call display flex when modal is open .modal_open - modifier
-    /* display: none; */ /*hidden set below with visibility and opacity for transition*/
+  display: flex; 
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@
 }
 
 .modal_open {
-  /* modifier to call when modal is open*/
+
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.5s ease-in-out;

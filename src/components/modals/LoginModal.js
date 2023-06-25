@@ -10,7 +10,7 @@ export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
 
   const { setToken, setIsLoggedIn } = useAuth();
-  const { currentUser, setCurrentUser } = useUser();
+  const { setCurrentUser } = useUser();
   const { state } = useCreateHaiku();
 
   const {

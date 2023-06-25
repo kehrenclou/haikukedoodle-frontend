@@ -1,7 +1,8 @@
 import React from "react";
 import { UserModal } from "./UserModal";
-import { useModal, useAuth, useUser } from "../../hooks";
+import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
 import * as auth from "../../utils/apis";
+import { api } from "../../utils/apis";
 
 export function SignUpModal() {
   const {
@@ -15,8 +16,9 @@ export function SignUpModal() {
     setStatus,
   } = useModal();
 
-  const { setIsLoggedIn,setToken } = useAuth();
+  const { setIsLoggedIn, setToken } = useAuth();
   const { setCurrentUser } = useUser();
+  const { state } = useCreateHaiku();
 
   const handleCloseModal = () => {
     setIsSignUpOpen(false);
@@ -38,16 +40,21 @@ export function SignUpModal() {
       .signup(data.name, data.email, data.password)
       .then((res) => {
         if (res) {
-          console.log(res)
           setStatus("success");
-          setCurrentUser(res)
+          localStorage.setItem("jwt", res.token);
+          setToken(res.token);
+          setCurrentUser(res);
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);
           setIsLoggedIn(true);
-          setToken(res.token)
-          //?need to ensure that view updates
-          //need to save haiku to user account
+          api.setHeaders({
+            authorization: `Bearer ${res.token}`,
+            "Content-Type": "application/json",
+          });
+          {
+            state.terms && api.updateCardOwner(res._id, res.name, state._id);
+          }
         } else {
           setStatus("fail");
         }

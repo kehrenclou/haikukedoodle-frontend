@@ -1,0 +1,80 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: black;
+  padding: 0px 20px 20px;
+  position: relative;
+  align-items: center;
+}
+
+.form__body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.form__checkbox-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 16px;
+}
+.form__label {
+  font-size: 12px;
+  color: #133063;
+  font-weight: 700;
+  align-self: flex-start;
+  text-align: left;
+  font-weight: 500;
+}
+.form__label_type_checkbox {
+  font-size: 14px;
+}
+
+.form__input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px rgba(128, 128, 128, 0.7) solid;
+  margin-bottom: 12px;
+}
+.form__input:hover {
+  background-color: #367bf24b;
+}
+.form__input:focus {
+  background-color: white;
+}
+.form__invalid-feedback {
+  color: red;
+  align-self: flex--start;
+}
+.form__button-container {
+  display: flex;
+  flex-wrap: flex;
+  align-items: center;
+}
+.form__text-container {
+  display: flex;
+  flex-direction: column;
+  color: #2b24d2;
+  align-items: center;
+}
+.form__text {
+  font-size: 14px;
+}
+@media screen and (max-width: 500px) {
+  .form {
+    padding: 0;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .form__input {
+    padding: 8px;
+  }
+  .form__button-container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}

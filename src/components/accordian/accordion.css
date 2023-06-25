@@ -1,0 +1,49 @@
+.accordion {
+  list-style: none;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion__item {
+  list-style-type: none;
+}
+.accordion__item_active {
+  background-color: #2f72e59f;
+}
+.accordion__button {
+  font-size: 16px;
+  background-color: #2f72e576;
+
+  text-align: left;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 18px;
+  cursor: pointer;
+  border: none;
+
+  border-radius: 8px;
+  box-shadow: rgba(227, 231, 234, 0.979) 0px 1px 3px 4px;
+}
+.accordion__control {
+  font-size: 20px;
+}
+.accordion__answer-wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height ease 0.2s;
+}
+.accordion__answer {
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+@media screen and (max-width: 800px) {
+  .accordion {
+    padding: 0;
+  }
+}

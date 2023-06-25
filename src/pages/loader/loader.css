@@ -1,0 +1,83 @@
+.loader {
+  background-color: #2b2d42;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  height: 40vh;
+}
+.loader__error {
+  min-height: 50vh;
+  font-size: 24px;
+  letter-spacing: 3px;
+
+  color: white;
+  font-weight: 700;
+}
+.loader__text {
+  color: white;
+  font-size: 24px;
+  font-weight: bold !important;
+  font-family: monospace;
+  letter-spacing: 7px !important;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.loader__text_sub {
+  font-size: 16px;
+  color: white;
+  border-radius: 10px;
+}
+
+.loader__bar {
+  display: block;
+  margin: 0 auto;
+}
+.loader__animate {
+  background: linear-gradient(
+    to right,
+    hsl(300, 100%, 50%) 0%,
+    hsl(0, 0%, 40%) 10%,
+    hsl(0, 0%, 80%) 20%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shine 12s infinite linear;
+}
+
+.loader__animate_5s {
+  animation: shine 15s infinite linear;
+}
+.loader__animate_4s {
+  animation: shine 13s infinite;
+}
+.loader__animate_sub {
+  background: linear-gradient(
+    to right,
+    hsl(300, 93%, 28%) 0%,
+    hsl(0, 0%, 50%) 50%,
+    hsl(0, 0%, 90%) 75%,
+    hsl(300, 93%, 28%) 99%
+  );
+  animation: shine 4s infinite linear;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: 300px;
+  }
+  100% {
+    background-position: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .loader {
+    min-height: 50vh;
+  }
+}

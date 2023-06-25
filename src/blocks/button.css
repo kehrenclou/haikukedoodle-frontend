@@ -1,0 +1,114 @@
+.button {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px rgba(128, 128, 128, 0.7) solid;
+  font-weight: 500;
+  margin: 5px;
+  width: 150px;
+  transition: all 0.25s ease-in-out;
+}
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  background-color: #2b2d42;
+  color: white;
+  font-weight: 400;
+  border: 1px solid #2b2d42;
+}
+.button_type_form {
+  width: 130px;
+}
+.button_type_form_submit {
+  background-color: #2f71e5;
+}
+.button_type_form_cancel {
+  background-color: white;
+}
+.button_type_form-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 1px rgba(128, 128, 128, 0.7) solid;
+}
+.button_type_form-checkbox:hover {
+  cursor: pointer;
+  border: 1px solid #2f71e5;
+  background-color: #2f71ef;
+}
+.button_type_primary {
+  background-color: #fdc9ef;
+  margin: 0;
+}
+.button_type_logout {
+  background-color: #719ef1;
+  margin: 0;
+}
+.button_type_primary:hover {
+  background-color: #fdc9ef;
+  color: #2b2d42;
+  opacity: 0.5;
+}
+.button_type_secondary {
+  background-color: #2b2d42;
+  border: 1px solid white;
+  color: white;
+
+  box-sizing: border-box;
+}
+.button_type_secondary:hover {
+  border: 1px solid #fdc9ef;
+  color: #fdc9ef;
+  opacity: 0.5;
+}
+.button_type_transparent {
+  background: none;
+  border: none;
+  padding: 0;
+  color: blue;
+  text-decoration: underline;
+}
+.button_type_link {
+  color: #fdc9ef;
+  width: auto;
+  font-size: 24px;
+}
+.button_type_mobile {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+.button_type_mobile_open {
+  background: url("../images/closebutton.svg") no-repeat center;
+}
+.button_type_mobile_closed {
+  background: url("../images/mobileMenu.svg") no-repeat center;
+  color:white;
+}
+
+@media screen and (max-width: 600px) {
+  .button_type_form {
+    width: 120px;
+  }
+  .button_type_mobile {
+    top: 35px;
+    right: 5px;
+  }
+  .button_type_link {
+    font-size:20px;
+  }
+}
+
+@media screen and (max-width:500px){
+  .button_type_link{
+    margin-top:30px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .button_type_mobile {
+    top: 38px;
+  }
+}

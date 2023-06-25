@@ -1,0 +1,66 @@
+.about {
+  display: flex;
+
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 130px auto 16px;
+  padding: 32px 40px;
+  flex-grow: 1;
+  min-height: 65vh;
+  z-index: 4;
+  scroll-margin-top: 110px;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  background-color: rgba(255, 255, 255, 0.97);
+  color: #2b2d42;
+  position: relative;
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 75vw;
+  margin: 0 auto;
+}
+.about__heading {
+  margin: 0;
+  padding: 0 0 10px;
+  font-size: 24px;
+}
+
+.about__flower {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.about__text {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-top: 0;
+}
+.about__text_me {
+  font-weight: 700;
+}
+.about__list {
+  margin: 0 0 16px 0;
+  /* padding:0; */
+}
+.about__list-item {
+  padding-bottom: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 920px) {
+  .about {
+    margin-top: 160px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .about {
+    margin-top: 100px;
+    padding: 28px 20px;
+  }
+}

@@ -1,0 +1,13 @@
+.colorC:hover {
+
+  fill: #2f71e5;
+  fill-opacity: 0.7;
+
+  cursor: pointer;
+  filter: contrast(100%);
+}
+
+.colorC {
+  transition: all 0.25s;
+  transform-origin: center;
+}

@@ -27,8 +27,8 @@ export const ScrollTop = () => {
         role="presentation"
         sx={{
           position: "fixed",
-          bottom: 32,
-          right: 32,
+          bottom: 50,
+          right: 50,
           zIndex: 20,
         }}
       >

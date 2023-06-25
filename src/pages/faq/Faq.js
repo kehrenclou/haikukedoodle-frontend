@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import "./faq.css";
 
-import Accordion from "../../components/accordian/Accordian";
+import Accordion from "../../components/accordian";
 
 export default function FAQ() {
   const email = "kedoodledev@gmail.com";

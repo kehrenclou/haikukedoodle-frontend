@@ -7,7 +7,7 @@ import "./result.css";
 import { CreateHaikuContext } from "../../contexts";
 import { useModal, useAuth, useCards, useUser } from "../../hooks";
 
-import { Flower } from "../../components/flower/Flower";
+import { Flower } from "../../components/flower";
 
 export default function Result() {
   const navigate = useNavigate();

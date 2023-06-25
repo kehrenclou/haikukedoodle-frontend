@@ -1,6 +1,6 @@
 import React from "react";
 import "./about.css";
-import { Flower } from "../../components/flower/Flower";
+import { Flower } from "../../components/flower";
 
 export default function About() {
   return (

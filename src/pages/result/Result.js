@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 
+
 import "./result.css";
-// import { api } from "../../utils/apis";
+
 import { CreateHaikuContext } from "../../contexts";
-import { useModal, useAuth, useCards, useUser } from "../../hooks";
+import { useModal, useAuth, useUser } from "../../hooks";
 
 import { Flower } from "../../components/flower";
 
@@ -18,8 +19,7 @@ export default function Result() {
 
   const [zipPairs, setZipPairs] = useState([]);
 
-  const { isSignUpOpen, setIsSignUpOpen, setIsLoginOpen, setIsSignUp } =
-    useModal();
+  const { isSignUpOpen, setIsLoginOpen, setIsSignUp} = useModal();
   const { isLoggedIn } = useAuth();
 
   const { currentUser } = useUser();

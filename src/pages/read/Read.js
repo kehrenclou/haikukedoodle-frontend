@@ -3,6 +3,7 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { ThreeDots } from "react-loading-icons";
 import _ from "lodash";
 
 import "./read.css";
@@ -32,6 +33,7 @@ export default function Read() {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
   const {
+    isLoading,
     setIsConfirmDeleteOpen,
     setIsLoading,
     setStatus,
@@ -104,6 +106,7 @@ export default function Read() {
     }
   }
   function loadMoreCards() {
+    setIsLoading(true);
     api
       .loadMoreCards(cards.length)
       .then((resCards) => {
@@ -116,6 +119,9 @@ export default function Read() {
       })
       .catch((err) => {
         api.handleErrorResponse(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
   function loadMoreBookmarks(length, userId) {
@@ -240,7 +246,7 @@ export default function Read() {
       (user) => user === currentUser._id
     );
     api
-      .changeBookmarkCardStatus(card.id,  !isBookmarked)
+      .changeBookmarkCardStatus(card.id, !isBookmarked)
 
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
@@ -322,16 +328,33 @@ export default function Read() {
                     />
                   ))}
                 </ul>
-                {cards.length < cardCount && (
-                  <button
-                    className="button button_type_primary"
-                    type="button"
-                    aria-label="show more"
-                    onClick={handleLoadMoreCards}
-                  >
-                    Show More
-                  </button>
-                )}
+
+                {cards.length < cardCount
+                  ? [
+                      isLoading && !setIsConfirmDeleteOpen ? (
+                        <button
+                          className="button button_type_primary"
+                          type="button"
+                          aria-label="show more"
+                        >
+                          <ThreeDots
+                            height="1em"
+                            width="60px"
+                            stroke="#2b24d2"
+                          />
+                        </button>
+                      ) : (
+                        <button
+                          className="button button_type_primary"
+                          type="button"
+                          aria-label="show more"
+                          onClick={handleLoadMoreCards}
+                        >
+                          Show More
+                        </button>
+                      ),
+                    ]
+                  : null}
               </section>
             </motion.div>
           )}

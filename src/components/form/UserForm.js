@@ -153,6 +153,7 @@ export const UserForm = ({
             <button
               type="submit"
               className="button button_type_form button_type_form_submit"
+              aria-label="loading"
             >
               <ThreeDots height="1em" width="60px" stroke="#2b24d2" />
             </button>

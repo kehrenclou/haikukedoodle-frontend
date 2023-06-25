@@ -6,7 +6,6 @@
   text-decoration: none;
   margin: 0;
   padding: 0;
-
 }
 .nav__container {
   display: flex;
@@ -14,7 +13,6 @@
   align-items: center;
 }
 .nav_mobile {
-
   width: 200px;
   padding: 20px 0;
   background-color: #2b2d42;
@@ -25,7 +23,6 @@
 .nav__link {
   font-size: 16px;
   text-decoration: none;
-  font-family: "Montserrat";
   color: white;
 }
 .nav__link_nolink {
@@ -44,7 +41,6 @@
   .nav {
     min-width: 100%;
     flex-grow: 1;
-    
   }
 }
 @media screen and (max-width: 600px) {

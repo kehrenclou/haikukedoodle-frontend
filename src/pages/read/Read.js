@@ -63,7 +63,7 @@ export default function Read() {
 
   useEffect(() => {
     loadInitialCards();
-    setSelection("all")
+    setSelection("all");
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -158,11 +158,13 @@ export default function Read() {
 
   function handleBookmarkToggle() {
     const user = currentUser._id;
+    const element = document.getElementById("back-to-top-anchor");
     api
       .getBookmarks(user)
       .then((res) => {
         setCards(transformAiDataArr(res.bookmarks));
         setCardCount(res.cardCount);
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
       })
       .catch((err) => {
         api.handleErrorResponse(err);
@@ -170,11 +172,13 @@ export default function Read() {
   }
   function handleMineToggle() {
     const user = currentUser._id;
+    const element = document.getElementById("back-to-top-anchor");
     api
       .getOwnerCards(user)
       .then((res) => {
         setCards(transformAiDataArr(res.ownerCards));
         setCardCount(res.cardCount);
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
       })
       .catch((err) => {
         api.handleErrorResponse(err);

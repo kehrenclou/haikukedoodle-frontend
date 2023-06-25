@@ -63,7 +63,8 @@ export default function Read() {
 
   useEffect(() => {
     loadInitialCards();
-  }, []);
+    setSelection("all")
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (selection === "bookmarks") {
@@ -80,7 +81,7 @@ export default function Read() {
   }, [isPresent]); //for animation component unmount
 
   /* -------------------------------- handlers -------------------------------- */
-  //loadcards
+
   function loadInitialCards() {
     api
       .getCards(5)
@@ -91,6 +92,16 @@ export default function Read() {
       .catch((err) => {
         api.handleErrorResponse(err);
       });
+  }
+  /* ---------------------------- loadMore Handlers --------------------------- */
+  function handleLoadMoreCards() {
+    if (selection === "bookmarks") {
+      loadMoreBookmarks(cards.length, currentUser._id);
+    } else if (selection === "mine") {
+      loadMoreOwnerCards(cards.length, currentUser._id);
+    } else {
+      loadMoreCards();
+    }
   }
   function loadMoreCards() {
     api
@@ -107,8 +118,38 @@ export default function Read() {
         api.handleErrorResponse(err);
       });
   }
+  function loadMoreBookmarks(length, userId) {
+    api
+      .loadMoreBookmarks(length, userId)
+      .then((resCards) => {
+        setCards((currentCards) => {
+          return [
+            ...currentCards, //current cards
+            ...transformAiDataArr(resCards), //appends new cards to array
+          ];
+        });
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+  function loadMoreOwnerCards(length, userId) {
+    api
+      .loadMoreOwnerCards(length, userId)
+      .then((resCards) => {
+        setCards((currentCards) => {
+          return [
+            ...currentCards, //current cards
+            ...transformAiDataArr(resCards), //appends new cards to array
+          ];
+        });
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
 
-  //toggles
+  /* ----------------------------- Toggle Handlers ---------------------------- */
   function handleToggleChange(event, newSelection) {
     if (newSelection !== null) {
       setSelection(newSelection);
@@ -119,10 +160,9 @@ export default function Read() {
     const user = currentUser._id;
     api
       .getBookmarks(user)
-      .then((resCards) => {
-        setCards(transformAiDataArr(resCards));
-        setCardCount(resCards.length);
-
+      .then((res) => {
+        setCards(transformAiDataArr(res.bookmarks));
+        setCardCount(res.cardCount);
       })
       .catch((err) => {
         api.handleErrorResponse(err);
@@ -132,19 +172,19 @@ export default function Read() {
     const user = currentUser._id;
     api
       .getOwnerCards(user)
-      .then((resCards) => {
-        setCards(transformAiDataArr(resCards));
+      .then((res) => {
+        setCards(transformAiDataArr(res.ownerCards));
+        setCardCount(res.cardCount);
       })
       .catch((err) => {
         api.handleErrorResponse(err);
       });
   }
 
-  //delete
+  /* ----------------------------- Delete Handler ----------------------------- */
   function handleDeleteCardClick(card) {
     setIsConfirmDeleteOpen(true);
     setCardToDelete(card);
-    console.log({ card });
   }
 
   function handleConfirmDelete() {
@@ -170,7 +210,7 @@ export default function Read() {
         setIsLoading(false);
       });
   }
-  //likes
+  /* ------------------------------ Like handler ----------------------------- */
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
@@ -190,7 +230,7 @@ export default function Read() {
       });
   }
 
-  //bookmarks
+  /* ---------------------------- Bookmark Handler --------------------------- */
   function handleBookmarkStatus(card) {
     const isBookmarked = card.bookmarks.some(
       (user) => user === currentUser._id
@@ -211,7 +251,7 @@ export default function Read() {
       });
   }
 
-  //download
+  /* ---------------------------- Download Handler ---------------------------- */
   function handleDownloadClick(song) {
     const title = song.subject;
     const data = formatSongForDownload(song);
@@ -283,7 +323,7 @@ export default function Read() {
                     className="button button_type_primary"
                     type="button"
                     aria-label="show more"
-                    onClick={loadMoreCards}
+                    onClick={handleLoadMoreCards}
                   >
                     Show More
                   </button>

@@ -40,12 +40,12 @@ class Api {
   }
 
   //test
-  loadMoreCards(cardSkip){
- 
-    return this._request(`${this._baseUrl}/cards/${cardSkip}`,{
-      headers:this._headers,
-      method:"GET",
-    })
+
+  loadMoreCards(cardSkip) {
+    return this._request(`${this._baseUrl}/cards/${cardSkip}`, {
+      headers: this._headers,
+      method: "GET",
+    });
   }
 
   getBookmarks(userId) {
@@ -54,7 +54,24 @@ class Api {
       method: "GET",
     });
   }
-
+  loadMoreBookmarks(cardSkip, userId) {
+    return this._request(
+      `${this._baseUrl}/cards/${cardSkip}/${userId}/bookmarks`,
+      {
+        headers: this._headers,
+        method: "GET",
+      }
+    );
+  }
+  loadMoreOwnerCards(cardSkip, userId) {
+    return this._request(
+      `${this._baseUrl}/cards/${cardSkip}/${userId}/cards`,
+      {
+        headers: this._headers,
+        method: "GET",
+      }
+    );
+  }
   getOwnerCards(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
       headers: this._headers,

@@ -17,7 +17,7 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useUser();
+  const { setCurrentUser } = useUser();
   const { isLoggedIn, setIsLoggedIn, isLoaded, setIsLoaded, token } = useAuth();
 
   /* ------------------------------- useEffects ------------------------------- */
@@ -42,7 +42,7 @@ export default function Main() {
         api.handleErrorResponse(err);
       });
   }, []);
-  
+
   useEffect(() => {
     if (!isLoggedIn) {
       return;

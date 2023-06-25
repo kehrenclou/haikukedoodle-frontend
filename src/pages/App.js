@@ -20,7 +20,7 @@ import Footer from "../components/footer";
 import About from "./about";
 import Create from "./create";
 import Result from "./result";
-import Read from "./read/Read";
+import Read from "./read";
 import Faq from "./faq";
 import NotFound from "./notFound";
 

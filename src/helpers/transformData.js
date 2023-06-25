@@ -10,7 +10,7 @@ function transformTimeStamp(data) {
 
 /* ----------------------- Transform backup Array Data ---------------------- */
 //extract subject, haikuLines and chordLines from backupAiDataArr JSON
-//called useEffect to setSongObjects in Main.js on load
+//called in Read
 //creates lines - used after api.getCards
 export function transformAiDataArr(songs) {
   const songObjects = [];
@@ -45,7 +45,7 @@ export function transformAiDataArr(songs) {
 }
 
 /* ---------------- Transform backup Object Data - from State --------------- */
-//used in main with handle bookmark and like status and create- to transform openai.api response
+//used in read, create with handle bookmark and like status and create- to transform openai.api response
 export function transformAiDataObject(card) {
   const cardObjects = [];
   const subject = card.subject; //no subject in data passed in

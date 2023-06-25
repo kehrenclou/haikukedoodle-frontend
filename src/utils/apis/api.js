@@ -39,7 +39,6 @@ class Api {
     });
   }
 
-  //test
 
   loadMoreCards(cardSkip) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}`, {
@@ -54,6 +53,7 @@ class Api {
       method: "GET",
     });
   }
+  
   loadMoreBookmarks(cardSkip, userId) {
     return this._request(
       `${this._baseUrl}/cards/${cardSkip}/${userId}/bookmarks`,

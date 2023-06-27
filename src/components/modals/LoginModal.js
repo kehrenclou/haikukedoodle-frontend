@@ -44,10 +44,10 @@ export function LoginModal() {
           localStorage.setItem("jwt", res.token); //if token set local storage, set token, set headers
           setToken(res.token);
 
-          api.setHeaders({
-            authorization: `Bearer ${res.token}`,
-            "Content-Type": "application/json",
-          });
+          // api.setHeaders({
+          //   authorization: `Bearer ${res.token}`,
+          //   "Content-Type": "application/json",
+          // });
 
           api
             .getInfo() 

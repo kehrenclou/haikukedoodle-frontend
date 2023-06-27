@@ -63,10 +63,10 @@ export function SignUpModal() {
       .finally(() => {
         setIsLoading(false);
         setIsStatusModalOpen(true);
-        api.setHeaders({
-          authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        });
+        // api.setHeaders({
+        //   authorization: `Bearer ${token}`,
+        //   "Content-Type": "application/json",
+        // });
       });
   };
 

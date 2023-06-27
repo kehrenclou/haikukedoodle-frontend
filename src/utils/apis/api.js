@@ -10,6 +10,7 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._authHeaders=authHeaders;
   }
   _request(url, options) {
     return fetch(url, options).then(this._handleResponse);
@@ -57,7 +58,7 @@ class Api {
 
   getBookmarks(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/bookmarks`, {
-      headers: this._headers,
+      headers: this._AuthHeaders,
       method: "GET",
     });
   }
@@ -79,7 +80,7 @@ class Api {
   }
   getOwnerCards(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
-      headers: this._headers,
+      headers: this._AuthHeaders,
       method: "GET",
     });
   }
@@ -123,6 +124,11 @@ export const api = new Api({
   headers: {
     "Content-Type": "application/json",
     // authorization: `Bearer ${useAuth.token}`,
+   
+  },
+  authHeaders: {
+    "Content-Type": "application/json",
+    authorization: `Bearer ${useAuth.token}`,
    
   },
 });

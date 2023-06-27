@@ -25,10 +25,7 @@ export default function Main() {
     if (!token) {
       return;
     }
-    api.setHeaders({
-      authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    });
+
     api
       .getInfo()
       .then((res) => {
@@ -36,6 +33,10 @@ export default function Main() {
           setIsLoggedIn(true);
           setIsLoaded(true);
           setCurrentUser(res);
+          api.setHeaders({
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          });
         }
       })
       .catch((err) => {

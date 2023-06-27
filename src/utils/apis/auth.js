@@ -3,6 +3,12 @@ export const BASE_URL =
     ? "https://api.haikukedoodle.com"
     : "http://localhost:3001";
 
+const allowedOrigins = [
+  "https://haikukedoodle.com",
+  "http://haikukedoodle.com",
+  "https://www.haikukedoodle.com",
+  "http://www.haikukedoodle.com",
+];
 
 const handleAuthResponse = (res) => {
   if (!res.ok) {
@@ -17,6 +23,7 @@ export const signup = (name, email, password) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": allowedOrigins,
     },
     body: JSON.stringify({ name, email, password }),
   }).then(handleAuthResponse);
@@ -27,6 +34,7 @@ export const login = (email, password) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": allowedOrigins,
     },
     body: JSON.stringify({ email, password }),
   }).then(handleAuthResponse);

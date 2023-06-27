@@ -36,7 +36,7 @@ class Api {
   getInfo = () => {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._AuthHeaders,
+      headers: this._authHeaders,
     });
   };
 

@@ -44,6 +44,9 @@ export default function Main() {
 
   useEffect(() => {
     if (!isLoggedIn) {
+      api.setHeaders({
+        "Content-Type": "application/json",
+      });
       return;
     }
     api.setHeaders({

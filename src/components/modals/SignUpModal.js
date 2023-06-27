@@ -39,6 +39,7 @@ export function SignUpModal() {
     auth
       .signup(data.name, data.email, data.password)
       .then((res) => {
+
         if (res) {
           setStatus("success");
           localStorage.setItem("jwt", res.token);

@@ -5,12 +5,11 @@ const baseUrl =
     ? "https://api.haikukedoodle.com"
     : "http://localhost:3001";
 
-
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl, headers, authHeaders }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._authHeaders=authHeaders;
+    this._authHeaders = authHeaders;
   }
   _request(url, options) {
     return fetch(url, options).then(this._handleResponse);
@@ -31,7 +30,6 @@ class Api {
     this._headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${useAuth.token}`,
-    
     };
   }
 
@@ -124,11 +122,9 @@ export const api = new Api({
   headers: {
     "Content-Type": "application/json",
     // authorization: `Bearer ${useAuth.token}`,
-   
   },
   authHeaders: {
     "Content-Type": "application/json",
     authorization: `Bearer ${useAuth.token}`,
-   
   },
 });

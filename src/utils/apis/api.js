@@ -9,7 +9,7 @@ class Api {
   constructor({ baseUrl, headers, authHeaders }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._authHeaders = authHeaders;
+    
   }
   _request(url, options) {
     return fetch(url, options).then(this._handleResponse);
@@ -59,7 +59,10 @@ class Api {
 
   getBookmarks(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/bookmarks`, {
-      headers: this._AuthHeaders,
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${useAuth.token}`,
+      },
       method: "GET",
     });
   }
@@ -68,20 +71,29 @@ class Api {
     return this._request(
       `${this._baseUrl}/cards/${cardSkip}/${userId}/bookmarks`,
       {
-        headers: this._headers,
+        Headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${useAuth.token}`,
+        },
         method: "GET",
       }
     );
   }
   loadMoreOwnerCards(cardSkip, userId) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}/${userId}/cards`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${useAuth.token}`,
+      },
       method: "GET",
     });
   }
   getOwnerCards(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
-      headers: this._AuthHeaders,
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${useAuth.token}`,
+      },
       method: "GET",
     });
   }
@@ -106,14 +118,20 @@ class Api {
 
   changeBookmarkCardStatus(cardId, bookmark) {
     return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${useAuth.token}`,
+      },
       method: bookmark ? "PUT" : "DELETE",
     });
   }
 
   deleteCard(cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/delete`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${useAuth.token}`,
+      },
       method: "DELETE",
     });
   }
@@ -126,8 +144,5 @@ export const api = new Api({
     "Content-Type": "application/json",
     // authorization: `Bearer ${useAuth.token}`,
   },
-  authHeaders: {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${useAuth.token}`,
-  },
+
 });

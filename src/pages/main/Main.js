@@ -29,14 +29,12 @@ export default function Main() {
     api
       .getInfo()
       .then((res) => {
+        console.log(res);
+        console.log(isLoggedIn);
         if (res) {
           setIsLoggedIn(true);
           setIsLoaded(true);
           setCurrentUser(res);
-          api.setHeaders({
-            authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          });
         }
       })
       .catch((err) => {

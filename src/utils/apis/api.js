@@ -26,7 +26,7 @@ class Api {
     console.log(`Error: ${err}`);
   };
 
-  setHeaders(headers) {
+  setHeaders() {
     this._headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${useAuth.token}`,
@@ -122,7 +122,7 @@ export const api = new Api({
   baseUrl: baseUrl,
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${useAuth.token}`,
+    // authorization: `Bearer ${useAuth.token}`,
    
   },
 });

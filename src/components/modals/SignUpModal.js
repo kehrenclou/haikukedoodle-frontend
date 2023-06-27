@@ -16,7 +16,7 @@ export function SignUpModal() {
     setStatus,
   } = useModal();
 
-  const { setIsLoggedIn, setToken } = useAuth();
+  const { setIsLoggedIn, setToken, token } = useAuth();
   const { setCurrentUser } = useUser();
   const { state } = useCreateHaiku();
 
@@ -39,7 +39,6 @@ export function SignUpModal() {
     auth
       .signup(data.name, data.email, data.password)
       .then((res) => {
-
         if (res) {
           setStatus("success");
           localStorage.setItem("jwt", res.token);
@@ -49,10 +48,7 @@ export function SignUpModal() {
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);
           setIsLoggedIn(true);
-          api.setHeaders({
-            authorization: `Bearer ${res.token}`,
-            "Content-Type": "application/json",
-          });
+
           {
             state.terms && api.updateCardOwner(res._id, res.name, state._id);
           }
@@ -67,6 +63,10 @@ export function SignUpModal() {
       .finally(() => {
         setIsLoading(false);
         setIsStatusModalOpen(true);
+        api.setHeaders({
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        });
       });
   };
 

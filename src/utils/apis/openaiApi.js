@@ -1,4 +1,7 @@
-export const BASE_URL = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.haikukedoodle.com"
+    : "http://localhost:3001";
 
 const handleOpenApiResponse = (res) => {
   if (!res.ok) {

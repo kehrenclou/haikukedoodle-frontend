@@ -1,5 +1,9 @@
 import { useAuth } from "../../hooks/useAuth";
-const baseUrl = "http://localhost:3001";
+
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.haikukedoodle.com"
+    : "http://localhost:3001";
 
 class Api {
   constructor({ baseUrl, headers }) {

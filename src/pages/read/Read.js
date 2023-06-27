@@ -31,7 +31,7 @@ export default function Read() {
 
   const { cards, setCards, cardCount, setCardCount } = useCards();
   const { currentUser } = useUser();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, token } = useAuth();
   const {
     isLoading,
     setIsConfirmDeleteOpen,
@@ -39,7 +39,7 @@ export default function Read() {
     setStatus,
     setIsStatusModalOpen,
   } = useModal();
-
+  console.log(isLoggedIn, token);
   /* -------------------------- styled toggle button -------------------------- */
   const StyledToggleBtn = styled(ToggleButton)({
     color: "silver",

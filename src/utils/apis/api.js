@@ -36,7 +36,10 @@ class Api {
   getInfo = () => {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._authHeaders,
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${useAuth.token}`,
+      },
     });
   };
 

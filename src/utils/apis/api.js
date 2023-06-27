@@ -129,7 +129,7 @@ export const api = new Api({
   baseUrl: baseUrl,
   headers: {
     "Content-Type": "application/json",
-    // authorization: `Bearer ${useAuth.token}`,
+    authorization: `Bearer ${useAuth.token}`,
     // "Access-Control-Allow-Origin": allowedOrigins,
   },
 });

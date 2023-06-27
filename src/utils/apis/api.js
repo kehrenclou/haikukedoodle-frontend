@@ -26,17 +26,17 @@ class Api {
     console.log(`Error: ${err}`);
   };
 
-  setHeaders() {
-    this._headers = {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${useAuth.token}`,
-    };
-  }
+  // setHeaders() {
+  //   this._headers = {
+  //     "Content-Type": "application/json",
+  //     authorization: `Bearer ${useAuth.token}`,
+  //   };
+  // }
 
   getInfo = () => {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._AuthHeaders,
     });
   };
 

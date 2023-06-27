@@ -18,13 +18,13 @@ export default function Main() {
 
   const navigate = useNavigate();
   const { setCurrentUser } = useUser();
-  const { isLoggedIn, setIsLoggedIn, isLoaded, setIsLoaded, token } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, isLoaded, setIsLoaded, token, setToken } = useAuth();
 
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
-    if (!token) {
+    if (!token | !isLoggedIn) {
       return;
-    }
+    }   
 
     api
       .getInfo()

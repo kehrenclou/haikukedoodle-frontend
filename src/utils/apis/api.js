@@ -32,7 +32,11 @@ class Api {
   };
 
   setHeaders(headers) {
-    this._headers = headers;
+    this._headers = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${useAuth.token}`,
+      "Access-Control-Allow-Origin": allowedOrigins,
+    };
   }
 
   getInfo = () => {

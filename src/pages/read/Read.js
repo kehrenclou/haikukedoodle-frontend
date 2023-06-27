@@ -39,7 +39,7 @@ export default function Read() {
     setStatus,
     setIsStatusModalOpen,
   } = useModal();
-  console.log(isLoggedIn, token);
+  console.log({isLoggedIn}, {token});
   /* -------------------------- styled toggle button -------------------------- */
   const StyledToggleBtn = styled(ToggleButton)({
     color: "silver",

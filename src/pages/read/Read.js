@@ -231,7 +231,7 @@ export default function Read() {
 
         setCards((state) =>
           state.map((currentCard) =>
-            currentCard._id === card.id ? tsfNewCard[0] : currentCard
+            currentCard.id === card.id ? tsfNewCard[0] : currentCard
           )
         );
       })

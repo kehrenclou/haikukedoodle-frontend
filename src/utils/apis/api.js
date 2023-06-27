@@ -10,6 +10,8 @@ const allowedOrigins = [
   "http://haikukedoodle.com",
   "https://www.haikukedoodle.com",
   "http://www.haikukedoodle.com",
+  "http:api.haikukedoodle.com",
+  "https://api.haikukedoodle.com",
 ];
 class Api {
   constructor({ baseUrl, headers }) {
@@ -128,6 +130,6 @@ export const api = new Api({
   headers: {
     "Content-Type": "application/json",
     // authorization: `Bearer ${useAuth.token}`,
-    "Access-Control-Allow-Origin": allowedOrigins,
+    // "Access-Control-Allow-Origin": allowedOrigins,
   },
 });

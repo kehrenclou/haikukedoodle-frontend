@@ -5,6 +5,12 @@ const baseUrl =
     ? "https://api.haikukedoodle.com"
     : "http://localhost:3001";
 
+const allowedOrigins = [
+  "https://haikukedoodle.com",
+  "http://haikukedoodle.com",
+  "https://www.haikukedoodle.com",
+  "http://www.haikukedoodle.com",
+];
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -118,5 +124,6 @@ export const api = new Api({
   headers: {
     "Content-Type": "application/json",
     authorization: `Bearer ${useAuth.token}`,
+    "Access-Control-Allow-Origin": allowedOrigins,
   },
 });

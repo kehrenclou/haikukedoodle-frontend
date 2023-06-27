@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r -i ~/.ssh/id_ed25519 ./build/* kedoodledev@haikukedoodle.com:/home/kedoodledev/haikukedoodle/frontend/build"
   },
   "eslintConfig": {
     "extends": [

@@ -1,4 +1,4 @@
-export const baseUrl =
+export const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://api.haikukedoodle.com"
     : "http://localhost:3001";

@@ -30,7 +30,7 @@ class Api {
     this._headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${useAuth.token}`,
-      "Access-Control-Allow-Origin": allowedOrigins,
+    
     };
   }
 

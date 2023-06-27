@@ -22,7 +22,7 @@ export default function Main() {
 
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
-    if (!token | !isLoggedIn) {
+    if (!token) {
       return;
     }   
 

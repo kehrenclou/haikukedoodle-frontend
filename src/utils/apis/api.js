@@ -6,10 +6,9 @@ const baseUrl =
     : "http://localhost:3001";
 
 class Api {
-  constructor({ baseUrl, headers, authHeaders }) {
+  constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
-    
+    // this._headers = headers;
   }
   _request(url, options) {
     return fetch(url, options).then(this._handleResponse);
@@ -45,14 +44,18 @@ class Api {
 
   getCards() {
     return this._request(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+      },
       method: "GET",
     });
   }
 
   loadMoreCards(cardSkip) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+      },
       method: "GET",
     });
   }
@@ -100,7 +103,9 @@ class Api {
 
   updateCardOwner(userId, userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+      },
       method: "PATCH",
       body: JSON.stringify({ owner: userId, author: userName }),
     });
@@ -108,7 +113,9 @@ class Api {
 
   changeLikeCardStatus(cardId, userId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-      headers: this._headers,
+      Headers: {
+        "Content-Type": "application/json",
+      },
       method: like ? "PUT" : "DELETE",
       body: JSON.stringify({
         userId: userId,
@@ -140,9 +147,8 @@ class Api {
 //sets headers with token on all api calls
 export const api = new Api({
   baseUrl: baseUrl,
-  headers: {
-    "Content-Type": "application/json",
-    // authorization: `Bearer ${useAuth.token}`,
-  },
-
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   // authorization: `Bearer ${useAuth.token}`,
+  // },
 });

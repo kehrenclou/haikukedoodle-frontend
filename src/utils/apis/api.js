@@ -35,7 +35,7 @@ class Api {
   getInfo = () => {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "GET",
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${useAuth.token}`,
       },
@@ -44,7 +44,7 @@ class Api {
 
   getCards() {
     return this._request(`${this._baseUrl}/cards`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
       },
       method: "GET",
@@ -53,7 +53,7 @@ class Api {
 
   loadMoreCards(cardSkip) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
       },
       method: "GET",
@@ -62,7 +62,7 @@ class Api {
 
   getBookmarks(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/bookmarks`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${useAuth.token}`,
       },
@@ -84,7 +84,7 @@ class Api {
   }
   loadMoreOwnerCards(cardSkip, userId) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}/${userId}/cards`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${useAuth.token}`,
       },
@@ -93,7 +93,7 @@ class Api {
   }
   getOwnerCards(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${useAuth.token}`,
       },
@@ -103,7 +103,7 @@ class Api {
 
   updateCardOwner(userId, userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
       },
       method: "PATCH",
@@ -113,7 +113,7 @@ class Api {
 
   changeLikeCardStatus(cardId, userId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
       },
       method: like ? "PUT" : "DELETE",
@@ -125,7 +125,7 @@ class Api {
 
   changeBookmarkCardStatus(cardId, bookmark) {
     return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${useAuth.token}`,
       },
@@ -135,7 +135,7 @@ class Api {
 
   deleteCard(cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/delete`, {
-      Headers: {
+      headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${useAuth.token}`,
       },

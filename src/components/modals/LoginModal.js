@@ -42,11 +42,12 @@ export function LoginModal() {
       .then((res) => {
         console.log({res})
         if (res) {
+         
           localStorage.setItem("jwt", res.token); //if token set local storage, set token, set headers
           setToken(res.token);
 
           api.setHeaders({
-            authorization: `Bearer ${res.token}`,
+            authorization: `Bearer ${res.token}`,//showing undefined
             "Content-Type": "application/json",
           });
 

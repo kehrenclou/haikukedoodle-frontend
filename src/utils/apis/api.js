@@ -26,10 +26,7 @@ class Api {
   };
 
   setHeaders(headers) {
-    this._headers = {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${useAuth.token}`,
-    };
+    this._headers = headers;
   }
 
   getInfo = () => {
@@ -120,6 +117,5 @@ export const api = new Api({
   baseUrl: baseUrl,
   headers: {
     "Content-Type": "application/json",
-    authorization: `Bearer ${useAuth.token}`,
   },
 });

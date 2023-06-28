@@ -1,5 +1,3 @@
-import { useAuth } from "../../hooks/useAuth";
-
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.haikukedoodle.com"

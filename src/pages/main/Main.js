@@ -70,7 +70,7 @@ export default function Main() {
     <>
       <Layout>
         <main className="main" id="main">
-          <h1 className="main__heading">Haiku song generator using chat GPT</h1>
+          <h1 className="main__heading">Haiku song generator using openAI</h1>
 
           <AnimatePresence mode="wait">
             {isVisible && (

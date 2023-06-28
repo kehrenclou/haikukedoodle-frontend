@@ -40,6 +40,7 @@ export function LoginModal() {
       .login(data.email, data.password) //login
 
       .then((res) => {
+        console.log({res})
         if (res) {
           localStorage.setItem("jwt", res.token); //if token set local storage, set token, set headers
           setToken(res.token);

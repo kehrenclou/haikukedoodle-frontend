@@ -43,18 +43,18 @@ export default function Main() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     api.setHeaders({
-  //       "Content-Type": "application/json",
-  //     });
-  //     return;
-  //   }
-  //   api.setHeaders({
-  //     authorization: `Bearer ${token}`,
-  //     "Content-Type": "application/json",
-  //   });
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      api.setHeaders({
+        "Content-Type": "application/json",
+      });
+      return;
+    }
+    api.setHeaders({
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
+  }, [isLoggedIn]);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);

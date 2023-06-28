@@ -6,9 +6,9 @@ const baseUrl =
     : "http://localhost:3001";
 
 class Api {
-  constructor({ baseUrl }) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
-    // this._headers = headers;
+    this._headers = headers;
   }
   _request(url, options) {
     return fetch(url, options).then(this._handleResponse);
@@ -25,47 +25,37 @@ class Api {
     console.log(`Error: ${err}`);
   };
 
-  // setHeaders() {
-  //   this._headers = {
-  //     "Content-Type": "application/json",
-  //     authorization: `Bearer ${useAuth.token}`,
-  //   };
-  // }
+  setHeaders(headers) {
+    this._headers = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${useAuth.token}`,
+    };
+  }
 
   getInfo = () => {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${useAuth.token}`,
-      },
+      headers: this._headers,
     });
   };
 
   getCards() {
     return this._request(`${this._baseUrl}/cards`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       method: "GET",
     });
   }
 
   loadMoreCards(cardSkip) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       method: "GET",
     });
   }
 
   getBookmarks(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/bookmarks`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${useAuth.token}`,
-      },
+      headers: this._headers,
       method: "GET",
     });
   }
@@ -74,38 +64,27 @@ class Api {
     return this._request(
       `${this._baseUrl}/cards/${cardSkip}/${userId}/bookmarks`,
       {
-        Headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${useAuth.token}`,
-        },
+        headers: this._headers,
         method: "GET",
       }
     );
   }
   loadMoreOwnerCards(cardSkip, userId) {
     return this._request(`${this._baseUrl}/cards/${cardSkip}/${userId}/cards`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${useAuth.token}`,
-      },
+      headers: this._headers,
       method: "GET",
     });
   }
   getOwnerCards(userId) {
     return this._request(`${this._baseUrl}/cards/${userId}/cards`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${useAuth.token}`,
-      },
+      headers: this._headers,
       method: "GET",
     });
   }
 
   updateCardOwner(userId, userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({ owner: userId, author: userName }),
     });
@@ -113,9 +92,7 @@ class Api {
 
   changeLikeCardStatus(cardId, userId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       method: like ? "PUT" : "DELETE",
       body: JSON.stringify({
         userId: userId,
@@ -125,20 +102,14 @@ class Api {
 
   changeBookmarkCardStatus(cardId, bookmark) {
     return this._request(`${this._baseUrl}/cards/${cardId}/bookmarks`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${useAuth.token}`,
-      },
+      headers: this._headers,
       method: bookmark ? "PUT" : "DELETE",
     });
   }
 
   deleteCard(cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/delete`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${useAuth.token}`,
-      },
+      headers: this._headers,
       method: "DELETE",
     });
   }
@@ -147,8 +118,8 @@ class Api {
 //sets headers with token on all api calls
 export const api = new Api({
   baseUrl: baseUrl,
-  // headers: {
-  //   "Content-Type": "application/json",
-  //   // authorization: `Bearer ${useAuth.token}`,
-  // },
+  headers: {
+    "Content-Type": "application/json",
+    authorization: `Bearer ${useAuth.token}`,
+  },
 });

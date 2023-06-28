@@ -24,6 +24,8 @@ All Users will be able to download and like the haikus.
 - framer-motion
 - react-loading-icons
 - openai (will be implemented with the backend)
+- react-loading-icons
+- ulid
 
 ## Future 
 - Set up the backend for connection to openai

@@ -18,9 +18,8 @@ export default function Main() {
 
   const navigate = useNavigate();
   const { setCurrentUser } = useUser();
-  const { isLoggedIn, setIsLoggedIn, isLoaded, setIsLoaded, token, setToken } =
-    useAuth();
-  console.log("token", token);
+  const { setIsLoggedIn, setIsLoaded, token } = useAuth();
+
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     if (!token) {
@@ -30,8 +29,6 @@ export default function Main() {
     api
       .getInfo()
       .then((res) => {
-        console.log(res);
-        console.log(isLoggedIn);
         if (res) {
           setIsLoggedIn(true);
           setIsLoaded(true);
@@ -44,7 +41,6 @@ export default function Main() {
   }, []);
 
   useEffect(() => {
- 
     api.setHeaders({
       authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

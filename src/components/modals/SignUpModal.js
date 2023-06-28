@@ -43,6 +43,12 @@ export function SignUpModal() {
           setStatus("success");
           localStorage.setItem("jwt", res.token);
           setToken(res.token);
+
+          api.setHeaders({
+            authorization: `Bearer ${res.token}`,
+            "Content-Type": "application/json",
+          });
+
           setCurrentUser(res);
           setIsLoading(false);
           setIsSignUpOpen(false);
@@ -63,10 +69,6 @@ export function SignUpModal() {
       .finally(() => {
         setIsLoading(false);
         setIsStatusModalOpen(true);
-        // api.setHeaders({
-        //   authorization: `Bearer ${token}`,
-        //   "Content-Type": "application/json",
-        // });
       });
   };
 

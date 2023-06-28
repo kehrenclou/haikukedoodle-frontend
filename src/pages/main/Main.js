@@ -25,6 +25,10 @@ export default function Main() {
     if (!token) {
       return;
     }
+    api.setHeaders({
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
 
     api
       .getInfo()

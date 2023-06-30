@@ -9,6 +9,7 @@ import * as openAiApi from "../../utils/apis/openaiApi";
 import { transformAiDataObject } from "../../helpers/transformData";
 
 import { CreateHaikuForm } from "../../components/form";
+import Layout from "../../components/layout";
 import Loader from "../loader/Loader";
 
 export default function Create() {
@@ -61,6 +62,7 @@ export default function Create() {
 
   return (
     <>
+    <Layout>
       <section className="create" key="create">
         <AnimatePresence mode="wait">
           {!isLoading && (
@@ -89,6 +91,7 @@ export default function Create() {
           </>
         )}
       </section>
+      </Layout>
     </>
   );
 }

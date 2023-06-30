@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
-
+import { ThreeDots } from "react-loading-icons";
 
 import "./result.css";
 
@@ -18,8 +18,9 @@ export default function Result() {
   const [isPresent, safeToRemove] = usePresence(); //used with animation
 
   const [zipPairs, setZipPairs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { isSignUpOpen, setIsLoginOpen, setIsSignUp} = useModal();
+  const { isSignUpOpen, setIsLoginOpen, setIsSignUp } = useModal();
   const { isLoggedIn } = useAuth();
 
   const { currentUser } = useUser();
@@ -46,6 +47,7 @@ export default function Result() {
   };
 
   const handleHallOfFameClick = () => {
+    setIsLoading(true);
     navigate("/read");
   };
 
@@ -112,15 +114,24 @@ export default function Result() {
           >
             Start Over
           </button>
-
-          <button
-            className="button button_type_primary"
-            onClick={handleHallOfFameClick}
-            disabled={isSignUpOpen}
-            aria-label="save haiku button"
-          >
-            Hall of Fame
-          </button>
+          {!isLoading ? (
+            <button
+              className="button button_type_primary"
+              onClick={handleHallOfFameClick}
+              disabled={isSignUpOpen}
+              aria-label="save haiku button"
+            >
+              Hall of Fame
+            </button>
+          ) : (
+            <button
+              className="button button_type_primary"
+              type="button"
+              aria-label="show more"
+            >
+              <ThreeDots height="1em" width="60px" stroke="#2b24d2" />
+            </button>
+          )}
         </div>
       </section>
     </>

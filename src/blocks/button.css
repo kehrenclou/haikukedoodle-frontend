@@ -25,8 +25,8 @@ button:hover {
   background-color: white;
 }
 .button_type_form-checkbox {
-  width: 24px;
-  height: 24px;
+  width: 100px;
+  height: 80px;
   border: 1px rgba(128, 128, 128, 0.7) solid;
 }
 .button_type_form-checkbox:hover {

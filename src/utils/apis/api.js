@@ -77,6 +77,7 @@ class Api {
     });
   }
 
+  //TODO: put userId in headers
   updateCardOwner(userId, userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
       headers: this._headers,

@@ -37,7 +37,7 @@ export function SignUpModal() {
     setIsLoading(true);
 
     auth
-      .signup(data.name, data.email, data.password)
+      .signup(data.name, data.email, data.password, "false")
       .then((res) => {
         if (res) {
           setStatus("success");

@@ -12,7 +12,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(currentUser);
+  console.log("isAnon", currentUser.isAnonymous);
   function checkLocation(loc) {
     const checkLoc = location.pathname === loc;
     return checkLoc;
@@ -80,7 +80,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
               FAQ
             </NavLink>
           </li>
-          {isLoggedIn ? (
+          {isLoggedIn & !currentUser.isAnonymous ? (
             <li className="nav__item">
               <p className="nav__link nav__link_nolink">{currentUser.name}</p>
             </li>
@@ -88,7 +88,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
         </div>
 
         <li className="nav__item">
-          {isLoggedIn ? (
+          {isLoggedIn & !currentUser.isAnonymous ? (
             <button
               className="button button_type_logout"
               type="button"

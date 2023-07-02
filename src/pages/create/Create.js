@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
+import { ulid } from "ulid";
 import "./create.css";
 
 import { CreateHaikuContext } from "../../contexts";
-import { useUser } from "../../hooks";
+import { useUser, useAuth } from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
+import * as auth from "../../utils/apis/auth";
 import { transformAiDataObject } from "../../helpers/transformData";
 
 import { CreateHaikuForm } from "../../components/form";
@@ -15,7 +17,8 @@ import Loader from "../loader/Loader";
 export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
-  const { currentUser } = useUser();
+  const { currentUser, setCurrentUser } = useUser();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -37,14 +40,30 @@ export default function Create() {
     }
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
- 
+  console.log("isLoggedIn", isLoggedIn);
+  console.log("currentUser", currentUser);
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
+    let userData = currentUser;
     try {
+      //1. if !isLoggedIn, create a new anonymous user
+      if (!isLoggedIn) {
+        const anonEmail = `anon${ulid()}@anon.com`;
+        const anonUser = await auth.signup(
+          "Anonymous",
+          anonEmail,
+          "1234",
+          "true"
+        );
+        userData = anonUser;
+        setCurrentUser(anonUser);
+        setIsLoggedIn(true);
+      }
+
       const openAiData = await openAiApi.generateHaiku(
         subject,
-        currentUser,
+        userData,
         terms
       );
       if (!openAiData) {

@@ -8,6 +8,7 @@ import { CreateHaikuContext } from "../../contexts";
 import { useUser, useAuth } from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
 import * as auth from "../../utils/apis/auth";
+import { api } from "../../utils/apis";
 import { transformAiDataObject } from "../../helpers/transformData";
 
 import { CreateHaikuForm } from "../../components/form";
@@ -18,7 +19,7 @@ export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
   const { currentUser, setCurrentUser } = useUser();
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, token, setToken } = useAuth();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -42,6 +43,7 @@ export default function Create() {
   }, [haikuCtx.state]);
   console.log("isLoggedIn", isLoggedIn);
   console.log("currentUser", currentUser);
+  console.log({ token });
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
@@ -56,6 +58,12 @@ export default function Create() {
           "1234",
           "true"
         );
+        localStorage.setItem("jwt", anonUser.token);
+        setToken(anonUser.token);
+        api.setHeaders({
+          authorization: `Bearer ${anonUser.token}`,
+          "Content-Type": "application/json",
+        });
         userData = anonUser;
         setCurrentUser(anonUser);
         setIsLoggedIn(true);

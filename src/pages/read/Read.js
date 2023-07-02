@@ -286,7 +286,7 @@ export default function Read() {
               key="cards"
             >
               <section className="read" id="cards">
-                {isLoggedIn ? (
+                {isLoggedIn & !currentUser.isAnonymous ? (
                   <div className="read__fixed-container">
                     <ToggleButtonGroup
                       className="read__toggle-group"
@@ -307,7 +307,9 @@ export default function Read() {
                 ) : null}
                 <h2
                   className={`read__heading ${
-                    isLoggedIn ? "read__heading_logged-in" : ""
+                    isLoggedIn & !currentUser.isAnonymous
+                      ? "read__heading_logged-in"
+                      : ""
                   }`}
                   id="back-to-top-anchor"
                 >

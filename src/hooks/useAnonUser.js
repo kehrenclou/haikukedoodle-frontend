@@ -16,7 +16,7 @@ export const useAnonUser = () => {
     if (currentUser.isAnonymous && token) {
       setAnonUser(currentUser);
     }
-  }, []);
+  }, [isLoggedIn]);
 
   const initializeAnonUser = useCallback(async () => {
     if (currentUser.isAnonymous && !isLoggedIn) {
@@ -36,8 +36,10 @@ export const useAnonUser = () => {
         });
         // setAnonUser(anonUserData);
         setAnonUser(anonUserData);
+        console.log({ anonUserData });
         setCurrentUser(anonUserData);
         setIsLoggedIn(true);
+        return anonUserData;
       } catch (err) {
         console.log("Error on SignUp", err);
       }

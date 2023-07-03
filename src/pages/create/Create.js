@@ -48,12 +48,16 @@ export default function Create() {
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
     let userData = currentUser;
-
+    console.log({ userData });
+    console.log({ currentUser });
     try {
       //1. if !isLoggedIn, create a new anonymous user
       if (!isLoggedIn) {
-        initializeAnonUser();
-        userData = anonUser;
+        console.log("called from create");
+
+        const newAnonUser = await initializeAnonUser();
+
+        userData = newAnonUser;
       }
 
       const openAiData = await openAiApi.generateHaiku(
@@ -70,8 +74,7 @@ export default function Create() {
     } catch (err) {
       setIsError(true);
       navigate("/");
-      console.log(err.response);
-      console.log(err.response.data);
+      console.log(err);
     }
   };
 

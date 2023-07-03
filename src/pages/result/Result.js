@@ -24,7 +24,7 @@ export default function Result() {
   const { isLoggedIn } = useAuth();
 
   const { currentUser } = useUser();
-
+  console.log(haikuCtx.state);
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -88,7 +88,7 @@ export default function Result() {
                     <p className="result__text result__text_med">{chord}</p>
                   </div>
                 ))}
-                <p className="result__author">{`~created by ${currentUser.name} on ${haikuCtx.state.createdOn}`}</p>
+                <p className="result__author">{`~created by ${haikuCtx.state.author} on ${haikuCtx.state.createdOn}`}</p>
               </div>
             </motion.div>
           )}

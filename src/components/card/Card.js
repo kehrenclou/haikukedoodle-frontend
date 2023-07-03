@@ -56,7 +56,7 @@ export default function Card({
 
         <section className="card__section card__section_header ">
           <h2 className="card__title">{card.subject}</h2>
-          {isLoggedIn & !currentUser.isAnonymous ? (
+          {isLoggedIn && !currentUser.isAnonymous ? (
             <div className="card__icon-bookmark">
               <Bookmark
                 onClick={handleBookmarkClick}
@@ -82,7 +82,9 @@ export default function Card({
         <section className="card__section card__section_footer">
           <div className="card__button-group">
             <Download onClick={handleDownloadClick} />
-            {isLoggedIn && isOwn ? <Trash onClick={handleDeleteClick} /> : null}
+            {isLoggedIn && isOwn && !currentUser.isAnonymous ? (
+              <Trash onClick={handleDeleteClick} />
+            ) : null}
           </div>
           <div className="card__button-group">
             <div className="card__like-container">

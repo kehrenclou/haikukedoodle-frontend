@@ -21,7 +21,7 @@ export default function Create() {
   const haikuCtx = useContext(CreateHaikuContext);
   const { currentUser, setCurrentUser } = useUser();
   const { isLoggedIn, setIsLoggedIn, token, setToken } = useAuth();
-  const { anonUser } = useAnonUser();
+  const { anonUser, initializeAnonUser } = useAnonUser();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -43,17 +43,16 @@ export default function Create() {
     }
     setZipPairs(zipPairs);
   }, [haikuCtx.state]);
-  console.log("isLoggedIn", isLoggedIn);
-  console.log("currentUser", currentUser);
-  console.log({ token });
+
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
     let userData = currentUser;
-    // const {anonUser, initializeAnonUser}: User | undefined = useAnonUser();
+
     try {
       //1. if !isLoggedIn, create a new anonymous user
       if (!isLoggedIn) {
+        initializeAnonUser();
         userData = anonUser;
       }
 

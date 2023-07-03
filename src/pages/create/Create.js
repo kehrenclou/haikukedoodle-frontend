@@ -14,12 +14,14 @@ import { transformAiDataObject } from "../../helpers/transformData";
 import { CreateHaikuForm } from "../../components/form";
 import Layout from "../../components/layout";
 import Loader from "../loader/Loader";
+import { useAnonUser } from "../../hooks/useAnonUser";
 
 export default function Create() {
   const navigate = useNavigate();
   const haikuCtx = useContext(CreateHaikuContext);
   const { currentUser, setCurrentUser } = useUser();
   const { isLoggedIn, setIsLoggedIn, token, setToken } = useAuth();
+  const { anonUser } = useAnonUser();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -48,25 +50,11 @@ export default function Create() {
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
     let userData = currentUser;
+    // const {anonUser, initializeAnonUser}: User | undefined = useAnonUser();
     try {
       //1. if !isLoggedIn, create a new anonymous user
       if (!isLoggedIn) {
-        const anonEmail = `anon${ulid()}@anon.com`;
-        const anonUser = await auth.signup(
-          "Anonymous",
-          anonEmail,
-          "1234",
-          "true"
-        );
-        localStorage.setItem("jwt", anonUser.token);
-        setToken(anonUser.token);
-        api.setHeaders({
-          authorization: `Bearer ${anonUser.token}`,
-          "Content-Type": "application/json",
-        });
         userData = anonUser;
-        setCurrentUser(anonUser);
-        setIsLoggedIn(true);
       }
 
       const openAiData = await openAiApi.generateHaiku(
@@ -87,27 +75,6 @@ export default function Create() {
       console.log(err.response.data);
     }
   };
-
-  // const handleSubmitClick = (subject, terms) => {
-  //   setIsLoading(true);
-  //   openAiApi
-  //     .generateHaiku(subject, currentUser, terms)
-  //     .then((res) => {
-  //       if (res) {
-  //         const tsfResponse = transformAiDataObject(res);
-
-  //         haikuCtx.updateAll(tsfResponse[0], res);
-  //       } else {
-  //         console.log("fail");
-  //       }
-  //     })
-  //     .then(() => navigate("/result"))
-  //     .catch((error) => {
-  //       console.log("openaierror", error);
-  //       setIsError(true);
-  //       navigate("/");
-  //     });
-  // };
 
   return (
     <>

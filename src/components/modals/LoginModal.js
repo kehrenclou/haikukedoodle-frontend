@@ -42,7 +42,7 @@ export function LoginModal() {
       .then((res) => {
    
         if (res) {
-          localStorage.setItem("jwt", res.token); //if token set local storage, set token, set headers
+          localStorage.setItem("jwt", res.token); //if token, set local storage, set token, set headers
           setToken(res.token);
 
           api.setHeaders({

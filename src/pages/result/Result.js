@@ -93,7 +93,7 @@ export default function Result() {
             </motion.div>
           )}
         </AnimatePresence>
-        {!isLoggedIn ? (
+        {currentUser.isAnonymous ? (
           <div className="result__heading-container">
             <button
               className="button button_type_transparent button_type_link"

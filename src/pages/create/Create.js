@@ -70,7 +70,7 @@ export default function Create() {
     } catch (err) {
       setIsError(true);
       navigate("/");
-      console.log(err.response.status);
+      console.log(err.response);
       console.log(err.response.data);
     }
   };

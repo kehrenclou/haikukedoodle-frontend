@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
 import { ThreeDots } from "react-loading-icons";
 
 import "./result.css";
 
-import { CreateHaikuContext } from "../../contexts";
-import { useModal, useAuth, useUser } from "../../hooks";
+import { useModal, useUser, useCreateHaiku } from "../../hooks";
 
 import { Flower } from "../../components/flower";
 
 export default function Result() {
   const navigate = useNavigate();
-  const haikuCtx = useContext(CreateHaikuContext);
 
   const [isVisible, setIsVisible] = useState(true); //controls visibility of yinyang wrt animation
   const [isPresent, safeToRemove] = usePresence(); //used with animation
@@ -21,10 +19,9 @@ export default function Result() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { isSignUpOpen, setIsLoginOpen, setIsSignUp } = useModal();
-  const { isLoggedIn } = useAuth();
-
+  const { state } = useCreateHaiku();
   const { currentUser } = useUser();
-  console.log(haikuCtx.state);
+
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -33,13 +30,10 @@ export default function Result() {
   useEffect(() => {
     const zipPairs = [];
     for (let i = 0; i < 3; i++) {
-      zipPairs.push([
-        haikuCtx.state.haikuLines[i],
-        haikuCtx.state.chordLines[i],
-      ]);
+      zipPairs.push([state.haikuLines[i], state.chordLines[i]]);
     }
     setZipPairs(zipPairs);
-  }, [haikuCtx.state]);
+  }, [state]);
 
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
@@ -80,7 +74,7 @@ export default function Result() {
                   className="result__flower"
                 />
                 <h2 className="result__heading result__heading_card">
-                  {haikuCtx.state.subject}
+                  {state.subject}
                 </h2>
                 {zipPairs.map(([line, chord], i) => (
                   <div className="result__line" key={i}>
@@ -88,7 +82,7 @@ export default function Result() {
                     <p className="result__text result__text_med">{chord}</p>
                   </div>
                 ))}
-                <p className="result__author">{`~created by ${haikuCtx.state.author} on ${haikuCtx.state.createdOn}`}</p>
+                <p className="result__author">{`~created by ${state.author} on ${state.createdOn}`}</p>
               </div>
             </motion.div>
           )}

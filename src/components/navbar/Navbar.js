@@ -12,11 +12,6 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //debugging
-  console.log({ currentUser });
-  console.log({ isLoggedIn });
-  console.log({ token });
-
   function checkLocation(loc) {
     const checkLoc = location.pathname === loc;
     return checkLoc;

@@ -34,9 +34,8 @@ export const useAnonUser = () => {
           authorization: `Bearer ${anonUserData.token}`,
           "Content-Type": "application/json",
         });
-        // setAnonUser(anonUserData);
+
         setAnonUser(anonUserData);
-        console.log({ anonUserData });
         setCurrentUser(anonUserData);
         setIsLoggedIn(true);
         return anonUserData;

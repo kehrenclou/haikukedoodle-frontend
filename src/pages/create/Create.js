@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
-import { ulid } from "ulid";
+
 import "./create.css";
 
-import { CreateHaikuContext } from "../../contexts";
-import { useUser, useAuth } from "../../hooks";
+import { useUser, useAuth, useCreateHaiku } from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
-import * as auth from "../../utils/apis/auth";
-import { api } from "../../utils/apis";
+
 import { transformAiDataObject } from "../../helpers/transformData";
 
 import { CreateHaikuForm } from "../../components/form";
@@ -18,10 +16,11 @@ import { useAnonUser } from "../../hooks/useAnonUser";
 
 export default function Create() {
   const navigate = useNavigate();
-  const haikuCtx = useContext(CreateHaikuContext);
-  const { currentUser, setCurrentUser } = useUser();
-  const { isLoggedIn, setIsLoggedIn, token, setToken } = useAuth();
-  const { anonUser, initializeAnonUser } = useAnonUser();
+
+  const { currentUser } = useUser();
+  const { isLoggedIn } = useAuth();
+  const { state, updateAll } = useCreateHaiku();
+  const { initializeAnonUser } = useAnonUser();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -36,27 +35,20 @@ export default function Create() {
   useEffect(() => {
     const zipPairs = [];
     for (let i = 0; i < 3; i++) {
-      zipPairs.push([
-        haikuCtx.state.haikuLines[i],
-        haikuCtx.state.chordLines[i],
-      ]);
+      zipPairs.push([state.haikuLines[i], state.chordLines[i]]);
     }
     setZipPairs(zipPairs);
-  }, [haikuCtx.state]);
+  }, [state]);
 
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
     let userData = currentUser;
-    console.log({ userData });
-    console.log({ currentUser });
+
     try {
       //1. if !isLoggedIn, create a new anonymous user
       if (!isLoggedIn) {
-        console.log("called from create");
-
         const newAnonUser = await initializeAnonUser();
-
         userData = newAnonUser;
       }
 
@@ -69,7 +61,7 @@ export default function Create() {
         return console.log("fail");
       }
       const tsfResponse = transformAiDataObject(openAiData);
-      haikuCtx.updateAll(tsfResponse[0], openAiData);
+      updateAll(tsfResponse[0], openAiData);
       navigate("/result");
     } catch (err) {
       setIsError(true);

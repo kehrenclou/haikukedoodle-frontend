@@ -36,6 +36,17 @@ export const CreateHaikuProvider = ({ children }) => {
     },
     [state]
   );
+  const updateAuthorOwner = useCallback(
+    (author, owner) => {
+      updateState({
+        ...state,
+        author: author,
+        owner: owner,
+      });
+    },
+    [state]
+  );
+
   const resetAll = useCallback(() => {
     updateState({
       subject: "",
@@ -61,38 +72,36 @@ export const CreateHaikuProvider = ({ children }) => {
       chordLines: data.chordLines,
       createdOn: data.createdOn,
       created: response.created,
-      aiId: response.id,
+      aiId: response.aiId,
       choices: response.choices,
       usage: response.usage,
       owner: response.owner,
       author: response.author,
       _id: response._id,
     });
-  });
+  },[state]);
 
-  // const updateAll = useCallback((subject, terms, data, response, owner) => {
-  //   updateState({
-  //     subject: subject,
-  //     terms: terms,
-  //     haikuLines: data.haikuLines,
-  //     chordLines: data.chordLines,
-  //     createdOn: data.createdOn,
-  //     created:response.created,
-  //     aiId:response.id,
-  //     choices:response.choices,
-  //     usage:response.usage,
-  //     owner:owner._id,
-  //   });
-  // });
   const store = useMemo(() => {
     return {
       state,
+      updateState,
+
       resetAll,
       updateSubject,
       updateTerms,
+      updateAuthorOwner,
       updateAll,
     };
-  }, [state, resetAll, updateState, updateSubject, updateTerms, updateAll]);
+  }, [
+    state,
+    updateState,
+
+    resetAll,
+    updateSubject,
+    updateAuthorOwner,
+    updateTerms,
+    updateAll,
+  ]);
 
   return (
     <CreateHaikuContext.Provider value={store}>

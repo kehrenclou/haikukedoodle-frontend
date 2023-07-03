@@ -12,7 +12,7 @@ export const useAuth = () => {
   const onLogOut = useCallback(() => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
-    setToken(undefined);
+    setToken(null);
     setUserDefault();
     haikuCtx.resetAll();
   }, []);

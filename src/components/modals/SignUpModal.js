@@ -18,7 +18,7 @@ export function SignUpModal() {
 
   const { setIsLoggedIn, setToken, token } = useAuth();
   const { setCurrentUser } = useUser();
-  const { state } = useCreateHaiku();
+  const { state, updateAuthorOwner } = useCreateHaiku();
 
   const handleCloseModal = () => {
     setIsSignUpOpen(false);
@@ -38,6 +38,7 @@ export function SignUpModal() {
 
     auth
       .signup(data.name, data.email, data.password, "false")
+
       .then((res) => {
         if (res) {
           setStatus("success");
@@ -56,7 +57,12 @@ export function SignUpModal() {
           setIsLoggedIn(true);
 
           {
-            state.terms && api.updateCardOwner(res._id, res.name, state._id);
+            state.terms &&
+              api
+                .updateCardOwner(res._id, res.name, state._id)
+                .then((haiku) => {
+                  updateAuthorOwner(haiku.author, haiku.owner);
+                });
           }
         } else {
           setStatus("fail");

@@ -14,7 +14,7 @@ import {
   transformAiDataObject,
   formatSongForDownload,
 } from "../../helpers/transformData";
-import { useCards, useModal, useUser, useAuth } from "../../hooks";
+import { useCards, useModal, useUser, useAuth, useAnonUser } from "../../hooks";
 
 import Layout from "../../components/layout";
 import Card from "../../components/card";
@@ -32,6 +32,7 @@ export default function Read() {
   const { cards, setCards, cardCount, setCardCount } = useCards();
   const { currentUser } = useUser();
   const { isLoggedIn, token } = useAuth();
+  const { initializeAnonUser } = useAnonUser();
   const {
     isLoading,
     setIsConfirmDeleteOpen,
@@ -221,12 +222,16 @@ export default function Read() {
       });
   }
   /* ------------------------------ Like handler ----------------------------- */
-  function handleCardLike(card) {
-    const isLiked = card.likes.some((user) => user === currentUser._id);
+  async function handleCardLike(card) {
+    let userData = currentUser;
+    try {
+      if (!isLoggedIn) {
+        const newAnonUser = await initializeAnonUser();
+        userData = newAnonUser;
+      }
+      const isLiked = card.likes.some((user) => user === userData._id);
 
-    api
-      .changeLikeCardStatus(card.id, !isLiked)
-      .then((newCard) => {
+      await api.changeLikeCardStatus(card.id, !isLiked).then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
 
         setCards((state) =>
@@ -234,12 +239,30 @@ export default function Read() {
             currentCard.id === card.id ? tsfNewCard[0] : currentCard
           )
         );
-      })
-      .catch((err) => {
-        api.handleErrorResponse(err);
       });
+    } catch (err) {
+      api.handleErrorResponse(err);
+    }
   }
 
+  // function handleCardLike(card) {
+  //   const isLiked = card.likes.some((user) => user === currentUser._id);
+
+  //   api
+  //     .changeLikeCardStatus(card.id, !isLiked)
+  //     .then((newCard) => {
+  //       const tsfNewCard = transformAiDataObject(newCard);
+
+  //       setCards((state) =>
+  //         state.map((currentCard) =>
+  //           currentCard.id === card.id ? tsfNewCard[0] : currentCard
+  //         )
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       api.handleErrorResponse(err);
+  //     });
+  // }
   /* ---------------------------- Bookmark Handler --------------------------- */
   function handleBookmarkStatus(card) {
     const isBookmarked = card.bookmarks.some(

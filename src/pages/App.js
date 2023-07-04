@@ -25,6 +25,8 @@ import Read from "./read";
 import Faq from "./faq";
 import NotFound from "./notFound";
 
+import ProtectedRoutes from "../utils/protectedRoutes";
+
 import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
 
 function App() {
@@ -77,7 +79,11 @@ function App() {
                     <Route path="/" element={<Main />} />
                     <Route path="/read" element={<Read />} />
                     <Route path="/create" element={<Create />} />
-                    <Route path="/result" element={<Result />} />
+
+                    <Route element={<ProtectedRoutes />}>
+                      <Route path="/result" element={<Result />} />
+                    </Route>
+
                     <Route path="/about" element={<About />} />
                     <Route path="/faq" element={<Faq />} />
                     <Route path="*" element={<NotFound />} />

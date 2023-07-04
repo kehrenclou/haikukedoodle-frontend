@@ -245,24 +245,6 @@ export default function Read() {
     }
   }
 
-  // function handleCardLike(card) {
-  //   const isLiked = card.likes.some((user) => user === currentUser._id);
-
-  //   api
-  //     .changeLikeCardStatus(card.id, !isLiked)
-  //     .then((newCard) => {
-  //       const tsfNewCard = transformAiDataObject(newCard);
-
-  //       setCards((state) =>
-  //         state.map((currentCard) =>
-  //           currentCard.id === card.id ? tsfNewCard[0] : currentCard
-  //         )
-  //       );
-  //     })
-  //     .catch((err) => {
-  //       api.handleErrorResponse(err);
-  //     });
-  // }
   /* ---------------------------- Bookmark Handler --------------------------- */
   function handleBookmarkStatus(card) {
     const isBookmarked = card.bookmarks.some(

@@ -12,7 +12,6 @@ export default function Card({
   onLikeClick,
   onBookmarkClick,
   card,
-
 }) {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
@@ -44,57 +43,55 @@ export default function Card({
   }
 
   return (
- 
-      <div className="card" >
-        <Flower
-          width="154"
-          height="133"
-          colora="rgba(213,157,169,.2)"
-          colorb="rgba(213,157,169,.3)"
-          colorc="rgba(213,157,169,.5)"
-          className="card__bg"
-        />
+    <div className="card">
+      <Flower
+        width="154"
+        height="133"
+        colora="rgba(213,157,169,.2)"
+        colorb="rgba(213,157,169,.3)"
+        colorc="rgba(213,157,169,.5)"
+        className="card__bg"
+      />
 
-        <section className="card__section card__section_header ">
-          <h2 className="card__title">{card.subject}</h2>
-          {isLoggedIn && !currentUser.isAnonymous ? (
-            <div className="card__icon-bookmark">
-              <Bookmark
-                onClick={handleBookmarkClick}
-                isBookmarked={isBookmarked}
-              />
-            </div>
+      <section className="card__section card__section_header ">
+        <h2 className="card__title">{card.subject}</h2>
+        {isLoggedIn && !currentUser.isAnonymous ? (
+          <div className="card__icon-bookmark">
+            <Bookmark
+              onClick={handleBookmarkClick}
+              isBookmarked={isBookmarked}
+            />
+          </div>
+        ) : null}
+      </section>
+
+      <section className="card__section card__section_body">
+        {zipPairs.map(([line, chord]) => (
+          <div key={_.uniqueId("zip-")}>
+            <p className="card__text">{line}</p>
+            <p className="card__text card__text_med ">{chord}</p>
+          </div>
+        ))}
+
+        <p className="card__text card__text_author">
+          {`~ by ${card.author} ${card.createdOn}`}
+        </p>
+      </section>
+
+      <section className="card__section card__section_footer">
+        <div className="card__button-group">
+          <Download onClick={handleDownloadClick} />
+          {isLoggedIn && isOwn && !currentUser.isAnonymous ? (
+            <Trash onClick={handleDeleteClick} />
           ) : null}
-        </section>
-
-        <section className="card__section card__section_body">
-          {zipPairs.map(([line, chord], i) => (
-            <div key={i}>
-              <p className="card__text">{line}</p>
-              <p className="card__text card__text_med ">{chord}</p>
-            </div>
-          ))}
-
-          <p className="card__text card__text_author">
-            {`~ by ${card.author} ${card.createdOn}`}
-          </p>
-        </section>
-
-        <section className="card__section card__section_footer">
-          <div className="card__button-group">
-            <Download onClick={handleDownloadClick} />
-            {isLoggedIn && isOwn && !currentUser.isAnonymous ? (
-              <Trash onClick={handleDeleteClick} />
-            ) : null}
+        </div>
+        <div className="card__button-group">
+          <div className="card__like-container">
+            <p className="card__like-count">{` ${likeCount} `}</p>
+            <Heart onClick={handleLikeClick} isLiked={isLiked} />
           </div>
-          <div className="card__button-group">
-            <div className="card__like-container">
-              <p className="card__like-count">{` ${likeCount} `}</p>
-              <Heart onClick={handleLikeClick} isLiked={isLiked} />
-            </div>
-          </div>
-        </section>
-      </div>
-   
+        </div>
+      </section>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./card.css";
-
+import _ from "lodash";
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
 import { Flower } from "../flower";
 
@@ -12,7 +12,7 @@ export default function Card({
   onLikeClick,
   onBookmarkClick,
   card,
-  key,
+
 }) {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
@@ -44,8 +44,8 @@ export default function Card({
   }
 
   return (
-    <>
-      <li className="card" key={key}>
+ 
+      <div className="card" >
         <Flower
           width="154"
           height="133"
@@ -94,7 +94,7 @@ export default function Card({
             </div>
           </div>
         </section>
-      </li>
-    </>
+      </div>
+   
   );
 }

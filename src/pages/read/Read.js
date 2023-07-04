@@ -319,15 +319,17 @@ export default function Read() {
                 <ul className="read__cards" id="read-cards">
                   <ScrollTop />
                   {cards.map((card) => (
-                    <Card
-                      key={_.uniqueId("card-")}
-                      id={card.id}
-                      onDownloadClick={handleDownloadClick}
-                      onDeleteClick={handleDeleteCardClick}
-                      onLikeClick={handleCardLike}
-                      onBookmarkClick={handleBookmarkStatus}
-                      card={card}
-                    />
+                    <li key={card.id}>
+                      {/* <React.Fragment key={_.uniqueId("card-")}> */}
+                      <Card
+                        id={card.id}
+                        onDownloadClick={handleDownloadClick}
+                        onDeleteClick={handleDeleteCardClick}
+                        onLikeClick={handleCardLike}
+                        onBookmarkClick={handleBookmarkStatus}
+                        card={card}
+                      />
+                    </li>
                   ))}
                 </ul>
 

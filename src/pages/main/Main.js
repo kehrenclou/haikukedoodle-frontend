@@ -7,7 +7,7 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./main.css";
 
 import { api } from "../../utils/apis";
-import { useUser, useAuth, useModal, useCards } from "../../hooks";
+import { useUser, useAuth } from "../../hooks";
 
 import Layout from "../../components/layout/";
 import Yinyang from "../../components/yinyang/Yinyang";

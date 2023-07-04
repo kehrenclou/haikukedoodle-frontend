@@ -12,6 +12,7 @@ export default function Card({
   onLikeClick,
   onBookmarkClick,
   card,
+  key,
 }) {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
@@ -44,7 +45,7 @@ export default function Card({
 
   return (
     <>
-      <li className="card">
+      <li className="card" key={key}>
         <Flower
           width="154"
           height="133"

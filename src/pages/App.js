@@ -48,6 +48,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if(!authStore.isLoggedIn){
+      return;
+    }
     api.setHeaders({
       authorization: `Bearer ${authStore.token}`,
       "Content-Type": "application/json",

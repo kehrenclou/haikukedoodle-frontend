@@ -1,4 +1,4 @@
-import { useContext, useCallback } from "react";
+import { useContext} from "react";
 import { CreateHaikuContext } from "../contexts";
 
 export const useCreateHaiku = () => {

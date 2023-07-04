@@ -9,7 +9,7 @@ function ProtectedRoutes() {
 
   // on load - Protected route
   //checks for token
-  //if token, update headers, getInfo, setIsLoggedIn, , setCurrentUser
+  //if token, update headers
   useEffect(() => {
     if (!token) {
       return;

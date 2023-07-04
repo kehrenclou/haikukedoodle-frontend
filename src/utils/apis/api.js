@@ -77,7 +77,7 @@ class Api {
     });
   }
 
-  //TODO: put userId in headers
+
   updateCardOwner(userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
       headers: this._headers,
@@ -108,7 +108,7 @@ class Api {
   }
 }
 
-//sets headers with token on all api calls
+
 export const api = new Api({
   baseUrl: baseUrl,
   headers: {

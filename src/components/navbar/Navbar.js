@@ -7,7 +7,7 @@ import { useModal, useAuth, useUser } from "../../hooks";
 export default function Navbar({ isLessThan600, onLinkClick }) {
   const { currentUser } = useUser();
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
-  const { isLoggedIn, onLogOut, token } = useAuth();
+  const { isLoggedIn, onLogOut } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();

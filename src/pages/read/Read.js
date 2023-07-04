@@ -31,7 +31,7 @@ export default function Read() {
 
   const { cards, setCards, cardCount, setCardCount } = useCards();
   const { currentUser } = useUser();
-  const { isLoggedIn, token } = useAuth();
+  const { isLoggedIn } = useAuth();
   const { initializeAnonUser } = useAnonUser();
   const {
     isLoading,
@@ -48,12 +48,12 @@ export default function Read() {
     boxShadow: 3,
     fontFamily: "Montserrat, Arial, sans-serif",
     fontSize: "12px",
-    backgroundColor: "#212233", //212233
+    backgroundColor: "#212233", 
 
     "&.Mui-selected, &.Mui-selected:hover": {
       color: "black",
       fontWeight: "700",
-      backgroundColor: "#719ef1", //353851
+      backgroundColor: "#719ef1", 
       cursor: "default",
     },
     "&:hover": {

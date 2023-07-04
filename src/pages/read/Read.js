@@ -225,7 +225,7 @@ export default function Read() {
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api
-      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)
+      .changeLikeCardStatus(card.id, !isLiked)
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
 
@@ -286,7 +286,7 @@ export default function Read() {
               key="cards"
             >
               <section className="read" id="cards">
-                {isLoggedIn ? (
+                {isLoggedIn & !currentUser.isAnonymous ? (
                   <div className="read__fixed-container">
                     <ToggleButtonGroup
                       className="read__toggle-group"
@@ -307,7 +307,9 @@ export default function Read() {
                 ) : null}
                 <h2
                   className={`read__heading ${
-                    isLoggedIn ? "read__heading_logged-in" : ""
+                    isLoggedIn & !currentUser.isAnonymous
+                      ? "read__heading_logged-in"
+                      : ""
                   }`}
                   id="back-to-top-anchor"
                 >

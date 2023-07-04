@@ -1,25 +1,24 @@
-import React  from "react";
+import React from "react";
 import "./card.css";
 
 import { Bookmark, Trash, Heart, Download } from "../iconButtons";
-import  {Flower}  from "../flower";
+import { Flower } from "../flower";
 
 import { useUser, useAuth } from "../../hooks";
 
 export default function Card({
   onDownloadClick,
   onDeleteClick,
-  onLikeClick, 
-  onBookmarkClick, 
+  onLikeClick,
+  onBookmarkClick,
   card,
 }) {
   const { currentUser } = useUser();
   const { isLoggedIn } = useAuth();
 
- 
   const likeCount = card.likes.length;
 
-  const isOwn = card.owner === currentUser._id; 
+  const isOwn = card.owner === currentUser._id;
   const isLiked = card.likes.some((user) => user === currentUser._id);
   const isBookmarked = card.bookmarks.some((user) => user === currentUser._id);
 
@@ -57,7 +56,7 @@ export default function Card({
 
         <section className="card__section card__section_header ">
           <h2 className="card__title">{card.subject}</h2>
-          {isLoggedIn ? (
+          {isLoggedIn && !currentUser.isAnonymous ? (
             <div className="card__icon-bookmark">
               <Bookmark
                 onClick={handleBookmarkClick}
@@ -83,7 +82,9 @@ export default function Card({
         <section className="card__section card__section_footer">
           <div className="card__button-group">
             <Download onClick={handleDownloadClick} />
-            {isLoggedIn && isOwn ? <Trash onClick={handleDeleteClick} /> : null}
+            {isLoggedIn && isOwn && !currentUser.isAnonymous ? (
+              <Trash onClick={handleDeleteClick} />
+            ) : null}
           </div>
           <div className="card__button-group">
             <div className="card__like-container">

@@ -5,7 +5,7 @@ export const UserContext = createContext();
 
 export const useInitializeUserStore = () => {
   const [currentUser, setCurrentUser] = useState({
-    name: "Anonymous",
+    name: "AnonUser",
     email: "kedoodle@kedoodledev",
     _id: ulid(),
     isAnonymous: "true",

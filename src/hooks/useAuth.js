@@ -1,18 +1,19 @@
 import { useCallback, useContext } from "react";
 import { AuthContext, CreateHaikuContext } from "../contexts";
-import { useUser } from "./useUser";
+import {useUser} from "../hooks"
+
 
 export const useAuth = () => {
   const { isLoggedIn, token, setToken, setIsLoggedIn, isLoaded, setIsLoaded } =
     useContext(AuthContext);
   const haikuCtx = useContext(CreateHaikuContext);
-  const { setAnonUser } = useUser();
+  const {setUserDefault}=useUser();
 
   const onLogOut = useCallback(() => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
-    setToken(undefined);
-    setAnonUser();
+    setToken(null);
+    setUserDefault();
     haikuCtx.resetAll();
   }, []);
 

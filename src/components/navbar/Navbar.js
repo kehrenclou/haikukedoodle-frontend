@@ -7,7 +7,7 @@ import { useModal, useAuth, useUser } from "../../hooks";
 export default function Navbar({ isLessThan600, onLinkClick }) {
   const { currentUser } = useUser();
   const { isSignUpOpen, setIsSignUpOpen, setIsSignUp } = useModal();
-  const { isLoggedIn, onLogOut } = useAuth();
+  const { isLoggedIn, onLogOut, token } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,7 +79,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
               FAQ
             </NavLink>
           </li>
-          {isLoggedIn ? (
+          {isLoggedIn & !currentUser.isAnonymous ? (
             <li className="nav__item">
               <p className="nav__link nav__link_nolink">{currentUser.name}</p>
             </li>
@@ -87,7 +87,7 @@ export default function Navbar({ isLessThan600, onLinkClick }) {
         </div>
 
         <li className="nav__item">
-          {isLoggedIn ? (
+          {isLoggedIn & !currentUser.isAnonymous ? (
             <button
               className="button button_type_logout"
               type="button"

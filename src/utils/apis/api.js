@@ -77,21 +77,19 @@ class Api {
     });
   }
 
-  updateCardOwner(userId, userName, cardId) {
+  //TODO: put userId in headers
+  updateCardOwner(userName, cardId) {
     return this._request(`${this._baseUrl}/cards/${cardId}/owner`, {
       headers: this._headers,
       method: "PATCH",
-      body: JSON.stringify({ owner: userId, author: userName }),
+      body: JSON.stringify({ author: userName }),
     });
   }
 
-  changeLikeCardStatus(cardId, userId, like) {
+  changeLikeCardStatus(cardId, like) {
     return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       headers: this._headers,
       method: like ? "PUT" : "DELETE",
-      body: JSON.stringify({
-        userId: userId,
-      }),
     });
   }
 

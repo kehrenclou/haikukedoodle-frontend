@@ -13,6 +13,7 @@ import {
   useInitializeAuthStore,
   useInitializeCardStore,
 } from "../contexts";
+import { api } from "../utils/apis";
 
 import Header from "../components/header";
 import Main from "./main";
@@ -43,9 +44,14 @@ function App() {
     }
     navigate("/");
   }, []);
-// //useMemo(()=>{
-// api.set
-// }
+
+  useEffect(() => {
+    api.setHeaders({
+      authorization: `Bearer ${authStore.token}`,
+      "Content-Type": "application/json",
+    });
+  }, [authStore.token]);
+
   useEffect(() => {
     const handleEscClose = (event) => {
       if (event.key === "Escape") {

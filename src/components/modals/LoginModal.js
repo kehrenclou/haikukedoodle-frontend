@@ -11,7 +11,7 @@ export function LoginModal() {
 
   const { setToken, setIsLoggedIn } = useAuth();
   const { setCurrentUser } = useUser();
-  const { state } = useCreateHaiku();
+  const { state, updateAuthorOwner } = useCreateHaiku();
 
   const {
     isLoginOpen,
@@ -40,9 +40,8 @@ export function LoginModal() {
       .login(data.email, data.password) //login
 
       .then((res) => {
-   
         if (res) {
-          localStorage.setItem("jwt", res.token); //if token set local storage, set token, set headers
+          localStorage.setItem("jwt", res.token); //if token, set local storage, set token, set headers
           setToken(res.token);
 
           api.setHeaders({
@@ -57,7 +56,11 @@ export function LoginModal() {
               setIsLoginOpen(false);
               {
                 state.terms &&
-                  api.updateCardOwner(res._id, res.name, state._id);
+                  api
+                    .updateCardOwner( res.name, state._id)
+                    .then((haiku) => {
+                      updateAuthorOwner(haiku.author, haiku.owner);
+                    });
               }
             }
           });

@@ -57,7 +57,7 @@ export function LoginModal() {
               {
                 state.terms &&
                   api
-                    .updateCardOwner(res._id, res.name, state._id)
+                    .updateCardOwner( res.name, state._id)
                     .then((haiku) => {
                       updateAuthorOwner(haiku.author, haiku.owner);
                     });

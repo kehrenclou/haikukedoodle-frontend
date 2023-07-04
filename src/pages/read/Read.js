@@ -225,7 +225,7 @@ export default function Read() {
     const isLiked = card.likes.some((user) => user === currentUser._id);
 
     api
-      .changeLikeCardStatus(card.id, currentUser._id, !isLiked)
+      .changeLikeCardStatus(card.id, !isLiked)
       .then((newCard) => {
         const tsfNewCard = transformAiDataObject(newCard);
 

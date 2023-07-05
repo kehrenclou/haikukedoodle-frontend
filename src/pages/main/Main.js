@@ -34,15 +34,17 @@ export default function Main() {
       .getInfo()
       .then((res) => {
         if (res) {
-          console.log("loggedin")
+          console.log("loggedin");
           setIsLoggedIn(true);
           setIsLoaded(true);
           setCurrentUser(res);
         }
       })
       .catch((err) => {
-    
         setToken(null);
+        api.setHeaders({
+          "Content-Type": "application/json",
+        });
         api.handleErrorResponse(err);
       });
   }, []);

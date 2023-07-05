@@ -66,7 +66,7 @@ export default function Card({
       </section>
 
       <section className="card__section card__section_body">
-        {zipPairs.map(([line, chord]) => (
+        {zipPairs.map(([line, chord, i]) => (
           <div key={_.uniqueId("zip-")}>
             <p className="card__text">{line}</p>
             <p className="card__text card__text_med ">{chord}</p>

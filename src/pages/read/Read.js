@@ -4,7 +4,6 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { ThreeDots } from "react-loading-icons";
-import _ from "lodash";
 
 import "./read.css";
 
@@ -48,12 +47,12 @@ export default function Read() {
     boxShadow: 3,
     fontFamily: "Montserrat, Arial, sans-serif",
     fontSize: "12px",
-    backgroundColor: "#212233", 
+    backgroundColor: "#212233",
 
     "&.Mui-selected, &.Mui-selected:hover": {
       color: "black",
       fontWeight: "700",
-      backgroundColor: "#719ef1", 
+      backgroundColor: "#719ef1",
       cursor: "default",
     },
     "&:hover": {
@@ -325,9 +324,7 @@ export default function Read() {
                   <ScrollTop />
                   {cards.map((card) => (
                     <li key={card.id}>
-                      {/* <React.Fragment key={_.uniqueId("card-")}> */}
                       <Card
-                        id={card.id}
                         onDownloadClick={handleDownloadClick}
                         onDeleteClick={handleDeleteCardClick}
                         onLikeClick={handleCardLike}

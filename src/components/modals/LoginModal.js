@@ -88,6 +88,7 @@ export function LoginModal() {
 
   return (
     <>
+    <p>Please sign in to create more haikus.</p>
       <UserModal
         signUp={isSignUp}
         isOpen={isLoginOpen}

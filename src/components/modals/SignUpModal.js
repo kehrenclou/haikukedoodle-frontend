@@ -14,6 +14,7 @@ export function SignUpModal() {
     setIsSignUp,
     setIsStatusModalOpen,
     setStatus,
+    isMaxHaikus,
   } = useModal();
 
   const { setIsLoggedIn, setToken, token } = useAuth();
@@ -58,11 +59,9 @@ export function SignUpModal() {
 
           {
             state.terms &&
-              api
-                .updateCardOwner( res.name, state._id)
-                .then((haiku) => {
-                  updateAuthorOwner(haiku.author, haiku.owner);
-                });
+              api.updateCardOwner(res.name, state._id).then((haiku) => {
+                updateAuthorOwner(haiku.author, haiku.owner);
+              });
           }
         } else {
           setStatus("fail");
@@ -85,7 +84,11 @@ export function SignUpModal() {
         isOpen={isSignUpOpen}
         onClose={handleCloseModal}
         name="signup"
-        title="Sign up to create a pen name!"
+        title={
+          isMaxHaikus
+            ? "Sign up to create more haikus!"
+            : "Sign up to create a pen name!"
+        }
         onLinkClick={handleLoginClick}
         onSubmitClick={handleSignUpSubmit}
         onCancelClick={handleSignUpCancel}

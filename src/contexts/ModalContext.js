@@ -11,6 +11,7 @@ export const useInitializeModalStore = () => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isMaxHaikus,setIsMaxHaikus]=useState(true);
 
   const closeAllModals = useCallback(() => {
     setIsLoginOpen(false);
@@ -28,6 +29,7 @@ export const useInitializeModalStore = () => {
     isConfirmDeleteOpen,
     isStatusModalOpen,
     isSignUp,
+    isMaxHaikus,
 
     setIsLoginOpen,
     setIsSignUpOpen,
@@ -36,6 +38,7 @@ export const useInitializeModalStore = () => {
     setIsLoading,
     setStatus,
     setIsSignUp,
+    setIsMaxHaikus,
 
     closeAllModals,
   };

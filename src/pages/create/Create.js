@@ -17,7 +17,7 @@ import { useAnonUser } from "../../hooks/useAnonUser";
 export default function Create() {
   const navigate = useNavigate();
 
-  const { currentUser, setExpDate } = useUser();
+  const { currentUser, setIsRestrictedDate } = useUser();
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
@@ -26,6 +26,7 @@ export default function Create() {
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isRestricted,setIsRestricted]=useState(false)
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
@@ -40,11 +41,14 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [state]);
   console.log(currentUser);
-  console.log(setExpDate());
+  console.log(setIsRestrictedDate());
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
     let userData = currentUser;
+
+
+    
 
     try {
       //1. if !isLoggedIn, create a new anonymous user
@@ -58,6 +62,7 @@ export default function Create() {
         userData,
         terms
       );
+
       if (!openAiData) {
         return console.log("fail");
       }

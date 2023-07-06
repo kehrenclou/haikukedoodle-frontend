@@ -12,6 +12,7 @@ export const useInitializeUserStore = () => {
     isAnonymous: "true",
     counter: 0,
     counterTimeStamp: new Date(),
+    counterMax:1,
     
   });
 

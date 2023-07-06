@@ -18,6 +18,7 @@ export const useAnonUser = () => {
     }
   }, [isLoggedIn]);
 
+  //create anonUser - on Create or Like if not anonUser
   const initializeAnonUser = useCallback(async () => {
     if (currentUser.isAnonymous && !isLoggedIn) {
       const anonEmail = `anon${ulid()}@anon.com`;

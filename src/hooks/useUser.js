@@ -13,16 +13,17 @@ export const useUser = () => {
       email: "kedoodle@kedoodledev",
       _id: ulid(),
       isAnonymous: "true",
-      counter: "0",
+      counter: 0,
       counterTimeStamp: new Date(),
+      counterMax: 1,
     });
   };
 
-  const checkIfRestricted = () => {
+  const setIsRestrictedDate = () => {
     const dateStamp = currentUser.counterTimeStamp.setHours(0, 0, 0, 0);
-    const isRestricted = checkDate(dateStamp, 1);//true if currentDate < expirationDate
+    const isRestrictedDate = checkDate(dateStamp, 1); //true if currentDate < expirationDate
 
-    return isRestricted;
+    return isRestrictedDate;
   };
-  return { currentUser, setCurrentUser, setUserDefault, checkIfRestricted };
+  return { currentUser, setCurrentUser, setUserDefault, setIsRestrictedDate };
 };

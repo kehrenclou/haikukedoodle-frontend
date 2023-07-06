@@ -11,7 +11,7 @@ export const useInitializeModalStore = () => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [isMaxHaikus,setIsMaxHaikus]=useState(true);
+  const [isMaxHaikus,setIsMaxHaikus]=useState(false);
 
   const closeAllModals = useCallback(() => {
     setIsLoginOpen(false);

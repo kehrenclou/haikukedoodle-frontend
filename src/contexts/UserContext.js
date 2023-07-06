@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { ulid } from "ulid";
 
+
 export const UserContext = createContext();
 
 export const useInitializeUserStore = () => {
@@ -9,6 +10,9 @@ export const useInitializeUserStore = () => {
     email: "kedoodle@kedoodledev",
     _id: ulid(),
     isAnonymous: "true",
+    counter: 0,
+    counterTimeStamp: new Date(),
+    
   });
 
   return {

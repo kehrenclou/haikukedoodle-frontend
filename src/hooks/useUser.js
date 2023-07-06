@@ -1,5 +1,6 @@
 import { useContext, useCallback } from "react";
 import { UserContext } from "../contexts";
+import { checkDate } from "../helpers/checkDate";
 
 import { ulid } from "ulid";
 
@@ -12,7 +13,16 @@ export const useUser = () => {
       email: "kedoodle@kedoodledev",
       _id: ulid(),
       isAnonymous: "true",
+      counter: "0",
+      counterTimeStamp: new Date(),
     });
   };
-  return { currentUser, setCurrentUser, setUserDefault };
+
+  const checkIfRestricted = () => {
+    const dateStamp = currentUser.counterTimeStamp.setHours(0, 0, 0, 0);
+    const isRestricted = checkDate(dateStamp, 1);//true if currentDate < expirationDate
+
+    return isRestricted;
+  };
+  return { currentUser, setCurrentUser, setUserDefault, checkIfRestricted };
 };

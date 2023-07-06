@@ -17,7 +17,7 @@ import { useAnonUser } from "../../hooks/useAnonUser";
 export default function Create() {
   const navigate = useNavigate();
 
-  const { currentUser } = useUser();
+  const { currentUser, setExpDate } = useUser();
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
@@ -39,7 +39,8 @@ export default function Create() {
     }
     setZipPairs(zipPairs);
   }, [state]);
-
+  console.log(currentUser);
+  console.log(setExpDate());
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);

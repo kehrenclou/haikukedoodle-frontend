@@ -36,9 +36,18 @@ export function SignUpModal() {
 
   const handleSignUpSubmit = (data) => {
     setIsLoading(true);
+    const dateStamp = new Date();
 
     auth
-      .signup(data.name, data.email, data.password, "false")
+      .signup(
+        data.name,
+        data.email,
+        data.password,
+        "false",
+        "0",
+        dateStamp,
+        "5"
+      )
 
       .then((res) => {
         if (res) {

@@ -1,13 +1,22 @@
 export function checkDate(date, days) {
+  //current date stamp to compare with restricted date
   const currentDate = new Date();
-  const timeStampDate = new Date(date); //makes a copy of timestamp date
-  const endRestrictionDate = new Date(); //expiration date
-  endRestrictionDate.setDate(timeStampDate.getDate() + days);
 
-  //set time values to 0
+  //determine restricted date=[${couterTimeStamp}+${days} )
+  const timeStampDate = new Date(date); //mutates counterTimeStamp variable 
+  const endRestrictionDate = new Date(); //makes an initial expiration date
+  endRestrictionDate.setDate(timeStampDate.getDate() + days); //mutates the expiration date
+
+  //set hours to zero
   currentDate.setHours(0, 0, 0, 0);
   timeStampDate.setHours(0, 0, 0, 0);
   endRestrictionDate.setHours(0, 0, 0, 0);
 
+  //debugging
+  // console.log(currentDate.getTime());
+  // console.log(timeStampDate.getTime());
+  // console.log(endRestrictionDate.getTime());
+
+//if current date is less than restriction date - restrict
   return currentDate.getTime() < endRestrictionDate.getTime();
 }

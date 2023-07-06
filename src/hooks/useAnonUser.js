@@ -22,12 +22,16 @@ export const useAnonUser = () => {
   const initializeAnonUser = useCallback(async () => {
     if (currentUser.isAnonymous && !isLoggedIn) {
       const anonEmail = `anon${ulid()}@anon.com`;
+      const dateStamp = new Date();
       try {
         const anonUserData = await auth.signup(
           "Anonymous",
           anonEmail,
           "1234",
-          "true"
+          "true",
+          "0",
+          dateStamp,
+          "1"
         );
         localStorage.setItem("jwt", anonUserData.token);
         setToken(anonUserData.token);

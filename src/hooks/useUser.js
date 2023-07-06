@@ -14,16 +14,18 @@ export const useUser = () => {
       _id: ulid(),
       isAnonymous: "true",
       counter: 0,
-      counterTimeStamp: new Date(),
+      counterTimeStamp: Date.now(),
       counterMax: 1,
     });
   };
 
-  const setIsRestrictedDate = () => {
-    const dateStamp = currentUser.counterTimeStamp.setHours(0, 0, 0, 0);
-    const isRestrictedDate = checkDate(dateStamp, 1); //true if currentDate < expirationDate
+  const checkRestrictedAccessByDate = () => {
+    const dateStamp = currentUser.counterTimeStamp;
+    const isRestrictedDate = checkDate(dateStamp, 1); //runs checkDate
+
+    // returns true if currentDate < expirationDate (calculated from dateStamp in checkDate)
 
     return isRestrictedDate;
   };
-  return { currentUser, setCurrentUser, setUserDefault, setIsRestrictedDate };
+  return { currentUser, setCurrentUser, setUserDefault, checkRestrictedAccessByDate };
 };

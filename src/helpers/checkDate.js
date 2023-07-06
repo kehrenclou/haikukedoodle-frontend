@@ -13,9 +13,9 @@ export function checkDate(date, days) {
   endRestrictionDate.setHours(0, 0, 0, 0);
 
   //debugging
-  // console.log(currentDate.getTime());
-  // console.log(timeStampDate.getTime());
-  // console.log(endRestrictionDate.getTime());
+  console.log(currentDate.getTime());
+  console.log(timeStampDate.getTime());
+  console.log(endRestrictionDate.getTime());
 
 //if current date is less than restriction date - restrict
   return currentDate.getTime() < endRestrictionDate.getTime();

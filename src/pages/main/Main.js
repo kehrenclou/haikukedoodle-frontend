@@ -18,8 +18,8 @@ export default function Main() {
 
   const navigate = useNavigate();
   const { setCurrentUser, currentUser } = useUser();
-  const { setIsLoggedIn, setIsLoaded, token, setToken } = useAuth();
-
+  const { setIsLoggedIn, setIsLoaded, token, setToken, isLoggedIn } = useAuth();
+  console.log({ currentUser });
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     if (!token) {
@@ -34,7 +34,7 @@ export default function Main() {
       .getInfo()
       .then((res) => {
         if (res) {
-          console.log("loggedin");
+          console.log("onMain:isloggedin", isLoggedIn);
           setIsLoggedIn(true);
           setIsLoaded(true);
           setCurrentUser(res);

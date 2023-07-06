@@ -19,7 +19,7 @@ export const useUser = () => {
     });
   };
 
-  const checkRestrictedAccessByDate = () => {
+  const isAccessRestrictedByDate = () => {
     const dateStamp = currentUser.counterTimeStamp;
     const isRestrictedDate = checkDate(dateStamp, 1); //runs checkDate
 
@@ -27,5 +27,20 @@ export const useUser = () => {
 
     return isRestrictedDate;
   };
-  return { currentUser, setCurrentUser, setUserDefault, checkRestrictedAccessByDate };
+
+  //keep function based on something not rendering
+  const setCounter = () => {
+    setCurrentUser({
+      ...currentUser,
+      counter: currentUser.counter + 1,
+    });
+  };
+
+  return {
+    currentUser,
+    setCurrentUser,
+    setUserDefault,
+    setCounter,
+    isAccessRestrictedByDate,
+  };
 };

@@ -6,6 +6,7 @@ import "./create.css";
 
 import { useUser, useAuth, useCreateHaiku } from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
+import { api } from "../../utils/apis";
 
 import { transformAiDataObject } from "../../helpers/transformData";
 
@@ -17,7 +18,8 @@ import { useAnonUser } from "../../hooks/useAnonUser";
 export default function Create() {
   const navigate = useNavigate();
 
-  const { currentUser, checkRestrictedAccessByDate } = useUser();
+  const { currentUser, setCurrentUser, isAccessRestrictedByDate, setCounter } =
+    useUser();
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
@@ -41,7 +43,8 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [state]);
   console.log(currentUser);
-  console.log(checkRestrictedAccessByDate());
+  console.log(isAccessRestrictedByDate());
+
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
@@ -60,11 +63,15 @@ export default function Create() {
         terms
       );
 
-      if (!openAiData) {
+      const updatedUserData = await api.increaseCount();
+
+      if (!openAiData || !updatedUserData) {
         return console.log("fail");
       }
+      setCurrentUser(updatedUserData);
       const tsfResponse = transformAiDataObject(openAiData);
       updateAll(tsfResponse[0], openAiData);
+
       navigate("/result");
     } catch (err) {
       setIsError(true);

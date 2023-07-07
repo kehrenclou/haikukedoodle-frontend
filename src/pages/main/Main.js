@@ -17,9 +17,9 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
   const navigate = useNavigate();
-  const { setCurrentUser } = useUser();
-  const { setIsLoggedIn, setIsLoaded, token } = useAuth();
-
+  const { setCurrentUser, currentUser } = useUser();
+  const { setIsLoggedIn, setIsLoaded, token, setToken, isLoggedIn } = useAuth();
+  console.log({ currentUser });
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
     if (!token) {
@@ -40,6 +40,10 @@ export default function Main() {
         }
       })
       .catch((err) => {
+        setToken(null);
+        api.setHeaders({
+          "Content-Type": "application/json",
+        });
         api.handleErrorResponse(err);
       });
   }, []);

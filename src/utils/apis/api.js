@@ -106,7 +106,24 @@ class Api {
       method: "DELETE",
     });
   }
+
+  increaseCount(userId) {
+    return this._request(`${this._baseUrl}/users/${userId}/counter`, {
+      headers: this._headers,
+      method: "PATCH",
+ 
+    });
+  }
+
+  resetCount(userId){
+    return this._request(`${this._baseUrl}/users/${userId}/reset`, {
+      headers: this._headers,
+      method: "PATCH",
+     
+    });
+  }
 }
+
 
 
 export const api = new Api({

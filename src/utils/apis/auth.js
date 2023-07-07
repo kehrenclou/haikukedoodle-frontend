@@ -11,13 +11,29 @@ const handleAuthResponse = (res) => {
   }
 };
 
-export const signup = (name, email, password, isAnonymous) => {
+export const signup = (
+  name,
+  email,
+  password,
+  isAnonymous,
+  counter,
+  counterTimeStamp,
+  counterMax
+) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, email, password, isAnonymous }),
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      isAnonymous,
+      counter,
+      counterTimeStamp,
+      counterMax,
+    }),
   }).then(handleAuthResponse);
 };
 

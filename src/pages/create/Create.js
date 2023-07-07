@@ -4,29 +4,51 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./create.css";
 
-import { useUser, useAuth, useCreateHaiku } from "../../hooks";
+import {
+  useUser,
+  useAuth,
+  useCreateHaiku,
+  useAnonUser,
+  useModal,
+} from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
+import { api } from "../../utils/apis";
 
 import { transformAiDataObject } from "../../helpers/transformData";
 
 import { CreateHaikuForm } from "../../components/form";
 import Layout from "../../components/layout";
 import Loader from "../loader/Loader";
-import { useAnonUser } from "../../hooks/useAnonUser";
+// import { useAnonUser } from "../../hooks/useAnonUser";
 
 export default function Create() {
   const navigate = useNavigate();
 
-  const { currentUser } = useUser();
+  const {
+    currentUser,
+    setCurrentUser,
+    isAccessRestrictedByDate,
+    isRestricted,
+    setIsRestricted,
+  } = useUser();
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
+  const {
+    setIsSignUpOpen,
+    setIsSignUp,
+    setIsDeniedAccessOpen,
+    isDeniedAccessOpen,
+  } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  console.log({ isRestricted });
+  console.log({ isDeniedAccessOpen });
+  console.log({currentUser})
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
@@ -39,6 +61,38 @@ export default function Create() {
     }
     setZipPairs(zipPairs);
   }, [state]);
+
+  useEffect(() => {
+    if (currentUser.isAnonymous && isRestricted) {
+      setIsSignUp(true);
+      setIsSignUpOpen(true);
+    } else if (!currentUser.isAnonymous && isRestricted) {
+      setIsDeniedAccessOpen(true);
+    }
+  }, [isRestricted, currentUser]);
+
+  useEffect(() => {
+    const isCounterLimit =
+      currentUser.counter >= currentUser.counterMax ? true : false;
+    const isDateLimit = isAccessRestrictedByDate();
+
+    if (isCounterLimit && isDateLimit) {
+      setIsRestricted(true);
+    } else if (isCounterLimit && !isDateLimit) {
+      //counterLimit but timelimit is ok, update counter in db
+      api
+        .resetCount()
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res);
+            setIsRestricted(false);
+          }
+        })
+        .catch((err) => {
+          api.handleErrorResponse(err);
+        });
+    }
+  }, [isLoggedIn]);
 
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
@@ -57,11 +111,17 @@ export default function Create() {
         userData,
         terms
       );
-      if (!openAiData) {
+
+      const updatedUserData = await api.increaseCount();
+
+      if (!openAiData || !updatedUserData) {
         return console.log("fail");
       }
+      setCurrentUser(updatedUserData);
+    
       const tsfResponse = transformAiDataObject(openAiData);
       updateAll(tsfResponse[0], openAiData);
+
       navigate("/result");
     } catch (err) {
       setIsError(true);
@@ -77,11 +137,25 @@ export default function Create() {
           <AnimatePresence mode="wait">
             {!isLoading && (
               <>
-                <h1 className="create__heading">
-                  Enter a one word subject to create your haiku.
-                </h1>
+                {!isRestricted && (
+                  <>
+                    <h1 className="create__heading">
+                      Enter a one word subject to create your haiku.
+                    </h1>
 
-                <motion.div
+                    <motion.div
+                      className="create__container"
+                      transition={{ ease: "linear", duration: 1 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      key="form"
+                    >
+                      <CreateHaikuForm handleSubmitClick={handleSubmitClick} />
+                    </motion.div>
+                  </>
+                )}
+                {/* <motion.div
                   className="create__container"
                   transition={{ ease: "linear", duration: 1 }}
                   initial={{ opacity: 0, scale: 0 }}
@@ -90,7 +164,7 @@ export default function Create() {
                   key="form"
                 >
                   <CreateHaikuForm handleSubmitClick={handleSubmitClick} />
-                </motion.div>
+                </motion.div> */}
               </>
             )}
           </AnimatePresence>

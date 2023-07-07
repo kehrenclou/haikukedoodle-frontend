@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, usePresence } from "framer-motion";
+import _ from "lodash";
 import { ThreeDots } from "react-loading-icons";
 
 import "./result.css";
@@ -38,6 +39,7 @@ export default function Result() {
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     navigate("/");
+
   };
 
   const handleHallOfFameClick = () => {
@@ -76,8 +78,8 @@ export default function Result() {
                 <h2 className="result__heading result__heading_card">
                   {state.subject}
                 </h2>
-                {zipPairs.map(([line, chord], i) => (
-                  <div className="result__line" key={i}>
+                {zipPairs.map(([line, chord]) => (
+                  <div className="result__line" key={_.uniqueId("zip2-")}>
                     <p className="result__text">{line}</p>
                     <p className="result__text result__text_med">{chord}</p>
                   </div>

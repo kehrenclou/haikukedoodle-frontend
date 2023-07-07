@@ -10,7 +10,7 @@ export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
 
   const { setToken, setIsLoggedIn } = useAuth();
-  const { setCurrentUser } = useUser();
+  const { setCurrentUser, isRestricted } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const {
@@ -22,6 +22,7 @@ export function LoginModal() {
     isSignUp,
     setIsSignUp,
     setStatus,
+  
   } = useModal();
 
   /* -------------------------------- handlers -------------------------------- */
@@ -56,11 +57,9 @@ export function LoginModal() {
               setIsLoginOpen(false);
               {
                 state.terms &&
-                  api
-                    .updateCardOwner( res.name, state._id)
-                    .then((haiku) => {
-                      updateAuthorOwner(haiku.author, haiku.owner);
-                    });
+                  api.updateCardOwner(res.name, state._id).then((haiku) => {
+                    updateAuthorOwner(haiku.author, haiku.owner);
+                  });
               }
             }
           });
@@ -88,12 +87,15 @@ export function LoginModal() {
 
   return (
     <>
+      <p>Please sign in to create more haikus.</p>
       <UserModal
         signUp={isSignUp}
         isOpen={isLoginOpen}
         onClose={handleCloseModal}
         name="login"
-        title="Please Log in."
+        title={
+          isRestricted ? "Please log in to create more haikus." : "Please Log in."
+        }
         onLinkClick={handleSignUpClick}
         onSubmitClick={handleLoginSubmit}
         onCancelClick={handleLoginCancel}

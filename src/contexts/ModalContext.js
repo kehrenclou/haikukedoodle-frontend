@@ -10,13 +10,16 @@ export const useInitializeModalStore = () => {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
+  const [isDeniedAccessOpen,setIsDeniedAccessOpen]=useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+
 
   const closeAllModals = useCallback(() => {
     setIsLoginOpen(false);
     setIsSignUpOpen(false);
     setIsStatusModalOpen(false);
     setIsConfirmDeleteOpen(false);
+    setIsDeniedAccessOpen(false)
 
   }, []);
 
@@ -26,17 +29,17 @@ export const useInitializeModalStore = () => {
     isLoginOpen,
     isSignUpOpen,
     isConfirmDeleteOpen,
+    isDeniedAccessOpen,
     isStatusModalOpen,
     isSignUp,
-
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
     setIsStatusModalOpen,
+    setIsDeniedAccessOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,
-
     closeAllModals,
   };
 };

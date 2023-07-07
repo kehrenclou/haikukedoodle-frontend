@@ -14,10 +14,11 @@ export function SignUpModal() {
     setIsSignUp,
     setIsStatusModalOpen,
     setStatus,
+   
   } = useModal();
 
-  const { setIsLoggedIn, setToken, token } = useAuth();
-  const { setCurrentUser } = useUser();
+  const { setIsLoggedIn, setToken } = useAuth();
+  const { setCurrentUser, isRestricted,setIsRestricted } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const handleCloseModal = () => {
@@ -35,9 +36,18 @@ export function SignUpModal() {
 
   const handleSignUpSubmit = (data) => {
     setIsLoading(true);
+    const dateStamp = new Date();
 
     auth
-      .signup(data.name, data.email, data.password, "false")
+      .signup(
+        data.name,
+        data.email,
+        data.password,
+        "false",
+        "0",
+        dateStamp,
+        "5"
+      )
 
       .then((res) => {
         if (res) {
@@ -51,6 +61,7 @@ export function SignUpModal() {
           });
 
           setCurrentUser(res);
+          setIsRestricted(false);
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);
@@ -58,11 +69,9 @@ export function SignUpModal() {
 
           {
             state.terms &&
-              api
-                .updateCardOwner( res.name, state._id)
-                .then((haiku) => {
-                  updateAuthorOwner(haiku.author, haiku.owner);
-                });
+              api.updateCardOwner(res.name, state._id).then((haiku) => {
+                updateAuthorOwner(haiku.author, haiku.owner);
+              });
           }
         } else {
           setStatus("fail");
@@ -85,7 +94,11 @@ export function SignUpModal() {
         isOpen={isSignUpOpen}
         onClose={handleCloseModal}
         name="signup"
-        title="Sign up to create a pen name!"
+        title={
+          isRestricted
+            ? "Sign up to create more haikus!"
+            : "Sign up to create a pen name!"
+        }
         onLinkClick={handleLoginClick}
         onSubmitClick={handleSignUpSubmit}
         onCancelClick={handleSignUpCancel}

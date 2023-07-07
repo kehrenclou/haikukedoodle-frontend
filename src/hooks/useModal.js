@@ -7,16 +7,20 @@ export const useModal = () => {
     isSignUpOpen,
     isConfirmDeleteOpen,
     isStatusModalOpen,
+    isDeniedAccessOpen,
     isLoading,
     status,
     isSignUp,
+
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
     setIsStatusModalOpen,
+    setIsDeniedAccessOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,
+
     closeAllModals,
   } = useContext(ModalContext);
 
@@ -25,16 +29,20 @@ export const useModal = () => {
     isSignUpOpen,
     isConfirmDeleteOpen,
     isStatusModalOpen,
+    isDeniedAccessOpen,
     isLoading,
     status,
     isSignUp,
+
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
     setIsStatusModalOpen,
+    setIsDeniedAccessOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,
+
     closeAllModals,
   };
 };

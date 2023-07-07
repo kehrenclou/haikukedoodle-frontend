@@ -46,9 +46,6 @@ export default function Create() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  console.log({ isRestricted });
-  console.log({ isDeniedAccessOpen });
-  console.log({currentUser})
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
@@ -118,7 +115,7 @@ export default function Create() {
         return console.log("fail");
       }
       setCurrentUser(updatedUserData);
-    
+
       const tsfResponse = transformAiDataObject(openAiData);
       updateAll(tsfResponse[0], openAiData);
 

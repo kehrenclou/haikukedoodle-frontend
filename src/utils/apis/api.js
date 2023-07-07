@@ -111,7 +111,15 @@ class Api {
     return this._request(`${this._baseUrl}/users/${userId}/counter`, {
       headers: this._headers,
       method: "PATCH",
-      // body: JSON.stringify({ author: userName }),
+ 
+    });
+  }
+
+  resetCount(userId){
+    return this._request(`${this._baseUrl}/users/${userId}/reset`, {
+      headers: this._headers,
+      method: "PATCH",
+     
     });
   }
 }

@@ -29,7 +29,7 @@ export default function Create() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isRestricted, setIsRestricted] = useState(false);
-
+  console.log({ isRestricted });
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
@@ -43,8 +43,33 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [state]);
   console.log(currentUser);
-  console.log(isAccessRestrictedByDate());
+  // console.log(isAccessRestrictedByDate());
 
+  useEffect(() => {
+    const isCounterLimit =
+      currentUser.counter >= currentUser.counterMax ? true : false;
+    const isDateLimit = isAccessRestrictedByDate();
+    console.log({ isCounterLimit }, { isDateLimit });
+
+    if (isCounterLimit && isDateLimit) {
+      setIsRestricted(true);
+    } else if (isCounterLimit && !isDateLimit) {
+      //counterLimit but timelimit is ok, update counter indb
+      api
+        .resetCount()
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res);
+            setIsRestricted(false);
+          }
+        })
+        .catch((err) => {
+          api.handleErrorResponse(err);
+        });
+
+     
+    }
+  }, [currentUser.counter]);
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);

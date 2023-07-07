@@ -34,7 +34,6 @@ export default function Main() {
       .getInfo()
       .then((res) => {
         if (res) {
-          console.log("onMain:isloggedin", isLoggedIn);
           setIsLoggedIn(true);
           setIsLoaded(true);
           setCurrentUser(res);

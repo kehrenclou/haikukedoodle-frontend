@@ -7,18 +7,20 @@ export const useModal = () => {
     isSignUpOpen,
     isConfirmDeleteOpen,
     isStatusModalOpen,
+    isDeniedAccessOpen,
     isLoading,
     status,
     isSignUp,
-    isMaxHaikus,
+
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
     setIsStatusModalOpen,
+    setIsDeniedAccessOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,
-    setIsMaxHaikus,
+
     closeAllModals,
   } = useContext(ModalContext);
 
@@ -27,18 +29,20 @@ export const useModal = () => {
     isSignUpOpen,
     isConfirmDeleteOpen,
     isStatusModalOpen,
+    isDeniedAccessOpen,
     isLoading,
     status,
     isSignUp,
-    isMaxHaikus,
+
     setIsLoginOpen,
     setIsSignUpOpen,
     setIsConfirmDeleteOpen,
     setIsStatusModalOpen,
+    setIsDeniedAccessOpen,
     setIsLoading,
     setStatus,
     setIsSignUp,
-    setIsMaxHaikus,
+
     closeAllModals,
   };
 };

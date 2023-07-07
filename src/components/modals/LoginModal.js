@@ -10,7 +10,7 @@ export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
 
   const { setToken, setIsLoggedIn } = useAuth();
-  const { setCurrentUser } = useUser();
+  const { setCurrentUser, isRestricted } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const {
@@ -22,7 +22,7 @@ export function LoginModal() {
     isSignUp,
     setIsSignUp,
     setStatus,
-    isMaxHaikus,
+  
   } = useModal();
 
   /* -------------------------------- handlers -------------------------------- */
@@ -94,7 +94,7 @@ export function LoginModal() {
         onClose={handleCloseModal}
         name="login"
         title={
-          isMaxHaikus ? "Please log in to create more haikus." : "Please Log in."
+          isRestricted ? "Please log in to create more haikus." : "Please Log in."
         }
         onLinkClick={handleSignUpClick}
         onSubmitClick={handleLoginSubmit}

@@ -18,7 +18,7 @@ export default function Result() {
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { isSignUpOpen, setIsLoginOpen, setIsSignUp } = useModal();
+  const { isSignUpOpen, setIsLoginOpen, setIsSignUp, setIsDeniedAccessOpen } = useModal();
   const { state } = useCreateHaiku();
   const { currentUser } = useUser();
 
@@ -38,6 +38,7 @@ export default function Result() {
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     navigate("/");
+
   };
 
   const handleHallOfFameClick = () => {

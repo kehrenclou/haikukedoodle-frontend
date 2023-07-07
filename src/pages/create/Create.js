@@ -4,7 +4,13 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 
 import "./create.css";
 
-import { useUser, useAuth, useCreateHaiku } from "../../hooks";
+import {
+  useUser,
+  useAuth,
+  useCreateHaiku,
+  useAnonUser,
+  useModal,
+} from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
 import { api } from "../../utils/apis";
 
@@ -13,23 +19,30 @@ import { transformAiDataObject } from "../../helpers/transformData";
 import { CreateHaikuForm } from "../../components/form";
 import Layout from "../../components/layout";
 import Loader from "../loader/Loader";
-import { useAnonUser } from "../../hooks/useAnonUser";
+// import { useAnonUser } from "../../hooks/useAnonUser";
 
 export default function Create() {
   const navigate = useNavigate();
 
-  const { currentUser, setCurrentUser, isAccessRestrictedByDate, setCounter } =
-    useUser();
+  const {
+    currentUser,
+    setCurrentUser,
+    isAccessRestrictedByDate,
+    isRestricted,
+    setIsRestricted,
+  } = useUser();
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
+  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen, isDeniedAccessOpen } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isRestricted, setIsRestricted] = useState(false);
+
   console.log({ isRestricted });
+  console.log({isDeniedAccessOpen})
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
@@ -42,19 +55,32 @@ export default function Create() {
     }
     setZipPairs(zipPairs);
   }, [state]);
-  console.log(currentUser);
-  // console.log(isAccessRestrictedByDate());
+
+  useEffect(() => {
+    if (currentUser.isAnonymous && isRestricted) {
+      setIsSignUp(true);
+      setIsSignUpOpen(true);
+    } else if(!currentUser.isAnonymous && isRestricted) {
+      setIsDeniedAccessOpen(true);
+    }
+  }, [isRestricted]);
 
   useEffect(() => {
     const isCounterLimit =
       currentUser.counter >= currentUser.counterMax ? true : false;
     const isDateLimit = isAccessRestrictedByDate();
-    console.log({ isCounterLimit }, { isDateLimit });
 
     if (isCounterLimit && isDateLimit) {
       setIsRestricted(true);
+
+      // if (currentUser.isAnonymous) {
+      //   setIsSignUp(true);
+      //   setIsSignUpOpen(true);
+      // } else {
+      //   setIsDeniedAccessOpen(true);
+      // }
     } else if (isCounterLimit && !isDateLimit) {
-      //counterLimit but timelimit is ok, update counter indb
+      //counterLimit but timelimit is ok, update counter in db
       api
         .resetCount()
         .then((res) => {
@@ -66,10 +92,9 @@ export default function Create() {
         .catch((err) => {
           api.handleErrorResponse(err);
         });
-
-     
     }
-  }, [currentUser.counter]);
+  }, [isRestricted]);
+
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);

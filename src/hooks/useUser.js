@@ -5,7 +5,7 @@ import { checkDate } from "../helpers/checkDate";
 import { ulid } from "ulid";
 
 export const useUser = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser, isRestricted,setIsRestricted } = useContext(UserContext);
 
   const setUserDefault = () => {
     setCurrentUser({
@@ -28,19 +28,12 @@ export const useUser = () => {
     return isRestrictedDate;
   };
 
-  //keep function based on something not rendering
-  const setCounter = () => {
-    setCurrentUser({
-      ...currentUser,
-      counter: currentUser.counter + 1,
-    });
-  };
-
   return {
     currentUser,
     setCurrentUser,
     setUserDefault,
-    setCounter,
     isAccessRestrictedByDate,
+    isRestricted,
+    setIsRestricted,
   };
 };

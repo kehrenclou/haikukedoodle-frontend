@@ -27,7 +27,7 @@ import NotFound from "./notFound";
 
 import ProtectedRoutes from "../utils/protectedRoutes";
 
-import { SignUpModal, LoginModal, StatusModal } from "../components/modals";
+import { SignUpModal, LoginModal, StatusModal, DeniedAccessModal } from "../components/modals";
 
 function App() {
   const location = useLocation(); //used with ScrollToTop helper
@@ -97,6 +97,7 @@ function App() {
                 <SignUpModal />
                 <LoginModal />
                 <StatusModal />
+                <DeniedAccessModal/>
               </CreateHaikuProvider>
             </CardContext.Provider>
           </ModalContext.Provider>

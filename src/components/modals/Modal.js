@@ -7,6 +7,7 @@ function Modal({ isOpen, onClose, name, children }) {
   function handleModalClick(event) {
     if (isOpen && popupRef.current === event.target) {
       onClose();
+      
     }
   }
 

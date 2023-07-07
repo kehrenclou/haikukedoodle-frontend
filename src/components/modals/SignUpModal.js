@@ -14,11 +14,11 @@ export function SignUpModal() {
     setIsSignUp,
     setIsStatusModalOpen,
     setStatus,
-    isMaxHaikus,
+   
   } = useModal();
 
-  const { setIsLoggedIn, setToken, token } = useAuth();
-  const { setCurrentUser } = useUser();
+  const { setIsLoggedIn, setToken } = useAuth();
+  const { setCurrentUser, isRestricted } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const handleCloseModal = () => {
@@ -94,7 +94,7 @@ export function SignUpModal() {
         onClose={handleCloseModal}
         name="signup"
         title={
-          isMaxHaikus
+          isRestricted
             ? "Sign up to create more haikus!"
             : "Sign up to create a pen name!"
         }

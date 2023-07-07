@@ -74,6 +74,7 @@
 .result__text_med {
   font-size: 14px;
   font-weight: 400;
+  margin:0;
 }
 
 .result__container_button {

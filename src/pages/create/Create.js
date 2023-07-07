@@ -34,7 +34,12 @@ export default function Create() {
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
-  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen, isDeniedAccessOpen } = useModal();
+  const {
+    setIsSignUpOpen,
+    setIsSignUp,
+    setIsDeniedAccessOpen,
+    isDeniedAccessOpen,
+  } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -42,7 +47,8 @@ export default function Create() {
   const [isError, setIsError] = useState(false);
 
   console.log({ isRestricted });
-  console.log({isDeniedAccessOpen})
+  console.log({ isDeniedAccessOpen });
+  console.log({currentUser})
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);
   }, [isPresent]);
@@ -60,10 +66,10 @@ export default function Create() {
     if (currentUser.isAnonymous && isRestricted) {
       setIsSignUp(true);
       setIsSignUpOpen(true);
-    } else if(!currentUser.isAnonymous && isRestricted) {
+    } else if (!currentUser.isAnonymous && isRestricted) {
       setIsDeniedAccessOpen(true);
     }
-  }, [isRestricted]);
+  }, [isRestricted, currentUser]);
 
   useEffect(() => {
     const isCounterLimit =
@@ -72,13 +78,6 @@ export default function Create() {
 
     if (isCounterLimit && isDateLimit) {
       setIsRestricted(true);
-
-      // if (currentUser.isAnonymous) {
-      //   setIsSignUp(true);
-      //   setIsSignUpOpen(true);
-      // } else {
-      //   setIsDeniedAccessOpen(true);
-      // }
     } else if (isCounterLimit && !isDateLimit) {
       //counterLimit but timelimit is ok, update counter in db
       api
@@ -93,7 +92,7 @@ export default function Create() {
           api.handleErrorResponse(err);
         });
     }
-  }, [isRestricted]);
+  }, [isLoggedIn]);
 
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
@@ -119,6 +118,7 @@ export default function Create() {
         return console.log("fail");
       }
       setCurrentUser(updatedUserData);
+    
       const tsfResponse = transformAiDataObject(openAiData);
       updateAll(tsfResponse[0], openAiData);
 
@@ -137,11 +137,25 @@ export default function Create() {
           <AnimatePresence mode="wait">
             {!isLoading && (
               <>
-                <h1 className="create__heading">
-                  Enter a one word subject to create your haiku.
-                </h1>
+                {!isRestricted && (
+                  <>
+                    <h1 className="create__heading">
+                      Enter a one word subject to create your haiku.
+                    </h1>
 
-                <motion.div
+                    <motion.div
+                      className="create__container"
+                      transition={{ ease: "linear", duration: 1 }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      key="form"
+                    >
+                      <CreateHaikuForm handleSubmitClick={handleSubmitClick} />
+                    </motion.div>
+                  </>
+                )}
+                {/* <motion.div
                   className="create__container"
                   transition={{ ease: "linear", duration: 1 }}
                   initial={{ opacity: 0, scale: 0 }}
@@ -150,7 +164,7 @@ export default function Create() {
                   key="form"
                 >
                   <CreateHaikuForm handleSubmitClick={handleSubmitClick} />
-                </motion.div>
+                </motion.div> */}
               </>
             )}
           </AnimatePresence>

@@ -18,7 +18,7 @@ export function SignUpModal() {
   } = useModal();
 
   const { setIsLoggedIn, setToken } = useAuth();
-  const { setCurrentUser, isRestricted } = useUser();
+  const { setCurrentUser, isRestricted,setIsRestricted } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const handleCloseModal = () => {
@@ -61,6 +61,7 @@ export function SignUpModal() {
           });
 
           setCurrentUser(res);
+          setIsRestricted(false);
           setIsLoading(false);
           setIsSignUpOpen(false);
           setIsStatusModalOpen(true);

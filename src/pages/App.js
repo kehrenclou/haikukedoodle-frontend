@@ -27,7 +27,12 @@ import NotFound from "./notFound";
 
 import ProtectedRoutes from "../utils/protectedRoutes";
 
-import { SignUpModal, LoginModal, StatusModal, DeniedAccessModal } from "../components/modals";
+import {
+  SignUpModal,
+  LoginModal,
+  StatusModal,
+  DeniedAccessModal,
+} from "../components/modals";
 
 function App() {
   const location = useLocation(); //used with ScrollToTop helper
@@ -42,13 +47,14 @@ function App() {
   useEffect(() => {
     if (!authStore.token) {
       authStore.setIsLoggedIn(false);
+      userStore.setIsRestricted(false);
       return;
     }
     navigate("/");
   }, []);
 
   useEffect(() => {
-    if(!authStore.isLoggedIn){
+    if (!authStore.isLoggedIn) {
       return;
     }
     api.setHeaders({
@@ -61,6 +67,7 @@ function App() {
     const handleEscClose = (event) => {
       if (event.key === "Escape") {
         modalStore.closeAllModals();
+        modalStore.setIsLoading(false);
       }
     };
     document.addEventListener("keydown", handleEscClose, false);
@@ -97,7 +104,7 @@ function App() {
                 <SignUpModal />
                 <LoginModal />
                 <StatusModal />
-                <DeniedAccessModal/>
+                <DeniedAccessModal />
               </CreateHaikuProvider>
             </CardContext.Provider>
           </ModalContext.Provider>

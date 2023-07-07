@@ -4,7 +4,7 @@ import "./modal.css";
 import Modal from "./Modal";
 import { useModal } from "../../hooks/useModal";
 
-import { SentimentDissatisfied } from "@mui/icons-material";
+import { SentimentDissatisfied, BlockOutlined } from "@mui/icons-material";
 import { ThreeDots } from "react-loading-icons";
 
 export function DeniedAccessModal() {
@@ -31,13 +31,15 @@ export function DeniedAccessModal() {
         <div className="modal__status">
           <p className="modal__title">Daily Haiku Limit Reached.</p>
           <p className="modal__title">Please come back tomorrow!</p>
-          <SentimentDissatisfied
+          <BlockOutlined
             sx={{ fontSize: "52px", color: "red" }}
             aria-label="Fail graphic"
           />
 
-          <p className="modal__status_text">In the meantime,</p>
-          <p className="modal__status_text">read and like some Haikus!</p>
+          <p className="modal__title modal__title_sub">In the meantime,</p>
+          <p className="modal__title modal__title_sub">
+            read and like some Haikus!
+          </p>
           {!isLoading ? (
             <button
               className="button button_type_primary"

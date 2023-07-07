@@ -34,12 +34,7 @@ export default function Create() {
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
-  const {
-    setIsSignUpOpen,
-    setIsSignUp,
-    setIsDeniedAccessOpen,
-    isDeniedAccessOpen,
-  } = useModal();
+  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);

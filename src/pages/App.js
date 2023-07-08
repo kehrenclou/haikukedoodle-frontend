@@ -25,11 +25,10 @@ import Read from "./read";
 import Faq from "./faq";
 import NotFound from "./notFound";
 
-import ProtectedRoutes from "../utils/protectedRoutes";
+
 
 import {
-  SignUpModal,
-  LoginModal,
+
   StatusModal,
   DeniedAccessModal,
   ProfanityAlertModal,
@@ -39,30 +38,15 @@ function App() {
   const location = useLocation(); //used with ScrollToTop helper
   const navigate = useNavigate();
   /* --------------------------------- stores --------------------------------- */
-  const authStore = useInitializeAuthStore();
+
   const modalStore = useInitializeModalStore();
-  const userStore = useInitializeUserStore();
+
   const cardStore = useInitializeCardStore();
 
   /* ------------------------------- useEffects ------------------------------- */
-  useEffect(() => {
-    if (!authStore.token) {
-      authStore.setIsLoggedIn(false);
-      userStore.setIsRestricted(false);
-      return;
-    }
-    navigate("/");
-  }, []);
 
-  useEffect(() => {
-    if (!authStore.isLoggedIn) {
-      return;
-    }
-    api.setHeaders({
-      authorization: `Bearer ${authStore.token}`,
-      "Content-Type": "application/json",
-    });
-  }, [authStore.token]);
+
+
 
   useEffect(() => {
     const handleEscClose = (event) => {
@@ -79,8 +63,8 @@ function App() {
 
   return (
     <div className="page">
-      <AuthContext.Provider value={authStore}>
-        <UserContext.Provider value={userStore}>
+
+
           <ModalContext.Provider value={modalStore}>
             <CardContext.Provider value={cardStore}>
               <CreateHaikuProvider>
@@ -91,9 +75,9 @@ function App() {
                     <Route path="/read" element={<Read />} />
                     <Route path="/create" element={<Create />} />
 
-                    <Route element={<ProtectedRoutes />}>
+                 
                       <Route path="/result" element={<Result />} />
-                    </Route>
+             
 
                     <Route path="/about" element={<About />} />
                     <Route path="/faq" element={<Faq />} />
@@ -102,16 +86,14 @@ function App() {
                 </AnimatePresence>
                 <Footer />
 
-                <SignUpModal />
-                <LoginModal />
+           
                 <StatusModal />
                 <DeniedAccessModal />
                 <ProfanityAlertModal/>
               </CreateHaikuProvider>
             </CardContext.Provider>
           </ModalContext.Provider>
-        </UserContext.Provider>
-      </AuthContext.Provider>
+   
     </div>
   );
 }

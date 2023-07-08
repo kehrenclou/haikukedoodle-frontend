@@ -5,10 +5,10 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./create.css";
 
 import {
-  useUser,
-  useAuth,
+
+
   useCreateHaiku,
-  useAnonUser,
+
   useModal,
 } from "../../hooks";
 import * as openAiApi from "../../utils/apis/openaiApi";
@@ -27,21 +27,13 @@ import Loader from "../loader/Loader";
 export default function Create() {
   const navigate = useNavigate();
 
-  const {
-    currentUser,
-    setCurrentUser,
-    isRestricted,
-    setIsRestricted,
-    isCounterLimit,
-    isDateRestricted,
-  } = useUser();
 
-  const { isLoggedIn } = useAuth();
+
+
   const { state, updateAll } = useCreateHaiku();
-  const { initializeAnonUser } = useAnonUser();
+
   const {
-    setIsSignUpOpen,
-    setIsSignUp,
+
     setIsDeniedAccessOpen,
     setIsProfanityAlertOpen,
   } = useModal();
@@ -64,79 +56,12 @@ export default function Create() {
     setZipPairs(zipPairs);
   }, [state]);
 
-  useEffect(() => {
-    if (currentUser.isAnonymous && isRestricted) {
-      setIsSignUp(true);
-      setIsSignUpOpen(true);
-    } else if (!currentUser.isAnonymous && isRestricted) {
-      setIsDeniedAccessOpen(true);
-    }
-  }, [isRestricted, currentUser]);
 
-  useEffect(() => {
-    if (isCounterLimit && isDateRestricted) {
-      setIsRestricted(true);
-    } else if (isCounterLimit && !isDateRestricted) {
-      //counterLimit but timeout limit is expired, update counter in db
-      api
-        .resetCount()
-        .then((res) => {
-          if (res) {
-            setCurrentUser(res);
-            setIsRestricted(false);
-          }
-        })
-        .catch((err) => {
-          api.handleErrorResponse(err);
-        });
-    } else {
-      setIsRestricted(false);
-    }
-  }, [isLoggedIn, currentUser.isAnonymous]);
+
+
 
   /* -------------------------------- handlers -------------------------------- */
-  const handleSubmitClick = async (subject, terms) => {
-    setIsLoading(true);
 
-    let userData = currentUser;
-
-    try {
-      //1.check subject for offensive words
-      if (checkIfBlockedWord(subject.toLowerCase(), BLOCKED_WORDS)) {
-        throw new NoProfanityAllowedError("Profanity Not Allowed as Subject");
-      }
-      if (!isLoggedIn) {
-        //2. if !isLoggedIn, create a new anonymous user
-        const newAnonUser = await initializeAnonUser();
-        userData = newAnonUser;
-      }
-
-      const openAiData = await openAiApi.generateHaiku(
-        subject,
-        userData,
-        terms
-      );
-
-      const updatedUserData = await api.increaseCount();
-
-      if (!openAiData || !updatedUserData) {
-        return console.log("fail");
-      }
-      setCurrentUser(updatedUserData);
-
-      const tsfResponse = transformAiDataObject(openAiData);
-      updateAll(tsfResponse[0], openAiData);
-
-      navigate("/result");
-    } catch (err) {
-      if (err instanceof NoProfanityAllowedError) {
-        setIsProfanityAlertOpen(true);
-      }
-      setIsError(true);
-      navigate("/");
-      console.log(err);
-    }
-  };
 
   return (
     <>

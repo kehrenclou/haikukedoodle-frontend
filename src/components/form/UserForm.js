@@ -36,8 +36,8 @@ export const UserForm = ({
 
     password: Yup.string()
       .required("Please enter a password between 4 and 8 characters.")
-      .min(4, "Add between 4 and 8 characters with no spaces")
-      .max(8, "Add between 4 and 8 characters with no spaces"),
+      .min(4, "Add between 4 and 25 characters with no spaces")
+      .max(25, "Add between 4 and 25 characters with no spaces"),
   });
 
   const validationSchemaLogin = Yup.object().shape({
@@ -52,8 +52,8 @@ export const UserForm = ({
 
     password: Yup.string()
       .required("Please enter a password between 4 and 8 characters.")
-      .min(4, "Add between 4 and 8 characters with no spaces")
-      .max(8, "Add between 4 and 8 characters with no spaces"),
+      .min(4, "Add between 4 and 25 characters with no spaces")
+      .max(25, "Add between 4 and 25 characters with no spaces"),
   });
 
   //form - config

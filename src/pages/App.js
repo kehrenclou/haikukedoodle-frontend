@@ -32,6 +32,7 @@ import {
   LoginModal,
   StatusModal,
   DeniedAccessModal,
+  ProfanityAlertModal,
 } from "../components/modals";
 
 function App() {
@@ -105,6 +106,7 @@ function App() {
                 <LoginModal />
                 <StatusModal />
                 <DeniedAccessModal />
+                <ProfanityAlertModal/>
               </CreateHaikuProvider>
             </CardContext.Provider>
           </ModalContext.Provider>

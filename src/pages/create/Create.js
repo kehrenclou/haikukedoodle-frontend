@@ -39,7 +39,7 @@ export default function Create() {
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
-  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen } = useModal();
+  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen, setIsProfanityAlertOpen } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -127,7 +127,7 @@ export default function Create() {
     } catch (err) {
       if (err instanceof NoProfanityAllowedError) {
         console.log("no prof error thrown");
-        setIsDeniedAccessOpen(true);
+        setIsProfanityAlertOpen(true);
       }
       setIsError(true);
       navigate("/");

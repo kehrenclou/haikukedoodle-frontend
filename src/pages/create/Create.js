@@ -93,7 +93,7 @@ export default function Create() {
       setIsRestricted(false);
     }
   }, [isLoggedIn, currentUser.isAnonymous]);
-
+console.log(state.terms)
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);

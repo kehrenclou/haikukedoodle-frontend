@@ -20,7 +20,7 @@ export default function Result() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { isSignUpOpen, setIsLoginOpen, setIsSignUp } = useModal();
-  const { state } = useCreateHaiku();
+  const { state, resetAll } = useCreateHaiku();
   const { currentUser } = useUser();
 
   /* ------------------------------- useEffects ------------------------------- */
@@ -38,11 +38,13 @@ export default function Result() {
 
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
+    resetAll();
     navigate("/");
 
   };
 
   const handleHallOfFameClick = () => {
+    resetAll();
     setIsLoading(true);
     navigate("/read");
   };

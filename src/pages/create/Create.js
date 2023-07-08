@@ -39,7 +39,12 @@ export default function Create() {
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
-  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen, setIsProfanityAlertOpen } = useModal();
+  const {
+    setIsSignUpOpen,
+    setIsSignUp,
+    setIsDeniedAccessOpen,
+    setIsProfanityAlertOpen,
+  } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -92,20 +97,19 @@ export default function Create() {
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
-    const IS_BLOCKED_WORD = checkIfBlockedWord(subject.toLowerCase(), BLOCKED_WORDS);
+
     let userData = currentUser;
-    console.log(IS_BLOCKED_WORD); //true
-    console.log("subject",subject)
 
     try {
-      if (checkIfBlockedWord(subject.toLowerCase(), BLOCKED_WORDS)){
-        throw new NoProfanityAllowedError("Profanity Not Allowed as Subject")
+      //1.check subject for offensive words
+      if (checkIfBlockedWord(subject.toLowerCase(), BLOCKED_WORDS)) {
+        throw new NoProfanityAllowedError("Profanity Not Allowed as Subject");
       }
-        if (!isLoggedIn) {
-          //2. if !isLoggedIn, create a new anonymous user
-          const newAnonUser = await initializeAnonUser();
-          userData = newAnonUser;
-        }
+      if (!isLoggedIn) {
+        //2. if !isLoggedIn, create a new anonymous user
+        const newAnonUser = await initializeAnonUser();
+        userData = newAnonUser;
+      }
 
       const openAiData = await openAiApi.generateHaiku(
         subject,
@@ -126,7 +130,6 @@ export default function Create() {
       navigate("/result");
     } catch (err) {
       if (err instanceof NoProfanityAllowedError) {
-        console.log("no prof error thrown");
         setIsProfanityAlertOpen(true);
       }
       setIsError(true);

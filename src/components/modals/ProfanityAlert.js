@@ -29,7 +29,7 @@ export function ProfanityAlertModal() {
         name="profanitymodal"
       >
         <div className="modal__status">
-          <p className="modal__title">Let's keep it </p>
+          <p className="modal__title">Let's keep it positive and </p>
           <p className="modal__title">G - rated folks!</p>
           <SentimentVeryDissatisfiedSharp
             sx={{ fontSize: "52px", color: "red" }}

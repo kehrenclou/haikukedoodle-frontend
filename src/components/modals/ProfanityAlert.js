@@ -29,8 +29,8 @@ export function ProfanityAlertModal() {
         name="profanitymodal"
       >
         <div className="modal__status">
-          <p className="modal__title">Let's keep it positive and </p>
-          <p className="modal__title">G - rated folks!</p>
+          <p className="modal__title">Keep it Classy </p>
+          <p className="modal__title"> folks!</p>
           <SentimentVeryDissatisfiedSharp
             sx={{ fontSize: "52px", color: "red" }}
             aria-label="Very dissatisfied graphic"
@@ -38,7 +38,7 @@ export function ProfanityAlertModal() {
 
           <p className="modal__title modal__title_sub">Please try again</p>
           <p className="modal__title modal__title_sub">
-            with something that wouldn't make your grandmother blush.
+            with something that would make your grandmother proud.
           </p>
         </div>
       </Modal>

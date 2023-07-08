@@ -666,6 +666,7 @@ export const BLOCKED_WORDS = [
   "weirdo",
   "wench",
   "wetback",
+  "whore",
   "wh0re",
   "wh0reface",
   "whitey",

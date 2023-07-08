@@ -21,7 +21,7 @@ export default function Result() {
 
   const { isSignUpOpen, setIsLoginOpen, setIsSignUp } = useModal();
   const { state } = useCreateHaiku();
-
+  const { currentUser } = useUser();
 
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {

@@ -7,7 +7,7 @@ import { motion, AnimatePresence, usePresence } from "framer-motion";
 import "./main.css";
 
 import { api } from "../../utils/apis";
-
+import { useUser, useAuth } from "../../hooks";
 
 import Layout from "../../components/layout/";
 import Yinyang from "../../components/yinyang/Yinyang";
@@ -17,11 +17,43 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
   const navigate = useNavigate();
-
-
+  const { setCurrentUser, currentUser } = useUser();
+  const { setIsLoggedIn, setIsLoaded, token, setToken, isLoggedIn } = useAuth();
 
   /* ------------------------------- useEffects ------------------------------- */
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    api.setHeaders({
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
 
+    api
+      .getInfo()
+      .then((res) => {
+        if (res) {
+          setIsLoggedIn(true);
+          setIsLoaded(true);
+          setCurrentUser(res);
+        }
+      })
+      .catch((err) => {
+        setToken(null);
+        api.setHeaders({
+          "Content-Type": "application/json",
+        });
+        api.handleErrorResponse(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    api.setHeaders({
+      authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    });
+  }, [token]);
 
   useEffect(() => {
     !isPresent && setTimeout(safeToRemove, 900);

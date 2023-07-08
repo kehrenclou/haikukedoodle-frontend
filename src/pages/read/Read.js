@@ -13,7 +13,7 @@ import {
   transformAiDataObject,
   formatSongForDownload,
 } from "../../helpers/transformData";
-import { useCards, useModal, } from "../../hooks";
+import { useCards, useModal, useUser, useAuth, useAnonUser } from "../../hooks";
 
 import Layout from "../../components/layout";
 import Card from "../../components/card";
@@ -29,7 +29,9 @@ export default function Read() {
   const [selection, setSelection] = useState("all");
 
   const { cards, setCards, cardCount, setCardCount } = useCards();
-
+  const { currentUser } = useUser();
+  const { isLoggedIn } = useAuth();
+  const { initializeAnonUser } = useAnonUser();
   const {
     isLoading,
     setIsConfirmDeleteOpen,
@@ -61,7 +63,10 @@ export default function Read() {
 
   /* ------------------------------- useEffects ------------------------------- */
 
-
+  useEffect(() => {
+    loadInitialCards();
+    setSelection("all");
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (selection === "bookmarks") {

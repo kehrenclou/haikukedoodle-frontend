@@ -4,7 +4,7 @@ import "./modal.css";
 import Modal from "./Modal";
 import { useModal } from "../../hooks/useModal";
 
-import { SentimentDissatisfied, BlockOutlined } from "@mui/icons-material";
+import {  BlockOutlined } from "@mui/icons-material";
 import { ThreeDots } from "react-loading-icons";
 
 export function DeniedAccessModal() {

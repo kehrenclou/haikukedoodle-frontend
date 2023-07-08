@@ -15,6 +15,9 @@ import * as openAiApi from "../../utils/apis/openaiApi";
 import { api } from "../../utils/apis";
 
 import { transformAiDataObject } from "../../helpers/transformData";
+import { checkIfBlockedWord } from "../../helpers/checkWord";
+import { BLOCKED_WORDS } from "../../utils/data/blockedWords";
+import { NoProfanityAllowedError } from "../../errors/profanity";
 
 import { CreateHaikuForm } from "../../components/form";
 import Layout from "../../components/layout";
@@ -27,16 +30,21 @@ export default function Create() {
   const {
     currentUser,
     setCurrentUser,
-    isAccessRestrictedByDate,
     isRestricted,
     setIsRestricted,
     isCounterLimit,
     isDateRestricted,
   } = useUser();
+
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
   const { initializeAnonUser } = useAnonUser();
-  const { setIsSignUpOpen, setIsSignUp, setIsDeniedAccessOpen } = useModal();
+  const {
+    setIsSignUpOpen,
+    setIsSignUp,
+    setIsDeniedAccessOpen,
+    setIsProfanityAlertOpen,
+  } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
@@ -66,10 +74,6 @@ export default function Create() {
   }, [isRestricted, currentUser]);
 
   useEffect(() => {
-    // const isCounterLimit =
-    //   currentUser.counter >= currentUser.counterMax ? true : false;
-    // const isDateLimit = isAccessRestrictedByDate();
-
     if (isCounterLimit && isDateRestricted) {
       setIsRestricted(true);
     } else if (isCounterLimit && !isDateRestricted) {
@@ -93,11 +97,16 @@ export default function Create() {
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {
     setIsLoading(true);
+
     let userData = currentUser;
 
     try {
-      //1. if !isLoggedIn, create a new anonymous user
+      //1.check subject for offensive words
+      if (checkIfBlockedWord(subject.toLowerCase(), BLOCKED_WORDS)) {
+        throw new NoProfanityAllowedError("Profanity Not Allowed as Subject");
+      }
       if (!isLoggedIn) {
+        //2. if !isLoggedIn, create a new anonymous user
         const newAnonUser = await initializeAnonUser();
         userData = newAnonUser;
       }
@@ -120,6 +129,9 @@ export default function Create() {
 
       navigate("/result");
     } catch (err) {
+      if (err instanceof NoProfanityAllowedError) {
+        setIsProfanityAlertOpen(true);
+      }
       setIsError(true);
       navigate("/");
       console.log(err);

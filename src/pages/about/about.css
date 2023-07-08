@@ -52,7 +52,15 @@
   font-size: 16px;
   line-height: 1.5;
 }
-
+.about__link {
+  text-decoration: none;
+  color: blue;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.about__link:hover {
+  opacity: 0.5;
+}
 @media screen and (max-width: 920px) {
   .about {
     margin-top: 160px;

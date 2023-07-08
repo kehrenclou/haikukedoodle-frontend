@@ -3,7 +3,7 @@ import "./faq.css";
 
 import Accordion from "../../components/accordian";
 
-export default function FAQ() {
+export default function Faq() {
   const email = "kedoodledev@gmail.com";
   const subject = "Greetings from haikukedoodle!";
   const body = "Hi there, I am contacting you from the haikukedoodle website";

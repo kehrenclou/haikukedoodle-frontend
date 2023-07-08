@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./accordion.css";
-import { faqs } from "../../utils/data/faqData";
+import { FAQS } from "../../utils/data/faqData";
 import AccordionItem from "./AccordianItem";
 
 const Accordion = () => {
@@ -16,7 +16,7 @@ const Accordion = () => {
   return (
     <>
       <ul className="accordion">
-        {faqs.map((faq, index) => (
+        {FAQS.map((faq, index) => (
           <AccordionItem
             key={index}
             faq={faq}

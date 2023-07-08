@@ -3,7 +3,7 @@ export function checkDate(date, days) {
   const currentDate = new Date();
 
   //determine restricted date=[${couterTimeStamp}+${days} )
-  const timeStampDate = new Date(date); //mutates counterTimeStamp variable 
+  const timeStampDate = new Date(date); //mutates counterTimeStamp variable
   const endRestrictionDate = new Date(); //makes an initial expiration date
   endRestrictionDate.setDate(timeStampDate.getDate() + days); //mutates the expiration date
 
@@ -12,11 +12,16 @@ export function checkDate(date, days) {
   timeStampDate.setHours(0, 0, 0, 0);
   endRestrictionDate.setHours(0, 0, 0, 0);
 
-  //debugging
-  // console.log(currentDate.getTime());
-  // console.log(timeStampDate.getTime());
-  // console.log(endRestrictionDate.getTime());
-
-//if current date is less than restriction date - set true -  restrict Access
+  //if current date is less than restriction date - set true -  restrict Access
   return currentDate.getTime() < endRestrictionDate.getTime();
+}
+
+export function checkCounterLimit(count, max) {
+  const isCounterLimit = count >= max;
+  return isCounterLimit;
+}
+
+export function checkTimeoutLimit(timeStamp, days) {
+  const isDateRestricted = checkDate(timeStamp, days);
+  return isDateRestricted;
 }

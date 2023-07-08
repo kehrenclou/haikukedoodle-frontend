@@ -2,6 +2,7 @@ import React from "react";
 
 import { UserModal } from "./UserModal";
 import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
+import { checkCounterLimit, checkTimeoutLimit } from "../../helpers/checkDate";
 
 import * as auth from "../../utils/apis";
 import { api } from "../../utils/apis";
@@ -10,7 +11,13 @@ export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
 
   const { setToken, setIsLoggedIn } = useAuth();
-  const { setCurrentUser, isRestricted } = useUser();
+  const {
+    setCurrentUser,
+    isRestricted,
+    isCounterLimit,
+    isDateRestricted,
+    setIsRestricted,
+  } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const {
@@ -22,7 +29,6 @@ export function LoginModal() {
     isSignUp,
     setIsSignUp,
     setStatus,
-  
   } = useModal();
 
   /* -------------------------------- handlers -------------------------------- */
@@ -61,6 +67,12 @@ export function LoginModal() {
                     updateAuthorOwner(haiku.author, haiku.owner);
                   });
               }
+              {
+                checkCounterLimit(res.counter, res.counterMax) &&
+                checkTimeoutLimit(res.counterTimeStamp, 1)
+                  ? setIsRestricted(true)
+                  : setIsRestricted(false);
+              }
             }
           });
         } else {
@@ -94,7 +106,9 @@ export function LoginModal() {
         onClose={handleCloseModal}
         name="login"
         title={
-          isRestricted ? "Please log in to create more haikus." : "Please Log in."
+          isRestricted
+            ? "Please log in to create more haikus."
+            : "Please Log in."
         }
         onLinkClick={handleSignUpClick}
         onSubmitClick={handleLoginSubmit}

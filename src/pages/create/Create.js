@@ -30,6 +30,8 @@ export default function Create() {
     isAccessRestrictedByDate,
     isRestricted,
     setIsRestricted,
+    isCounterLimit,
+    isDateRestricted,
   } = useUser();
   const { isLoggedIn } = useAuth();
   const { state, updateAll } = useCreateHaiku();
@@ -64,14 +66,14 @@ export default function Create() {
   }, [isRestricted, currentUser]);
 
   useEffect(() => {
-    const isCounterLimit =
-      currentUser.counter >= currentUser.counterMax ? true : false;
-    const isDateLimit = isAccessRestrictedByDate();
+    // const isCounterLimit =
+    //   currentUser.counter >= currentUser.counterMax ? true : false;
+    // const isDateLimit = isAccessRestrictedByDate();
 
-    if (isCounterLimit && isDateLimit) {
+    if (isCounterLimit && isDateRestricted) {
       setIsRestricted(true);
-    } else if (isCounterLimit && !isDateLimit) {
-      //counterLimit but timelimit is ok, update counter in db
+    } else if (isCounterLimit && !isDateRestricted) {
+      //counterLimit but timeout limit is expired, update counter in db
       api
         .resetCount()
         .then((res) => {
@@ -83,8 +85,10 @@ export default function Create() {
         .catch((err) => {
           api.handleErrorResponse(err);
         });
+    } else {
+      setIsRestricted(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, currentUser.isAnonymous]);
 
   /* -------------------------------- handlers -------------------------------- */
   const handleSubmitClick = async (subject, terms) => {

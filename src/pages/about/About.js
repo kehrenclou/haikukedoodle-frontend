@@ -83,7 +83,7 @@ export default function About() {
           <a className="about__link" href={linkedInLink}>
             linkedIn.com/krista-ehrenclou
           </a>
-          <a className="footer__link" href={mailToLink}>
+          <a className="about__link" href={mailToLink}>
             kedoodledev@gmail.com
           </a>
         </div>

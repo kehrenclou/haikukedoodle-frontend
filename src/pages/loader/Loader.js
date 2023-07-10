@@ -32,7 +32,7 @@ export default function Loader({ isError }) {
                   Code and algorithms
                 </p>
                 <p className="loader__text loader__animate loader__animate_5s">
-                  Aftifical mind at work
+                  Artifical mind at work
                 </p>
                 <p className="loader__text loader__animate loader__animate_4s">
                   Haiku born from bytes

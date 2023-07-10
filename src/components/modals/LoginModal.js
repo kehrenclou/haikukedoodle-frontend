@@ -14,8 +14,6 @@ export function LoginModal() {
   const {
     setCurrentUser,
     isRestricted,
-    isCounterLimit,
-    isDateRestricted,
     setIsRestricted,
   } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();

@@ -99,7 +99,7 @@
     padding: 25px 22px;
   }
   .modal__button-close {
-    top: -40px; /*?-20px*/
+    top: -40px; 
     right: 0;
     width: 20px;
     height: 20px;

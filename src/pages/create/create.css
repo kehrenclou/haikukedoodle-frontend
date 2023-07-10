@@ -1,5 +1,4 @@
 .create {
-  /* margin: 150px auto 35vh; */
   margin: 0 auto 20px;
   display: flex;
   flex-direction: column;
@@ -74,7 +73,6 @@
     border-radius: 8px;
     padding: 30px;
     max-width: 250px;
-
   }
 }
 @media screen and (max-width: 400px) {

@@ -39,7 +39,7 @@ export default function Result() {
   useEffect(() => {
     setIsLoading(false);
   }, []);
-  console.log(isLoading);
+
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     resetAll();

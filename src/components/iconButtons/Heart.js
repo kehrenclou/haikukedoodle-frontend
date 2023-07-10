@@ -25,13 +25,12 @@ export const Heart = ({ isLiked, onClick }) => {
           }
           onClick={onClick}
         >
-          {isLiked  ? (
+          {isLiked ? (
             <Favorite
               sx={{
                 borderRadius: "50%",
                 padding: "5px",
-                // backgroundColor: "white",
-                // boxShadow: "rgba(0, 0, 0, 0.45) 0px 2px 15px",
+
                 fontSize: "28px",
                 color: "#2b2d42",
                 "&:hover": { backgroundColor: "pink" },
@@ -42,8 +41,7 @@ export const Heart = ({ isLiked, onClick }) => {
               sx={{
                 borderRadius: "50%",
                 padding: "5px",
-                // backgroundColor: "white",
-                // boxShadow: "rgba(0, 0, 0, 0.45) 0px 2px 15px",
+
                 fontSize: "28px",
                 "&:hover": { color: "#2b2d42", backgroundColor: "pink" },
               }}

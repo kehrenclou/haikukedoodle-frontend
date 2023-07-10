@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Fab, Fade } from "@mui/material";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { pink } from "@mui/material/colors";
+
 
 export const ScrollTop = () => {
   const trigger = useScrollTrigger({

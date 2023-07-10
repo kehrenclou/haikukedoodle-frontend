@@ -36,11 +36,14 @@ export default function Result() {
     setZipPairs(zipPairs);
   }, [state]);
 
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+  console.log(isLoading);
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     resetAll();
     navigate("/");
-
   };
 
   const handleHallOfFameClick = () => {
@@ -86,7 +89,11 @@ export default function Result() {
                     <p className="result__text result__text_med">{chord}</p>
                   </div>
                 ))}
-                <p className="result__author">{`~created by ${state.author} on ${state.createdOn}`}</p>
+                {!isLoading ? (
+                  <p className="result__author">{`~created by ${state.author} on ${state.createdOn}`}</p>
+                ) : (
+                  ""
+                )}
               </div>
             </motion.div>
           )}

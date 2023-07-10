@@ -163,16 +163,7 @@ export default function Create() {
                     </motion.div>
                   </>
                 )}
-                {/* <motion.div
-                  className="create__container"
-                  transition={{ ease: "linear", duration: 1 }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  key="form"
-                >
-                  <CreateHaikuForm handleSubmitClick={handleSubmitClick} />
-                </motion.div> */}
+       
               </>
             )}
           </AnimatePresence>

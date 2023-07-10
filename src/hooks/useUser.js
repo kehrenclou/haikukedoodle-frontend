@@ -40,14 +40,6 @@ export const useUser = () => {
 
   const isDateRestricted = checkTimeoutLimit(currentUser.counterTimeStamp, 1);
 
-  // const checkAndSetIsRestricted = () => {
-  //   const result =
-  //     isCounterLimit && isDateRestricted
-  //       ? setIsRestricted(true)
-  //       : setIsRestricted(false);
-  //   return result;
-  // };
-
   return {
     currentUser,
     setCurrentUser,
@@ -57,6 +49,5 @@ export const useUser = () => {
     setIsRestricted,
     isCounterLimit,
     isDateRestricted,
-    // checkAndSetIsRestricted,
   };
 };

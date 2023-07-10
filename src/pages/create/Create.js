@@ -22,7 +22,7 @@ import { NoProfanityAllowedError } from "../../errors/profanity";
 import { CreateHaikuForm } from "../../components/form";
 import Layout from "../../components/layout";
 import Loader from "../loader/Loader";
-// import { useAnonUser } from "../../hooks/useAnonUser";
+
 
 export default function Create() {
   const navigate = useNavigate();
@@ -147,6 +147,7 @@ export default function Create() {
               <>
                 {!isRestricted && (
                   <>
+                  {isLoggedIn ? <h2 className="create__heading create__heading_user">Hello {currentUser.name}!</h2>:null}
                     <h1 className="create__heading">
                       Enter a one word subject to create your haiku.
                     </h1>

@@ -248,6 +248,7 @@ export const BLOCKED_WORDS = [
   "fucked",
   "fucker",
   "fuckface",
+  "fuckhead",
   "fuckin",
   "fucking",
   "fucknugget",

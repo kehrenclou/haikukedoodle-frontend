@@ -24,15 +24,6 @@ export const useUser = () => {
     });
   };
 
-  const isAccessRestrictedByDate = () => {
-    const dateStamp = currentUser.counterTimeStamp;
-    const isRestrictedDate = checkDate(dateStamp, 1); //runs checkDate
-
-    // returns true if currentDate < expirationDate (calculated from dateStamp in checkDate)
-
-    return isRestrictedDate;
-  };
-
   const isCounterLimit = checkCounterLimit(
     currentUser.counter,
     currentUser.counterMax
@@ -44,7 +35,6 @@ export const useUser = () => {
     currentUser,
     setCurrentUser,
     setUserDefault,
-    isAccessRestrictedByDate,
     isRestricted,
     setIsRestricted,
     isCounterLimit,

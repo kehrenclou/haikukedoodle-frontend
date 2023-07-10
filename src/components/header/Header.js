@@ -56,6 +56,7 @@ export default function Header() {
                 : "button_type_mobile_closed"
             }`}
             onClick={handleMenuClick}
+            onBlur={handleMenuClick}
           ></button>
         ) : (
           ""

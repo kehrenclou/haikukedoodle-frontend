@@ -126,7 +126,7 @@ export const UserForm = ({
           <label className="form__label">Password</label>
           <input
             name="password"
-            type="text"
+            type="password"
             placeholder="Enter a password"
             className={` ${errors.password ? "is-invalid" : ""} form__input`}
             {...register("password", {

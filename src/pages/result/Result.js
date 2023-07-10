@@ -43,6 +43,7 @@ export default function Result() {
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     resetAll();
+    setIsLoading(true);
     navigate("/");
   };
 

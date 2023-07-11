@@ -34,6 +34,7 @@ export default function Create() {
     setIsRestricted,
     isCounterLimit,
     isDateRestricted,
+    isAnonymous,
   } = useUser();
 
   const { isLoggedIn } = useAuth();
@@ -147,7 +148,7 @@ export default function Create() {
               <>
                 {!isRestricted && (
                   <>
-                  {isLoggedIn ? <h2 className="create__heading create__heading_user">Hello {currentUser.name}!</h2>:null}
+                  {isLoggedIn &&!isAnonymous? <h2 className="create__heading create__heading_user">Hello {currentUser.name}!</h2>:null}
                     <h1 className="create__heading">
                       Enter a one word subject to create your haiku.
                     </h1>

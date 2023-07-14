@@ -90,7 +90,7 @@ export const UserForm = ({
               <input
                 name="name"
                 type="text"
-                id="input-name"
+                // id="input-name"
                 placeholder="Enter a pen name"
                 className={` ${
                   errors.name ? "is-invalid" : ""
@@ -113,7 +113,7 @@ export const UserForm = ({
             name="email"
             type="email"
             placeholder="email"
-            id="input-email"
+            // id="input-email"
             className={` ${errors.email ? "is-invalid" : ""} form__input`}
             {...register("email", {
               required: true,
@@ -129,7 +129,7 @@ export const UserForm = ({
             name="password"
             type="password"
             placeholder="Enter a password"
-            id="input-password"
+            // id="input-password"
             className={` ${errors.password ? "is-invalid" : ""} form__input`}
             {...register("password", {
               required: true,

@@ -90,6 +90,7 @@ export const UserForm = ({
               <input
                 name="name"
                 type="text"
+                id="input-name"
                 placeholder="Enter a pen name"
                 className={` ${
                   errors.name ? "is-invalid" : ""
@@ -128,6 +129,7 @@ export const UserForm = ({
             name="password"
             type="password"
             placeholder="Enter a password"
+            id="input-password"
             className={` ${errors.password ? "is-invalid" : ""} form__input`}
             {...register("password", {
               required: true,

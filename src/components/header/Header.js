@@ -38,7 +38,7 @@ export default function Header() {
           className="logo"
           onClick={handleLogoClick}
           href="#main"
-          aria-label="haikukedoodle logo"
+          aria-label="Haikukedoodle logo"
         />
         {!isLessThan600 || isMenuOpen ? (
           <Navbar

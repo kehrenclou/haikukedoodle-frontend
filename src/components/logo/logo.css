@@ -1,5 +1,5 @@
 .logo {
-  /* height:45px; */
+
   width:240px;
 }
 
@@ -9,5 +9,11 @@
 }
 
 .logo_footer{
-  width:200px;
+  width:225px;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    max-width: 200px;
+  }
 }

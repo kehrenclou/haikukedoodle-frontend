@@ -33,7 +33,6 @@ export default function Create() {
     setIsRestricted,
     isCounterLimit,
     isDateRestricted,
-
   } = useUser();
 
   const { isLoggedIn } = useAuth();
@@ -69,6 +68,7 @@ export default function Create() {
       setIsSignUp(true);
       setIsSignUpOpen(true);
     } else if (!currentUser.isAnonymous && isRestricted) {
+      navigate("/");
       setIsDeniedAccessOpen(true);
     }
   }, [isRestricted, currentUser]);
@@ -141,7 +141,7 @@ export default function Create() {
   return (
     <>
       <Layout id="create">
-        <section className="create" key="create" >
+        <section className="create" key="create">
           <AnimatePresence mode="wait">
             {!isLoading && (
               <>

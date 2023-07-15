@@ -140,8 +140,8 @@ export default function Create() {
 
   return (
     <>
-      <Layout>
-        <section className="create" key="create" id="create">
+      <Layout id="create">
+        <section className="create" key="create" >
           <AnimatePresence mode="wait">
             {!isLoading && (
               <>

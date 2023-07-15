@@ -279,7 +279,7 @@ export default function Read() {
 
   return (
     <>
-      <Layout>
+      <Layout id="cards">
         <AnimatePresence mode="wait">
           {isVisible && (
             <motion.div
@@ -289,7 +289,7 @@ export default function Read() {
               exit={{ opacity: 0, scale: 0 }}
               key="cards"
             >
-              <section className="read" id="cards">
+              <section className="read" >
                 {isLoggedIn & !currentUser.isAnonymous ? (
                   <div className="read__fixed-container">
                     <ToggleButtonGroup

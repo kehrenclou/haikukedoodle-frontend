@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import "./header.css";
-import logo from "../../images/logo.png";
+import "../logo/logo.css";
+
 import Navbar from "../navbar";
+import Logo from "../logo/Logo";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -32,13 +34,12 @@ export default function Header() {
   return (
     <>
       <header className={isLessThan920 ? "header header_mobile" : "header"}>
-        <img
-          className="header__logo"
-          src={logo}
-          alt="haikukedoodle logo"
+        <Logo
+          className="logo"
           onClick={handleLogoClick}
+          href="#main"
+          aria-label="haikukedoodle logo"
         />
-
         {!isLessThan600 || isMenuOpen ? (
           <Navbar
             isLessThan600={isLessThan600}

@@ -5,7 +5,7 @@ import Lobe from "./Lobe";
 import Circle from "./Circle";
 import TextLeft from "./TextLeft";
 import TextRight from "./TextRight";
-import IconLink from "./IconLink";
+import IconLink from "../iconLink";
 
 export default function Yinyang({ onLeftClick,onRightClick, ...props }) {
   return (

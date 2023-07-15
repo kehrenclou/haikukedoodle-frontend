@@ -17,8 +17,8 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
   const navigate = useNavigate();
-  const { setCurrentUser, currentUser } = useUser();
-  const { setIsLoggedIn, setIsLoaded, token, setToken, isLoggedIn } = useAuth();
+  const { setCurrentUser} = useUser();
+  const { setIsLoggedIn, setIsLoaded, token, setToken } = useAuth();
 
   /* ------------------------------- useEffects ------------------------------- */
   useEffect(() => {
@@ -92,6 +92,7 @@ export default function Main() {
                   onRightClick={handleCreateClick}
                   onLeftClick={handleReadClick}
                   key="yinyang"
+                  aria-label="Yin yang button"
                 />
               </motion.div>
             )}

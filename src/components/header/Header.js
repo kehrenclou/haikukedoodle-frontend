@@ -6,6 +6,7 @@ import "../logo/logo.css";
 
 import Navbar from "../navbar";
 import Logo from "../logo/Logo";
+import IconLink from "../iconLink";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -34,12 +35,15 @@ export default function Header() {
   return (
     <>
       <header className={isLessThan920 ? "header header_mobile" : "header"}>
-        <Logo
-          className="logo"
-          onClick={handleLogoClick}
-          href="#main"
-          aria-label="Haikukedoodle logo"
-        />
+        <IconLink onClick={handleLogoClick} href="#main">
+          <Logo
+            className="logo"
+            fill="#fff"
+            stroke="#fff"
+            aria-label="Haikukedoodle logo"
+          />
+        </IconLink>
+
         {!isLessThan600 || isMenuOpen ? (
           <Navbar
             isLessThan600={isLessThan600}

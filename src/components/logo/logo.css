@@ -1,15 +1,21 @@
 .logo {
-
-  width:240px;
+  width: 240px;
 }
 
-.logo:hover{
-  cursor:pointer;
-  opacity:0.5;
+.logo:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
-.logo_footer{
-  width:225px;
+.logo_footer {
+  width: 225px;
+}
+.logo__form {
+  width: 300;
+  align-self: center;
+  margin-bottom: 16px;
+}
+.logo__form:hover {
 }
 
 @media screen and (max-width: 600px) {

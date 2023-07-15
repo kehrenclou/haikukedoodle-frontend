@@ -1,7 +1,7 @@
 import React from "react";
 import ModalWithForm from "./ModalWithForm";
 import { UserForm } from "../form";
-import logodark from "../../images/logo-darkbackground.svg";
+
 export function UserModal({
   isOpen,
   onClose,
@@ -22,8 +22,6 @@ export function UserModal({
         onClose={onClose}
         name={name}
         title={title}
-        img={logodark}
-        alt="haikukedoodle logo"
       >
         <UserForm
           signUp={signUp}

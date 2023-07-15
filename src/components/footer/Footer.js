@@ -4,6 +4,7 @@ import "./footer.css";
 import "../logo/logo.css";
 
 import Logo from "../logo/Logo";
+import IconLink from "../iconLink";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -23,12 +24,15 @@ export default function Footer() {
   return (
     <>
       <footer className="footer">
-        <Logo
-          className="logo logo_footer"
-          onClick={handleLogoClick}
-          href="#main"
-          aria-label="Haikukedoodle logo"
-        />
+        <IconLink onClick={handleLogoClick} href="#main">
+          <Logo
+            className="logo logo_footer"
+            fill="#fff"
+            stroke="#fff"
+            aria-label="Haikukedoodle logo"
+          />
+        </IconLink>
+
         <div className="footer__links">
           <a className="footer__link" href={mailToLink}>
             kedoodledev@gmail.com

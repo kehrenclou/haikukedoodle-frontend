@@ -17,7 +17,7 @@ export default function Main() {
   const [isPresent, safeToRemove] = usePresence(); //controls component remove from DOM
 
   const navigate = useNavigate();
-  const { setCurrentUser} = useUser();
+  const { setCurrentUser } = useUser();
   const { setIsLoggedIn, setIsLoaded, token, setToken } = useAuth();
 
   /* ------------------------------- useEffects ------------------------------- */
@@ -88,7 +88,8 @@ export default function Main() {
               >
                 <Yinyang
                   className="main__image_size"
-                  href="#cards"
+                  rightHref="#create"
+                  leftHref="#cards"
                   onRightClick={handleCreateClick}
                   onLeftClick={handleReadClick}
                   key="yinyang"

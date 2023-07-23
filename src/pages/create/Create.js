@@ -101,29 +101,33 @@ export default function Create() {
     let userData = currentUser;
 
     try {
-      //1.check subject for offensive words
+      //1.check subject for offensive words, if exist, throw error
       if (checkIfBlockedWord(subject.toLowerCase(), BLOCKED_WORDS)) {
         throw new NoProfanityAllowedError("Profanity Not Allowed as Subject");
       }
+      //2. if not logged in, create a new anonymous user
       if (!isLoggedIn) {
-        //2. if !isLoggedIn, create a new anonymous user
         const newAnonUser = await initializeAnonUser();
         userData = newAnonUser;
       }
-
+      //send call to openai
       const openAiData = await openAiApi.generateHaiku(
         subject,
         userData,
         terms
       );
-
+      //update count after openai returns data
       const updatedUserData = await api.increaseCount();
 
+      //it no openaidata or no updated count, return fail
+      //?change to throw error
       if (!openAiData || !updatedUserData) {
         return console.log("fail");
       }
+      //update context with new count
       setCurrentUser(updatedUserData);
 
+      //transform openai data and set haiku context, navigate to result page
       const tsfResponse = transformAiDataObject(openAiData);
       updateAll(tsfResponse[0], openAiData);
 

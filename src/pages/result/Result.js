@@ -6,7 +6,7 @@ import { ThreeDots } from "react-loading-icons";
 
 import "./result.css";
 
-import { useModal, useUser, useCreateHaiku } from "../../hooks";
+import { useModal, useUser, useCreateHaiku, useAuth } from "../../hooks";
 
 import { Flower } from "../../components/flower";
 
@@ -43,13 +43,13 @@ export default function Result() {
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     resetAll();
-    setIsLoading(true);
+
     navigate("/");
   };
 
   const handleHallOfFameClick = () => {
     resetAll();
-    setIsLoading(true);
+
     navigate("/read");
   };
 

@@ -14,11 +14,11 @@ export default function Header() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLessThan920, setIsLessThan920] = useState(false);
-  const [isLessThan600, setisLessThan600] = useState(false);
+  const [isLessThan600, setIsLessThan600] = useState(false);
 
   useEffect(() => {
     size.width < 920 ? setIsLessThan920(true) : setIsLessThan920(false);
-    size.width < 600 ? setisLessThan600(true) : setisLessThan600(false);
+    size.width < 600 ? setIsLessThan600(true) : setIsLessThan600(false);
   }, [size]);
 
   function handleMenuClick() {

@@ -43,11 +43,13 @@ export default function Create() {
     setIsSignUp,
     setIsDeniedAccessOpen,
     setIsProfanityAlertOpen,
+    isLoading,
+    setIsLoading,
   } = useModal();
 
   const [isPresent, safeToRemove] = usePresence();
   const [zipPairs, setZipPairs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -132,11 +134,13 @@ export default function Create() {
       updateAll(tsfResponse[0], openAiData);
 
       navigate("/result");
+ 
     } catch (err) {
       if (err instanceof NoProfanityAllowedError) {
         setIsProfanityAlertOpen(true);
       }
       setIsError(true);
+      setIsLoading(false);
       navigate("/");
       console.log(err);
     }

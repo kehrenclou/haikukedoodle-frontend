@@ -17,9 +17,10 @@ export default function Result() {
   const [isPresent, safeToRemove] = usePresence(); //used with animation
 
   const [zipPairs, setZipPairs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
-  const { isSignUpOpen, setIsLoginOpen, setIsSignUp } = useModal();
+  const { isSignUpOpen, setIsLoginOpen, setIsSignUp, isLoading, setIsLoading } =
+    useModal();
   const { state, resetAll } = useCreateHaiku();
   const { currentUser } = useUser();
 
@@ -38,18 +39,19 @@ export default function Result() {
 
   useEffect(() => {
     setIsLoading(false);
+    setIsHidden(false);
   }, []);
 
   /* -------------------------------- handlers -------------------------------- */
   const handleStartOverClick = () => {
     resetAll();
-
+    setIsHidden(true);
     navigate("/");
   };
 
   const handleHallOfFameClick = () => {
     resetAll();
-
+    setIsHidden(true);
     navigate("/read");
   };
 
@@ -90,7 +92,7 @@ export default function Result() {
                     <p className="result__text result__text_med">{chord}</p>
                   </div>
                 ))}
-                {!isLoading ? (
+                {!isHidden ? (
                   <p className="result__author">{`~created by ${state.author} on ${state.createdOn}`}</p>
                 ) : (
                   ""
@@ -99,6 +101,7 @@ export default function Result() {
             </motion.div>
           )}
         </AnimatePresence>
+
         {currentUser.isAnonymous ? (
           <div className="result__heading-container">
             <button

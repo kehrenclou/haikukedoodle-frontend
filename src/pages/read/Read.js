@@ -289,7 +289,7 @@ export default function Read() {
               exit={{ opacity: 0, scale: 0 }}
               key="cards"
             >
-              <section className="read" >
+              <section className="read">
                 {isLoggedIn & !currentUser.isAnonymous ? (
                   <div className="read__fixed-container">
                     <ToggleButtonGroup
@@ -323,13 +323,14 @@ export default function Read() {
                 <ul className="read__cards" id="read-cards">
                   <ScrollTop />
                   {cards.map((card) => (
-                    <li key={card.id}>
+                    <li key={card._id}>
                       <Card
                         onDownloadClick={handleDownloadClick}
                         onDeleteClick={handleDeleteCardClick}
                         onLikeClick={handleCardLike}
                         onBookmarkClick={handleBookmarkStatus}
                         card={card}
+                        key={card._id}
                       />
                     </li>
                   ))}

@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts";
 import {
-
   checkCounterLimit,
-  checkTimeoutLimit,
+  isTimeInRestrictedZone,
 } from "../helpers/checkDate";
 
 import { ulid } from "ulid";
@@ -29,8 +28,7 @@ export const useUser = () => {
     currentUser.counterMax
   );
 
-  const isDateRestricted = checkTimeoutLimit(currentUser.counterTimeStamp, 1);
-
+  const isDateRestricted = isTimeInRestrictedZone(currentUser.counterTimeStamp);
   return {
     currentUser,
     setCurrentUser,

@@ -2,7 +2,10 @@ import React from "react";
 
 import { UserModal } from "./UserModal";
 import { useModal, useAuth, useUser, useCreateHaiku } from "../../hooks";
-import { checkCounterLimit, checkTimeoutLimit } from "../../helpers/checkDate";
+import {
+  checkCounterLimit,
+  isTimeInRestrictedZone,
+} from "../../helpers/checkDate";
 
 import * as auth from "../../utils/apis";
 import { api } from "../../utils/apis";
@@ -11,11 +14,7 @@ export function LoginModal() {
   /* ---------------------------------- hooks --------------------------------- */
 
   const { setToken, setIsLoggedIn } = useAuth();
-  const {
-    setCurrentUser,
-    isRestricted,
-    setIsRestricted,
-  } = useUser();
+  const { setCurrentUser, isRestricted, setIsRestricted } = useUser();
   const { state, updateAuthorOwner } = useCreateHaiku();
 
   const {
@@ -67,7 +66,7 @@ export function LoginModal() {
               }
               {
                 checkCounterLimit(res.counter, res.counterMax) &&
-                checkTimeoutLimit(res.counterTimeStamp, 1)
+                isTimeInRestrictedZone(res.counterTimeStamp)
                   ? setIsRestricted(true)
                   : setIsRestricted(false);
               }
